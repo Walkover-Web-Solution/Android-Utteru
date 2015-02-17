@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ListView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/list"
-    android:divider="?attr/hs__contentSeparatorColor"
-    android:dividerHeight="1dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    /><!-- From: file:/Users/rhishikeshjoshi/workspace/android/r2d2/Helpshift/src/main/res/layout/hs__search_result_activity.xml --><!-- From: file:/C:/Studio_Projects/utteru/app/build/intermediates/exploded-aar/com.helpshift/android-en-aar/3.7.1/res/layout/hs__search_result_activity.xml -->
