@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+
+    <style name="CustomActionBarTheme" parent="@style/Theme.AppCompat">
+        <item name="actionBarItemBackground">@color/blue_contacts_screen</item>
+        <item name="colorPrimary">@color/blue_contacts_screen</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="actionBarTabTextStyle">@style/ActionBarTabStyleText.Customtitletheme</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Customtitletheme</item>
+        <item name="actionModeBackground">@color/blue_contacts_screen</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
+
+    </style>
+
+    <style name="CustomActionBarThemeLight" parent="@style/Theme.AppCompat.Light">
+        <item name="actionBarItemBackground">@color/green</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="actionBarTabTextStyle">@style/ActionBarTabStyleText.Customtitletheme</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Customtitletheme</item>
+        <item name="actionModeBackground">@color/green</item>
+        <item name="actionMenuTextColor">@color/green</item>
+    </style>
+
+    <style name="CustomActionBarThemeLightBlack" parent="@style/Theme.AppCompat.Light">
+        <item name="actionBarItemBackground">@color/blue_dark</item>
+
+        <item name="android:textColor">@android:color/white</item>
+        <item name="actionBarTabTextStyle">@style/ActionBarTabStyleText.Customtitletheme</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Customtitletheme</item>
+        <item name="actionModeBackground">@color/blue_dark</item>
+        <item name="actionMenuTextColor">@color/blue_dark</item>
+    </style>
+
+    <style name="CustomActionBarThemeLightAll" parent="@style/Theme.AppCompat.Light">
+        <item name="actionBarItemBackground">@android:color/transparent</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="actionBarTabTextStyle">@style/ActionBarTabStyleText.Customtitletheme</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.CustomtitlethemeAll</item>
+        <item name="actionModeBackground">@android:color/transparent</item>
+        <item name="actionMenuTextColor">@color/blue_dark</item>
+    </style>
+
+    <style name="ActionBar.Solid.Customtitletheme" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@color/green</item>
+        <item name="android:background">@color/blue_dark</item>
+        <item name="backgroundStacked">@color/blue_dark</item>
+        <item name="backgroundSplit">@color/blue_dark </item>
+        <item name="actionOverflowMenuStyle">@style/ActionBarTabStyle.CustomActionOverflowStyle
+        </item>
+        <item name="titleTextStyle">@style/ActionBar.CustomTitle</item>
+        <item name="subtitleTextStyle">@style/ActionBar.CustomSubTitle</item>
+    </style>
+
+    <style name="ActionBar.Solid.CustomtitlethemeAll" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="background">@color/purple</item>
+        <item name="backgroundStacked">@color/purple</item>
+        <item name="backgroundSplit">@color/purple</item>
+        <item name="actionOverflowMenuStyle">@style/ActionBarTabStyle.CustomActionOverflowStyleAll
+        </item>
+        <item name="subtitleTextStyle">@style/ActionBar.CustomSubTitle</item>
+        <item name="titleTextStyle">@style/ActionBar.CustomTitle</item>
+    </style>
+
+    <style name="ActionBarTabStyle.CustomActionOverflowStyle" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:background">@color/blue_dark</item>
+    </style>
+
+    <style name="ActionBarTabStyle.CustomActionOverflowStyleAll" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="actionOverflowButtonStyle">@color/purple</item>
+        <item name="android:background">@color/purple</item>
+    </style>
+
+    <style name="ActionBarTabStyleText.Customtitletheme" parent="@style/Widget.AppCompat.Light.ActionBar.TabText">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="ActionBar.CustomTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="ActionBar.CustomSubTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+</resources>
