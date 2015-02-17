@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:paddingLeft="@dimen/padding_right_em"
+    android:paddingBottom="@dimen/padding_bottom_em"
+    android:paddingTop="@dimen/padding_top_em">
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:id="@+id/d_twc_dest_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="chekfgkjhdkhgkdhg"
+
+        android:textColor="@color/new_black"
+        android:textSize="20dp" />
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:id="@+id/d_twc_dest_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="@dimen/margin_top_grid"
+        android:layout_toRightOf="@id/d_twc_dest_name"
+        android:text="412122233338"
+        android:textColor="@color/dark_gray"></com.Utteru.commonUtilities.FontTextView>
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:id="@+id/d_twc_source_name_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/d_twc_dest_name"
+        android:layout_marginTop="@dimen/margin_top_grid"
+        android:text="from Mitali(12232213322)"
+        android:textColor="@color/dark_gray" />
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:id="@+id/d_twc_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/d_twc_source_name_num"
+        android:layout_marginTop="@dimen/margin_top_grid"
+        android:text="21 sep 10.30AM"
+        android:textColor="@color/new_black" />
+
+
+</RelativeLayout>

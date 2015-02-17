@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/country_list_search_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/search_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/edit_box_height"
+        android:layout_margin="@dimen/margin_top"
+        android:background="@drawable/curve_corner_shape_searchbar"
+        android:digits="abcdefghijklmnopqrstuvwxyz1234567890 "
+        android:drawableLeft="@drawable/srch"
+        android:drawablePadding="@dimen/padding_right_em"
+        android:hint="@string/common_search_hint"
+        android:maxLines="1"
+        android:padding="@dimen/search_box_padding"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/edit_text_size" />
+
+    <ListView
+
+        android:id="@+id/search_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.1"
+        android:cacheColorHint="@android:color/transparent"
+        android:listSelector="@drawable/list_selector_common" />
+
+</LinearLayout><!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/layout/searchable_list.xml -->

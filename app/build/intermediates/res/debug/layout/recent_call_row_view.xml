@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/client_row"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="horizontal">
+
+
+
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+       android:layout_margin="@dimen/new_margin"
+
+        android:orientation="vertical">
+
+        <com.Utteru.commonUtilities.FontTextView
+
+            android:id="@+id/call_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:background="@android:color/transparent"
+            android:text="User Name"
+            android:textColor="@color/new_black"
+            android:textSize="19.0dip" />
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <com.Utteru.commonUtilities.FontTextView
+                android:id="@+id/call_time"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:text="Time"
+                android:textColor="@color/dark_gray"
+                android:textSize="14.0dip" />
+
+            <com.Utteru.commonUtilities.FontTextView
+
+                android:id="@+id/call_duration"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".4"
+                android:text="Duration"
+                android:layout_marginLeft="@dimen/new_margin"
+                android:textColor="@color/dark_black"
+                android:textSize="14.0dip" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <ImageView
+        android:layout_alignParentRight="true"
+        android:id="@+id/call_times"
+        android:layout_width="45.0dip"
+        android:layout_height="45.0dip"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="10.0dip"
+        android:layout_marginRight="@dimen/new_margin"
+
+
+        android:background="@drawable/circle_arrow" />
+
+</RelativeLayout><!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/layout/recent_call_row_view.xml -->

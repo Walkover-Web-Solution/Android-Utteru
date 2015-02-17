@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/header"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/abc_action_bar_default_height_material"
+    android:background="@color/red_reset_pin"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingBottom="@dimen/padding_bottom_em"
+    android:paddingLeft="@dimen/padding_left_em"
+    android:paddingRight="@dimen/padding_right_em"
+    android:paddingTop="@dimen/padding_right_em"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/auto_detect_country_back"
+        android:src="@drawable/back"
+        android:layout_height="wrap_content" />
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:id="@+id/auto_detect_coutry_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/auto_detect_country_back"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:text="@string/change_pin"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/abc_text_size_large_material" />
+
+    <ImageView
+        android:id="@+id/auto_detect_country_home"
+        android:layout_width="@dimen/menu_width"
+        android:layout_centerVertical="true"
+
+        android:layout_height="@dimen/menu_width"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/menu" />
+</RelativeLayout>

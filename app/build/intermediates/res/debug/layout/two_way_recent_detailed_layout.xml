@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/abc_action_bar_default_height_material"
+        android:background="@color/twc_orange"
+        android:paddingBottom="@dimen/padding_bottom_em"
+        android:paddingLeft="@dimen/new_margin"
+        android:paddingRight="@dimen/padding_right_em"
+        android:paddingTop="@dimen/new_margin">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tw_details_back"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/back"/>
+
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/twc_detailed_con_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+         android:layout_toRightOf="@id/tw_details_back"
+            android:gravity="center_vertical"
+            android:text="@string/two_way_call"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/abc_text_size_large_material" />
+
+        <ImageView
+            android:id="@+id/menu_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:visibility="visible"
+            android:background="@drawable/menu" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_height="wrap_content">
+
+        <com.Utteru.commonUtilities.FontTextView
+            android:layout_width="match_parent"
+            android:id="@+id/nothing_found_detail"
+            android:layout_height="match_parent"
+            android:background="@color/whitish_gray"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_gravity="center"
+            android:textSize="@dimen/abc_text_size_medium_material"
+            android:text="No call history found!"
+            android:textColor="@color/new_black" />
+
+
+        <ListView
+
+            android:id="@+id/twc_detailed_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:choiceMode="singleChoice"
+
+            android:divider="@color/light_black"
+            android:dividerHeight="1dp"
+            android:padding="@dimen/grid_padding_all"></ListView>
+    </FrameLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:padding="@dimen/new_margin"
+        android:background="@color/whitish_gray"
+        android:id="@+id/footer"
+        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile_log" />
+    </LinearLayout>
+
+</RelativeLayout><!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/layout/two_way_recent_detailed_layout.xml -->
