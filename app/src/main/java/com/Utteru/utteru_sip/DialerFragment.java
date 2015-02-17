@@ -396,16 +396,10 @@ public class DialerFragment extends Fragment {
 
                         Log.e("number from phone", "" + selected_con.getMobile_number());
                         String con_number = selected_con.getMobile_number();
-
-                        con_number = con_number.replace("//s+", "");
-
                         Log.e("number after replace", "" + con_number);
                         if (con_number != null && !con_number.equals("")) {
 
-
-
                             ArrayList<String> pass_number = new ArrayList<>();
-
                             pass_number = CommonUtility.splitCodeFromNumber(con_number);
                             String only_number = pass_number.get(0);
                             String only_code = pass_number.get(1);

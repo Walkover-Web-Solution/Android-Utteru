@@ -57,7 +57,7 @@ public class  PhoneBookActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phonebook_layout);
         init();
-        Mint.initAndStartSession(PhoneBookActivity.this, "395e969a");
+        Mint.initAndStartSession(PhoneBookActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 

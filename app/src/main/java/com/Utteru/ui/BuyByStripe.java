@@ -72,7 +72,7 @@ public class BuyByStripe extends Activity {
         setContentView(R.layout.stripe_card_details);
         tracker = MyAnalyticalTracker.getTrackerInstance().getTracker(MyAnalyticalTracker.TrackerName.APP_TRACKER,this);
         init();
-        Mint.initAndStartSession(BuyByStripe.this, "395e969a");
+        Mint.initAndStartSession(BuyByStripe.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 

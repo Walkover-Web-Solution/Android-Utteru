@@ -13,7 +13,6 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.util.Patterns;
 
 import com.Utteru.R;
 import com.Utteru.adapters.ViewPagerAdapter;
@@ -31,9 +30,6 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.regex.Pattern;
-
-import intercom.intercomsdk.Intercom;
 
 public class SignUpHome extends BaseActivity {
     public static Timer timer;
@@ -68,7 +64,7 @@ public class SignUpHome extends BaseActivity {
 
 
 
-        Mint.initAndStartSession(SignUpHome.this, "395e969a");
+        Mint.initAndStartSession(SignUpHome.this, CommonUtility.BUGSENSEID);
     
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(SignUpHome.this));
         overridePendingTransition(R.anim.animation1, R.anim.animation2);
@@ -87,26 +83,26 @@ public class SignUpHome extends BaseActivity {
                 activityClass = Class.forName(
                         Prefs.getLastActivity(ctx));
 
-                Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
-                Account[] accounts = AccountManager.get(ctx).getAccounts();
-                Log.e("got uid&pw","got uid&pw");
-
-                for (Account account : accounts) {
-                    Log.e("got uid&pw","got uid&pw");
-                    if (emailPattern.matcher(account.name).matches()) {
-                        String possibleEmail = account.name;
-                        Intercom.setApiKey("android_sdk-d602fce9df901dbe4e9ddb066b70166020b18203", "d602fce9df901dbe4e9ddb066b70166020b18203");
-                       Intercom.beginSessionWithEmail(null, new Intercom.IntercomEventListener() {
-                            @Override
-                            public void onComplete(String s) {
-                                Log.e("complete","complete");
-                                Log.e("Intercom","error code"+s);
-                            }
-                        });
-
-                    }
-                    break;
-                }
+//                Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
+//                Account[] accounts = AccountManager.get(ctx).getAccounts();
+//                Log.e("got uid&pw","got uid&pw");
+//
+//                for (Account account : accounts) {
+//                    Log.e("got uid&pw","got uid&pw");
+//                    if (emailPattern.matcher(account.name).matches()) {
+//                        String possibleEmail = account.name;
+//                        Intercom.setApiKey("android_sdk-d602fce9df901dbe4e9ddb066b70166020b18203", "d602fce9df901dbe4e9ddb066b70166020b18203");
+//                        Intercom.beginSessionWithEmail(null, new Intercom.IntercomEventListener() {
+//                            @Override
+//                            public void onComplete(String s) {
+//                                Log.e("complete","complete");
+//                                Log.e("Intercom","error code"+s);
+//                            }
+//                        });
+//
+//                    }
+//                    break;
+//                }
 
 
             } catch (ClassNotFoundException ex) {

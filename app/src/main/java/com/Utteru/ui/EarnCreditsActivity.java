@@ -74,7 +74,7 @@ public class EarnCreditsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earn_credits_layout);
         init();
-        Mint.initAndStartSession(EarnCreditsActivity.this, "395e969a");
+        Mint.initAndStartSession(EarnCreditsActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
         tracker = MyAnalyticalTracker.getTrackerInstance().getTracker(MyAnalyticalTracker.TrackerName.APP_TRACKER, this);
 

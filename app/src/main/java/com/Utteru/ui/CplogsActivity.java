@@ -32,7 +32,8 @@ public class CplogsActivity extends Activity {
     Context ctx = this;
     LayoutInflater inflater;
     ViewGroup header;
-    FontTextView tittleback;
+    FontTextView tittleback,nothing_found;
+
 
     @Override
     protected void onDestroy() {
@@ -54,7 +55,7 @@ public class CplogsActivity extends Activity {
         cplist = new ArrayList<String>();
 
         new getAllLogs().execute(null, null, null);
-        Mint.initAndStartSession(CplogsActivity.this, "395e969a");
+        Mint.initAndStartSession(CplogsActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
         inflater = getLayoutInflater();
         header = (ViewGroup) inflater.inflate(R.layout.cp_log_header, cplogslistview,
@@ -62,6 +63,7 @@ public class CplogsActivity extends Activity {
         backpress = (ImageView) header.findViewById(R.id.auto_detect_country_back);
         tittleback = (FontTextView)header.findViewById(R.id.auto_detect_coutry_header);
         gototohome = (ImageView)header.findViewById(R.id.auto_detect_country_home);
+        nothing_found = (FontTextView)findViewById(R.id.nothing_found);
         cplogslistview.addHeaderView(header, null, false);
         cplogslistview.setDivider(new ColorDrawable(getResources().getColor(R.color.yellow)));
         cplogslistview.setDividerHeight(1);
@@ -107,12 +109,14 @@ public class CplogsActivity extends Activity {
             if (cplist.size() > 0) {
 
                 Log.e("size is not zero", "size is not zero ");
+                nothing_found.setVisibility(View.GONE);
                 cplogslistview.setVisibility(View.VISIBLE);
                 adapter = new CplistAdapter(cplist, ctx);
                 cplogslistview.setAdapter(adapter);
             } else {
                 Log.e("size is  zero", "size is zero ");
                 cplogslistview.setVisibility(View.GONE);
+                nothing_found.setVisibility(View.VISIBLE);
             }
             CommonUtility.dialog.dismiss();
 

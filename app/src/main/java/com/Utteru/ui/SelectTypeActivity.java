@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.Utteru.R;
 import com.Utteru.adapters.ExtentionAdapter;
+import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.FontTextView;
 import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.commonUtilities.VariableClass;
@@ -46,7 +47,7 @@ public class  SelectTypeActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selectextension_ai);
         init();
-        Mint.initAndStartSession(SelectTypeActivity.this, "395e969a");
+        Mint.initAndStartSession(SelectTypeActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
     }

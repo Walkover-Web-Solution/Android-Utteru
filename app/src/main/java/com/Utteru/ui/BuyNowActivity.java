@@ -86,7 +86,7 @@ public class BuyNowActivity extends Activity {
         setContentView(R.layout.buy_now_layout);
         init();
 
-        Mint.initAndStartSession(BuyNowActivity.this, "395e969a");
+        Mint.initAndStartSession(BuyNowActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
         tracker = MyAnalyticalTracker.getTrackerInstance().getTracker(MyAnalyticalTracker.TrackerName.APP_TRACKER,this);
 

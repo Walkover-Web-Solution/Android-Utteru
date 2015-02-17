@@ -62,17 +62,9 @@ public class ContactsListFragment extends ListFragment {
     FontTextView textempty;
     SwipeRefreshLayout refreshLayout;
     private AccessContactAdapter mAdapter;
-    IntentFilter contacts_updated_filter;
+
     private ImageLoader mImageLoader; // Handles loading the contact image in a background thread
-    BroadcastReceiver contacts_updated = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            //show unregister layout
-            if (intent.getAction().equals(SyncAdapter.CONTACTS_UPDATED)) {
-                new loadData().execute();
-            }
-        }
-    };
+
 
 
     // can be reselected again
@@ -212,9 +204,7 @@ public class ContactsListFragment extends ListFragment {
 
     @Override
     public void onResume() {
-        contacts_updated_filter = new IntentFilter();
-        contacts_updated_filter.addAction(IntialiseData.ACCESS_UPDATED);
-        getActivity().registerReceiver(contacts_updated, contacts_updated_filter);
+
         super.onResume();
     }
 
@@ -379,11 +369,14 @@ public class ContactsListFragment extends ListFragment {
             mAdapter = new AccessContactAdapter(allcontacts, getActivity(), mImageLoader);
             if (getActivity() != null)
                 getListView().setAdapter(mAdapter);
+
+              CommonUtility.dialog.dismiss();
             super.onPostExecute(aVoid);
         }
 
         @Override
         protected Void doInBackground(Void... params) {
+
 
             allcontacts = readContactsNew();
 
@@ -395,29 +388,15 @@ public class ContactsListFragment extends ListFragment {
             });
             return null;
         }
-    }
 
-    @Override
-    public void onStop() {
-        try {
-            if (contacts_updated != null)
-                getActivity().unregisterReceiver(contacts_updated);
-        } catch (Exception e) {
-            e.printStackTrace();
+        @Override
+        protected void onPreExecute() {
+            CommonUtility.show_PDialog(getActivity(),getString(R.string.please_wait));
+            CommonUtility.dialog.setCancelable(true);
+            super.onPreExecute();
         }
-        super.onStop();
     }
 
-    @Override
-    public void onDestroy() {
 
-        try {
-            if (contacts_updated != null)
-                getActivity().unregisterReceiver(contacts_updated);
-        } catch (Exception e) {
 
-            e.printStackTrace();
-        }
-        super.onDestroy();
-    }
 }

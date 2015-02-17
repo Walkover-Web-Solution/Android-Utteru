@@ -103,7 +103,7 @@ public class AskNumber extends AccountAuthenticatorActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ask_number);
         init();
-        Mint.initAndStartSession(AskNumber.this, "395e969a");
+        Mint.initAndStartSession(AskNumber.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
         mAccountManager = AccountManager.get(this);

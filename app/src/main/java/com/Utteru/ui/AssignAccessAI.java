@@ -41,7 +41,7 @@ public class AssignAccessAI extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.assign_acess_ai);
         init();
-        Mint.initAndStartSession(AssignAccessAI.this, "395e969a");
+        Mint.initAndStartSession(AssignAccessAI.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 
@@ -142,16 +142,10 @@ public class AssignAccessAI extends Activity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            String name = contactDto.getDisplay_name().replaceAll("[+]", "");
-            name = name.replaceAll("[^\\w\\s\\-_]", "");
+            String name = CommonUtility.validateText(contactDto.getDisplay_name());
 
-            String number = contactDto.getMobile_number().replace("+", "");
-            number = number.replace("-", "");
+            String number = CommonUtility.validateNumberForApi(contactDto.getMobile_number());
 
-
-
-            if (number.startsWith("00"))
-                number = number.replaceFirst("00", "");
 
 
 

@@ -49,7 +49,7 @@ public class EditNumberEmails extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_verified_data_layout);
         init();
-        Mint.initAndStartSession(EditNumberEmails.this, "395e969a");
+        Mint.initAndStartSession(EditNumberEmails.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 

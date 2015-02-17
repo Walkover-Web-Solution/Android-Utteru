@@ -58,7 +58,7 @@ public class SearchListDialer extends BaseActivity {
         setContentView(R.layout.search_list_dialer);
         super.onCreate(savedInstanceState);
         init();
-        Mint.initAndStartSession(SearchListDialer.this, "395e969a");
+        Mint.initAndStartSession(SearchListDialer.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
     }

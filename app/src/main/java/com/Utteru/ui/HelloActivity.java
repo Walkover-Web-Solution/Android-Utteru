@@ -34,6 +34,7 @@ import android.widget.ListView;
 
 import com.Utteru.R;
 import com.Utteru.adapters.EmailListAdapter;
+import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.Prefs;
 import com.google.android.gms.auth.GoogleAuthUtil;
 import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
@@ -65,7 +66,7 @@ public class HelloActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.searchable_list);
-        Mint.initAndStartSession(HelloActivity.this, "395e969a");
+        Mint.initAndStartSession(HelloActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(HelloActivity.this));
         emailListview = (ListView) findViewById(R.id.search_list);
 

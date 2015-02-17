@@ -51,7 +51,7 @@ public class SelectNumber extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_number);
         init();
-        Mint.initAndStartSession(SelectNumber.this, "395e969a");
+        Mint.initAndStartSession(SelectNumber.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 

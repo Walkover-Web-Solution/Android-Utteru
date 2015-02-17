@@ -3,12 +3,15 @@
     android:layout_width="fill_parent"
     android:layout_height="@dimen/abc_action_bar_icon_vertical_padding_material"
     android:background="@android:color/white"
+    android:layout_marginLeft="@dimen/new_margin"
     android:orientation="horizontal"
     android:padding="@dimen/padding_left_em"
 
     >
 
     <com.Utteru.commonUtilities.FontTextView
+        android:layout_marginLeft="@dimen/new_margin"
+
         android:id="@+id/access_text"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

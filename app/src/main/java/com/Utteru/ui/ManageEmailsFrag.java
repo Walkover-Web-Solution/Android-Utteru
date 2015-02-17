@@ -1,5 +1,6 @@
 package com.Utteru.ui;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.TextView;
-
 import com.Utteru.R;
 import com.Utteru.adapters.ManageVerifiedDataListAdapter;
 import com.Utteru.commonUtilities.FontTextView;
@@ -29,13 +28,14 @@ public class ManageEmailsFrag extends Fragment {
     ListView listview;
     ArrayList<VerifiedData> datalist;
     FontTextView nothing_found_text;
-
+    ProgressDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         manage_numbers = inflater.inflate(R.layout.manage_email_number, container, false);
         init();
+        new getAllEmails().execute();
 
         return manage_numbers;
     }
@@ -43,7 +43,7 @@ public class ManageEmailsFrag extends Fragment {
     @Override
     public void onResume() {
 
-        new getAllEmails().execute();
+
 
         listview.setOnItemClickListener(new OnItemClickListener() {
 
@@ -71,6 +71,11 @@ public class ManageEmailsFrag extends Fragment {
 
     void init() {
         ctx = getActivity().getBaseContext();
+        dialog = new ProgressDialog(ctx, R.style.MyTheme);
+        dialog.setMessage(getString(R.string.please_wait));
+        dialog.setCancelable(true);
+
+        dialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         listview = (ListView) manage_numbers.findViewById(R.id.twc_list);
         nothing_found_text = (FontTextView) manage_numbers.findViewById(R.id.nothing_found_text);
         nothing_found_text.setText(getResources().getString(R.string.no_email_found));
@@ -101,12 +106,14 @@ public class ManageEmailsFrag extends Fragment {
 
             } else
                 listview.setVisibility(View.GONE);
+            dialog.dismiss();
+
             super.onPostExecute(result);
         }
 
         @Override
         protected void onPreExecute() {
-
+dialog.show();
 
             super.onPreExecute();
         }
