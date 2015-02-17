@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/whitish_gray" />
+    <stroke
+        android:width="@dimen/stroke_width"
+        android:color="@android:color/darker_gray" />
+
+</shape><!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/drawable-hdpi-v11/ed_inner_background_with_no_corners.xml -->

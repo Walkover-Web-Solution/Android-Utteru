@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="mint-4.0.9">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.splunk.mint/mint/4.0.9/71813785e4ea9ab4dd4b9a4d6a2a244bb59f8662/mint-4.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.splunk.mint/mint/4.0.9/71813785e4ea9ab4dd4b9a4d6a2a244bb59f8662/mint-4.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

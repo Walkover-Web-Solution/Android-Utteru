@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@android:color/white"
+
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/abc_action_bar_default_height_material"
+        android:background="@color/blue_dark"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="@dimen/new_margin"
+        android:paddingLeft="@dimen/new_margin"
+        android:paddingRight="@dimen/new_margin"
+        android:paddingTop="@dimen/new_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/auto_detect_country_back"
+            android:src="@drawable/back"
+            android:layout_height="wrap_content" />
+
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/auto_detect_coutry_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/auto_detect_country_back"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="Access Numbers"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/abc_text_size_large_material" />
+
+        <ImageView
+            android:id="@+id/auto_detect_country_home"
+            android:layout_width="@dimen/menu_width"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:visibility="gone"
+            android:layout_height="@dimen/menu_width"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/menu" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/auto_detect_country_middle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/header"
+        android:padding="@dimen/padding">
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:layout_width="fill_parent"
+        android:text="We see that your country's access number will cost you cheapest!"
+        android:id="@+id/auto_detect_country_message"
+        android:textColor="@color/new_black"
+        android:layout_marginTop="@dimen/new_margin"
+        android:layout_height="wrap_content" />
+    <com.Utteru.commonUtilities.FontTextView
+        android:layout_width="fill_parent"
+        android:text="Choose your nearest state to call"
+        android:textColor="@color/blue_dark"
+        android:layout_marginTop="@dimen/new_margin"
+        android:id="@+id/auto_detect_country_choose_state"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_marginTop="@dimen/new_margin"
+        android:background="@drawable/auto_detect_country_button"
+        android:id="@+id/auto_detect_country_button_choose_state"
+        android:text="Select state "
+        android:padding="@dimen/new_margin"
+
+        android:gravity="left|center_vertical"
+        android:textColor="@color/dark_gray"
+        android:drawableRight="@drawable/ar_right"
+        android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_below="@id/auto_detect_country_middle"
+        android:background="@android:color/white"
+        android:id="@+id/country_not_found_body"
+        android:orientation="vertical"
+        android:padding="@dimen/new_margin"
+
+        android:layout_height="wrap_content">
+        <com.Utteru.commonUtilities.FontTextView
+
+            android:layout_width="fill_parent"
+            android:text="OOPS !"
+            android:id="@+id/oops_message"
+            android:textColor="@color/blue_dark"
+            android:textSize="@dimen/abc_text_size_medium_material"
+            android:layout_height="wrap_content" />
+
+
+        <com.Utteru.commonUtilities.FontTextView
+
+            android:layout_width="fill_parent"
+
+            android:text="We see that there are no access numbers available in "
+            android:id="@+id/country_not_found_message"
+            android:gravity="center_vertical"
+            android:textColor="@color/new_black"
+            android:layout_height="wrap_content" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="@dimen/padding"
+        android:layout_below="@id/country_not_found_body"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="@dimen/new_margin"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:background="@color/whitish_gray">
+            <com.Utteru.commonUtilities.FontTextView
+            android:layout_width="fill_parent"
+            android:layout_marginTop="@dimen/new_margin"
+            android:text="OR"
+                android:id="@+id/or_message"
+            android:textSize="20dp"
+            android:textColor="@color/dark_gray"
+            android:layout_height="wrap_content" />
+        <com.Utteru.commonUtilities.FontTextView
+            android:textColor="@color/blue_dark"
+            android:layout_marginTop="@dimen/new_margin"
+            android:layout_width="fill_parent"
+            android:id="@+id/choose_another_country_message"
+            android:text="Choose another country's access number"
+            android:layout_height="wrap_content" />
+         <Button
+            android:background="@drawable/auto_detect_country_button_2"
+            android:text="CHOOSE"
+             android:textColor="@android:color/white"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="@dimen/new_margin"
+            android:id="@+id/choose_another_country"
+            android:layout_height="@dimen/new_btn_size" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout><!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/layout/autocountrydetectlayout.xml -->

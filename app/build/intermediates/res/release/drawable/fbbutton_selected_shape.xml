@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <solid android:color="@color/dark_black" />
+
+    <stroke
+        android:width="@dimen/stroke_width"
+        android:color="@color/dark_black" />
+
+    <corners android:radius="4.0dip" />
+
+</shape><!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/drawable/fbbutton_selected_shape.xml -->

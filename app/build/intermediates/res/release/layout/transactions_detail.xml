@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    >
+
+    <LinearLayout
+
+
+
+        android:layout_width="fill_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="@dimen/margin_bottom"
+        android:background="@drawable/ed_inner_background"
+
+        android:gravity="center"
+        android:orientation="vertical">
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/trans_detail_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:text="Date"
+            android:textColor="@color/blue" />
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/trans_detail_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:text="Amount"
+            android:textColor="@color/new_black" />
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/trans_detail_current_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:text="Remaining talktime"
+            android:textColor="@color/new_black" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_top"
+
+            android:background="@color/dark_gray"></LinearLayout>
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/trans_detail_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:text="Mode"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/abc_text_size_large_material" />
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/trans_detail_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_top"
+            android:layout_marginTop="@dimen/margin_top"
+            android:text="Description"
+            android:textColor="@color/new_black" />
+
+
+        </LinearLayout>
+
+
+
+
+
+</RelativeLayout><!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/layout/transactions_detail.xml -->

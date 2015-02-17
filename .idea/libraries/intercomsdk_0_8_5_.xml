@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="intercomsdk-0.8.5-">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/intercomsdk-0.8.5/libs/AndroidBlocks.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/intercomsdk-0.8.5/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/intercomsdk-0.8.5/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

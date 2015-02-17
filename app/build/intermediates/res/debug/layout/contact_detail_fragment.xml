@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+   >
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/abc_action_bar_default_height_material"
+        android:background="@color/blue_dark"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="@dimen/new_margin"
+        android:paddingLeft="@dimen/new_margin"
+        android:paddingRight="@dimen/new_margin"
+        android:paddingTop="@dimen/new_margin">
+
+        <ImageView
+            android:id="@+id/contact_detail_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back" />
+
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/contact_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/contact_detail_back_button"
+            android:gravity="center_vertical"
+            android:text="Sneha"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/abc_text_size_large_material" />
+
+        <ImageView
+            android:id="@+id/contact_detail_home"
+            android:layout_width="@dimen/menu_width"
+            android:layout_height="@dimen/menu_width"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/menu" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/contact_detail_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:background="@android:color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/new_margin"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <com.Utteru.ui.RoundedImageView
+                android:id="@+id/contact_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/con_profile" />
+
+            <com.Utteru.commonUtilities.FontTextView
+                android:id="@+id/contact_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="123456789"
+                android:textColor="@color/blue_dark"
+                android:textSize="@dimen/abc_text_size_medium_material" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/contact_detail_divider"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/new_margin"
+            android:background="@color/whitish_gray" />
+
+        <LinearLayout
+            android:id="@+id/access_number_details"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+
+            <com.Utteru.commonUtilities.FontTextView
+                android:id="@+id/access_number_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/new_margin"
+                android:text="Access Number"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/abc_text_size_small_material" />
+
+            <RelativeLayout
+                android:id="@+id/accessnumber_detail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <com.Utteru.commonUtilities.FontTextView
+                    android:id="@+id/access_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/new_margin"
+                    android:textColor="@color/new_black"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
+
+                <com.Utteru.commonUtilities.FontTextView
+                    android:id="@+id/extension"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_top"
+                    android:layout_marginTop="@dimen/margin_top"
+
+                    android:layout_toRightOf="@id/access_number"
+                    android:background="@drawable/contact_details_button_shape"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="2dp"
+                    android:textColor="@android:color/white" />
+
+                <com.Utteru.ui.RoundedImageView
+                    android:id="@+id/call_access_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/margin_top"
+                    android:src="@drawable/ic_action_call"
+                    android:text="data"
+                    android:textColor="@color/new_black" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@color/whitish_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/assignButton"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/new_btn_size"
+                android:layout_marginLeft="@dimen/hs__marginLeft"
+                android:layout_marginRight="@dimen/hs__marginLeft"
+                android:layout_marginTop="@dimen/new_margin"
+                android:background="@drawable/contact_details_button_shape"
+                android:text="ASSIGN ACCESS NUMBER"
+                android:textColor="#ffff" />
+
+
+            <Button
+                android:id="@+id/unassignButton"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/new_btn_size"
+                android:layout_marginLeft="@dimen/hs__marginLeft"
+                android:layout_marginRight="@dimen/hs__marginLeft"
+                android:layout_marginTop="@dimen/new_margin"
+                android:background="@drawable/contact_details_unassign_button_shape"
+                android:text="UNASSIGN ACCESS NUMBER"
+                android:textColor="#ffff" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+<!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/layout/contact_detail_fragment.xml -->
