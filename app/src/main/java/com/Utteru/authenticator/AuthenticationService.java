@@ -24,6 +24,7 @@ import com.splunk.mint.Mint;
 
 public class AuthenticationService extends Service {
 
+    
     private Authenticator mAuthenticator;
 
     @Override
