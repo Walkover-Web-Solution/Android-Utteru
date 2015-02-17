@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:orientation="horizontal"
+    android:padding="@dimen/padding_left_em"
+    android:gravity="center"
+
+    >
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:layout_alignParentLeft="true"
+        android:id="@+id/search_text"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_height="match_parent"
+        android:gravity="center|center_vertical"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/abc_text_size_medium_material" />
+
+
+</RelativeLayout><!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/layout/search_row_view.xml -->

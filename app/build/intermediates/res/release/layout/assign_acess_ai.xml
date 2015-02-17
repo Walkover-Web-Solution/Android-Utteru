@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/abc_action_bar_default_height_material"
+        android:background="@color/blue_dark"
+        android:paddingBottom="@dimen/padding_bottom_em"
+        android:paddingLeft="@dimen/padding_left_em"
+        android:paddingRight="@dimen/padding_right_em"
+        android:paddingTop="@dimen/padding_right_em">
+
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/padding_top_em"
+            android:gravity="center_vertical"
+
+            android:text="@string/access_number_info"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/abc_text_size_large_material" />
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_all">
+
+        <include layout="@layout/error_message_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <com.Utteru.commonUtilities.FontTextView
+
+            android:id="@+id/country_info"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@drawable/ed_inner_background"
+            android:gravity="center"
+            android:padding="@dimen/grid_padding_all"
+            android:text="Country"
+            android:textColor="@color/new_black" />
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/state_info"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@drawable/ed_inner_background"
+            android:gravity="center"
+            android:padding="@dimen/grid_padding_all"
+            android:text="Country"
+            android:textColor="@color/new_black" />
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/access_info"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@drawable/ed_inner_background"
+            android:gravity="center"
+            android:padding="@dimen/grid_padding_all"
+            android:text="Country"
+            android:textColor="@color/new_black" />
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/extention_info"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@drawable/ed_inner_background"
+            android:gravity="center"
+            android:padding="@dimen/grid_padding_all"
+            android:text="Extenstion Number"
+            android:textColor="@color/new_black" />
+        <Button
+            android:id="@+id/assign_access_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@drawable/contact_details_button_shape"
+            android:gravity="center"
+            android:padding="@dimen/grid_padding_all"
+            android:text="Assign Access Number"
+            android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+
+</LinearLayout>
+<!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/layout/assign_acess_ai.xml -->

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/padding_top_em"
+    android:layout_marginStart="@dimen/padding_top_em"
+    android:gravity="center"
+    android:paddingLeft="@dimen/new_margin"
+    android:paddingRight="@dimen/new_margin"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <com.Utteru.util.RoundedQuickContactBadge
+        android:id="@android:id/icon"
+        android:visibility="visible"
+        android:layout_width="38dip"
+        android:layout_centerVertical="true"
+        android:layout_height="38dip"
+        android:scaleType="centerCrop" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_toRightOf="@android:id/icon"
+        android:layout_toEndOf="@android:id/icon"
+        android:layout_height="wrap_content">
+
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@android:id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/abc_dropdownitem_text_padding_left"
+            android:layout_marginStart="8dip"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/new_black" />
+
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@android:id/text2"
+            android:layout_width="match_parent"
+            android:layout_below="@android:id/text1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/abc_dropdownitem_text_padding_left"
+            android:layout_marginStart="8dip"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/dark_gray" />
+    </RelativeLayout>
+</RelativeLayout>
+

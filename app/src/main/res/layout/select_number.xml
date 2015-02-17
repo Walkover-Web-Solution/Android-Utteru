@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_all">
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:id="@+id/select_number_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_verified_number"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textsize_em" />
+    <include
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/error_message_layout"/>
+
+    <RadioGroup
+        android:id="@+id/verified_numbers_group"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"></RadioGroup>
+
+    <Button
+
+        android:id="@+id/select_number_button"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="@dimen/margin_top"
+        android:background="@drawable/button_selector"
+        android:text="@string/send_code"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

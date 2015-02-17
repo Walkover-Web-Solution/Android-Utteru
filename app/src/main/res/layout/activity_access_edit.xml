@@ -1,0 +1,130 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/assignLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+
+    tools:context="com.Utteru.ui.AccessEditActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/abc_action_bar_default_height_material"
+        android:background="@color/blue_dark"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="@dimen/padding_bottom_em"
+        android:paddingLeft="@dimen/padding_left_em"
+        android:paddingRight="@dimen/padding_right_em"
+        android:paddingTop="@dimen/padding_right_em">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/contacts_back"
+            android:layout_marginLeft="@dimen/new_margin"
+            android:src="@drawable/back"
+            android:layout_height="wrap_content" />
+
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/contact_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/contacts_back"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="Access Number"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/abc_text_size_large_material" />
+
+        <com.Utteru.commonUtilities.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+
+            android:id="@+id/contacts_subtitle"
+            android:layout_toRightOf="@id/contacts_back"
+            android:layout_below="@id/contact_header" />
+
+        <ImageView
+            android:id="@+id/contacts_home"
+            android:layout_width="@dimen/menu_width"
+            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"
+            android:layout_height="@dimen/menu_width"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/menu" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:padding="@dimen/padding"
+        android:layout_below="@id/header"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/new_margin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+
+            android:id="@+id/selectCountry"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/auto_detect_country_button"
+            android:gravity="center"
+            android:paddingTop="@dimen/padding"
+            android:textAlignment="center"
+            android:textColor="@color/new_black"
+            android:textSize="@dimen/abc_text_size_large_material" />
+
+        <Button
+            android:id="@+id/selectState"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/selectCountry"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@drawable/auto_detect_country_button"
+            android:gravity="center"
+            android:paddingTop="@dimen/padding"
+            android:textAlignment="center"
+            android:textColor="@color/new_black"
+            android:textSize="@dimen/abc_text_size_large_material" />
+
+        <Button
+            android:id="@+id/selectAccessNumber"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/selectState"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@drawable/auto_detect_country_button"
+            android:gravity="center"
+            android:paddingTop="@dimen/padding"
+            android:textAlignment="center"
+            android:textColor="@color/new_black"
+            android:textSize="@dimen/abc_text_size_large_material" />
+
+        <Button
+            android:id="@+id/selectExtension"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/selectAccessNumber"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@drawable/auto_detect_country_button"
+            android:gravity="center"
+            android:paddingTop="@dimen/padding"
+            android:textAlignment="center"
+            android:textColor="@color/new_black"
+            android:textSize="@dimen/abc_text_size_large_material" />
+    </LinearLayout>
+
+
+</RelativeLayout>
