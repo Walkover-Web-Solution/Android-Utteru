@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@android:color/white"
+android:orientation="vertical"
+android:padding="@dimen/grid_padding_all">
+<com.Utteru.commonUtilities.FontTextView
+    android:id="@+id/nothing_found_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|top"
+    android:text= "@string/no_record"
+    android:textAlignment="center"
+    android:textSize="@dimen/abc_text_size_large_material"
+    android:textStyle="bold"/>
+
+<ListView
+    android:id="@+id/twc_list"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:choiceMode="singleChoice"
+    android:divider="@color/dark_black_new"
+    android:dividerHeight="1dp"
+    android:visibility="gone"/>
+
+</FrameLayout><!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/layout/manage_email_number.xml -->

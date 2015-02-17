@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  android:layout_margin="@dimen/new_margin"
+    tools:context=".SampleActivity" >
+
+    <LinearLayout
+        android:id="@+id/wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/buyItBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/new_margin"
+            android:onClick="onBuyPressed"
+            android:text="Buy a Thing" />
+
+        <Button
+            android:id="@+id/futurePaymentBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/new_margin"
+            android:onClick="onFuturePaymentPressed"
+            android:text="Future Payment Consent" />
+
+        <Button
+            android:id="@+id/futurePaymentPurchaseBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/new_margin"
+            android:onClick="onFuturePaymentPurchasePressed"
+            android:text="Future Payment Purchase" />
+
+        <Button
+            android:id="@+id/profileSharingBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/new_margin"
+            android:onClick="onProfileSharingPressed"
+            android:text="Profile Sharing Consent" />
+    </LinearLayout>
+
+</RelativeLayout><!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/layout/paypal_layout.xml -->

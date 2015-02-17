@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+     />
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/abc_action_bar_default_height_material"
+        android:background="@color/blue_dark"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="@dimen/padding_bottom_em"
+        android:paddingLeft="@dimen/padding_left_em"
+        android:paddingRight="@dimen/padding_right_em"
+        android:paddingTop="@dimen/padding_right_em">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/auto_detect_country_back"
+            android:src="@drawable/back"
+            android:layout_height="wrap_content" />
+
+        <com.Utteru.commonUtilities.FontTextView
+            android:id="@+id/auto_detect_coutry_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/auto_detect_country_back"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="Buy Now"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/abc_text_size_large_material" />
+
+        <ImageView
+            android:id="@+id/auto_detect_country_home"
+            android:layout_width="@dimen/menu_width"
+            android:layout_centerVertical="true"
+android:visibility="gone"
+            android:layout_height="@dimen/menu_width"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/menu" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding">
+
+        <include
+            layout="@layout/error_message_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+
+
+            <Button
+                android:id="@+id/buy_now_stripe_option"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_top"
+
+                android:background="@drawable/blue_button_selector_shape"
+                android:gravity="center"
+                android:text="Credit/Debit card"
+                android:textColor="@android:color/white"
+                />
+
+
+            <Button
+                android:id="@+id/buy_now_paypal_option"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_top"
+                android:background="@drawable/blue_button_selector_shape"
+                android:text="Paypal"
+                android:textColor="@android:color/white"
+                />
+
+
+        <Button
+            android:id="@+id/buy_now_rechargeviapin_option"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@drawable/blue_button_selector_shape"
+            android:text="Recharge By Pin"
+            android:textColor="@android:color/white"
+            />
+
+
+        <Button
+            android:id="@+id/buy_now_transaction_option"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@drawable/blue_button_selector_shape"
+            android:text="Transactions"
+            android:textColor="@android:color/white"
+            />
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+

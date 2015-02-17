@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_rate_row_view"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:paddingBottom="@dimen/padding_bottom_em"
+    android:paddingLeft="@dimen/padding_left_em"
+    android:paddingRight="@dimen/padding_right_em"
+    android:paddingTop="@dimen/padding_top_em" >
+
+
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:id="@+id/access_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_alignParentLeft="true"
+        android:gravity="left"
+        android:text="12345"
+        android:textColor="@color/new_black"
+        android:textSize="@dimen/search_row_text_size" />
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:id="@+id/extension"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:background="@drawable/button_background"
+        android:padding="5dp"
+        android:text="12"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/search_row_text_size" />
+
+</RelativeLayout>
+<!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/layout/access_info_rowview.xml -->
