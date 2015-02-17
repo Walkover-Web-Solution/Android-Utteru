@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/values-sw600dp-port/integers.xml -->
-    <eat-comment/>
-    <integer name="contact_detail_percent">50</integer>
-    <integer name="contact_list_percent">50</integer>
-</resources>

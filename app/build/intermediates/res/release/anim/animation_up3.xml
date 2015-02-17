@@ -1,6 +1,0 @@
-<translate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:duration="250"
-
-    android:fromYDelta="-100%p"
-    android:toYDelta="0%p"
-    ></translate><!-- From: file:/C:/Studio_Projects/utteru/app/src/main/res/anim/animation_up3.xml -->
