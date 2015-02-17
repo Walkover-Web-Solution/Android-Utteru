@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.Utteru.R;
+import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.FontTextView;
 import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.dtos.TransactionLogsDto;
@@ -26,7 +27,7 @@ public class TransactionLogActivity extends ActionBarActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transaction_layout);
-        Mint.initAndStartSession(TransactionLogActivity.this, "395e969a");
+        Mint.initAndStartSession(TransactionLogActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(TransactionLogActivity.this));
         tittleback = (FontTextView)findViewById(R.id.auto_detect_coutry_header);
         backpress = (ImageView)findViewById(R.id.auto_detect_country_back);

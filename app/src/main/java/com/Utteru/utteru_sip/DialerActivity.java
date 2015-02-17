@@ -21,8 +21,6 @@ import com.Utteru.userService.UserService;
 import com.portsip.PortSipSdk;
 import com.splunk.mint.Mint;
 
-import java.util.Date;
-
 public class DialerActivity extends ActionBarActivity
         implements DialerFragment.OnCallListener, RecentDetailFragment.CallDetails {
 
@@ -84,7 +82,7 @@ public class DialerActivity extends ActionBarActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialer_main_layout);
-        Mint.initAndStartSession(DialerActivity.this, "395e969a");
+        Mint.initAndStartSession(DialerActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(DialerActivity.this));
         Log.e("Dialer Layout", " on activity create");
         dialerFragment = new DialerFragment();
@@ -94,7 +92,7 @@ public class DialerActivity extends ActionBarActivity
         mIntentFilter_register.addAction(UtteruSipCore.REGISTRATION_STATE_CHANGE);
         mIntentFilter_call = new IntentFilter();
         mIntentFilter_call.addAction(UtteruSipCore.CALL_STATE_CHANGE);
-        Mint.initAndStartSession(DialerActivity.this, "395e969a");
+        Mint.initAndStartSession(DialerActivity.this, CommonUtility.BUGSENSEID);
 
         //not from notification
         if (getIntent().getExtras() == null) {

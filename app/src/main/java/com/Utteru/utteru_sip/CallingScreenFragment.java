@@ -51,7 +51,7 @@ public class CallingScreenFragment extends Fragment {
     Context ctx;
     RelativeLayout hangup;
     Chronometer chronometer;
-    ImageButton speaker, mute_button;
+    ImageButton speaker, mute_button ,end_call_button;
     Boolean speaker_state = false;
     Boolean mute_state = false;
     SimpleDateFormat sdf;
@@ -228,6 +228,8 @@ public class CallingScreenFragment extends Fragment {
         Session currentLine = utteruSipCore.findSessionByIndex(_CurrentlyLine);
         mSipSdk.muteSession(currentLine.getSessionId(), state,
                 state, state, state);
+
+
     }
 
     void holdCall() {
@@ -366,6 +368,7 @@ public class CallingScreenFragment extends Fragment {
         speaker = (ImageButton) getView().findViewById(R.id.switch_speaker);
         hangup = (RelativeLayout) getView().findViewById(R.id.call_end);
         mute_button = (ImageButton) getView().findViewById(R.id.microphone);
+        end_call_button = (ImageButton)getView().findViewById(R.id.endcall_btn);
 
         new SearchRate().execute();
         sdf = new SimpleDateFormat("d MMM , hh:mm aaa");
@@ -390,7 +393,13 @@ public class CallingScreenFragment extends Fragment {
                 return false;
             }
         });
-
+        end_call_button.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                finishCall();
+                return false;
+            }
+        });
         speaker.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

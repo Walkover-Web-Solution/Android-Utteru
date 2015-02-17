@@ -47,7 +47,7 @@ public class ContactDetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        Mint.initAndStartSession(ContactDetailActivity.this, "395e969a");
+        Mint.initAndStartSession(ContactDetailActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ContactDetailActivity.this));
 
         if (BuildConfig.DEBUG) {
@@ -69,6 +69,7 @@ public class ContactDetailActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
+
 
         if(getIntent().getExtras().containsKey(VariableClass.Vari.SOURCECLASS)){
 

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -57,6 +58,7 @@ public class ManageNumbersHome extends FragmentActivity {
     Context ctx;
     LinearLayout add_num_layout, add_email_id_layout;
     ProgressDialog dialog;
+    ImageView back;
 
     public final static boolean isValidEmail(CharSequence target) {
         if (target == null) {
@@ -91,6 +93,13 @@ public class ManageNumbersHome extends FragmentActivity {
 
     @Override
     protected void onResume() {
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+
+            }
+        });
         show_add_layout.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -230,6 +239,12 @@ public class ManageNumbersHome extends FragmentActivity {
                 showErrorMessage(false, "");
             }
         });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         super.onResume();
     }
 
@@ -260,7 +275,7 @@ public class ManageNumbersHome extends FragmentActivity {
 
         ctx = this;
 
-        Mint.initAndStartSession(ManageNumbersHome.this, "395e969a");
+        Mint.initAndStartSession(ManageNumbersHome.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
         error_FontTextView = (FontTextView) findViewById(R.id.error_text);
         error_layout = (RelativeLayout) findViewById(R.id.error_layout);
@@ -270,6 +285,7 @@ public class ManageNumbersHome extends FragmentActivity {
         mPager = (ViewPager) findViewById(R.id.mn_pager);
         title = (FontTextView) findViewById(R.id.manage_numbers_title);
         mPager.setAdapter(mAdapter);
+        back=(ImageView)findViewById(R.id.manage_account_back);
         mIndicator = (CirclePageIndicator) findViewById(R.id.mn_indicator);
         mIndicator.setViewPager(mPager);
         show_add_layout = (FontTextView) findViewById(R.id.mn_show_add_layout);

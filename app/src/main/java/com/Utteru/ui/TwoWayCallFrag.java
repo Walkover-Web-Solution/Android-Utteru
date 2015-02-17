@@ -201,18 +201,8 @@ public class TwoWayCallFrag extends Fragment {
                                 if (source_string.length() > 8 && source_string.length() < 18) {
                                     if (destination_string.length() > 8 && destination_string.length() < 18) {
 
-                                        if (source_string.startsWith("00"))
-                                            source_string = source_string.replaceFirst("00", "");
-                                        if (source_string.startsWith("+"))
-                                            source_string = source_string.replaceAll("[+]", "");
-
-                                        if (destination_string.startsWith("00"))
-                                            destination_string = destination_string.replaceFirst("00", "");
-                                        if (destination_string.startsWith("+"))
-                                            destination_string = destination_string.replaceAll("[+]", "");
-
-                                        source_string = source_string.replace(" ", "");
-                                        destination_string = destination_string.replace(" ", "");
+                                   source_string  =CommonUtility.validateNumberForApi(source_string);
+                                    destination_string =CommonUtility.validateNumberForApi(destination_string);
 
                                         new TwoWayCall().execute(null, null, null);
                                     } else
@@ -362,16 +352,11 @@ public class TwoWayCallFrag extends Fragment {
             if (selected_con != null) {
 
                 Log.e("number from phone", "" + selected_con.getMobile_number());
-                String con_number = selected_con.getMobile_number().replaceAll("-", "").replaceAll("\\s+", "");
+                String con_number = selected_con.getMobile_number();
 
 
                 Log.e("number after replace", "" + con_number);
                 if (con_number != null && !con_number.equals("")) {
-
-
-                    if (!con_number.startsWith("+") && !con_number.startsWith("00"))
-                        con_number = "+" + Prefs.getUserCountryCode(ctx) + con_number.replace(" ", "");
-
 
                     switch (reqCode) {
                         case (REQUEST_SELECT_CONTACT_SOURCE):
@@ -673,7 +658,7 @@ public class TwoWayCallFrag extends Fragment {
                     }
                     //success response
                     else if (joparent.getString(VariableClass.ResponseVariables.RESPONSE).equals(Apis.SuccessResponse)) {
-                        cdto = new ContactsDto(CommonUtility.getContactDisplayNameByNumber(source_string, ctx), "+" + source_string, CommonUtility.getContactDisplayNameByNumber(destination_string, ctx), "+" + destination_string, ft.format(new Date()));
+                        cdto = new ContactsDto(CommonUtility.getContactDisplayNameByNumber(source_string, ctx), source_string, CommonUtility.getContactDisplayNameByNumber(destination_string, ctx), "+" + destination_string, ft.format(new Date()));
                         UserService.getUserServiceInstance(ctx).addTwoWayCall(cdto);
 
                         jarray = joparent.getJSONArray(VariableClass.ResponseVariables.CONTENT);
@@ -947,11 +932,7 @@ public class TwoWayCallFrag extends Fragment {
 
             public void onFinish() {
                 //hit pricing api
-                if (destination_string.startsWith("00"))
-                    destination_string = destination_string.replaceFirst("00", "");
-                if (destination_string.startsWith("+"))
-                    destination_string = destination_string.replaceAll("[+]]", "");
-                destination_string = destination_string.replace("\\s+ ", "");
+               destination_string = CommonUtility.validateNumberForApi(destination_string);
                 if (!destination_string.equals("")) {
                     number = REQUEST_SELECT_CONTACT_DEST;
                     new GetPricing().execute(null, null, null);
@@ -982,12 +963,7 @@ public class TwoWayCallFrag extends Fragment {
             public void onFinish() {
 
                 //hit pricing api
-                if (source_string.startsWith("00"))
-                    source_string = source_string.replaceFirst("00", "");
-                if (source_string.startsWith("+"))
-                    source_string = source_string.replaceAll("[+]]", "");
-
-                source_string = source_string.replace("\\s+ ", "");
+               source_string=CommonUtility.validateNumberForApi(source_string);
                 if (!source_string.equals("")) {
                     number = REQUEST_SELECT_CONTACT_SOURCE;
                     new GetPricing().execute(null, null, null);

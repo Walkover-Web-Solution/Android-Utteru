@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.Utteru.R;
+import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.Prefs;
 import com.splunk.mint.Mint;
 
@@ -22,7 +23,7 @@ public class SplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
 
-        Mint.initAndStartSession(SplashScreen.this, "395e969a");
+        Mint.initAndStartSession(SplashScreen.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(SplashScreen.this));
         new Handler().postDelayed(new Runnable() {
             public void run() {

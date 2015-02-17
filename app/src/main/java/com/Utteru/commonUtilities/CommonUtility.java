@@ -62,6 +62,9 @@ import java.util.Random;
 public class CommonUtility {
 
     public final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    public final static String BUGSENSEID ="1a1d2717";
+    public final static String BUGSENSELIVE ="395e969a";
+    public final static String BUGSENSEID_TEST="1a1d2717";
     public static ArrayList<MultipleVerifiedNumber> c_list;
     public static ProgressDialog dialog;
     public static HashMap<String, String> currency_list;
@@ -127,16 +130,17 @@ public class CommonUtility {
     {
 
             if (number.startsWith("00")) {
-                number = number.replace("00", "");
+
+                number = number.replaceFirst("00", "");
 
             }
 
             if (number.startsWith("0")) {
-                number = number.replace("0", "");
+                number = number.replaceFirst("0", "");
             }
 
             number = number.replace("//s+", "");//space
-            number = number.replaceAll("[-+.^:,]", "");//specific special charecter
+            number = number.replaceAll("[-+.^:,]", "");//specific special character
             number = number.replaceAll("-", ""); //dash
             number =number.replace("+","");
 
@@ -146,12 +150,39 @@ public class CommonUtility {
 
     }
 
+
+
     public static String  validateText(String text){
 
         text = text.replaceAll("[^\\w\\s\\-_]", "");//all special
+
         text = text.replace("+","");
         text = text.replaceAll("-", ""); //dash
+        text = text.trim();
         return  text;
+    }
+
+    public static String  validateNumberForUI(String number,Context ctx)
+    {
+
+        number = number.replaceAll("[^\\w\\s\\-_]", "");//all special
+        if(!number.startsWith("+")&&!number.startsWith("00"))
+        {
+            number = "+"+Prefs.getUserCountryCode(ctx)+number;
+        }
+        else if(number.startsWith("0"))
+        {
+
+            number = number.replaceFirst("0", "");
+            number ="+"+ Prefs.getUserCountryCode(ctx)+number;
+
+
+        }
+        number = number.replace("//s+", "");//space
+        number = number.replaceAll("-", ""); //dash
+
+
+        return number;
     }
 
 
@@ -416,47 +447,6 @@ public class CommonUtility {
         }
         return name;
     }
-
-  /*  public static AccessContactDto getContactDisplayNameImageByNumber(String number, Context ctx) {
-        Log.e("numer to search",""+number);
-        AccessContactDto dto = new AccessContactDto();
-        Uri uri = Uri.withAppendedPath(
-                ContactsContract.PhoneLookup.CONTENT_FILTER_URI,
-                Uri.encode(number));
-        String name = "";
-        String imageuri="";
-
-        ContentResolver contentResolver = ctx.getContentResolver();
-        Cursor contactLookup = contentResolver.query(uri, new String[]{
-                        BaseColumns._ID, ContactsContract.PhoneLookup.DISPLAY_NAME,ContactsContract.PhoneLookup.PHOTO_URI},
-                null, null, null);
-
-        try {
-            if (contactLookup != null && contactLookup.getCount() > 0) {
-                contactLookup.moveToNext();
-                name = contactLookup.getString(contactLookup
-                        .getColumnIndex(ContactsContract.Data.DISPLAY_NAME));
-                if (name == null)
-                    name = "";
-
-                imageuri=contactLookup.getString(contactLookup.getColumnIndex(ContactsContract.Data.PHOTO_URI));
-            }
-
-            Log.e("name",""+name);
-
-            dto.setMobile_number(number);
-            dto.setThumbUri(imageuri);
-
-        } finally {
-            if (contactLookup != null) {
-                contactLookup.close();
-            }
-        }
-
-        return dto;
-    }
-*/
-
     public static void setCurrency(Context c) {
 
         final Context ctx = c;
@@ -760,7 +750,11 @@ public class CommonUtility {
 
 
         Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:" + number));
+
+        if(!number.startsWith("+"))
+            number = "+"+number;
+
+       callIntent.setData(Uri.parse("tel:" +number));
         callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         c.startActivity(callIntent);
 

@@ -179,7 +179,7 @@ public class ForgotPasswordActivity extends BaseActivity {
     }
 
     void init() {
-        Mint.initAndStartSession(ForgotPasswordActivity.this, "395e969a");
+        Mint.initAndStartSession(ForgotPasswordActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
         verify_button = (Button) findViewById(R.id.forgotpass_button);
         error_layout = (RelativeLayout) findViewById(R.id.error_layout);

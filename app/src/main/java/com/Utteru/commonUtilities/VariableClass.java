@@ -142,7 +142,7 @@ public class VariableClass {
 
         public static final String PRICE = "deductBalance";
         public static final String DURATION = "callduration";
-        public static final String CALL_TIME = "call_start";
+        public static final String CALL_TIME = "date";
 
 
 

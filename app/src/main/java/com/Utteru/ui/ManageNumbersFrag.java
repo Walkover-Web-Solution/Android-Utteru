@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.Utteru.R;
 import com.Utteru.adapters.ManageVerifiedDataListAdapter;
+import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.FontTextView;
 import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.commonUtilities.VariableClass;
@@ -37,13 +38,14 @@ public class ManageNumbersFrag extends Fragment {
                              Bundle savedInstanceState) {
         manage_numbers = inflater.inflate(R.layout.manage_email_number, container, false);
         init();
+        new getAllNumbers().execute();
 
         return manage_numbers;
     }
 
     @Override
     public void onResume() {
-        new getAllNumbers().execute();
+
 
         listview.setOnItemClickListener(new OnItemClickListener() {
 
@@ -102,12 +104,12 @@ public class ManageNumbersFrag extends Fragment {
             } else
                 listview.setVisibility(View.GONE);
             Log.e("got  list", "got list");
+
             super.onPostExecute(result);
         }
 
         @Override
         protected void onPreExecute() {
-
 
             super.onPreExecute();
         }

@@ -164,7 +164,7 @@ public class SignInScreen extends AccountAuthenticatorActivity {
         setContentView(R.layout.sign_in_layout);
 
         init();
-        Mint.initAndStartSession(SignInScreen.this, "395e969a");
+        Mint.initAndStartSession(SignInScreen.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
         mAccountManager = AccountManager.get(this);

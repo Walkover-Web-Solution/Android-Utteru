@@ -150,22 +150,12 @@ public class ContactDetailFragment extends Fragment {
 
 
         if (mAccessContactDto.getMobile_number() != null) {
-            if (mAccessContactDto.getMobile_number().startsWith("00") || mAccessContactDto.getMobile_number().startsWith("+")) {
-                // Sets FontTextView objects in the layout
 
-                contact_data.setText(mAccessContactDto.getMobile_number());
-            } else {
-
-                if (mAccessContactDto.getMobile_number().startsWith("0")) {
-                    mAccessContactDto.setMobile_number(Prefs.getUserCountryCode(getActivity()) + mAccessContactDto.getMobile_number().substring(1, mAccessContactDto.getMobile_number().length()));
-                } else {
-                    mAccessContactDto.setMobile_number(Prefs.getUserCountryCode(getActivity()) + mAccessContactDto.getMobile_number());
-
-                }
 
                 contact_data.setText(mAccessContactDto.getMobile_number());
 
-            }
+                contact_data.setText(mAccessContactDto.getMobile_number());
+
             if (mAccessContactDto.getAccess_number() != null) {
 
                 access_details_layout.setVisibility(View.VISIBLE);
@@ -235,11 +225,11 @@ public class ContactDetailFragment extends Fragment {
             public void onClick(View view) {
 
 
-                mAccessContactDto.setMobile_number(mAccessContactDto.getMobile_number().replace("+", "").replace("-", "").replace(" ", ""));
+
                 if (mAccessContactDto.getMobile_number().length() > 8 && mAccessContactDto.getMobile_number().length() < 18 && mAccessContactDto.getMobile_number().matches("[0-9+]*")) {
                     if (CommonUtility.isNetworkAvailable(getActivity().getBaseContext())) {
                         if (mAccessContactDto.getAccess_number() == null) {
-                            mAccessContactDto.setDisplay_name(mAccessContactDto.getDisplay_name().replaceAll("\\s+|-", ""));
+                            mAccessContactDto.setDisplay_name(CommonUtility.validateText(mAccessContactDto.getDisplay_name()));
                             AccessContactDto con = new AccessContactDto(mAccessContactDto.getContact_id(), mAccessContactDto.getDisplay_name(), mAccessContactDto.getAccess_number(), mAccessContactDto.getMobile_number(), mAccessContactDto.getExtension_number(), null, null, null, null, null);
                             Intent myIntent = new Intent(getActivity(), SelectCountryActivity.class);
                             myIntent.putExtra(VariableClass.Vari.SELECTEDDATA, con);
@@ -390,7 +380,7 @@ public class ContactDetailFragment extends Fragment {
         @Override
         protected String doInBackground(Void... voids) {
 
-            mAccessContactDto.setMobile_number(mAccessContactDto.getMobile_number().replace(" ", "").replace("+", ""));
+            mAccessContactDto.setMobile_number(CommonUtility.validateNumberForApi(mAccessContactDto.getMobile_number()));
 
             jsonStr = Apis.getApisInstance(getActivity().getApplicationContext()).editContact(mAccessContactDto.getDisplay_name(), mAccessContactDto.getContact_id(), null, mAccessContactDto.getMobile_number(), null, null);
             Log.e("", "UnAssign: " + jsonStr);

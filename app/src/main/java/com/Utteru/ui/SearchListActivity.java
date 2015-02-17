@@ -59,7 +59,7 @@ public class SearchListActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         init();
-        Mint.initAndStartSession(SearchListActivity.this, "395e969a");
+        Mint.initAndStartSession(SearchListActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 

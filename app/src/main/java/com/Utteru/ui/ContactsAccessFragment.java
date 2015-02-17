@@ -17,6 +17,7 @@
 package com.Utteru.ui;
 
 import android.accounts.Account;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -72,6 +73,7 @@ public class ContactsAccessFragment extends ListFragment {
     ArrayList<AccessContactDto> allcontacts;
     SwipeRefreshLayout refreshLayout;
     private AccessContactAdapter mAdapter;
+    ProgressDialog dialog;
     private ImageLoader mImageLoader; // Handles loading the contact image in a background thread
 
 
@@ -139,6 +141,11 @@ public class ContactsAccessFragment extends ListFragment {
         // Add a cache to the image loader
         mImageLoader.addImageCache(getActivity().getSupportFragmentManager(), 0.1f);
         mContext = getActivity().getBaseContext();
+        dialog = new ProgressDialog(mContext, R.style.MyTheme);
+        dialog.setMessage(getString(R.string.please_wait));
+        dialog.setCancelable(true);
+
+        dialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         new loadData().execute();
     }
 
@@ -386,6 +393,7 @@ public class ContactsAccessFragment extends ListFragment {
             if (getActivity() != null)
                 getListView().setAdapter(mAdapter);
             mAdapter.notifyDataSetChanged();
+            dialog.dismiss();
             super.onPostExecute(aVoid);
         }
 
@@ -404,5 +412,16 @@ public class ContactsAccessFragment extends ListFragment {
             });
             return null;
         }
+
+        @Override
+        protected void onPreExecute() {
+           dialog.show();
+            super.onPreExecute();
+        }
+    }
+    public void onUpdate()
+    {
+
+        new loadData().execute();
     }
 }

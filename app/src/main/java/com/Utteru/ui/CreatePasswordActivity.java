@@ -69,7 +69,7 @@ public class CreatePasswordActivity extends AccountAuthenticatorActivity {
         Log.e("oncreate pin", "on create pin");
         setContentView(R.layout.create_password_screen);
         init();
-        Mint.initAndStartSession(CreatePasswordActivity.this, "395e969a");
+        Mint.initAndStartSession(CreatePasswordActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 

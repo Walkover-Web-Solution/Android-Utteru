@@ -1,7 +1,10 @@
 package com.Utteru.ui;
 
 import android.accounts.AccountManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +17,7 @@ import android.support.v7.app.ActionBarActivity;
 import com.Utteru.R;
 import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.Prefs;
+import com.Utteru.syncadapter.SyncAdapter;
 import com.splunk.mint.Mint;
 import com.viewpagerindicator.IconPagerAdapter;
 
@@ -26,6 +30,17 @@ public class ContactsListActivity extends ActionBarActivity {
     Boolean checkAccount;
     private ContactDetailFragment mContactDetailFragment;
     private boolean isTwoPaneLayout;
+    IntentFilter contacts_updated_filter;
+    BroadcastReceiver contacts_updated = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //show unregister layout
+            if (intent.getAction().equals(SyncAdapter.CONTACTS_UPDATED)) {
+             //list to be update in access fragments
+
+            }
+        }
+    };
 
 
     @Override
@@ -33,7 +48,7 @@ public class ContactsListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        Mint.initAndStartSession(ContactsListActivity.this, "395e969a");
+        Mint.initAndStartSession(ContactsListActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ContactsListActivity.this));
         mDemoCollectionPagerAdapter = new DemoCollectionPagerAdapter(getSupportFragmentManager());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,6 +88,14 @@ public class ContactsListActivity extends ActionBarActivity {
     }
 
     @Override
+    protected void onResume() {
+        contacts_updated_filter = new IntentFilter();
+        contacts_updated_filter.addAction(SyncAdapter.CONTACTS_UPDATED);
+        registerReceiver(contacts_updated, contacts_updated_filter);
+        super.onResume();
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         Prefs.setLastActivity(this, getClass().getName());
@@ -83,6 +106,13 @@ public class ContactsListActivity extends ActionBarActivity {
     protected void onDestroy() {
         if (CommonUtility.dialog != null) {
             CommonUtility.dialog.dismiss();
+        }
+        try {
+            if (contacts_updated != null)
+                unregisterReceiver(contacts_updated);
+        } catch (Exception e) {
+
+            e.printStackTrace();
         }
         super.onDestroy();
     }
@@ -143,4 +173,16 @@ public class ContactsListActivity extends ActionBarActivity {
             }
         }
     }
+    @Override
+    public void onStop() {
+        try {
+            if (contacts_updated != null)
+                unregisterReceiver(contacts_updated);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        super.onStop();
+    }
+
+
 }

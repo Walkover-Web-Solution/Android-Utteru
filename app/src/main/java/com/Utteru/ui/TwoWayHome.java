@@ -72,7 +72,7 @@ public class TwoWayHome extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.two_way_call_home);
-        Mint.initAndStartSession(TwoWayHome.this, "395e969a");
+        Mint.initAndStartSession(TwoWayHome.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(TwoWayHome.this));
         backpress = (ImageView) findViewById(R.id.auto_detect_country_back);
         gototohome = (ImageView) findViewById(R.id.auto_detect_country_home);

@@ -82,7 +82,7 @@ public class FundTransferActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fund_transfer_layout);
         init();
-        Mint.initAndStartSession(FundTransferActivity.this, "395e969a");
+        Mint.initAndStartSession(FundTransferActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
         resetView();

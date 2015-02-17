@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import com.Utteru.R;
 import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.FontTextView;
+import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.dtos.AccessContactDto;
 import com.Utteru.util.ImageLoader;
 import com.Utteru.util.RoundedQuickContactBadge;
@@ -55,8 +56,13 @@ public class AccessContactAdapter extends BaseAdapter {
         }
 
         ViewHolder viewholder = (ViewHolder) paramView.getTag();
-        viewholder.text1.setText(list.get(paramInt).getDisplay_name());
-        viewholder.text2.setText(list.get(paramInt).getMobile_number());
+        viewholder.text1.setText(CommonUtility.validateText(list.get(paramInt).getDisplay_name()));
+
+        String number =list.get(paramInt).getMobile_number();
+        number = CommonUtility.validateNumberForUI(number,ctx);
+
+
+        viewholder.text2.setText(number);
         if (imgloader != null) {
             viewholder.icon.setVisibility(View.VISIBLE);
             if (list.get(paramInt).getThumbUri() != null)

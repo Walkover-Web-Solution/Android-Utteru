@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.Utteru.R;
 import com.Utteru.adapters.TwoWayLogsDeatilAdapter;
+import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.FontTextView;
 import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.commonUtilities.VariableClass;
@@ -37,7 +38,7 @@ public class TwoWayCallDetailedActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.two_way_recent_detailed_layout);
         init();
-        Mint.initAndStartSession(TwoWayCallDetailedActivity.this, "395e969a");
+        Mint.initAndStartSession(TwoWayCallDetailedActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 

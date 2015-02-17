@@ -41,7 +41,7 @@ public class  AllAccessActivity extends ActionBarActivity {
 
         setContentView(R.layout.list_layout);
         init();
-        Mint.initAndStartSession(AllAccessActivity.this, "395e969a");
+        Mint.initAndStartSession(AllAccessActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
     }
@@ -122,7 +122,7 @@ public class  AllAccessActivity extends ActionBarActivity {
         subtitile.setVisibility(View.VISIBLE);
 
         titile.setText("Select Access Number");
-        subtitile.setText(selectedDto.getCountry()+","+selectedDto.getState());
+        subtitile.setText(selectedDto.getCountry()+" , "+selectedDto.getState());
         accessList = UserService.getUserServiceInstance(ctx).getAllAccess(selectedDto.getState());
         if (accessList.size() > 0) {
             adapter = new AccessDataAdapter(accessList, this, 2);

@@ -63,7 +63,7 @@ public class SearchRateActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_rate_layout);
         init();
-        Mint.initAndStartSession(SearchRateActivity.this, "395e969a");
+        Mint.initAndStartSession(SearchRateActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 
@@ -294,7 +294,7 @@ public class SearchRateActivity extends BaseActivity {
             menu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             menu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(menu);
-            // super.onBackPressed();
+           this.finish();
             overridePendingTransition(R.anim.animation3, R.anim.animation4);
         }
     }

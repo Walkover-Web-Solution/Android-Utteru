@@ -41,7 +41,7 @@ public class AllStateActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_layout);
         init();
-        Mint.initAndStartSession(AllStateActivity.this, "395e969a");
+        Mint.initAndStartSession(AllStateActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 

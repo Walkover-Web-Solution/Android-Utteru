@@ -42,7 +42,7 @@ public class AccessEditActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_access_edit);
         init();
-        Mint.initAndStartSession(AccessEditActivity.this, "395e969a");
+        Mint.initAndStartSession(AccessEditActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 

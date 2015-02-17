@@ -98,7 +98,7 @@ public class AccessInfoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.access_info);
         init();
-        Mint.initAndStartSession(AccessInfoActivity.this, "395e969a");
+        Mint.initAndStartSession(AccessInfoActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 
@@ -107,6 +107,12 @@ public class AccessInfoActivity extends Activity {
 
     @Override
     protected void onResume() {
+        call_accessNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonUtility.makeCall(ctx,selectedcon.getAccessNumber());
+            }
+        });
 
         assign_to_contact.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,19 +228,13 @@ public class AccessInfoActivity extends Activity {
 
             AccessContactDto selected_con = (AccessContactDto) data.getExtras().getSerializable(VariableClass.Vari.SELECTEDDATA);
             if (selected_con != null) {
-                String con_number = selected_con.getMobile_number().replaceAll("-", "").replaceAll("\\s+", "");
-                String con_name = selected_con.getDisplay_name().replaceAll("[^\\w\\s\\-_]", "");
-                con_number = con_number.replace("-", "");
-                con_name = con_name.replace("-", "");
+                String con_number = CommonUtility.validateNumberForUI(selected_con.getMobile_number(),ctx);
+                String con_name = CommonUtility.validateText(selected_con.getDisplay_name());
 
 
                 if (con_number != null && !con_number.equals("")) {
 
-                    if (!con_number.startsWith("+") && !con_number.startsWith("00"))
-                        con_number = "+" + Prefs.getUserCountryCode(ctx) + con_number.replace(" ", "");
-                    else {
-                        con_number = con_number.replace(" ", "");
-                    }
+
 
                     //send activity to select extension number
                     Intent selectextIntent = new Intent(ctx, SelectExtensionAI.class);
@@ -381,7 +381,7 @@ tittle= (FontTextView) findViewById(R.id.change_password_title);
         protected Void doInBackground(Void... params) {
 
 
-            response = Apis.getApisInstance(ctx).editContact(dto.getDisplay_name(), dto.getContact_id(), "", dto.getMobile_number().replace("+", ""), "", "");
+            response = Apis.getApisInstance(ctx).editContact(dto.getDisplay_name(), dto.getContact_id(), "", CommonUtility.validateNumberForApi(dto.getMobile_number()), "", "");
 
             if (!response.equalsIgnoreCase("")) {
                 JSONObject joparent, jochild;

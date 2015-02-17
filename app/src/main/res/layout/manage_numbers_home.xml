@@ -16,11 +16,22 @@
         android:paddingRight="@dimen/padding_right_em"
         android:paddingTop="@dimen/padding_right_em" >
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/manage_account_back"
+            android:src="@drawable/back"
+            android:layout_height="wrap_content" />
+
+
         <com.Utteru.commonUtilities.FontTextView
             android:id="@+id/manage_numbers_title"
+            android:layout_marginLeft="@dimen/new_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+           android:layout_toRightOf="@id/manage_account_back"
             android:gravity="center_vertical|left"
             android:text="@string/manage_numbers"
             android:textColor="@android:color/white"
@@ -30,6 +41,7 @@
             android:id="@+id/mn_show_add_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:background="@android:color/transparent"
             android:gravity="center_vertical|right"

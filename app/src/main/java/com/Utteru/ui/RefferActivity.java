@@ -44,7 +44,7 @@ public class RefferActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.share_layout);
         init();
-        Mint.initAndStartSession(RefferActivity.this, "395e969a");
+        Mint.initAndStartSession(RefferActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
     }

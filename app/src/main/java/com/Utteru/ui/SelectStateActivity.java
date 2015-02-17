@@ -44,7 +44,7 @@ public class SelectStateActivity extends ActionBarActivity {
 
         setContentView(R.layout.list_layout);
         init();
-        Mint.initAndStartSession(SelectStateActivity.this, "395e969a");
+        Mint.initAndStartSession(SelectStateActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 

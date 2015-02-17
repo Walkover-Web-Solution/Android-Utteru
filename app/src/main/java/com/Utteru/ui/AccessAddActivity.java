@@ -79,7 +79,7 @@ public class AccessAddActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.type_list_layout);
         init();
-        Mint.initAndStartSession(AccessAddActivity.this, "395e969a");
+        Mint.initAndStartSession(AccessAddActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 

@@ -137,7 +137,7 @@ public class MenuScreen extends BaseActivity {
         tracker = MyAnalyticalTracker.getTrackerInstance().getTracker(MyAnalyticalTracker.TrackerName.APP_TRACKER, this);
         setContentView(R.layout.menu_screen);
         init();
-        Mint.initAndStartSession(MenuScreen.this, "395e969a");
+        Mint.initAndStartSession(MenuScreen.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 

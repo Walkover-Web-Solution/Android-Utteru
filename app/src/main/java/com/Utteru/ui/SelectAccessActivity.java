@@ -42,7 +42,7 @@ public class SelectAccessActivity extends ActionBarActivity {
 
         setContentView(R.layout.list_layout);
         init();
-        Mint.initAndStartSession(SelectAccessActivity.this, "395e969a");
+        Mint.initAndStartSession(SelectAccessActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
     }
@@ -130,7 +130,7 @@ public class SelectAccessActivity extends ActionBarActivity {
 
         titile.setText("Select Access Number");
         subtitile.setVisibility(View.VISIBLE);
-        subtitile.setText(selectedDto.getCountry()+","+selectedDto.getState());
+        subtitile.setText(selectedDto.getCountry()+" , "+selectedDto.getState());
         listView = (ListView) findViewById(R.id.contacts_list);
         accessList = new ArrayList<>();
 

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.Utteru.R;
+import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.FontTextView;
 import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.commonUtilities.VariableClass;
@@ -37,7 +38,7 @@ String msgNotFound;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.autocountrydetectlayout);
-        Mint.initAndStartSession(AutoCountryDetect.this, "395e969a");
+        Mint.initAndStartSession(AutoCountryDetect.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(AutoCountryDetect.this));
 
         init();

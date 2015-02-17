@@ -54,7 +54,7 @@ public class RechargeViaPin extends BaseActivity {
         tracker = MyAnalyticalTracker.getTrackerInstance().getTracker(MyAnalyticalTracker.TrackerName.APP_TRACKER,this);
 
         init();
-        Mint.initAndStartSession(RechargeViaPin.this, "395e969a");
+        Mint.initAndStartSession(RechargeViaPin.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
     }
 

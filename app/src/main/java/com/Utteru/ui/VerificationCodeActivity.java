@@ -84,7 +84,7 @@ public class VerificationCodeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.verification_code_layout);
         init();
-        Mint.initAndStartSession(VerificationCodeActivity.this, "395e969a");
+        Mint.initAndStartSession(VerificationCodeActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
         // Calling Auto SMS Code Verification

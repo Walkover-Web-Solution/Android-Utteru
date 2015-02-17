@@ -43,7 +43,7 @@ public class  SelectCountryActivity extends ActionBarActivity {
 
         setContentView(R.layout.list_layout);
         init();
-        Mint.initAndStartSession(SelectCountryActivity.this, "395e969a");
+        Mint.initAndStartSession(SelectCountryActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 

@@ -67,7 +67,7 @@ public class ChangePasswordHome extends FragmentActivity {
         super.onCreate(savedInstanceState);
         tracker = MyAnalyticalTracker.getTrackerInstance().getTracker(MyAnalyticalTracker.TrackerName.APP_TRACKER, this);
         setContentView(R.layout.change_password_home);
-        Mint.initAndStartSession(ChangePasswordHome.this, "395e969a");
+        Mint.initAndStartSession(ChangePasswordHome.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ChangePasswordHome.this));
         backpress = (ImageView) findViewById(R.id.auto_detect_country_back);
         tittleback = (FontTextView) findViewById(R.id.auto_detect_coutry_header);
