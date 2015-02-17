@@ -1,7 +1,0 @@
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/fbbutton_selected_shape" android:state_pressed="true"></item>
-
-    <item android:drawable="@drawable/fbbutton_selector_shape" android:state_focused="true"></item>
-    <item android:drawable="@drawable/fbbutton_selector_shape"></item>
-
-</selector>
