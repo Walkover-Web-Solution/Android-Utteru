@@ -88,7 +88,7 @@ public class DialerFragment extends Fragment {
     ImageView backpress, gototohome;
     FontTextView tittleback;
     FontTextView country_arrow;
-    FontTextView errorDetailMsg,no_logs_found;
+    FontTextView errorDetailMsg, no_logs_found;
 
 
     @Override
@@ -397,49 +397,46 @@ public class DialerFragment extends Fragment {
                         Log.e("number from phone", "" + selected_con.getMobile_number());
                         String con_number = selected_con.getMobile_number();
                         Log.e("number after replace", "" + con_number);
-                        if (con_number != null && !con_number.equals("")) {
+                        if (con_number != null && !con_number.equals("") && con_number.startsWith("+")) {
 
                             ArrayList<String> pass_number = new ArrayList<>();
                             pass_number = CommonUtility.splitCodeFromNumber(con_number);
                             String only_number = pass_number.get(0);
                             String only_code = pass_number.get(1);
-                            Log.e("number",only_number);
-                            Log.e("number_code",only_code);
+                            Log.e("number", only_number);
+                            Log.e("number_code", only_code);
                             String countryName = "";
-                           if (!only_code.equals("") && !only_code.equals("")) {
+                            if (!only_code.equals("") && !only_code.equals("")) {
 
 
-                               if(SearchListDialer.country_list==null&&SearchListDialer.country_list.size()==0)
-                               {
-                                   SearchListDialer.country_list= new CsvReader().readCsv(getActivity(), new CsvReader().getUserCountryIso(getActivity()), false);
-                               }
-                               for(Iterator<Country> i = SearchListDialer.country_list.iterator(); i.hasNext(); ) {
-                                   Country item = i.next();
-                                   if (item.getCountryCode().equals("+"+only_code))
-                                   {
-                                       countryName = item.getCountryName();
-                                       break;
-                                   }
-                               }
-                                mSelectCountry.setText("+"+only_code);
+                                if (SearchListDialer.country_list == null && SearchListDialer.country_list.size() == 0) {
+                                    SearchListDialer.country_list = new CsvReader().readCsv(getActivity(), new CsvReader().getUserCountryIso(getActivity()), false);
+                                }
+                                for (Iterator<Country> i = SearchListDialer.country_list.iterator(); i.hasNext(); ) {
+                                    Country item = i.next();
+                                    if (item.getCountryCode().equals("+" + only_code)) {
+                                        countryName = item.getCountryName();
+                                        break;
+                                    }
+                                }
+                                mSelectCountry.setText("+" + only_code);
                                 number_text.setText(only_number);
                                 mCountryName.setText(countryName);
 
 
-                            }
-                            else
-                            {
-                                if(con_number.startsWith("0"))
-                                con_number = con_number.replaceFirst("0","");
+                            } else {
 
-
-                                number_text.setText(con_number);
                             }
 
                             // makeCall(con_number);
 
                         } else {
+                           /* if (con_number.startsWith("0"))
+                                con_number = con_number.replaceFirst("0", "");*/
 
+                            number_text.setText(con_number);
+                            mCountryName.setText("Please select country code");
+                            mSelectCountry.setVisibility(View.GONE);
                             //CommonUtility.showCustomAlertError(getActivity(), getString(R.string.no_contact_found));
                         }
                     }
@@ -459,7 +456,7 @@ public class DialerFragment extends Fragment {
                     Prefs.setUserDialerCountryName(context, countryName);
                     Log.e("country code and name ", "data " + countryCode + countryName);
                     if (countryCode != null && !countryCode.equals("")) {
-
+                        mSelectCountry.setVisibility(View.VISIBLE);
                         mSelectCountry.setText(countryCode);
                         mCountryName.setText("(" + countryCode + ")" + " " + countryName);
 
@@ -501,8 +498,8 @@ public class DialerFragment extends Fragment {
         showdialpadbutton = (ImageButton) getView().findViewById(R.id.show_dial_pad);
         calllogs_listview = (ListView) getView().findViewById(R.id.call_logs_list);
         mCountryName = (TextView) getView().findViewById(R.id.country_name);
-        no_logs_found=(FontTextView)getView().findViewById(R.id.no_logs_found);
-        country_arrow = (FontTextView)getView().findViewById(R.id.down_arrow);
+        no_logs_found = (FontTextView) getView().findViewById(R.id.no_logs_found);
+        country_arrow = (FontTextView) getView().findViewById(R.id.down_arrow);
 
         SearchListDialer.country_list = new ArrayList<Country>();
         SearchListDialer.country_list = new CsvReader().readCsv(getActivity(), new CsvReader().getUserCountryIso(getActivity()), false);
@@ -667,8 +664,7 @@ public class DialerFragment extends Fragment {
             }
 
 
-            Log.e("setting codec","setting codec ");
-
+            Log.e("setting codec", "setting codec ");
 
 
             int nSetKeyRet = mSipSdk.setLicenseKey(licenseKey);// step 3
