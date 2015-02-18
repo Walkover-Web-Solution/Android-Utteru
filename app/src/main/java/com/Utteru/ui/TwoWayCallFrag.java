@@ -360,10 +360,10 @@ public class TwoWayCallFrag extends Fragment {
 
                     switch (reqCode) {
                         case (REQUEST_SELECT_CONTACT_SOURCE):
-                            source_ed.setText(con_number);
+                            source_ed.setText(CommonUtility.validateNumberForUI(con_number,ctx));
                             break;
                         case (REQUEST_SELECT_CONTACT_DEST):
-                            dest_ed.setText(con_number);
+                            dest_ed.setText(CommonUtility.validateNumberForUI(con_number,ctx));
                             break;
                     }
 

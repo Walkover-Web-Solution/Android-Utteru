@@ -186,6 +186,7 @@ public class AllCountryActivity extends ActionBarActivity {
         menu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         menu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(menu);
+        this.finish();
        // super.onBackPressed();
         overridePendingTransition(R.anim.animation3, R.anim.animation4);
     }

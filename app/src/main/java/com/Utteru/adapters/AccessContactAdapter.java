@@ -56,10 +56,10 @@ public class AccessContactAdapter extends BaseAdapter {
         }
 
         ViewHolder viewholder = (ViewHolder) paramView.getTag();
-        viewholder.text1.setText(CommonUtility.validateText(list.get(paramInt).getDisplay_name()));
+        viewholder.text1.setText(list.get(paramInt).getDisplay_name());
 
         String number =list.get(paramInt).getMobile_number();
-        number = CommonUtility.validateNumberForUI(number,ctx);
+
 
 
         viewholder.text2.setText(number);

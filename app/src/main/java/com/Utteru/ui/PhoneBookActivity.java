@@ -74,6 +74,7 @@ public class  PhoneBookActivity extends ActionBarActivity {
         all_contacts_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 selected_contact = (AccessContactDto) parent.getItemAtPosition(position);
                 PhoneBookActivity.this.finish();
             }

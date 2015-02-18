@@ -140,19 +140,20 @@ public class ContactsAccessFragment extends ListFragment {
 
         // Add a cache to the image loader
         mImageLoader.addImageCache(getActivity().getSupportFragmentManager(), 0.1f);
-        mContext = getActivity().getBaseContext();
-        dialog = new ProgressDialog(mContext, R.style.MyTheme);
-        dialog.setMessage(getString(R.string.please_wait));
-        dialog.setCancelable(true);
 
-        dialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
-        new loadData().execute();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the list fragment layout
+        mContext = getActivity().getBaseContext();
+        dialog = new ProgressDialog(getActivity(), R.style.MyTheme);
+        dialog.setMessage(getString(R.string.please_wait));
+        dialog.setCancelable(true);
+
+        dialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+        new loadData().execute();
         return inflater.inflate(R.layout.contact_list_fragment, container, false);
     }
 

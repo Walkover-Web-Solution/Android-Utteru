@@ -19,6 +19,7 @@ package com.Utteru.authenticator;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.splunk.mint.Mint;
 
@@ -34,7 +35,11 @@ public class AuthenticationService extends Service {
 
     @Override
     public void onDestroy() {
+
+
     }
+
+
 
     @Override
     public IBinder onBind(Intent intent) {

@@ -58,7 +58,7 @@ public class PhoneBookAdapter extends BaseAdapter {
 
         ViewHolder viewholder = (ViewHolder) paramView.getTag();
         viewholder.text1.setText(CommonUtility.validateText(list.get(paramInt).getDisplay_name()));
-        viewholder.text2.setText(CommonUtility.validateNumberForUI(list.get(paramInt).getMobile_number(),ctx));
+        viewholder.text2.setText(list.get(paramInt).getMobile_number());
 //        viewholder.image.setVisibility(View.VISIBLE);
         if (imgloader != null) {
             viewholder.icon.setVisibility(View.VISIBLE);

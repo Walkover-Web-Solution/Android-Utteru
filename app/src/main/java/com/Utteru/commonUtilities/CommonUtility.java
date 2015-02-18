@@ -166,6 +166,9 @@ public class CommonUtility {
     {
 
         number = number.replaceAll("[^\\w\\s\\-_]", "");//all special
+        number = number.replace("//s+", "");//space
+        number = number.replaceAll("-", ""); //dash
+        number = number.trim();
         if(!number.startsWith("+")&&!number.startsWith("00"))
         {
             number = "+"+Prefs.getUserCountryCode(ctx)+number;
