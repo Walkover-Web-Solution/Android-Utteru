@@ -53,6 +53,12 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.splunk.mint.Mint;
+import com.sromku.simple.fb.Permission;
+import com.sromku.simple.fb.SimpleFacebook;
+import com.sromku.simple.fb.SimpleFacebookConfiguration;
+import com.sromku.simple.fb.entities.Profile;
+import com.sromku.simple.fb.listeners.OnLoginListener;
+import com.sromku.simple.fb.listeners.OnProfileListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -77,7 +83,7 @@ public class SignInScreen extends AccountAuthenticatorActivity {
     public static final String PARAM_CONFIRM_CREDENTIALS = "confirmCredentials";
     public static final String PARAM_USERNAME = "username";
     public static final String PARAM_AUTHTOKEN_TYPE = "authtokenType";
-    private static final String[] PERMISSIONS = new String[]{"email", "public_profile"};
+
 
     private static final String APP_ID = "764962106885610";
     private static final String TAG = "SignInScreen";
@@ -101,21 +107,14 @@ public class SignInScreen extends AccountAuthenticatorActivity {
     Tracker tracker;
     private AccountManager mAccountManager;
     private Boolean mConfirmCredentials = false;
-    private Facebook mFacebook;
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
+    private SimpleFacebook mSimpleFacebook;
+    Permission[] permissions = new Permission[] {
+            Permission.PUBLIC_PROFILE,
+            Permission.EMAIL,
 
 
-            if (msg.what == 1) {
-                CommonUtility.showCustomAlertError(SignInScreen.this, "Facebook logout failed");
-
-            } else {
-                CommonUtility.showCustomAlertError(SignInScreen.this, "Disconnected from facebook");
-
-            }
-        }
     };
+
 
     public void setPassword() {
 
@@ -179,6 +178,15 @@ public class SignInScreen extends AccountAuthenticatorActivity {
         username = intent.getStringExtra(PARAM_USERNAME);
         mRequestNewAccount = username == null;
         mConfirmCredentials = intent.getBooleanExtra(PARAM_CONFIRM_CREDENTIALS, false);
+        SimpleFacebookConfiguration configuration = new SimpleFacebookConfiguration.Builder()
+                .setAppId(APP_ID)
+                .setNamespace("Utteru")
+                .setPermissions(permissions)
+                .build();
+
+        SimpleFacebook.setConfiguration(configuration);
+     
+
     }
 
     @Override
@@ -195,6 +203,7 @@ public class SignInScreen extends AccountAuthenticatorActivity {
 
             }
         }
+        mSimpleFacebook.onActivityResult(this, requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -246,6 +255,73 @@ public class SignInScreen extends AccountAuthenticatorActivity {
             }
         });
 
+        final OnLoginListener onLoginListener = new OnLoginListener() {
+            @Override
+            public void onLogin() {
+                // change the state of the button or do whatever you want
+                accessToken = mSimpleFacebook.getSession().getAccessToken();
+                Log.e("facebook token", "" + accessToken);
+                //check validation
+                new LoginGoogleFb().execute(null, null, null);
+            }
+
+            @Override
+            public void onNotAcceptingPermissions(Permission.Type type) {
+                // user didn't accept READ or WRITE permission
+                Log.w(TAG, String.format("You didn't accept %s permissions", type.name()));
+            }
+
+            @Override
+            public void onThinking() {
+
+            }
+
+            @Override
+            public void onException(Throwable throwable) {
+
+            }
+
+            @Override
+            public void onFail(String reason) {
+
+            }
+
+
+        };
+
+
+        final OnProfileListener onProfileListener = new OnProfileListener() {
+            @Override
+            public void onComplete(Profile profile) {
+                accessToken = mSimpleFacebook.getSession().getAccessToken();
+                Log.e("facebook token", "" + accessToken);
+                //check validation
+                new LoginGoogleFb().execute(null, null, null);
+
+            }
+
+            @Override
+            public void onException(Throwable throwable) {
+                Log.e("",""+throwable);
+                super.onException(throwable);
+            }
+
+            @Override
+            public void onFail(String reason) {
+                Log.e("1",""+reason);
+                super.onFail(reason);
+                Log.e("2",""+reason);
+            }
+            /*
+     * You can override other methods here:
+     * onThinking(), onFail(String reason), onException(Throwable throwable)
+     */
+        };
+
+
+
+
+
         fb_button.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -253,7 +329,12 @@ public class SignInScreen extends AccountAuthenticatorActivity {
                 showErrorMessage(false, "");
                 if (CommonUtility.isNetworkAvailable(ctx)) {
                     accessType = ACCESSTYPEFB;
-                    onFacebookClick();
+
+                    mSimpleFacebook.login(onLoginListener);
+                    mSimpleFacebook.getProfile(onProfileListener);
+
+
+
                 } else
                     showErrorMessage(true, getResources().getString(R.string.internet_error));
             }
@@ -362,6 +443,7 @@ public class SignInScreen extends AccountAuthenticatorActivity {
                 showKeyBoard(false);
             }
         });
+        mSimpleFacebook = SimpleFacebook.getInstance(this);
         super.onResume();
     }
 
@@ -397,7 +479,7 @@ public class SignInScreen extends AccountAuthenticatorActivity {
         AskNumber.isnewSignup = false;
         forgot_password = (TextView) findViewById(R.id.sign_in_forgot_password);
         forgot_password.setPaintFlags(forgot_password.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        mFacebook = new Facebook(APP_ID);
+
         fb_button = (Button) findViewById(R.id.facebook_button);
         google_button = (Button) findViewById(R.id.google_button);
         error_layout = (RelativeLayout) findViewById(R.id.error_layout);
@@ -431,51 +513,9 @@ public class SignInScreen extends AccountAuthenticatorActivity {
         password_ed.setInputType(InputType.TYPE_CLASS_TEXT);
     }
 
-    private void onFacebookClick() {
-        if (mFacebook.isSessionValid()) {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-
-            builder.setMessage("Delete current Facebook connection?")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            fbLogout();
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-
-                        }
-                    });
-
-            final AlertDialog alert = builder.create();
-
-            alert.show();
-        } else {
-
-            mFacebook.authorize(SignInScreen.this, PERMISSIONS, -1, new FbLoginDialogListener());
-        }
-    }
-
-    private void fbLogout() {
 
 
-        new Thread() {
-            @Override
-            public void run() {
-                SessionStore.clear(ctx);
-                int what = 1;
-                try {
-                    mFacebook.logout(ctx);
-                    what = 0;
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                mHandler.sendMessage(mHandler.obtainMessage(what));
-            }
-        }.start();
-    }
+
 
     public void generateFBKeyHash() {
         try {
@@ -545,29 +585,7 @@ public class SignInScreen extends AccountAuthenticatorActivity {
         setResult(RESULT_OK, intent);
     }
 
-    private final class FbLoginDialogListener implements DialogListener {
-        public void onComplete(Bundle values) {
-            SessionStore.save(mFacebook, ctx);
-            accessToken = mFacebook.getAccessToken();
-            Log.e("facebook token", "" + accessToken);
-            //check validation
-            new LoginGoogleFb().execute(null, null, null);
-        }
 
-        public void onFacebookError(FacebookError error) {
-            Toast.makeText(ctx, "Facebook connection failed", Toast.LENGTH_SHORT).show();
-            Log.e("token inside listener", "facebook error");
-        }
-
-        public void onError(DialogError error) {
-            Toast.makeText(getApplicationContext(), "Facebook connection failed", Toast.LENGTH_LONG).show();
-
-        }
-
-        public void onCancel() {
-        }
-
-    }
 
     class Login extends AsyncTask<Void, Void, Void> {
 
