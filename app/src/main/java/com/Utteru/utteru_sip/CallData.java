@@ -17,18 +17,10 @@ public class CallData {
     String callee_number;
     String call_price;
 
-    public long getDate() {
-        return date;
-    }
-
-    public void setDate(long date) {
-        this.date = date;
-    }
-
     long date;
 
     public void setTime_elapsed(long init_time) {
-        this.time_elapsed = time_elapsed;
+        this.time_elapsed = init_time;
     }
 
     long time_elapsed;
@@ -73,6 +65,14 @@ public class CallData {
         call_price = price;
     }
 
+
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
+    }
 
 
 

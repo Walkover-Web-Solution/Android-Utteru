@@ -41,7 +41,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
-public class EarnCreditsActivity extends Activity {
+public class   EarnCreditsActivity extends Activity {
 
     Button invite_now_button, edit_code_btn,edit_done_button, close_em_button;
     EditText uniqu_refferal_code;
