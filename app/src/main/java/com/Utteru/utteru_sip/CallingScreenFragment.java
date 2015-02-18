@@ -58,7 +58,7 @@ public class CallingScreenFragment extends Fragment {
     TextView call_status, callee_name_txt, callee_number_txt;
     ImageView pricedivider;
     TextView price;
-    CallData calldata;
+    public static CallData calldata;
 
 
     AudioManager audiomanager = null;
@@ -137,8 +137,11 @@ public class CallingScreenFragment extends Fragment {
             chronometer.setVisibility(View.VISIBLE);
 
             long time =calldata.getTime_elapsed();
+
             chronometer.setBase(time);
             chronometer.start();
+
+
             if (calldata.getCall_price() != null && !calldata.getCall_price().equals("")) {
                 price.setText(calldata.getCall_price());
             }
@@ -178,11 +181,11 @@ public class CallingScreenFragment extends Fragment {
         super.onPause();
     }
 
-    public void setNumber(String number, String name, long basetime, Boolean iscallongoing, String price_call,Context c,long d) {
+    public void setNumber(String number, String name, long basetime, Boolean iscallongoing, String price_call,Context c,long date) {
 
         Log.e("number settings",""+number);
 
-        Log.e("setting data", "setting data");
+        Log.e("setting data", "setting data" +basetime);
         String callee_name = name;
         if (callee_name == null || callee_name.equals(""))
             callee_name = number;
@@ -190,7 +193,7 @@ public class CallingScreenFragment extends Fragment {
         ctx = c;
         String callTo = number;
 
-        calldata = new CallData(callee_name, callTo, price_call, basetime, iscallongoing, d);
+        calldata = new CallData(callee_name, callTo, price_call, basetime, iscallongoing, date);
 
 
     }

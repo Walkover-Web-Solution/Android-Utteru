@@ -1056,6 +1056,8 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
         resultIntent.putExtra(VariableClass.Vari.SELECTEDNUMBER, number);
         resultIntent.putExtra(VariableClass.Vari.SELECTEDNAME, name);
         resultIntent.putExtra(VariableClass.Vari.CALL_ELAPSED_TIME, duration);
+
+        Log.e("elapsed time ",""+duration);
         resultIntent.putExtra(VariableClass.Vari.CALLDATE, date);
         resultIntent.putExtra(VariableClass.Vari.CALLPRICE, price);
 

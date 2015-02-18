@@ -19,7 +19,7 @@ local.properties
 Thumbs.db
 
 # OSX files
-.DS_Store
+*.DS_Store
 
 # Eclipse project files
 .classpath

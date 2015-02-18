@@ -105,10 +105,11 @@ public class DialerActivity extends ActionBarActivity
             String number = getIntent().getExtras().getString(VariableClass.Vari.SELECTEDNUMBER);
             String name = getIntent().getExtras().getString(VariableClass.Vari.SELECTEDNAME);
             long elapsed_time = getIntent().getExtras().getLong(VariableClass.Vari.CALL_ELAPSED_TIME);
+            Log.e("got elapsed time",""+elapsed_time);
             String price = getIntent().getExtras().getString(VariableClass.Vari.CALLPRICE);
             long date = getIntent().getExtras().getLong(VariableClass.Vari.CALLDATE);
 
-            launchCallingFrag(number, name, elapsed_time, true, price,date);
+            launchCallingFrag(number, name, CallingScreenFragment.calldata.getTime_elapsed(), true, price,date);
 
         }
 
