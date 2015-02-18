@@ -164,7 +164,6 @@
                             android:background="@color/pop_up_referral">
 
                             <EditText
-
                                 android:id="@+id/unique_id_ed"
                                  android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -257,7 +256,7 @@
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+
 
     <LinearLayout
 
@@ -283,3 +282,4 @@
 
     </LinearLayout>
 </FrameLayout>
+    </ScrollView>
