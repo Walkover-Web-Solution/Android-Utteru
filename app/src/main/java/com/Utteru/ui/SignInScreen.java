@@ -3,9 +3,7 @@ package com.Utteru.ui;
 import android.accounts.Account;
 import android.accounts.AccountAuthenticatorActivity;
 import android.accounts.AccountManager;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -14,8 +12,6 @@ import android.content.pm.Signature;
 import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
@@ -33,14 +29,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.Toast;
 
 import com.Utteru.R;
-import com.Utteru.com.facebook.android.DialogError;
-import com.Utteru.com.facebook.android.Facebook;
-import com.Utteru.com.facebook.android.Facebook.DialogListener;
-import com.Utteru.com.facebook.android.FacebookError;
-import com.Utteru.com.facebook.android.SessionStore;
 import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.Constants;
 import com.Utteru.commonUtilities.CustomKeyboardOther;
@@ -108,11 +98,10 @@ public class SignInScreen extends AccountAuthenticatorActivity {
     private AccountManager mAccountManager;
     private Boolean mConfirmCredentials = false;
     private SimpleFacebook mSimpleFacebook;
-    Permission[] permissions = new Permission[] {
+    Permission[] permissions = new Permission[]{
             Permission.PUBLIC_PROFILE,
             Permission.EMAIL,
-
-
+            Permission.USER_FRIENDS,
     };
 
 
@@ -185,7 +174,7 @@ public class SignInScreen extends AccountAuthenticatorActivity {
                 .build();
 
         SimpleFacebook.setConfiguration(configuration);
-     
+
 
     }
 
@@ -278,11 +267,12 @@ public class SignInScreen extends AccountAuthenticatorActivity {
 
             @Override
             public void onException(Throwable throwable) {
-
+                Log.e("reason", String.valueOf(throwable));
             }
 
             @Override
             public void onFail(String reason) {
+                Log.e("reason", reason);
 
             }
 
@@ -302,25 +292,21 @@ public class SignInScreen extends AccountAuthenticatorActivity {
 
             @Override
             public void onException(Throwable throwable) {
-                Log.e("",""+throwable);
+                Log.e("", "" + throwable);
                 super.onException(throwable);
             }
 
             @Override
             public void onFail(String reason) {
-                Log.e("1",""+reason);
+                Log.e("1", "" + reason);
                 super.onFail(reason);
-                Log.e("2",""+reason);
+                Log.e("2", "" + reason);
             }
             /*
      * You can override other methods here:
      * onThinking(), onFail(String reason), onException(Throwable throwable)
      */
         };
-
-
-
-
 
         fb_button.setOnClickListener(new View.OnClickListener() {
 
@@ -329,12 +315,8 @@ public class SignInScreen extends AccountAuthenticatorActivity {
                 showErrorMessage(false, "");
                 if (CommonUtility.isNetworkAvailable(ctx)) {
                     accessType = ACCESSTYPEFB;
-
                     mSimpleFacebook.login(onLoginListener);
-                    mSimpleFacebook.getProfile(onProfileListener);
-
-
-
+                    //mSimpleFacebook.getProfile(onProfileListener);
                 } else
                     showErrorMessage(true, getResources().getString(R.string.internet_error));
             }
@@ -466,8 +448,6 @@ public class SignInScreen extends AccountAuthenticatorActivity {
             if (dialpad_layout.getVisibility() == View.VISIBLE) {
                 dialpad_layout.setAnimation(bottpmdown);
                 dialpad_layout.setVisibility(View.GONE);
-
-
             }
         }
     }
@@ -512,9 +492,6 @@ public class SignInScreen extends AccountAuthenticatorActivity {
     public void onLetters(View v) {
         password_ed.setInputType(InputType.TYPE_CLASS_TEXT);
     }
-
-
-
 
 
     public void generateFBKeyHash() {
@@ -584,7 +561,6 @@ public class SignInScreen extends AccountAuthenticatorActivity {
         setAccountAuthenticatorResult(intent.getExtras());
         setResult(RESULT_OK, intent);
     }
-
 
 
     class Login extends AsyncTask<Void, Void, Void> {

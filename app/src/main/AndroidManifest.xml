@@ -146,8 +146,8 @@
         <activity
             android:name=".ui.EarnCreditsActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden|adjustResize|adjustPan" />
 
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
         <activity
             android:name=".ui.HelloActivity"
             android:screenOrientation="portrait"
@@ -450,9 +450,9 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-       <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="764962106885610" />
+        <!--    <meta-data
+                 android:name="com.facebook.sdk.ApplicationId"
+                 android:value="764962106885610" />-->
 
     </application>
 </manifest>
