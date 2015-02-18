@@ -67,7 +67,9 @@ public class ContactsListActivity extends ActionBarActivity {
         pagerTabStrip.setTextSize(1, 20);
         pagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.blue_contacts_screen));
 
-
+        contacts_updated_filter = new IntentFilter();
+        contacts_updated_filter.addAction(SyncAdapter.CONTACTS_UPDATED);
+        registerReceiver(contacts_updated, contacts_updated_filter);
         if (getIntent().getExtras() != null) {
 
         }
@@ -89,9 +91,7 @@ public class ContactsListActivity extends ActionBarActivity {
 
     @Override
     protected void onResume() {
-        contacts_updated_filter = new IntentFilter();
-        contacts_updated_filter.addAction(SyncAdapter.CONTACTS_UPDATED);
-        registerReceiver(contacts_updated, contacts_updated_filter);
+
         super.onResume();
     }
 

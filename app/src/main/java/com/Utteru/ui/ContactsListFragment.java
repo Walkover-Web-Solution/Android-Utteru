@@ -1,6 +1,7 @@
 package com.Utteru.ui;
 
 import android.accounts.Account;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -62,6 +63,7 @@ public class ContactsListFragment extends ListFragment {
     FontTextView textempty;
     SwipeRefreshLayout refreshLayout;
     private AccessContactAdapter mAdapter;
+    ProgressDialog dialog;
 
     private ImageLoader mImageLoader; // Handles loading the contact image in a background thread
 
@@ -113,8 +115,7 @@ public class ContactsListFragment extends ListFragment {
 
         // Add a cache to the image loader
         mImageLoader.addImageCache(getActivity().getSupportFragmentManager(), 0.1f);
-        mContext = getActivity().getBaseContext();
-        new loadData().execute();
+
     }
 
     @Override
@@ -125,6 +126,13 @@ public class ContactsListFragment extends ListFragment {
         View all_contacts_view = inflater.inflate(R.layout.contact_list_fragment, container, false);
         textempty = (FontTextView) all_contacts_view.findViewById(android.R.id.empty);
         textempty.setText("No contacts found");
+        mContext = getActivity().getBaseContext();
+        dialog = new ProgressDialog(getActivity(), R.style.MyTheme);
+        dialog.setMessage(getString(R.string.please_wait));
+        dialog.setCancelable(true);
+
+        dialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+        new loadData().execute();
         return all_contacts_view;
     }
 
@@ -336,9 +344,9 @@ public class ContactsListFragment extends ListFragment {
         Cursor phones = mContext.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, SELECTION, null, null);
         while (phones.moveToNext()) {
             String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-            name = name.replaceAll("[^\\w\\s\\-_]", "");
+            name = CommonUtility.validateText(name);
             String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-            phoneNumber = phoneNumber.replaceAll("-", "").replaceAll("\\s+", "");
+            phoneNumber =CommonUtility.validateNumberForUI(phoneNumber,mContext);
             String label = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.LABEL));
             String photoUri = null;
             String contact_id = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID));
@@ -369,8 +377,8 @@ public class ContactsListFragment extends ListFragment {
             mAdapter = new AccessContactAdapter(allcontacts, getActivity(), mImageLoader);
             if (getActivity() != null)
                 getListView().setAdapter(mAdapter);
+            dialog.dismiss();
 
-              CommonUtility.dialog.dismiss();
             super.onPostExecute(aVoid);
         }
 
@@ -391,8 +399,7 @@ public class ContactsListFragment extends ListFragment {
 
         @Override
         protected void onPreExecute() {
-            CommonUtility.show_PDialog(getActivity(),getString(R.string.please_wait));
-            CommonUtility.dialog.setCancelable(true);
+            dialog.show();
             super.onPreExecute();
         }
     }

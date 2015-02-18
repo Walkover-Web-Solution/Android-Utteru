@@ -463,6 +463,7 @@ public class FundTransferActivity extends Activity {
             menu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             menu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(menu);
+            this.finish();
             overridePendingTransition(R.anim.animation3, R.anim.animation4);
         }
     }

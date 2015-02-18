@@ -152,6 +152,7 @@ public class SignInScreen extends AccountAuthenticatorActivity {
         setContentView(R.layout.sign_in_layout);
 
         init();
+        generateHash();
         Mint.initAndStartSession(SignInScreen.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
@@ -262,17 +263,23 @@ public class SignInScreen extends AccountAuthenticatorActivity {
 
             @Override
             public void onThinking() {
-
+                Log.w(TAG, String.format("You didn't accept %s permissions","thinking"));
             }
 
             @Override
             public void onException(Throwable throwable) {
+
                 Log.e("reason", String.valueOf(throwable));
+
+
             }
 
             @Override
             public void onFail(String reason) {
+
                 Log.e("reason", reason);
+
+
 
             }
 
@@ -923,6 +930,22 @@ public class SignInScreen extends AccountAuthenticatorActivity {
                 response = getResources().getString(R.string.server_error);
             }
             return null;
+        }
+    }
+    void generateHash(){
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "com.facebook.samples.hellofacebook",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
         }
     }
 

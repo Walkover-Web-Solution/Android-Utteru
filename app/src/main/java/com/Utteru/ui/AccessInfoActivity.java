@@ -239,11 +239,11 @@ public class AccessInfoActivity extends Activity {
                     //send activity to select extension number
                     Intent selectextIntent = new Intent(ctx, SelectExtensionAI.class);
                     selectextIntent.putExtra(VariableClass.Vari.SELECTEDDATA, selectedcon);
-                    selectextIntent.putExtra(VariableClass.Vari.SELECTEDNUMBER, con_number);
+                    selectextIntent.putExtra(VariableClass.Vari.SELECTEDNUMBER, CommonUtility.validateNumberForUI(con_number,ctx));
                     if (con_number == null || con_name.equals("")) {
                         con_name = "Not Available";
                     }
-                    selectextIntent.putExtra(VariableClass.Vari.SELECTEDNAME, con_name);
+                    selectextIntent.putExtra(VariableClass.Vari.SELECTEDNAME, CommonUtility.validateText(con_name));
                     overridePendingTransition(R.anim.animation1, R.anim.animation2);
 
                     startActivity(selectextIntent);
