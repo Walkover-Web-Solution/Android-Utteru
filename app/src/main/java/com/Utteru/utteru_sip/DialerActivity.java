@@ -109,7 +109,7 @@ public class DialerActivity extends ActionBarActivity
             String price = getIntent().getExtras().getString(VariableClass.Vari.CALLPRICE);
             long date = getIntent().getExtras().getLong(VariableClass.Vari.CALLDATE);
 
-            launchCallingFrag(number, name, CallingScreenFragment.calldata.getTime_elapsed(), true, price,date);
+            launchCallingFrag(number, name, CallingScreenFragment.calldata.getTime_elapsed(), true, price,CallingScreenFragment.calldata.getDate());
 
         }
 

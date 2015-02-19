@@ -517,7 +517,8 @@ public class TwoWayCallFrag extends Fragment {
                 }
 
                 try {
-                    rate = "" + (Double.parseDouble(source_rate) + Double.parseDouble(destination_rate));
+                   Double temp_rate = (Double.parseDouble(source_rate) + Double.parseDouble(destination_rate));
+                    rate =""+ CommonUtility.round(temp_rate,2);
                     call_price_rate.setText(source_rate + "+" + destination_rate + "=" + rate);
                 } catch (Exception e) {
                     call_price_view.setVisibility(View.GONE);
@@ -533,7 +534,8 @@ public class TwoWayCallFrag extends Fragment {
                     source_rate = rate;
                 }
                 try {
-                    rate = "" + (Double.parseDouble(source_rate) + Double.parseDouble(destination_rate));
+                    Double temp_rate = (Double.parseDouble(source_rate) + Double.parseDouble(destination_rate));
+                    rate =""+ CommonUtility.round(temp_rate,2);
                     call_price_rate.setText(source_rate + "+" + destination_rate + "=" + rate);
                     call_price_currecny.setText(currency + "/min");
                 } catch (Exception e) {
@@ -967,8 +969,6 @@ public class TwoWayCallFrag extends Fragment {
                 if (!source_string.equals("")) {
                     number = REQUEST_SELECT_CONTACT_SOURCE;
                     new GetPricing().execute(null, null, null);
-                } else {
-
                 }
 
                 showErrorMessage(false, "");

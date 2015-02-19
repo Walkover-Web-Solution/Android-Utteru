@@ -178,27 +178,7 @@
                         android:textColor="@color/new_black"
                         android:textSize="@dimen/textsize_em" />
 
-                    <com.Utteru.commonUtilities.FontTextView
 
-                        android:id="@+id/ft_user_receive"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/ft_user_receive_text"
-                        android:layout_marginRight="@dimen/margin_top"
-                        android:text="10.00 "
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/textsize_em" />
-
-                    <com.Utteru.commonUtilities.FontTextView
-                        android:id="@+id/ft_user_receive_currency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/ft_user_receive_text"
-                        android:layout_marginRight="@dimen/margin_top"
-                        android:layout_toRightOf="@id/ft_user_receive"
-                        android:text="INR"
-                        android:textColor="@color/new_black"
-                        android:textSize="@dimen/textsize_em" />
 
                 </RelativeLayout>
             </LinearLayout>

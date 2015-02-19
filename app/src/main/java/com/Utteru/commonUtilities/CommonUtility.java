@@ -165,7 +165,7 @@ public class CommonUtility {
     public static String  validateNumberForUI(String number,Context ctx)
     {
 
-        number = number.replaceAll("[^\\w\\s\\-_]", "");//all special
+//        number = number.replaceAll("[^\\w\\s\\-_]", "");//all special
         number = number.replace("//s+", "");//space
         number = number.replaceAll("-", ""); //dash
         number = number.trim();
@@ -200,7 +200,7 @@ public class CommonUtility {
 
         final MenuScreen c = (MenuScreen) ctx;
         if (isNetworkAvailable(c)) {
-            new AsyncTask<Void, Void, Void>() {
+             new AsyncTask<Void, Void, Void>() {
                 String response;
                 Boolean iserr = false;
 

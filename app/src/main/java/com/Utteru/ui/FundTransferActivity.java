@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.Spanned;
@@ -52,13 +53,12 @@ public class FundTransferActivity extends Activity {
     FontTextView sender_currency;
     String receiver_name;
     FontTextView tittleback;
-    FontTextView receiver_name_text;
     String user_name;
     String amount;
     CustomKeyboardOther keyboard;
     LinearLayout dialpad_layout;
     Button close_button, confirm_transfer;
-    FontTextView user_receive_detail_text, receive_detail_currency;
+    FontTextView user_receive_detail_text;
     LinearLayout fund_layout, enter__password_layout;
     RelativeLayout transfer_details_layout;
     EditText user_pin_ed;
@@ -172,18 +172,22 @@ public class FundTransferActivity extends Activity {
                     if (receiver_name == null || receiver_name.equals(""))
                         receiver_name = user_name;
 
-                    receiver_name_text.setText(receiver_name + " will receive :");
+//                    receiver_name_text.setText(receiver_name + " will receive :");
                     if (CommonUtility.isNumeric(s.toString())) {
 
                         if ((Double.parseDouble(s.toString()) < (Double.parseDouble(Prefs.getUserBalanceAmount(ctx))))) {
                             showErrorMessage(false, "");
-                            user_receive_detail_text.setText("" + CommonUtility.round(ratio * Double.parseDouble(s.toString()), 2));
+                            double amount =CommonUtility.round(ratio * Double.parseDouble(s.toString()), 2);
+                            String user_receive_text = "<p>"+user_name+" will receive: <font color=#3BB8FF> "+amount+"</font>"+""+receiver_currency+"<p>";
+                            user_receive_detail_text.setText(Html.fromHtml(user_receive_text));
+
+
                         } else
                             showErrorMessage(true, "You have insufficient balance");
                     } else
                         showErrorMessage(true, getString(R.string.number_not_valid));
 
-                    receive_detail_currency.setText(receiver_currency);
+//                    receive_detail_currency.setText(receiver_currency);
 
                 } else
                     transfer_details_layout.setVisibility(View.GONE);
@@ -417,12 +421,11 @@ public class FundTransferActivity extends Activity {
         ctx = getApplicationContext();
         send_fund_button = (Button) findViewById(R.id.ft_transfer_send_button);
 
-        receiver_name_text = (FontTextView) findViewById(R.id.ft_user_receive_text);
+        user_receive_detail_text = (FontTextView) findViewById(R.id.ft_user_receive_text);
 
         user_pin_ed = (EditText) findViewById(R.id.ft_enter_user_password);
         confirm_transfer = (Button) findViewById(R.id.ft_transfer_fund_confirmation);
-        user_receive_detail_text = (FontTextView) findViewById(R.id.ft_user_receive);
-        receive_detail_currency = (FontTextView) findViewById(R.id.ft_user_receive_currency);
+
         keyboard.registerEditText(user_pin_ed.getId(), null);
         fund_layout = (LinearLayout) findViewById(R.id.ft_amount_layout);
         enter__password_layout = (LinearLayout) findViewById(R.id.ft_enter_password_layout);
@@ -565,15 +568,18 @@ public class FundTransferActivity extends Activity {
                     if (receiver_name != null && !receiver_name.equals("") && receiver_name.equals("NameRequired"))
                         receiver_name = user_name;
 
-                    receiver_name_text.setText(receiver_name + " will receive :");
+
                     if (CommonUtility.isNumeric(s.toString())) {
                         showErrorMessage(false, "");
-                        user_receive_detail_text.setText("" + CommonUtility.round(ratio * Double.parseDouble(s.toString()), 2));
+                        double amount =CommonUtility.round(ratio * Double.parseDouble(s.toString()), 2);
+                        Log.e("mount",""+amount);
+                        String user_receive_text = "<p>"+user_name+" will receive: <font color=#3BB8FF>"+amount+"</font>"+ " "+receiver_currency+"<p>";
+                        user_receive_detail_text.setText(Html.fromHtml(user_receive_text));
                     } else {
                         showErrorMessage(true, getResources().getString(R.string.number_not_valid));
                     }
 
-                    receive_detail_currency.setText(receiver_currency);
+
 
                 } else
                     transfer_details_layout.setVisibility(View.GONE);

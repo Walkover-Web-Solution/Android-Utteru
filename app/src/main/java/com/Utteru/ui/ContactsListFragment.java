@@ -276,8 +276,7 @@ public class ContactsListFragment extends ListFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent menu = new Intent(getActivity(), MenuScreen.class);
-                startActivity(menu);
+               getActivity().onBackPressed();
                 break;
             case R.id.menu_search:
                 if (!Utils.hasHoneycomb()) {

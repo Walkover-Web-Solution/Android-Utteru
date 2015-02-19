@@ -49,11 +49,7 @@ public class MenuScreen extends BaseActivity {
     public static final long SYNC_INTERVAL_IN_MINUTES = 60L;
     public static final long SYNC_INTERVAL_IN_HOURS = 24L;
 
-    public static final long SYNC_INTERVAL =
-            SYNC_INTERVAL_IN_MINUTES *
-                    SECONDS_PER_MINUTE *
-                    MILLISECONDS_PER_SECOND *
-                    SYNC_INTERVAL_IN_HOURS;
+
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static long back_pressed = 0;
     final String title1 = "NameRequired";
@@ -68,6 +64,8 @@ public class MenuScreen extends BaseActivity {
     Tracker tracker;
     String browserapi;
     CustomGridAdapter adapter;
+    static long lastupdated=0;
+    static int difference=20;
 
 
     Context ctx = this;
@@ -165,13 +163,9 @@ public class MenuScreen extends BaseActivity {
         } else {
             ContentResolver.setMasterSyncAutomatically(false);
             ContentResolver.setSyncAutomatically(account, ContactsContract.AUTHORITY, false);
-//            ContentResolver.addPeriodicSync(account, ContactsContract.AUTHORITY, new Bundle(),SYNC_INTERVAL);
         }
 
 
-//        Log.e("starting service", "starting service");
-//        Intent startTracking = new Intent(ctx, GPSTracker.class);
-//        startService(startTracking);
 
 
     }
@@ -218,6 +212,7 @@ public class MenuScreen extends BaseActivity {
     }
 
     public void setBalance() {
+        lastupdated =System.currentTimeMillis();
         if ((new Date().getTime()) % 5 == 0) {
 
 
@@ -226,6 +221,31 @@ public class MenuScreen extends BaseActivity {
             userBalance.setText(Prefs.getUserBalance(ctx));
         }
 
+//        long temp_time = System.currentTimeMillis();
+//        if(difference==20)
+//        {
+//         if(lastupdated-temp_time==20) {
+//
+//             userBalance.setText("Buy More");
+//             lastupdated=temp_time;
+//             difference =5;
+//         }
+//
+//        }
+//        else if(difference==5)
+//        {
+//            if(lastupdated-temp_time==5)
+//            {
+//                userBalance.setText(Prefs.getUserBalance(ctx));
+//                lastupdated=temp_time;
+//                difference=20;
+//            }
+//
+//        }
+//        else if(difference==0) {
+//            userBalance.setText(Prefs.getUserBalance(ctx));
+//            lastupdated=temp_time;
+//        }
 
     }
 

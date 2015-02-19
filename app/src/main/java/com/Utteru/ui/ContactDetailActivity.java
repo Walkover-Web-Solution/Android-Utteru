@@ -78,7 +78,9 @@ public class ContactDetailActivity extends ActionBarActivity {
         }
         else {
 
-            startActivity(new Intent(ContactDetailActivity.this, ContactsListActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+//            startActivity(new Intent(ContactDetailActivity.this, ContactsListActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            super.onBackPressed();
+            this.finish();
             overridePendingTransition(R.anim.animation3, R.anim.animation4);
         }
     }

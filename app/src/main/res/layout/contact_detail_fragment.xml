@@ -119,14 +119,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/new_margin"
                     android:textColor="@color/new_black"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="2dp"
                     android:textSize="@dimen/abc_text_size_medium_material" />
 
                 <com.Utteru.commonUtilities.FontTextView
                     android:id="@+id/extension"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_top"
-                    android:layout_marginTop="@dimen/margin_top"
+                    android:layout_marginLeft="@dimen/new_margin"
+                    android:layout_marginTop="@dimen/new_margin"
+                    android:layout_centerVertical="true"
 
                     android:layout_toRightOf="@id/access_number"
                     android:background="@drawable/contact_details_button_shape"
@@ -142,9 +147,13 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginTop="@dimen/margin_top"
+                    android:layout_marginTop="@dimen/new_margin"
                     android:src="@drawable/ic_action_call"
                     android:text="data"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="2dp"
                     android:textColor="@color/new_black" />
 
             </RelativeLayout>
