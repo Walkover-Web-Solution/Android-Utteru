@@ -22,7 +22,6 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -42,13 +41,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.Utteru.R;
 import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.Constants;
 import com.Utteru.commonUtilities.FontTextView;
-import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.commonUtilities.VariableClass;
 import com.Utteru.dtos.AccessContactDto;
 import com.Utteru.util.ImageLoader;
@@ -68,6 +65,7 @@ public class ContactDetailFragment extends Fragment {
     private Uri mContactUri; // Stores the contact Uri for this fragment instance
     private ImageLoader mImageLoader; // Handles loading the contact image in a background thread
     private ImageView mImageView;
+
 
 
 
@@ -197,7 +195,12 @@ public class ContactDetailFragment extends Fragment {
             }
         });
 
-
+          name_text.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  getActivity().onBackPressed();
+              }
+          });
         contactdetailback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

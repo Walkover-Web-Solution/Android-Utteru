@@ -1,4 +1,5 @@
 package com.Utteru.ui;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+
 import com.Utteru.R;
 import com.Utteru.adapters.ManageVerifiedDataListAdapter;
 import com.Utteru.commonUtilities.CommonUtility;
@@ -39,11 +41,12 @@ import com.splunk.mint.Mint;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 
-public class   EarnCreditsActivity extends Activity {
+public class EarnCreditsActivity extends Activity {
 
-    Button invite_now_button, edit_code_btn,edit_done_button, close_em_button;
+    Button invite_now_button, edit_code_btn, edit_done_button, close_em_button;
     EditText uniqu_refferal_code;
     ListView verified_data_listview;
     ArrayList<VerifiedData> verifieddatalist;
@@ -51,16 +54,18 @@ public class   EarnCreditsActivity extends Activity {
     ManageVerifiedDataListAdapter adapter;
     Tracker tracker;
     Context ctx = this;
-    LinearLayout  promo_tittle,dialpad_layout;
+    LinearLayout promo_tittle, dialpad_layout;
     ImageView backpress;
     CustomKeyboardOther keyboard;
-    FontTextView highlightedtext1,total_earn_txt,error_FontTextView,tittleback;
+    FontTextView highlightedtext1, total_earn_txt, error_FontTextView, tittleback;
     FrameLayout parent_layout;
     ScrollView earn_scroll;
-    String temp="";
+    String temp = "";
     String total_earnings;
     String promoCode = "";
+
     Boolean showmsg = false;
+
     @Override
     protected void onDestroy() {
         if (CommonUtility.dialog != null) {
@@ -126,16 +131,16 @@ public class   EarnCreditsActivity extends Activity {
     @Override
     protected void onResume() {
 
-              //hit api & save promo code in String
-              edit_code_btn.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
+        //hit api & save promo code in String
+        edit_code_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
                 if (!uniqu_refferal_code.getText().equals(""))
                     enableEditing(true);
-                 }
-                });
-        
+            }
+        });
+
         edit_done_button.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -154,14 +159,13 @@ public class   EarnCreditsActivity extends Activity {
                         enableEditing(false);
                     }
                 } else {
-                     CommonUtility.showCustomAlert(EarnCreditsActivity.this, "Enter valid promocode").show();
+                    CommonUtility.showCustomAlert(EarnCreditsActivity.this, "Enter valid promocode").show();
 
                 }
 
 
             }
         });
-
 
 
         uniqu_refferal_code.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -195,7 +199,7 @@ public class   EarnCreditsActivity extends Activity {
 
             }
         });
-  
+
         verified_data_listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
 
@@ -238,9 +242,9 @@ public class   EarnCreditsActivity extends Activity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                if(!isPointInsideView(v.getX(), v.getY(), edit_code_btn)){
+                if (!isPointInsideView(v.getX(), v.getY(), edit_code_btn)) {
 
-                  enableEditing(false);
+                    enableEditing(false);
 
                 }
                 return false;
@@ -249,7 +253,7 @@ public class   EarnCreditsActivity extends Activity {
         earn_scroll.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(!isPointInsideView(v.getX(), v.getY(), edit_code_btn)){
+                if (!isPointInsideView(v.getX(), v.getY(), edit_code_btn)) {
 
                     enableEditing(false);
 
@@ -277,6 +281,7 @@ public class   EarnCreditsActivity extends Activity {
                 return false;
             }
         });
+
         super.onResume();
 
     }
@@ -291,8 +296,10 @@ public class   EarnCreditsActivity extends Activity {
             if (dialpad_layout.getVisibility() == View.GONE) {
                 dialpad_layout.setAnimation(bottomUp);
                 dialpad_layout.setVisibility(View.VISIBLE);
-
+               // earn_scroll.scrollTo(0, uniqu_refferal_code.getBottom());
+                //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
             }
+
         }
         //hide keyboard
         else {
@@ -308,8 +315,8 @@ public class   EarnCreditsActivity extends Activity {
     }
 
     void init() {
-        parent_layout=(FrameLayout)findViewById(R.id.earn_credit_parent);
-        total_earn_txt = (FontTextView)findViewById(R.id.total_earn_txt);
+        parent_layout = (FrameLayout) findViewById(R.id.earn_credit_parent);
+        total_earn_txt = (FontTextView) findViewById(R.id.total_earn_txt);
         dialpad_layout = (LinearLayout) findViewById(R.id.dialpad_layout);
         promo_tittle = (LinearLayout) findViewById(R.id.promo_tittle);
         invite_now_button = (Button) findViewById(R.id.invite_now_button);
@@ -328,31 +335,28 @@ public class   EarnCreditsActivity extends Activity {
         tittleback = (FontTextView) findViewById(R.id.earn_credit_title);
         keyboard = new CustomKeyboardOther(EarnCreditsActivity.this, R.id.keyboardview, R.xml.numberic_keypad_other, null);
         keyboard.registerEditText(uniqu_refferal_code.getId(), null);
-        earn_scroll=(ScrollView)findViewById(R.id.earn_scroll);
-        highlightedtext1 = (FontTextView)findViewById(R.id.highlighted_text1);
+        earn_scroll = (ScrollView) findViewById(R.id.earn_scroll);
+        highlightedtext1 = (FontTextView) findViewById(R.id.highlighted_text1);
 
 
         uniqu_refferal_code.setText(Prefs.getPromocode(ctx));
-        total_earn_txt.setText(Prefs.getTotalearn(ctx)+" "+Prefs.getUserCurrency(ctx));
+        total_earn_txt.setText(Prefs.getTotalearn(ctx) + " " + Prefs.getUserCurrency(ctx));
 
-        String currency ="";
+        String currency = "";
 
-        if(Prefs.getUserCurrency(ctx).equalsIgnoreCase("INR"))
-        {
+        if (Prefs.getUserCurrency(ctx).equalsIgnoreCase("INR")) {
             currency = "12 INR";
 
-        }else if (Prefs.getUserCurrency(ctx).equalsIgnoreCase("USD")){
+        } else if (Prefs.getUserCurrency(ctx).equalsIgnoreCase("USD")) {
             currency = "0.2 USD";
 
-        }else if (Prefs.getUserCurrency(ctx).equalsIgnoreCase("AED")){
+        } else if (Prefs.getUserCurrency(ctx).equalsIgnoreCase("AED")) {
             currency = "0.73 AED";
 
         }
 
 
-
-
-        String text1="<p><b><font size=\"21\" color=\"#f7941e\"> You earn</font> "+currency+" </b> for every friend that joins + <b>10%</b> of their recharge amount</p>\n" +
+        String text1 = "<p><b><font size=\"21\" color=\"#f7941e\"> You earn</font> " + currency + " </b> for every friend that joins + <b>10%</b> of their recharge amount</p>\n" +
                 "\n" +
                 "<p><b><font size=\"21\" color=\"#00aeef\"> Your friend earns </font> 10% extra talktime</b> of their recharge amount.</p>\n";
 
@@ -360,8 +364,6 @@ public class   EarnCreditsActivity extends Activity {
         highlightedtext1.setText(Html.fromHtml(text1));
         new UpdatePromoCode().execute();
         new getAllNumbers().execute();
-
-
 
 
     }
@@ -414,6 +416,7 @@ public class   EarnCreditsActivity extends Activity {
     public class UpdatePromoCode extends AsyncTask<Void, Void, Void> {
         String response = "";
         Boolean iserror = false;
+
         @Override
         protected void onPostExecute(Void result) {
 
@@ -424,7 +427,7 @@ public class   EarnCreditsActivity extends Activity {
 
             } else {
 
-                total_earn_txt.setText(total_earnings+" "+Prefs.getUserCurrency(ctx));
+                total_earn_txt.setText(total_earnings + " " + Prefs.getUserCurrency(ctx));
                 uniqu_refferal_code.setText(promoCode);
                 enableEditing(false);
                 if(showmsg)
@@ -436,12 +439,14 @@ public class   EarnCreditsActivity extends Activity {
             CommonUtility.dialog.dismiss();
             super.onPostExecute(result);
         }
+
         @Override
         protected void onPreExecute() {
 
             CommonUtility.show_PDialog(ctx, getString(R.string.please_wait));
             super.onPreExecute();
         }
+
         @Override
         protected Void doInBackground(Void... params) {
 
@@ -462,9 +467,9 @@ public class   EarnCreditsActivity extends Activity {
                         japarent = joparent.getJSONArray(VariableClass.ResponseVariables.CONTENT);
                         jochild = japarent.getJSONObject(0);
                         promoCode = jochild.getString(VariableClass.ResponseVariables.PROMOCODE);
-                        total_earnings=jochild.getString(VariableClass.ResponseVariables.TOTALEARN);
+                        total_earnings = jochild.getString(VariableClass.ResponseVariables.TOTALEARN);
                         Prefs.setPromocode(ctx, promoCode);
-                        Prefs.setTotalearn(ctx,total_earnings);
+                        Prefs.setTotalearn(ctx, total_earnings);
                     }
                 } catch (JSONException e) {
                     iserror = true;
@@ -550,26 +555,25 @@ public class   EarnCreditsActivity extends Activity {
         }
 
     }
-    public static boolean isPointInsideView(float x, float y, View view){
+
+    public static boolean isPointInsideView(float x, float y, View view) {
         int location[] = new int[2];
         view.getLocationOnScreen(location);
         int viewX = location[0];
         int viewY = location[1];
 
         //point is inside view bounds
-        if(( x > viewX && x < (viewX + view.getWidth())) &&
-                ( y > viewY && y < (viewY + view.getHeight()))){
+        if ((x > viewX && x < (viewX + view.getWidth())) &&
+                (y > viewY && y < (viewY + view.getHeight()))) {
             return true;
         } else {
             return false;
         }
     }
 
-    void enableEditing(Boolean enable)
-    {
+    void enableEditing(Boolean enable) {
 
-        if(enable)
-        {
+        if (enable) {
             uniqu_refferal_code.setEnabled(enable);
             uniqu_refferal_code.requestFocus();
             edit_done_button.setVisibility(View.VISIBLE);
@@ -577,8 +581,7 @@ public class   EarnCreditsActivity extends Activity {
             uniqu_refferal_code.setSelection(uniqu_refferal_code.getText().length());
 
 
-        }
-        else{
+        } else {
             uniqu_refferal_code.setText(promoCode);
             uniqu_refferal_code.setEnabled(enable);
             uniqu_refferal_code.clearFocus();
@@ -587,7 +590,5 @@ public class   EarnCreditsActivity extends Activity {
 
         }
     }
-
-
 
 }
