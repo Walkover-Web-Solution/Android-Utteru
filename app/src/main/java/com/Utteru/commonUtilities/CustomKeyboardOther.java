@@ -5,7 +5,6 @@ import android.content.Context;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.inputmethodservice.KeyboardView.OnKeyboardActionListener;
-import android.os.Vibrator;
 import android.support.v7.internal.widget.TintEditText;
 import android.text.Editable;
 import android.text.InputType;
@@ -19,6 +18,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.Utteru.R;
+import com.Utteru.util.Session;
+import com.Utteru.utteru_sip.CallingScreenFragment;
+import com.Utteru.utteru_sip.UtteruSipCore;
+import com.portsip.PortSipEnumDefine;
+import com.portsip.PortSipSdk;
 
 
 /**
@@ -64,9 +68,9 @@ public class CustomKeyboardOther {
             View focusCurrent = mHostActivity.getWindow().getCurrentFocus();
 
 
-            Log.e("view object", "" + view + " second check " + (focusCurrent.getClass().getSimpleName()));
+          //  Log.e("view object", "" + view + " second check " + (focusCurrent.getClass().getSimpleName()));
 
-            if (focusCurrent.getClass() != EditText.class) {
+            if (focusCurrent == null ||focusCurrent.getClass() != EditText.class) {
                 // Do something for froyo and above versions
 
                 if (focusCurrent == null || focusCurrent.getClass() != TintEditText.class) return;
@@ -110,6 +114,11 @@ public class CustomKeyboardOther {
                     editable.insert(start, Character.toString((char) primaryCode).toUpperCase());
                 else
                     editable.insert(start, Character.toString((char) primaryCode).toLowerCase());
+            }
+
+            if(UtteruSipCore.isCallConnected){
+          String key = String.valueOf(primaryCode);
+                sendDtmf(key);
             }
 
         }
@@ -226,19 +235,18 @@ public class CustomKeyboardOther {
         mKeyboardView.setEnabled(false);
     }
 
+
     /**
      * Register <var>EditText<var> with resource id <var>resid</var> (on the hosting activity) for using this custom keyboard.
      *
      * @param resid The resource id of the EditText that registers to the custom keyboard.
      */
-    public void registerEditText(int resid,View getview) {
+    public void registerEditText(int resid, View getview) {
         // Find the EditText 'resid'
 
-        if(getview==null) {
+        if (getview == null) {
             edittext = (EditText) mHostActivity.findViewById(resid);
-        }
-
-        else {
+        } else {
             edittext = (EditText) getview.findViewById(resid);
         }
 
@@ -305,5 +313,31 @@ public class CustomKeyboardOther {
         // Disable spell check (hex strings look like words to Android)
         edittext.setInputType(edittext.getInputType() | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
     }
+    public void sendDtmf(String dtmfdigit) {
 
+       UtteruSipCore utteruSipCore = ((UtteruSipCore) mHostActivity.getApplicationContext());
+       PortSipSdk mSipSdk = utteruSipCore.getPortSIPSDK();
+        Session currentLine = utteruSipCore.findSessionByIndex(CallingScreenFragment._CurrentlyLine);
+        char number = dtmfdigit.charAt(0);
+        if (utteruSipCore.isOnline()
+                && currentLine.getSessionState()) {
+            if (number == '*') {
+                mSipSdk.sendDtmf(currentLine.getSessionId(),
+                        PortSipEnumDefine.ENUM_DTMF_MOTHOD_RFC2833, 10,
+                        160, true);
+                return;
+            }
+            if (number == '#') {
+                mSipSdk.sendDtmf(currentLine.getSessionId(),
+                        PortSipEnumDefine.ENUM_DTMF_MOTHOD_RFC2833, 11,
+                        160, true);
+                return;
+            }
+            int sum = Integer.valueOf(dtmfdigit);// 0~9
+            mSipSdk.sendDtmf(currentLine.getSessionId(),
+                    PortSipEnumDefine.ENUM_DTMF_MOTHOD_RFC2833, sum,
+                    160, true);
+        }
+
+    }
 }

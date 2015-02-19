@@ -55,7 +55,6 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 
@@ -627,6 +626,24 @@ public class CommonUtility {
         return true;
     }
 
+    public static int getListPreferredItemHeight(Activity ctx) {
+        final TypedValue typedValue = new TypedValue();
+
+        // Resolve list item preferred height theme attribute into typedValue
+        ctx.getTheme().resolveAttribute(
+                android.R.attr.listPreferredItemHeight, typedValue, true);
+
+        // Create a new DisplayMetrics object
+        final DisplayMetrics metrics = new DisplayMetrics();
+
+        // Populate the DisplayMetrics
+        ctx.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        // Return theme value based on DisplayMetrics
+        return (int) typedValue.getDimension(metrics);
+    }
+
+
     public static Bitmap drawImage(String text, Activity ctx) {
         int colorsarray[] = {ctx.getResources().getColor(R.color.red_contacts), ctx.getResources().getColor(R.color.blue_contacts), ctx.getResources().getColor(R.color.purple_contacts), ctx.getResources().getColor(R.color.green_contacts), ctx.getResources().getColor(R.color.grey_contacts), ctx.getResources().getColor(R.color.violet_contacts), ctx.getResources().getColor(R.color.yellow_contacts)};
 
@@ -672,24 +689,6 @@ public class CommonUtility {
         canvas.drawText(temp, xPos, yPos, paint);
         return image;
 
-    }
-
-
-    public static int getListPreferredItemHeight(Activity ctx) {
-        final TypedValue typedValue = new TypedValue();
-
-        // Resolve list item preferred height theme attribute into typedValue
-        ctx.getTheme().resolveAttribute(
-                android.R.attr.listPreferredItemHeight, typedValue, true);
-
-        // Create a new DisplayMetrics object
-        final DisplayMetrics metrics = new DisplayMetrics();
-
-        // Populate the DisplayMetrics
-        ctx.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        // Return theme value based on DisplayMetrics
-        return (int) typedValue.getDimension(metrics);
     }
 
     public static void logOut(Context ctx) {

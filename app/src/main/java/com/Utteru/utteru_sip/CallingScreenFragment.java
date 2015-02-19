@@ -13,15 +13,20 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Chronometer;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.Utteru.R;
+import com.Utteru.commonUtilities.CustomKeyboardOther;
 import com.Utteru.commonUtilities.Prefs;
-import com.Utteru.commonUtilities.TimeView;
 import com.Utteru.commonUtilities.VariableClass;
 import com.Utteru.dtos.Country;
 import com.Utteru.dtos.RecentCallsDto;
@@ -42,22 +47,25 @@ import java.util.Iterator;
 
 
 public class CallingScreenFragment extends Fragment {
-
+    View call;
     PortSipSdk mSipSdk;
     UtteruSipCore utteruSipCore;
-    int _CurrentlyLine = 0;
+    public static int _CurrentlyLine = 0;
     Line[] lines;
     Context ctx;
     RelativeLayout hangup;
     Chronometer chronometer;
-    ImageButton speaker, mute_button ,end_call_button;
+    ImageButton speaker, mute_button, end_call_button, open_dialpad;
+    CustomKeyboardOther keyboard;
     Boolean speaker_state = false;
     Boolean mute_state = false;
     SimpleDateFormat sdf;
     TextView call_status, callee_name_txt, callee_number_txt;
     ImageView pricedivider;
     TextView price;
+    LinearLayout dialpad_layout;
     public static CallData calldata;
+    EditText edCalling;
 
 
     AudioManager audiomanager = null;
@@ -120,8 +128,6 @@ public class CallingScreenFragment extends Fragment {
     }
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -145,7 +151,7 @@ public class CallingScreenFragment extends Fragment {
             Log.e("setting chronometer ", "setting chronometer ");
             chronometer.setVisibility(View.VISIBLE);
 
-            long time =calldata.getTime_elapsed();
+            long time = calldata.getTime_elapsed();
 
             chronometer.setBase(time);
             chronometer.start();
@@ -167,14 +173,22 @@ public class CallingScreenFragment extends Fragment {
         callee_number_txt.setText(calldata.getCallee_number());
 
 
-
-
-
-
         if (!wakeLock.isHeld()) {
             wakeLock.acquire();
         }
+        edCalling.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.onTouchEvent(event);
+                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
 
+                showKeyBoard(true);
+                return false;
+            }
+        });
         super.onResume();
     }
 
@@ -185,16 +199,16 @@ public class CallingScreenFragment extends Fragment {
             wakeLock.release();
         }
         if (!UtteruSipCore.isCallDisconnected)
-            utteruSipCore.updateNotification(ctx, calldata.getCallee_number(), calldata.getCallee_name(), calldata.getTime_elapsed(), calldata.getCall_price(),calldata.getDate());
+            utteruSipCore.updateNotification(ctx, calldata.getCallee_number(), calldata.getCallee_name(), calldata.getTime_elapsed(), calldata.getCall_price(), calldata.getDate());
 
         super.onPause();
     }
 
-    public void setNumber(String number, String name, long basetime, Boolean iscallongoing, String price_call,Context c,long date) {
+    public void setNumber(String number, String name, long basetime, Boolean iscallongoing, String price_call, Context c, long date) {
 
-        Log.e("number settings",""+number);
+        Log.e("number settings", "" + number);
 
-        Log.e("setting data", "setting data" +basetime);
+        Log.e("setting data", "setting data" + basetime);
         String callee_name = name;
         if (callee_name == null || callee_name.equals(""))
             callee_name = number;
@@ -288,7 +302,7 @@ public class CallingScreenFragment extends Fragment {
 
     }
 
-    void sendDtmf(String dtmfdigit) {
+    public void sendDtmf(String dtmfdigit) {
 
         Session currentLine = utteruSipCore.findSessionByIndex(_CurrentlyLine);
         char number = dtmfdigit.charAt(0);
@@ -318,7 +332,7 @@ public class CallingScreenFragment extends Fragment {
 
 
         String callTo = number;
-        Log.e("number",""+number);
+        Log.e("number", "" + number);
 
         callTo = callTo.replaceAll("-", "").replaceAll("\\s+", "");
 //
@@ -369,6 +383,36 @@ public class CallingScreenFragment extends Fragment {
 
     }
 
+    public void showKeyBoard(Boolean showKeyBoard) {
+        //show keyboard
+        if (showKeyBoard) {
+
+            Animation bottomUp = AnimationUtils.loadAnimation(ctx,
+                    R.anim.bottom_up);
+
+            if (dialpad_layout.getVisibility() == View.GONE) {
+                dialpad_layout.setAnimation(bottomUp);
+                dialpad_layout.setVisibility(View.VISIBLE);
+                edCalling.setVisibility(View.VISIBLE);
+                open_dialpad.setBackgroundResource(R.drawable.dial_pad_on);
+                getView().clearFocus();
+            }
+        }
+        //hide keyboard
+        else {
+            Animation bottpmdown = AnimationUtils.loadAnimation(ctx,
+                    R.anim.bottom_down);
+            if (dialpad_layout.getVisibility() == View.VISIBLE) {
+                dialpad_layout.setAnimation(bottpmdown);
+                dialpad_layout.setVisibility(View.GONE);
+                edCalling.setVisibility(View.GONE);
+                open_dialpad.setBackgroundResource(R.drawable.dial_pad_off);
+                getView().clearFocus();
+
+            }
+        }
+    }
+
     void init() {
 
         ctx = getActivity().getBaseContext();
@@ -380,9 +424,14 @@ public class CallingScreenFragment extends Fragment {
         call_status = (TextView) getView().findViewById(R.id.call_status);
         speaker = (ImageButton) getView().findViewById(R.id.switch_speaker);
         hangup = (RelativeLayout) getView().findViewById(R.id.call_end);
+        open_dialpad = (ImageButton) getView().findViewById(R.id.open_dialpad);
         mute_button = (ImageButton) getView().findViewById(R.id.microphone);
-        end_call_button = (ImageButton)getView().findViewById(R.id.endcall_btn);
-
+        dialpad_layout = (LinearLayout) getView().findViewById(R.id.dialpad_layout);
+        edCalling = (EditText) getView().findViewById(R.id.ed_calling_screen);
+        end_call_button = (ImageButton) getView().findViewById(R.id.endcall_btn);
+        open_dialpad.setEnabled(false);
+        keyboard = new CustomKeyboardOther(getActivity(), R.id.keyboardview, R.xml.numberic_key_only, call);
+        keyboard.registerEditText(edCalling.getId(), call);
         new SearchRate().execute();
         sdf = new SimpleDateFormat("d MMM , hh:mm aaa");
 
@@ -425,11 +474,23 @@ public class CallingScreenFragment extends Fragment {
                     speaker_state = true;
                     startSpeaker(speaker_state);
                     speaker.setBackgroundResource(R.drawable.speaker_active);
+
                 }
                 return false;
             }
         });
+        open_dialpad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+                if (!(dialpad_layout.getVisibility() == View.VISIBLE))
+                    showKeyBoard(true);
+                else
+                    showKeyBoard(false);
+
+            }
+        });
         mute_button.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -499,9 +560,10 @@ public class CallingScreenFragment extends Fragment {
 
                 break;
             case UtteruSipCore.CALL_STATE_CONNECTED:
+                open_dialpad.setEnabled(true);
                 break;
             case UtteruSipCore.CALL_STATE_ESTATBLISHED:
-
+                open_dialpad.setEnabled(true);
                 call_status.setVisibility(View.GONE);
 
                 chronometer.setVisibility(View.VISIBLE);
@@ -628,8 +690,6 @@ public class CallingScreenFragment extends Fragment {
     public void onBackPress(Boolean fromNotification) {
 
         getActivity().getSupportFragmentManager().popBackStack();
-
-
 
 
     }
