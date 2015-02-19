@@ -3,6 +3,7 @@ package com.Utteru.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -28,8 +29,7 @@ public class   AutoCountryDetect extends Activity {
     FontTextView or_message;
     FontTextView tittleback;
     FontTextView choose_another_country_message;
-    FontTextView country_not_found;
-String msgNotFound;
+    FontTextView country_not_found,country_found_text;
 
 
     @Override
@@ -54,7 +54,9 @@ String msgNotFound;
 
     void init()
     {
-        choose_another_country_message = (FontTextView)findViewById(R.id.choose_another_country_message);
+
+
+       choose_another_country_message = (FontTextView)findViewById(R.id.choose_another_country_message);
         auto_detected_country = (LinearLayout)findViewById(R.id.auto_detect_country_middle);
         country_not_detected = (LinearLayout)findViewById(R.id.country_not_found_body);
         choose_country = (Button)findViewById(R.id.choose_another_country);
@@ -63,9 +65,10 @@ String msgNotFound;
         gototohome = (ImageView)findViewById(R.id.auto_detect_country_home);
         tittleback = (FontTextView)findViewById(R.id.auto_detect_coutry_header);
         country_not_found= (FontTextView) findViewById(R.id.country_not_found_message);
+        country_found_text= (FontTextView) findViewById(R.id.auto_detect_country_message);
         or_message = (FontTextView)findViewById(R.id.or_message);
         Bundle data = getIntent().getExtras();
-        msgNotFound=country_not_found.getText().toString();
+
 
 
         if(data!=null&&data.containsKey(VariableClass.Vari.SELECTEDNAME))
@@ -79,7 +82,7 @@ String msgNotFound;
             or_message.setVisibility(View.GONE);
 
 
-            country_not_found.setText(msgNotFound+dto.getCountry());
+            country_not_found.setText(Html.fromHtml(foundNotCountryMessage(dto.getCountry())));
 
         }
         else if(data!=null&& data.containsKey(VariableClass.Vari.SELECTEDDATA)){
@@ -91,6 +94,7 @@ String msgNotFound;
             auto_detected_country.setVisibility(View.VISIBLE);
             country_not_detected.setVisibility(View.GONE);
             or_message.setVisibility(View.VISIBLE);
+            country_found_text.setText(Html.fromHtml(foundCountryMessage(dto.getCountry())));
 
         }
 
@@ -148,5 +152,18 @@ String msgNotFound;
         this.finish();
       //  super.onBackPressed();
         overridePendingTransition(R.anim.animation3, R.anim.animation4);
+    }
+
+    String foundCountryMessage(String country)
+    {
+        String country_found_msg =" <p><font size=\"21\" >We see that</font> <font color=#3BB8FF size=18 >"+country+"'s</font><font size=\"21\" > access number will cost you cheapest!</font></p> ";
+        return country_found_msg;
+    }
+    String foundNotCountryMessage(String country)
+    {
+
+
+        String country_not_found_msg ="<p><font size=\"21\" >We see that there are no access numbers available in</font>  <font color=#3BB8FF>"+country+"</font></p>";
+        return country_not_found_msg;
     }
 }

@@ -4,6 +4,7 @@ import android.accounts.Account;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.Utteru.commonUtilities.FontTextView;
 import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.commonUtilities.VariableClass;
 import com.Utteru.dtos.AccessContactDto;
+import com.Utteru.dtos.AccessDataDto;
 import com.splunk.mint.Mint;
 import com.stripe.android.compat.AsyncTask;
 
@@ -199,11 +201,13 @@ public class AssignAccessAI extends Activity {
 
                 CommonUtility.showCustomAlertForContacts(getApplicationContext(), response);
 //
-//                Intent start = new Intent(ctx, AllCountryActivity.class);
-//
-//                start.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(start);
-//                overridePendingTransition(R.anim.animation3, R.anim.animation4);
+                Intent start = new Intent(ctx, AccessInfoActivity.class);
+                AccessDataDto accessDataDto = new AccessDataDto(contactDto.getCountry(),contactDto.getCode(),contactDto.getState(),contactDto.getAccess_number());
+
+                start.putExtra(VariableClass.Vari.SELECTEDDATA,accessDataDto);
+                start.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(start);
+                overridePendingTransition(R.anim.animation3, R.anim.animation4);
             }
             CommonUtility.dialog.dismiss();
             super.onPostExecute(aVoid);

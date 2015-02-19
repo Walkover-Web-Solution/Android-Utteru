@@ -1,5 +1,6 @@
 package com.Utteru.ui;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -31,6 +32,7 @@ public class ManageNumbersFrag extends Fragment {
     ListView listview;
     ArrayList<VerifiedData> datalist;
     FontTextView nothing_found_text;
+    ProgressDialog dialog;
 
 
     @Override
@@ -71,6 +73,11 @@ public class ManageNumbersFrag extends Fragment {
 
 
     void init() {
+        dialog = new ProgressDialog(getActivity(), R.style.MyTheme);
+        dialog.setMessage(getString(R.string.please_wait));
+        dialog.setCancelable(true);
+
+        dialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         nothing_found_text = (FontTextView) manage_numbers.findViewById(R.id.nothing_found_text);
         nothing_found_text.setText(getResources().getString(R.string.no_number_found));
         ctx = getActivity().getBaseContext();
@@ -105,12 +112,15 @@ public class ManageNumbersFrag extends Fragment {
                 listview.setVisibility(View.GONE);
             Log.e("got  list", "got list");
 
+            dialog.dismiss();
+
             super.onPostExecute(result);
         }
 
         @Override
         protected void onPreExecute() {
 
+            dialog.show();
             super.onPreExecute();
         }
 

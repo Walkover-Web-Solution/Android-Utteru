@@ -59,6 +59,7 @@
 
     <com.Utteru.commonUtilities.FontTextView
         android:layout_width="fill_parent"
+
         android:text="We see that your country's access number will cost you cheapest!"
         android:id="@+id/auto_detect_country_message"
         android:textColor="@color/new_black"

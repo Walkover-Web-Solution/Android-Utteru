@@ -60,6 +60,7 @@ public class   EarnCreditsActivity extends Activity {
     String temp="";
     String total_earnings;
     String promoCode = "";
+    Boolean showmsg = false;
     @Override
     protected void onDestroy() {
         if (CommonUtility.dialog != null) {
@@ -145,6 +146,7 @@ public class   EarnCreditsActivity extends Activity {
                 if (temp != null && !temp.equals("")) {
 
                     if (!promoCode.equals(temp)) {
+                        showmsg =true;
                         new UpdatePromoCode().execute();
 
                     } else {
@@ -425,6 +427,11 @@ public class   EarnCreditsActivity extends Activity {
                 total_earn_txt.setText(total_earnings+" "+Prefs.getUserCurrency(ctx));
                 uniqu_refferal_code.setText(promoCode);
                 enableEditing(false);
+                if(showmsg)
+                {
+                    CommonUtility.showCustomAlertForContacts(ctx,"Promo code has been updated .");
+                    showmsg=false;
+               }
             }
             CommonUtility.dialog.dismiss();
             super.onPostExecute(result);

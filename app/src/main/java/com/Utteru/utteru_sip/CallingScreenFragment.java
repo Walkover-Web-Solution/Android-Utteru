@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -79,13 +78,14 @@ public class CallingScreenFragment extends Fragment {
         mSipSdk.enableAEC(true);
         isCallActive(getActivity());
         lines = utteruSipCore.getLines();
-        int result = audiomanager.requestAudioFocus(null,
-                // Use the music stream.
-                AudioManager.STREAM_MUSIC,
-                // Request permanent focus.
-                AudioManager.AUDIOFOCUS_GAIN);
+//        int result = audiomanager.requestAudioFocus(null,
+//                // Use the music stream.
+//                AudioManager.STREAM_MUSIC,
+//                // Request permanent focus.
+//                AudioManager.AUDIOFOCUS_GAIN);
+
         audiomanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-        audiomanager.setStreamMute(AudioManager.STREAM_MUSIC, true);
+//        audiomanager.setStreamMute(AudioManager.STREAM_MUSIC, true);
 
 
         try {
@@ -99,6 +99,15 @@ public class CallingScreenFragment extends Fragment {
         init();
 
         //CheckMusic();
+    }
+    @Override
+    public void onStop() {
+//
+
+//        audiomanager.setStreamMute(AudioManager.STREAM_MUSIC, false);
+
+        Log.e("on stop ", "on stop ");
+        super.onStop();
     }
 
     public boolean isCallActive(Context context) {
@@ -276,6 +285,7 @@ public class CallingScreenFragment extends Fragment {
 
     void startSpeaker(Boolean speaker) {
         mSipSdk.setLoudspeakerStatus(speaker);
+
     }
 
     void sendDtmf(String dtmfdigit) {
@@ -515,14 +525,7 @@ public class CallingScreenFragment extends Fragment {
 
     }
 
-    @Override
-    public void onStop() {
-        audiomanager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-        audiomanager.setStreamMute(AudioManager.STREAM_MUSIC, false);
 
-        Log.e("on stop ", "on stop ");
-        super.onStop();
-    }
 
 
     class SearchRate extends AsyncTask<Void, Void, Void> {
@@ -634,6 +637,7 @@ public class CallingScreenFragment extends Fragment {
 
     public void onDestroyFrag() {
         Log.e("on destroy ", "on destroy ");
+        audiomanager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
         UtteruSipCore.isCallInProgress = false;
         UtteruSipCore.isCallDisconnected = false;
         UtteruSipCore.isCallConnected = false;

@@ -117,7 +117,7 @@
 
             android:background="@drawable/red_button_selector_shape"
             android:gravity="center"
-            android:padding="@dimen/padding"
+            android:padding="@dimen/margin_top"
             android:text="@string/unassign_access_number"
             android:textColor="@android:color/white"
             android:visibility="gone" />

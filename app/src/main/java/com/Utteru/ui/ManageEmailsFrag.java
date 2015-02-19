@@ -71,7 +71,7 @@ public class ManageEmailsFrag extends Fragment {
 
     void init() {
         ctx = getActivity().getBaseContext();
-        dialog = new ProgressDialog(ctx, R.style.MyTheme);
+        dialog = new ProgressDialog(getActivity(), R.style.MyTheme);
         dialog.setMessage(getString(R.string.please_wait));
         dialog.setCancelable(true);
 
@@ -113,7 +113,7 @@ public class ManageEmailsFrag extends Fragment {
 
         @Override
         protected void onPreExecute() {
-dialog.show();
+          dialog.show();
 
             super.onPreExecute();
         }
