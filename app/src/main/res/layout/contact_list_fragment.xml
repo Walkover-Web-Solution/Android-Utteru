@@ -30,7 +30,9 @@
         android:id="@id/android:list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@drawable/horizontal_seperator"
+        android:divider="@color/divider_color"
+        android:dividerHeight="1dp"
+
         />
     </android.support.v4.widget.SwipeRefreshLayout>
 

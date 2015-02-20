@@ -12,9 +12,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,7 +25,6 @@ import android.widget.ScrollView;
 import com.Utteru.R;
 import com.Utteru.adapters.ManageVerifiedDataListAdapter;
 import com.Utteru.commonUtilities.CommonUtility;
-import com.Utteru.commonUtilities.CustomKeyboardOther;
 import com.Utteru.commonUtilities.FontTextView;
 import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.commonUtilities.VariableClass;
@@ -54,9 +50,9 @@ public class EarnCreditsActivity extends Activity {
     ManageVerifiedDataListAdapter adapter;
     Tracker tracker;
     Context ctx = this;
-    LinearLayout promo_tittle, dialpad_layout;
+    LinearLayout promo_tittle;
     ImageView backpress;
-    CustomKeyboardOther keyboard;
+
     FontTextView highlightedtext1, total_earn_txt, error_FontTextView, tittleback;
     FrameLayout parent_layout;
     ScrollView earn_scroll;
@@ -151,7 +147,7 @@ public class EarnCreditsActivity extends Activity {
                 if (temp != null && !temp.equals("")) {
 
                     if (!promoCode.equals(temp)) {
-                        showmsg =true;
+                        showmsg = true;
                         new UpdatePromoCode().execute();
 
                     } else {
@@ -182,7 +178,7 @@ public class EarnCreditsActivity extends Activity {
                     uniqu_refferal_code.setEnabled(false);
                     edit_done_button.setVisibility(View.GONE);
                     edit_code_btn.setVisibility(View.VISIBLE);
-                    showKeyBoard(false);
+                    //  showKeyBoard(false);
 
 
                 }
@@ -262,7 +258,7 @@ public class EarnCreditsActivity extends Activity {
             }
         });
 
-        promo_tittle.setOnClickListener(new View.OnClickListener() {
+      /*  promo_tittle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showKeyBoard(false);
@@ -280,13 +276,13 @@ public class EarnCreditsActivity extends Activity {
                 showKeyBoard(true);
                 return false;
             }
-        });
+        });*/
 
         super.onResume();
 
     }
 
-    public void showKeyBoard(Boolean showKeyBoard) {
+ /*   public void showKeyBoard(Boolean showKeyBoard) {
         //show keyboard
         if (showKeyBoard) {
 
@@ -296,7 +292,7 @@ public class EarnCreditsActivity extends Activity {
             if (dialpad_layout.getVisibility() == View.GONE) {
                 dialpad_layout.setAnimation(bottomUp);
                 dialpad_layout.setVisibility(View.VISIBLE);
-               // earn_scroll.scrollTo(0, uniqu_refferal_code.getBottom());
+                // earn_scroll.scrollTo(0, uniqu_refferal_code.getBottom());
                 //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
             }
 
@@ -312,12 +308,12 @@ public class EarnCreditsActivity extends Activity {
 
             }
         }
-    }
+    }*/
 
     void init() {
         parent_layout = (FrameLayout) findViewById(R.id.earn_credit_parent);
         total_earn_txt = (FontTextView) findViewById(R.id.total_earn_txt);
-        dialpad_layout = (LinearLayout) findViewById(R.id.dialpad_layout);
+      //  dialpad_layout = (LinearLayout) findViewById(R.id.dialpad_layout);
         promo_tittle = (LinearLayout) findViewById(R.id.promo_tittle);
         invite_now_button = (Button) findViewById(R.id.invite_now_button);
         edit_code_btn = (Button) findViewById(R.id.edit_unique_code_button);
@@ -333,8 +329,8 @@ public class EarnCreditsActivity extends Activity {
 
         backpress = (ImageView) findViewById(R.id.auto_detect_country_back);
         tittleback = (FontTextView) findViewById(R.id.earn_credit_title);
-        keyboard = new CustomKeyboardOther(EarnCreditsActivity.this, R.id.keyboardview, R.xml.numberic_keypad_other, null);
-        keyboard.registerEditText(uniqu_refferal_code.getId(), null);
+       /* keyboard = new CustomKeyboardOther(EarnCreditsActivity.this, R.id.keyboardview, R.xml.numberic_keypad_other, null);
+        keyboard.registerEditText(uniqu_refferal_code.getId(), null);*/
         earn_scroll = (ScrollView) findViewById(R.id.earn_scroll);
         highlightedtext1 = (FontTextView) findViewById(R.id.highlighted_text1);
 
@@ -371,21 +367,20 @@ public class EarnCreditsActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        if (dialpad_layout.getVisibility() == View.VISIBLE) {
-            showKeyBoard(false);
+     /*   if (dialpad_layout.getVisibility() == View.VISIBLE) {
+           // showKeyBoard(false);
 
 
-        } else {
-            Intent menu = new Intent(this, MenuScreen.class);
-            menu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            menu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(menu);
-            // super.onBackPressed();
-            this.finish();
-            overridePendingTransition(R.anim.animation3, R.anim.animation4);
-        }
-
+        } else {*/
+        Intent menu = new Intent(this, MenuScreen.class);
+        menu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        menu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(menu);
+        // super.onBackPressed();
+        this.finish();
+        overridePendingTransition(R.anim.animation3, R.anim.animation4);
     }
+
 
     void showErrorMessage(Boolean showm, String message) {
         if (showm) {
@@ -430,11 +425,10 @@ public class EarnCreditsActivity extends Activity {
                 total_earn_txt.setText(total_earnings + " " + Prefs.getUserCurrency(ctx));
                 uniqu_refferal_code.setText(promoCode);
                 enableEditing(false);
-                if(showmsg)
-                {
-                    CommonUtility.showCustomAlertForContacts(ctx,"Promo code has been updated .");
-                    showmsg=false;
-               }
+                if (showmsg) {
+                    CommonUtility.showCustomAlertForContacts(ctx, "Promo code has been updated .");
+                    showmsg = false;
+                }
             }
             CommonUtility.dialog.dismiss();
             super.onPostExecute(result);
