@@ -53,7 +53,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Earning"
+                    android:text="Earnings"
                     android:textSize="@dimen/abc_text_size_medium_material" />
 
                 <com.Utteru.commonUtilities.FontTextView
