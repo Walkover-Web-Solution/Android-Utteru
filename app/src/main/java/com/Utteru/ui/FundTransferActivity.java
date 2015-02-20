@@ -331,6 +331,7 @@ public class FundTransferActivity extends Activity {
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 if (imm != null) {
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    user_pin_ed.setInputType(InputType.TYPE_NULL);
                 }
                 showKeyBoard(true);
                 return false;
@@ -343,6 +344,7 @@ public class FundTransferActivity extends Activity {
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 if (imm != null) {
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
                 }
                 showKeyBoard(true);
                 return false;
@@ -420,7 +422,9 @@ public class FundTransferActivity extends Activity {
         keyboard.registerEditText(amount_ed.getId(), null);
         ctx = getApplicationContext();
         send_fund_button = (Button) findViewById(R.id.ft_transfer_send_button);
-
+        amount_ed.setInputType(InputType.TYPE_NULL);
+        user_pin_ed.setInputType(InputType.TYPE_NULL);
+        username_ed.setInputType(InputType.TYPE_NULL);
         user_receive_detail_text = (FontTextView) findViewById(R.id.ft_user_receive_text);
 
         user_pin_ed = (EditText) findViewById(R.id.ft_enter_user_password);

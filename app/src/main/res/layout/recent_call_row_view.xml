@@ -13,7 +13,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-       android:layout_margin="@dimen/new_margin"
+       android:layout_margin="10dp"
 
         android:orientation="vertical">
 
@@ -43,14 +43,13 @@
                 android:textSize="14.0dip" />
 
             <com.Utteru.commonUtilities.FontTextView
-
                 android:id="@+id/call_duration"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".4"
                 android:text="Duration"
                 android:layout_marginLeft="@dimen/new_margin"
-                android:textColor="@color/dark_black"
+                android:textColor="@color/light_bold_black"
                 android:textSize="14.0dip" />
         </LinearLayout>
 

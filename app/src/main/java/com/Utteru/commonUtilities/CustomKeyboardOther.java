@@ -117,7 +117,7 @@ public class CustomKeyboardOther {
             }
 
             if(UtteruSipCore.isCallConnected){
-          String key = String.valueOf(primaryCode);
+          String key = Character.toString((char) primaryCode);
                 sendDtmf(key);
             }
 
@@ -266,6 +266,7 @@ public class CustomKeyboardOther {
 //                else hideCustomKeyboard();
 //            }
 //        });
+
         edittext.setOnClickListener(new OnClickListener() {
             // NOTE By setting the on click listener, we can show the custom keyboard again, by tapping on an edit box that already had focus (but that had the keyboard hidden).
             @Override

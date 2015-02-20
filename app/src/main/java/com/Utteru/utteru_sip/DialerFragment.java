@@ -458,7 +458,7 @@ public class DialerFragment extends Fragment {
                     if (countryCode != null && !countryCode.equals("")) {
                         mSelectCountry.setVisibility(View.VISIBLE);
                         mSelectCountry.setText(countryCode);
-                        mCountryName.setText("(" + countryCode + ")" + " " + countryName);
+                        mCountryName.setText("(" + countryCode + ") " + " " + countryName);
 
                     }
 
