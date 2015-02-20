@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-  >
+    android:layout_height="fill_parent">
 
     <RelativeLayout
         android:id="@+id/change_pin_root"
@@ -34,14 +33,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/new_btn_size"
                 android:layout_marginTop="@dimen/new_margin"
-                android:background="@drawable/curve_corner_shape_edittext">
+                android:background="@drawable/twc_edittext_boder">
 
                 <EditText
                     android:id="@+id/cp_new_pin_code"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:background="@drawable/edittext_reset_pin"
+                    android:background="@drawable/twc_edittext_boder"
                     android:digits="0123456789"
                     android:ellipsize="end"
                     android:gravity="left|center"
@@ -49,7 +48,8 @@
                     android:inputType="number|phone"
                     android:maxLength="4"
                     android:paddingLeft="@dimen/new_margin"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/light_black"
+                    android:textColorHint="@color/light_black"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/edit_text_size" />
 
@@ -62,14 +62,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/new_btn_size"
                 android:layout_marginTop="@dimen/new_margin"
-                android:background="@drawable/curve_corner_shape_edittext">
+                android:background="@drawable/twc_edittext_boder">
 
                 <EditText
                     android:id="@+id/cp_confirm_pin_code"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:background="@drawable/edittext_reset_pin"
+                    android:background="@drawable/twc_edittext_boder"
                     android:digits="0123456789"
                     android:ellipsize="end"
                     android:gravity="left|center"
@@ -77,7 +77,8 @@
                     android:inputType="number|phone"
                     android:maxLength="4"
                     android:paddingLeft="@dimen/new_margin"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/light_black"
+                    android:textColorHint="@color/light_black"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/edit_text_size" />
 
@@ -105,8 +106,8 @@
         </LinearLayout>
 
 
-
     </RelativeLayout>
+
     <LinearLayout
 
         android:id="@+id/dialpad_layout"
@@ -115,9 +116,8 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:background="@android:color/transparent"
-        android:visibility="gone"
         android:orientation="vertical"
-       >
+        android:visibility="gone">
 
         <android.inputmethodservice.KeyboardView
             android:id="@+id/keyboardview"

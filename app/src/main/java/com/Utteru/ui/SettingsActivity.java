@@ -26,8 +26,8 @@ public class SettingsActivity extends BaseActivity {
     Context context = this;
     FontTextView my_numbers, my_emails, my_profile;
     Tracker tracker;
-    FontTextView   tittleback;
-    ImageView backpress,gototohome;
+    FontTextView tittleback;
+    ImageView backpress, gototohome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +35,13 @@ public class SettingsActivity extends BaseActivity {
         setContentView(R.layout.settings_layout);
         Mint.initAndStartSession(SettingsActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(SettingsActivity.this));
-        tracker = MyAnalyticalTracker.getTrackerInstance().getTracker(MyAnalyticalTracker.TrackerName.APP_TRACKER,this);
+        tracker = MyAnalyticalTracker.getTrackerInstance().getTracker(MyAnalyticalTracker.TrackerName.APP_TRACKER, this);
         init();
         if (CommonUtility.isNetworkAvailable(context)) {
             new ListenPin().execute();
 
         } else {
-            CommonUtility.showCustomAlertError(this,getString(R.string.internet_error));
+            CommonUtility.showCustomAlertError(this, getString(R.string.internet_error));
         }
     }
 
@@ -66,22 +66,21 @@ public class SettingsActivity extends BaseActivity {
     @Override
     protected void onStop() {
         GoogleAnalytics.getInstance(this).reportActivityStop(this);
-
         super.onStop();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         Prefs.setLastActivity(this, getClass().getName());
-
     }
+
     @Override
     protected void onResume() {
 
         my_numbers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent i = new Intent(context, ManageNumbersHome.class);
                 i.putExtra(VariableClass.Vari.ACCESS_TYPE, 0);
                 startActivity(i);
@@ -136,16 +135,16 @@ public class SettingsActivity extends BaseActivity {
         my_numbers = (FontTextView) findViewById(R.id.my_numbers);
         my_emails = (FontTextView) findViewById(R.id.my_emails);
         my_profile = (FontTextView) findViewById(R.id.my_profile);
-        backpress = (ImageView)findViewById(R.id.auto_detect_country_back);
-        gototohome = (ImageView)findViewById(R.id.auto_detect_country_home);
-        tittleback = (FontTextView)findViewById(R.id.auto_detect_coutry_header);
+        backpress = (ImageView) findViewById(R.id.auto_detect_country_back);
+        gototohome = (ImageView) findViewById(R.id.auto_detect_country_home);
+        tittleback = (FontTextView) findViewById(R.id.auto_detect_coutry_header);
 
 
     }
 
     @Override
     public void onBackPressed() {
-        Intent menu =new Intent(SettingsActivity.this,MenuScreen.class);
+        Intent menu = new Intent(SettingsActivity.this, MenuScreen.class);
         menu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         menu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(menu);

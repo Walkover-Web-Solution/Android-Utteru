@@ -285,7 +285,7 @@ public class ManageNumbersHome extends FragmentActivity {
         mPager = (ViewPager) findViewById(R.id.mn_pager);
         title = (FontTextView) findViewById(R.id.manage_numbers_title);
         mPager.setAdapter(mAdapter);
-        back=(ImageView)findViewById(R.id.manage_account_back);
+        back = (ImageView) findViewById(R.id.manage_account_back);
         mIndicator = (CirclePageIndicator) findViewById(R.id.mn_indicator);
         mIndicator.setViewPager(mPager);
         show_add_layout = (FontTextView) findViewById(R.id.mn_show_add_layout);

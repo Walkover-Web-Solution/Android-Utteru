@@ -27,7 +27,7 @@
 
         <com.Utteru.commonUtilities.FontTextView
             android:id="@+id/manage_numbers_title"
-            android:layout_marginLeft="@dimen/new_margin"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -57,7 +57,7 @@
         android:padding="@dimen/padding_left_em"
         app1:radius="4dp"
         app:fillColor="@color/blue"
-        app:pageColor="@color/blue" />
+        app:pageColor="@android:color/transparent" />
 
 
 
@@ -65,8 +65,6 @@
         layout="@layout/add_new"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_bottom"
-        android:layout_marginRight="@dimen/margin_bottom"
         android:visibility="gone" />
 
 

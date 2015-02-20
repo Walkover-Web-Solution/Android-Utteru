@@ -44,7 +44,7 @@
     <color name="light_black">#4D000000</color>
     <color name="dark_black">#99191919</color>
     <color name="verylight_black">#00000000</color>
-    <color name="light_bold_black">##6e6e6e</color>
+    <color name="light_bold_black">#6e6e6e</color>
     <color name="dark_gray">#FFA7A7A7</color>
     <color name="purple">#FF909CBC</color>
     <color name="yellow">#FFF7C287</color>

@@ -20,7 +20,7 @@ android:padding="@dimen/grid_padding_all">
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:choiceMode="singleChoice"
-    android:divider="@color/dark_black_new"
+    android:divider="@color/divider_color"
     android:dividerHeight="1dp"
     android:visibility="gone"/>
 

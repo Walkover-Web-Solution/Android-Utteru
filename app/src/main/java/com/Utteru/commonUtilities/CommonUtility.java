@@ -61,9 +61,9 @@ import java.util.Random;
 public class CommonUtility {
 
     public final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-    public final static String BUGSENSEID ="1a1d2717";
-    public final static String BUGSENSELIVE ="395e969a";
-    public final static String BUGSENSEID_TEST="1a1d2717";
+    public final static String BUGSENSEID = "1a1d2717";
+    public final static String BUGSENSELIVE = "395e969a";
+    public final static String BUGSENSEID_TEST = "1a1d2717";
     public static ArrayList<MultipleVerifiedNumber> c_list;
     public static ProgressDialog dialog;
     public static HashMap<String, String> currency_list;
@@ -88,7 +88,7 @@ public class CommonUtility {
     }
 
     public static ArrayList splitCodeFromNumber(String number) {
-        number = number.replace("+","")  ;
+        number = number.replace("+", "");
         String code = "", extractNum = "";
         String[] tempList = {"93", "355", "213", "1684", "376", "244", "1264", "672", "1268", "54", "374", "297", "61", "43", "994", "1242", "973", "880", "1246", "375", "32", "501", "229", "1441", "975", "591", "387", "267", "55", "246", "1284", "673", "359", "226", "95", "257", "855", "237", "1", "238", "1345", "236", "235", "56", "86", "61", "61", "57", "269", "682", "506", "385", "53", "357", "420", "243", "45", "253", "1767", "1809", "593", "20", "503", "240", "291", "372", "251", "500", "298", "679", "358", "33", "689", "241", "220", "970", "995", "49", "233", "350", "30", "299", "1473", "1671", "502", "224", "245", "592", "509", "39", "504", "852", "36", "354", "91", "62", "98", "964", "353", "44", "972", "39", "225", "1876", "81", "962", "7", "254", "686", "381", "965", "996", "856", "371", "961", "266", "231", "218", "423", "370", "352", "853", "389", "261", "265", "60", "960", "223", "356", "692", "222", "230", "262", "52", "691", "373", "377", "976", "382", "1664", "212", "258", "264", "674", "977", "31", "599", "687", "64", "505", "227", "234", "683", "672", "850", "1670", "47", "968", "92", "680", "507", "675", "595", "51", "63", "870", "48", "351", "974", "242", "40", "7", "250", "590", "290", "1869", "1758", "1599", "508", "1784", "685", "378", "239", "966", "221", "381", "248", "232", "65", "421", "386", "677", "252", "27", "82", "34", "94", "249", "597", "268", "46", "41", "963", "886", "992", "255", "66", "670", "228", "690", "676", "1868", "216", "90", "993", "1649", "688", "256", "380", "971", "44", "1", "598", "1340", "998", "678", "58", "84", "681", "970", "212", "967", "260", "263", "1868", "95"};
         ArrayList<String> codeList = new ArrayList<String>(Arrays.asList(tempList));
@@ -96,19 +96,19 @@ public class CommonUtility {
         //codeList.addAll(tempList);
         String first = number.substring(0, 1), second = number.substring(0, 2), third = number.substring(0, 3), fourth = number.substring(0, 4);
         if (codeList.contains(fourth)) {
-            Log.e("fourth",fourth);
+            Log.e("fourth", fourth);
             code = fourth;
             extractNum = number.substring(4);
         } else if (codeList.contains(third)) {
-            Log.e("third",third);
+            Log.e("third", third);
             code = third;
             extractNum = number.substring(3);
         } else if (codeList.contains(second)) {
-            Log.e("second",second);
-           code = second;
+            Log.e("second", second);
+            code = second;
             extractNum = number.substring(2);
         } else if (codeList.contains(first)) {
-            Log.e("first",first);
+            Log.e("first", first);
             code = first;
             extractNum = number.substring(1);
         }
@@ -116,8 +116,8 @@ public class CommonUtility {
         if (code.equals("")) {
 
         }
-        Log.e("number_code_common",extractNum);
-        Log.e("number_common",code);
+        Log.e("number_code_common", extractNum);
+        Log.e("number_common", code);
         result.add(extractNum);
         result.add(code);
         return result;
@@ -125,24 +125,22 @@ public class CommonUtility {
 
     //signin screen ,login screen forgot password
 
-    public static String validateNumberForApi(String number )
-    {
+    public static String validateNumberForApi(String number) {
 
-            if (number.startsWith("00")) {
+        if (number.startsWith("00")) {
 
-                number = number.replaceFirst("00", "");
+            number = number.replaceFirst("00", "");
 
-            }
+        }
 
-            if (number.startsWith("0")) {
-                number = number.replaceFirst("0", "");
-            }
+        if (number.startsWith("0")) {
+            number = number.replaceFirst("0", "");
+        }
 
-            number = number.replace("//s+", "");//space
-            number = number.replaceAll("[-+.^:,]", "");//specific special character
-            number = number.replaceAll("-", ""); //dash
-            number =number.replace("+","");
-
+        number = number.replace("//s+", "");//space
+        number = number.replaceAll("[-+.^:,]", "");//specific special character
+        number = number.replaceAll("-", ""); //dash
+        number = number.replace("+", "");
 
 
         return number;
@@ -150,33 +148,28 @@ public class CommonUtility {
     }
 
 
-
-    public static String  validateText(String text){
+    public static String validateText(String text) {
 
         text = text.replaceAll("[^\\w\\s\\-_]", "");//all special
 
-        text = text.replace("+","");
+        text = text.replace("+", "");
         text = text.replaceAll("-", ""); //dash
         text = text.trim();
-        return  text;
+        return text;
     }
 
-    public static String  validateNumberForUI(String number,Context ctx)
-    {
+    public static String validateNumberForUI(String number, Context ctx) {
 
 //        number = number.replaceAll("[^\\w\\s\\-_]", "");//all special
         number = number.replace("//s+", "");//space
         number = number.replaceAll("-", ""); //dash
         number = number.trim();
-        if(!number.startsWith("+")&&!number.startsWith("00"))
-        {
-            number = "+"+Prefs.getUserCountryCode(ctx)+number;
-        }
-        else if(number.startsWith("0"))
-        {
+        if (!number.startsWith("+") && !number.startsWith("00")) {
+            number = "+" + Prefs.getUserCountryCode(ctx) + number;
+        } else if (number.startsWith("0")) {
 
             number = number.replaceFirst("0", "");
-            number ="+"+ Prefs.getUserCountryCode(ctx)+number;
+            number = "+" + Prefs.getUserCountryCode(ctx) + number;
 
 
         }
@@ -188,10 +181,7 @@ public class CommonUtility {
     }
 
 
-
     //signin screen ,login screen forgot password
-
-
 
 
     public static void getUserBalance(final Activity ctx) {
@@ -199,7 +189,7 @@ public class CommonUtility {
 
         final MenuScreen c = (MenuScreen) ctx;
         if (isNetworkAvailable(c)) {
-             new AsyncTask<Void, Void, Void>() {
+            new AsyncTask<Void, Void, Void>() {
                 String response;
                 Boolean iserr = false;
 
@@ -449,6 +439,7 @@ public class CommonUtility {
         }
         return name;
     }
+
     public static void setCurrency(Context c) {
 
         final Context ctx = c;
@@ -649,7 +640,7 @@ public class CommonUtility {
 
         Bitmap image = null;
         Paint paint = new Paint();
-        paint.setTextSize(160);
+        paint.setTextSize(120);
         // Random rnd = new Random();
         //int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         paint.setColor(ctx.getResources().getColor(android.R.color.white));
@@ -753,10 +744,10 @@ public class CommonUtility {
 
         Intent callIntent = new Intent(Intent.ACTION_CALL);
 
-        if(!number.startsWith("+"))
-            number = "+"+number;
+        if (!number.startsWith("+"))
+            number = "+" + number;
 
-       callIntent.setData(Uri.parse("tel:" +number));
+        callIntent.setData(Uri.parse("tel:" + number));
         callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         c.startActivity(callIntent);
 
