@@ -69,10 +69,13 @@ public class RecentCallsAdapter extends BaseAdapter {
         ViewHolder localViewHolder1 = (ViewHolder) paramView.getTag();
 
 
-        localViewHolder1.name.setText(((RecentCallsDto) this.call_info.get(paramInt)).getName());
+        if(rdto.getName()!=null&&!rdto.getName().equals(""))
+        localViewHolder1.name.setText(rdto.getName());
+        else
+        localViewHolder1.name.setText(rdto.getNumber());
 
 
-         String duration =this.call_info.get(paramInt).getDuration();
+         String duration =rdto.getDuration();
         if(duration.startsWith("00:00")){
             localViewHolder1.duration.setText(" Not Answered ");
         }
@@ -81,7 +84,7 @@ public class RecentCallsAdapter extends BaseAdapter {
 
         localViewHolder1.duration.setVisibility(View.GONE);
 
-        localViewHolder1.time.setText(((RecentCallsDto) this.call_info.get(paramInt)).getTime());
+        localViewHolder1.time.setText(rdto.getTime());
 
         localViewHolder1.detail.setOnClickListener(new View.OnClickListener() {
             @Override

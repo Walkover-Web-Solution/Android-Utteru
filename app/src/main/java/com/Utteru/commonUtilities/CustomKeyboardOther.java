@@ -19,7 +19,7 @@ import android.widget.EditText;
 
 import com.Utteru.R;
 import com.Utteru.util.Session;
-import com.Utteru.utteru_sip.CallingScreenFragment;
+import com.Utteru.utteru_sip.CallingScreenActivity;
 import com.Utteru.utteru_sip.UtteruSipCore;
 import com.portsip.PortSipEnumDefine;
 import com.portsip.PortSipSdk;
@@ -318,7 +318,7 @@ public class CustomKeyboardOther {
 
        UtteruSipCore utteruSipCore = ((UtteruSipCore) mHostActivity.getApplicationContext());
        PortSipSdk mSipSdk = utteruSipCore.getPortSIPSDK();
-        Session currentLine = utteruSipCore.findSessionByIndex(CallingScreenFragment._CurrentlyLine);
+        Session currentLine = utteruSipCore.findSessionByIndex(CallingScreenActivity._CurrentlyLine);
         char number = dtmfdigit.charAt(0);
         if (utteruSipCore.isOnline()
                 && currentLine.getSessionState()) {

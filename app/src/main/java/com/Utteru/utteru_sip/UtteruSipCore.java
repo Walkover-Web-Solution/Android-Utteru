@@ -24,7 +24,6 @@ import android.view.WindowManager;
 
 import com.Utteru.R;
 import com.Utteru.commonUtilities.CommonUtility;
-import com.Utteru.commonUtilities.VariableClass;
 import com.Utteru.service.PortSipService;
 import com.Utteru.util.Line;
 import com.Utteru.util.Session;
@@ -1050,24 +1049,23 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
     }
 
 
-    public void updateNotification(Context context, String number, String name, long duration, String price,long date) {
+    public void updateNotification(Context context) {
 
-        Intent resultIntent = new Intent(context, DialerActivity.class).putExtra("fragment", "notification");
-        resultIntent.putExtra(VariableClass.Vari.SELECTEDNUMBER, number);
-        resultIntent.putExtra(VariableClass.Vari.SELECTEDNAME, name);
-        resultIntent.putExtra(VariableClass.Vari.CALL_ELAPSED_TIME, duration);
 
-        Log.e("elapsed time ",""+duration);
-        resultIntent.putExtra(VariableClass.Vari.CALLDATE, date);
-        resultIntent.putExtra(VariableClass.Vari.CALLPRICE, price);
 
-        resultIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        Intent resultIntent = new Intent(context, CallingScreenActivity.class);
+        CallData data = CallData.getCallDateInstance();
+
+        String name = data.getCallee_number();
+
+        if(data.getCallee_name()!=null&&!data.getCallee_name().equals(""))
+            name=data.getCallee_name();
+
+        data.setCallType(true);
         resultIntent.setFlags(Notification.FLAG_ONGOING_EVENT);
-
-
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, resultIntent, 0);
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(context);
+
+        NotificationCompat.Builder mBuilder =  new NotificationCompat.Builder(context);
 
         mBuilder.setContentTitle(name);
         mBuilder.setContentText("Calling");
@@ -1075,36 +1073,21 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
         mBuilder.addAction(android.R.drawable.ic_menu_call, "HANG UP", pendingIntent);
         mBuilder.setSmallIcon(R.drawable.ic_launcher);
         mBuilder.setOngoing(true);
-        Bitmap icon = BitmapFactory.decodeResource(context.getResources(),
-                R.drawable.ic_launcher);
 
-
+        Bitmap icon = BitmapFactory.decodeResource(context.getResources(),R.drawable.ic_launcher);
         mBuilder.setLargeIcon(icon);
         mBuilder.setSmallIcon(R.drawable.ic_launcher);
 
-        Intent clickonnotice = new Intent(context, DialerActivity.class).putExtra("fragment", "notification");
-        clickonnotice.putExtra(VariableClass.Vari.SELECTEDNUMBER, number);
-        clickonnotice.putExtra(VariableClass.Vari.SELECTEDNAME, name);
-        resultIntent.putExtra(VariableClass.Vari.CALL_ELAPSED_TIME, duration);
-        resultIntent.putExtra(VariableClass.Vari.CALLDATE, date);
-        clickonnotice.putExtra(VariableClass.Vari.CALLPRICE, price);
-        clickonnotice.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        Intent clickonnotice = new Intent(context, CallingScreenActivity.class);
 
         clickonnotice.setFlags(Notification.FLAG_ONGOING_EVENT);
 
-
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-
         stackBuilder.addNextIntent(clickonnotice);
-
-        PendingIntent resultPendingIntent =
-                stackBuilder.getPendingIntent(
-                        0,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(resultPendingIntent);
-        mNotificationManager =
-                NotificationManagerCompat.from(context);
+
+        mNotificationManager = NotificationManagerCompat.from(context);
         mNotificationManager.notify(notificationID, mBuilder.build());
     }
 

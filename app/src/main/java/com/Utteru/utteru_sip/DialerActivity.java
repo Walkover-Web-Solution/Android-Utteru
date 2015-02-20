@@ -26,15 +26,12 @@ public class DialerActivity extends ActionBarActivity
 
     Context context = this;
     DialerFragment dialerFragment;
-    CallingScreenFragment callingScreenFragment;
     RecentDetailFragment recentDetailFragment;
-    Boolean fromNotification = false;
     FragmentTransaction ft;
     IntentFilter mIntentFilter_register;
-    IntentFilter mIntentFilter_call;
+
 
     public static final String DIALER_FRAGMENT_TAG = "dialer_tag";
-    public static final String CALLING_FRAGMENT_TAG = "calling_tag";
     public static final String LOG_DETAILS_FRAGMENT_TAG = "log_details_tag";
 
     BroadcastReceiver registrationReceiver = new BroadcastReceiver() {
@@ -57,25 +54,7 @@ public class DialerActivity extends ActionBarActivity
         }
     };
 
-    BroadcastReceiver callReceiver = new BroadcastReceiver() {
 
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-
-            if (intent.getAction().equals(UtteruSipCore.CALL_STATE_CHANGE)) {
-                Log.e("call status in receiver", "" + intent.getExtras().getString("message") + "" + intent.getExtras().getInt("code"));
-                int code = intent.getExtras().getInt("code");
-                String message = intent.getExtras().getString("message");
-
-
-                callingScreenFragment = (CallingScreenFragment) getSupportFragmentManager().findFragmentByTag(CALLING_FRAGMENT_TAG);
-                if (callingScreenFragment != null)
-                    callingScreenFragment.onCallStateChange(message, code);
-
-            }
-        }
-    };
 
 
     @Override
@@ -86,32 +65,15 @@ public class DialerActivity extends ActionBarActivity
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(DialerActivity.this));
         Log.e("Dialer Layout", " on activity create");
         dialerFragment = new DialerFragment();
-        callingScreenFragment = new CallingScreenFragment();
         recentDetailFragment = new RecentDetailFragment();
         mIntentFilter_register = new IntentFilter();
         mIntentFilter_register.addAction(UtteruSipCore.REGISTRATION_STATE_CHANGE);
-        mIntentFilter_call = new IntentFilter();
-        mIntentFilter_call.addAction(UtteruSipCore.CALL_STATE_CHANGE);
+
         Mint.initAndStartSession(DialerActivity.this, CommonUtility.BUGSENSEID);
 
-        //not from notification
-        if (getIntent().getExtras() == null) {
 
             launchDialerFrag();
-        } else {
 
-            fromNotification = true;
-
-            String number = getIntent().getExtras().getString(VariableClass.Vari.SELECTEDNUMBER);
-            String name = getIntent().getExtras().getString(VariableClass.Vari.SELECTEDNAME);
-            long elapsed_time = getIntent().getExtras().getLong(VariableClass.Vari.CALL_ELAPSED_TIME);
-            Log.e("got elapsed time",""+elapsed_time);
-            String price = getIntent().getExtras().getString(VariableClass.Vari.CALLPRICE);
-            long date = getIntent().getExtras().getLong(VariableClass.Vari.CALLDATE);
-
-            launchCallingFrag(number, name, CallingScreenFragment.calldata.getTime_elapsed(), true, price,CallingScreenFragment.calldata.getDate());
-
-        }
 
 
     }
@@ -119,7 +81,7 @@ public class DialerActivity extends ActionBarActivity
     @Override
     protected void onResume() {
         context.registerReceiver(registrationReceiver, mIntentFilter_register);
-        context.registerReceiver(callReceiver, mIntentFilter_call);
+
         super.onResume();
     }
 
@@ -127,7 +89,7 @@ public class DialerActivity extends ActionBarActivity
     public void onCall(UtteruSipCore app, PortSipSdk sdk, String number, int action, RecentCallsDto dto) {
 
         if (action == 0) {
-            launchCallingFrag(number, null, SystemClock.elapsedRealtime(), false, null,System.currentTimeMillis());
+            launchCallingActivity(number, null, SystemClock.elapsedRealtime(), false, null,System.currentTimeMillis());
         } else {
             launchDetailsFrag(dto);
         }
@@ -135,8 +97,10 @@ public class DialerActivity extends ActionBarActivity
 
     @Override
     public void CallFromDetails(UtteruSipCore myapp, PortSipSdk sdk, RecentCallsDto dto, int action) {
+
+
         if (action == 0) {
-            launchCallingFrag(dto.getNumber(), null, SystemClock.elapsedRealtime(), false, null,System.currentTimeMillis());
+            launchCallingActivity(dto.getNumber(), null, SystemClock.elapsedRealtime(), false, null,System.currentTimeMillis());
         } else {
             launchProfile(dto);
         }
@@ -161,16 +125,7 @@ public class DialerActivity extends ActionBarActivity
             Log.e("dialer fragment", "dialer fragment ");
 
             dialerFragment.onBackPress();
-        } else {
-
-            callingScreenFragment = (CallingScreenFragment) getSupportFragmentManager().findFragmentByTag(CALLING_FRAGMENT_TAG);
-            if (callingScreenFragment != null && callingScreenFragment.isVisible()) {
-
-                Log.e("calling  fragment", "calling fragment ");
-
-                callingScreenFragment.onBackPress(fromNotification);
-
-            } else {
+        }  else {
                 recentDetailFragment = (RecentDetailFragment) getSupportFragmentManager().findFragmentByTag(LOG_DETAILS_FRAGMENT_TAG);
                 if (recentDetailFragment != null && recentDetailFragment.isVisible()) {
                     Log.e("recent   fragment", "recent fragment ");
@@ -185,7 +140,7 @@ public class DialerActivity extends ActionBarActivity
         }
 
 
-    }
+
 
     public void launchDialerFrag() {
         ft = getSupportFragmentManager().beginTransaction();
@@ -197,18 +152,23 @@ public class DialerActivity extends ActionBarActivity
 
     }
 
-    void launchCallingFrag(String number, String name, long time, boolean isongoing, String price,long date) {
+    void launchCallingActivity(String number, String name, long time, boolean isongoing, String price,long date) {
 
         String calleename = name;
         if (calleename == null)
             calleename = CommonUtility.getContactDisplayNameByNumber(number, context);
-        callingScreenFragment.setNumber(number, calleename, time, isongoing, price,this,date);
-        ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.dial_fragment, callingScreenFragment, CALLING_FRAGMENT_TAG);
-        dialerFragment = (DialerFragment) getSupportFragmentManager().findFragmentByTag(DIALER_FRAGMENT_TAG);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.addToBackStack(DIALER_FRAGMENT_TAG);
-        ft.commit();
+
+
+        CallData calldata = CallData.getCallDateInstance();
+        Log.e("setting variable ","setting variable "+name );
+        calldata.setCallee_number(number);
+        calldata.setCallee_name(calleename);
+        calldata.setTime_elapsed(time);
+        calldata.setCallType(isongoing);
+        calldata.setCall_price(price);
+        calldata.setDate(date);
+
+        startActivity(new Intent(this,CallingScreenActivity.class));
         overridePendingTransition(R.anim.animation1, R.anim.animation2);
     }
 
@@ -252,26 +212,11 @@ public class DialerActivity extends ActionBarActivity
 
         if (registrationReceiver != null)
             context.unregisterReceiver(registrationReceiver);
-        if (callReceiver != null)
-            context.unregisterReceiver(callReceiver);
+
         super.onStop();
     }
 
 
 
-    @Override
-    protected void onDestroy() {
-        callingScreenFragment = (CallingScreenFragment) getSupportFragmentManager().findFragmentByTag(CALLING_FRAGMENT_TAG);
-        if (callingScreenFragment != null && callingScreenFragment.isVisible()) {
 
-            Log.e("calling  fragment", "calling fragment ");
-
-            callingScreenFragment.onDestroyFrag();
-
-
-
-        }
-
-        super.onDestroy();
-    }
 }
