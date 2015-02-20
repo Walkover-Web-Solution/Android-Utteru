@@ -107,6 +107,12 @@ public class CallingScreenActivity extends Activity {
         isCallActive(ctx);
         lines = utteruSipCore.getLines();
         audiomanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+        if(audiomanager.isMusicActive()){
+
+            Intent i = new Intent("com.android.music.musicservicecommand");
+            i.putExtra("command", "pause");
+            sendBroadcast(i);
+        }
 
 
         try {
@@ -499,10 +505,11 @@ public class CallingScreenActivity extends Activity {
         Log.e("call finish", " call finish with proper end call");
         if (chronometer != null)
             chronometer.stop();
-        hangupCall();
-
-
+          hangupCall();
         new AddCallInRecentCallList().execute(null, null, null);
+        Intent i = new Intent("com.android.music.musicservicecommand");
+        i.putExtra("command", "play");
+        sendBroadcast(i);
 
 
     }
@@ -693,6 +700,7 @@ public class CallingScreenActivity extends Activity {
         UtteruSipCore.isCallConnected = false;
         utteruSipCore.cancelNotification(ctx);
         finishCall();
+
     super.onDestroy();
 
     }

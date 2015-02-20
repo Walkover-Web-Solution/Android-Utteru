@@ -292,7 +292,7 @@ public class  RecentDetailFragment extends Fragment {
                 }
                 else
                     dialer_recent_list.setVisibility(View.GONE);
-                nothing_found.setVisibility(View.VISIBLE);
+                     nothing_found.setVisibility(View.VISIBLE);
             }
             super.onPostExecute(aVoid);
         }
