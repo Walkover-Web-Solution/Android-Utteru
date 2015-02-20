@@ -139,7 +139,7 @@ public class
         mBuilder.setContentText(subtitle);
         mBuilder.setTicker("Utteru Alert");
         mBuilder.setSmallIcon(R.drawable.ic_launcher);
-        mBuilder.setOngoing(true);
+        mBuilder.setAutoCancel(true);
         Bitmap icon = BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.ic_launcher);
         mBuilder.setLargeIcon(icon);
@@ -173,7 +173,7 @@ public class
         mBuilder.setContentText(subtitle);
         mBuilder.setTicker("Utteru Alert");
         mBuilder.setSmallIcon(R.drawable.ic_launcher);
-        mBuilder.setOngoing(true);
+        mBuilder.setAutoCancel(true);
         Bitmap icon = BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.ic_launcher);
         mBuilder.setLargeIcon(icon);

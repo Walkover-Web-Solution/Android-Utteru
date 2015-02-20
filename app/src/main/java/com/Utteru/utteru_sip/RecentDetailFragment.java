@@ -38,7 +38,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class RecentDetailFragment extends Fragment {
+public class  RecentDetailFragment extends Fragment {
     ListView dialer_recent_list;
     RecentDetailsAdapter adapter;
     ArrayList<RecentCallsDto> list;
@@ -169,7 +169,7 @@ public class RecentDetailFragment extends Fragment {
         dialer_recent_list = (ListView) getView().findViewById(R.id.dialer_detail_list);
         title = (FontTextView)getView(). findViewById(R.id.dialer_con_name);
         back_button = (ImageView)getView().findViewById(R.id.back_button);
-        list = new ArrayList<RecentCallsDto>();
+        list = new ArrayList<>();
         ctx = getActivity().getBaseContext();
         title.setText(selected_dto.getName());
         menu = (ImageView) getView().findViewById(R.id.menu_button);
@@ -185,6 +185,8 @@ public class RecentDetailFragment extends Fragment {
 
  public void makecall(RecentCallsDto dto)
  {
+
+     Log.e("number to call ",""+dto.getNumber());
      listener.CallFromDetails(utteruSipCore,mSipSdk,dto,0);
 
  }
@@ -240,6 +242,11 @@ public class RecentDetailFragment extends Fragment {
                          {
                             child = jarray.getJSONObject(i);
                              dto = new RecentCallsDto();
+                             dto.setName(selected_dto.getName());
+                             dto.setSource_number(selected_dto.getSource_number());
+                             dto.setNumber(selected_dto.getNumber());
+
+
                              dto.setPrice(child.getString(VariableClass.ResponseVariables.PRICE));
                              dto.setTime(child.getString(VariableClass.ResponseVariables.CALL_TIME));
                              dto.setDuration(child.getString(VariableClass.ResponseVariables.DURATION));

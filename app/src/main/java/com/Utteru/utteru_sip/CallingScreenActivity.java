@@ -1,18 +1,19 @@
 package com.Utteru.utteru_sip;
 
 
+import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.SystemClock;
-import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -46,13 +47,13 @@ import java.util.Date;
 import java.util.Iterator;
 
 
-public class CallingScreenFragment extends Fragment {
+public class CallingScreenActivity extends Activity {
     View call;
     PortSipSdk mSipSdk;
     UtteruSipCore utteruSipCore;
     public static int _CurrentlyLine = 0;
     Line[] lines;
-    Context ctx;
+
     RelativeLayout hangup;
     Chronometer chronometer;
     ImageButton speaker, mute_button, end_call_button, open_dialpad;
@@ -66,57 +67,64 @@ public class CallingScreenFragment extends Fragment {
     LinearLayout dialpad_layout;
     public static CallData calldata;
     EditText edCalling;
+    Context ctx = this;
 
 
     AudioManager audiomanager = null;
     private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
     private int field = 0x00000020;
+    IntentFilter mIntentFilter_call;
+    BroadcastReceiver callReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+
+            if (intent.getAction().equals(UtteruSipCore.CALL_STATE_CHANGE)) {
+                Log.e("call status in receiver", "" + intent.getExtras().getString("message") + "" + intent.getExtras().getInt("code"));
+                int code = intent.getExtras().getInt("code");
+                String message = intent.getExtras().getString("message");
+
+                 onCallStateChange(message,code);
+
+            }
+        }
+    };
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        Log.e("Calling fragment", "on activity created");
-        super.onActivityCreated(savedInstanceState);
-        utteruSipCore = ((UtteruSipCore) getActivity().getApplicationContext());
+    protected void onCreate(Bundle savedInstanceState) {
+
+        setContentView(R.layout.dialer_calling_screen);
+        utteruSipCore = ((UtteruSipCore) getApplicationContext());
         mSipSdk = utteruSipCore.getPortSIPSDK();
-        audiomanager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);//to silent ring
+        audiomanager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);//to silent ring
         mSipSdk.clearAudioCodec();
         mSipSdk.addAudioCodec(PortSipEnumDefine.ENUM_AUDIOCODEC_G729);
-
         mSipSdk.enableAEC(true);
-        isCallActive(getActivity());
-        lines = utteruSipCore.getLines();
-//        int result = audiomanager.requestAudioFocus(null,
-//                // Use the music stream.
-//                AudioManager.STREAM_MUSIC,
-//                // Request permanent focus.
-//                AudioManager.AUDIOFOCUS_GAIN);
 
+        //what is the  use
+        isCallActive(ctx);
+        lines = utteruSipCore.getLines();
         audiomanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-//        audiomanager.setStreamMute(AudioManager.STREAM_MUSIC, true);
 
 
         try {
-            // Yeah, this is hidden field.
+
             field = PowerManager.class.getClass().getField("PROXIMITY_SCREEN_OFF_WAKE_LOCK").getInt(null);
         } catch (Throwable ignored) {
-        }
 
-        powerManager = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
-        wakeLock = powerManager.newWakeLock(field, getActivity().getLocalClassName());
+
+         }
+
+        powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wakeLock = powerManager.newWakeLock(field,getLocalClassName());
         init();
 
-        //CheckMusic();
-    }
-    @Override
-    public void onStop() {
-//
 
-//        audiomanager.setStreamMute(AudioManager.STREAM_MUSIC, false);
-
-        Log.e("on stop ", "on stop ");
-        super.onStop();
+        super.onCreate(savedInstanceState);
     }
+
 
     public boolean isCallActive(Context context) {
         AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
@@ -129,31 +137,17 @@ public class CallingScreenFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        Log.v("Calling fragment", "onCreateView()");
-        View view = inflater.inflate(R.layout.dialer_calling_screen, container, false);
-
-        return view;
-    }
-
-    @Override
-    public void onStart() {
-        //check if call running
-
-        super.onStart();
-    }
-
-    @Override
     public void onResume() {
+
+        mIntentFilter_call = new IntentFilter();
+        mIntentFilter_call.addAction(UtteruSipCore.CALL_STATE_CHANGE);
+        ctx.registerReceiver(callReceiver, mIntentFilter_call);
+
 
         if (UtteruSipCore.isCallConnected) {
             Log.e("setting chronometer ", "setting chronometer ");
             chronometer.setVisibility(View.VISIBLE);
-
-            long time = calldata.getTime_elapsed();
-
-            chronometer.setBase(time);
+            chronometer.setBase(calldata.getTime_elapsed());
             chronometer.start();
 
 
@@ -167,8 +161,10 @@ public class CallingScreenFragment extends Fragment {
 
         if (calldata.getCallee_name() != null && !calldata.getCallee_name().equals(""))
             callee_name_txt.setText(calldata.getCallee_name());
-        else
+        else {
             callee_name_txt.setText("Unknown");
+
+        }
 
         callee_number_txt.setText(calldata.getCallee_number());
 
@@ -196,30 +192,15 @@ public class CallingScreenFragment extends Fragment {
     public void onPause() {
 
         if (wakeLock.isHeld()) {
-            wakeLock.release();
+           wakeLock.release();
         }
+        Log.e("is call disconnected ",""+UtteruSipCore.isCallDisconnected);
         if (!UtteruSipCore.isCallDisconnected)
-            utteruSipCore.updateNotification(ctx, calldata.getCallee_number(), calldata.getCallee_name(), calldata.getTime_elapsed(), calldata.getCall_price(), calldata.getDate());
+            utteruSipCore.updateNotification(ctx);
 
         super.onPause();
     }
 
-    public void setNumber(String number, String name, long basetime, Boolean iscallongoing, String price_call, Context c, long date) {
-
-        Log.e("number settings", "" + number);
-
-        Log.e("setting data", "setting data" + basetime);
-        String callee_name = name;
-        if (callee_name == null || callee_name.equals(""))
-            callee_name = number;
-
-        ctx = c;
-        String callTo = number;
-
-        calldata = new CallData(callee_name, callTo, price_call, basetime, iscallongoing, date);
-
-
-    }
 
 
     void hangupCall() {
@@ -395,7 +376,7 @@ public class CallingScreenFragment extends Fragment {
                 dialpad_layout.setVisibility(View.VISIBLE);
                 edCalling.setVisibility(View.VISIBLE);
                 open_dialpad.setBackgroundResource(R.drawable.dial_pad_on);
-                getView().clearFocus();
+//                clearFocus();
             }
         }
         //hide keyboard
@@ -407,7 +388,7 @@ public class CallingScreenFragment extends Fragment {
                 dialpad_layout.setVisibility(View.GONE);
                 edCalling.setVisibility(View.GONE);
                 open_dialpad.setBackgroundResource(R.drawable.dial_pad_off);
-                getView().clearFocus();
+//               clearFocus();
 
             }
         }
@@ -415,23 +396,25 @@ public class CallingScreenFragment extends Fragment {
 
     void init() {
 
-        ctx = getActivity().getBaseContext();
-        price = (TextView) getView().findViewById(R.id.call_price);
-        pricedivider = (ImageView) getView().findViewById(R.id.call_price_divider);
-        chronometer = (Chronometer) getView().findViewById(R.id.time);
-        callee_name_txt = (TextView) getView().findViewById(R.id.calle_name);
-        callee_number_txt = (TextView) getView().findViewById(R.id.callee_number);
-        call_status = (TextView) getView().findViewById(R.id.call_status);
-        speaker = (ImageButton) getView().findViewById(R.id.switch_speaker);
-        hangup = (RelativeLayout) getView().findViewById(R.id.call_end);
-        open_dialpad = (ImageButton) getView().findViewById(R.id.open_dialpad);
-        mute_button = (ImageButton) getView().findViewById(R.id.microphone);
-        dialpad_layout = (LinearLayout) getView().findViewById(R.id.dialpad_layout);
-        edCalling = (EditText) getView().findViewById(R.id.ed_calling_screen);
-        end_call_button = (ImageButton) getView().findViewById(R.id.endcall_btn);
+        ctx=this;
+        calldata = CallData.getCallDateInstance();
+        price = (TextView)findViewById(R.id.call_price);
+        pricedivider = (ImageView) findViewById(R.id.call_price_divider);
+        chronometer = (Chronometer) findViewById(R.id.time);
+        callee_name_txt = (TextView) findViewById(R.id.calle_name);
+        callee_number_txt = (TextView)findViewById(R.id.callee_number);
+        call_status = (TextView) findViewById(R.id.call_status);
+        speaker = (ImageButton) findViewById(R.id.switch_speaker);
+        hangup = (RelativeLayout) findViewById(R.id.call_end);
+        open_dialpad = (ImageButton) findViewById(R.id.open_dialpad);
+        mute_button = (ImageButton) findViewById(R.id.microphone);
+        dialpad_layout = (LinearLayout)findViewById(R.id.dialpad_layout);
+        edCalling = (EditText) findViewById(R.id.ed_calling_screen);
+        end_call_button = (ImageButton)findViewById(R.id.endcall_btn);
         open_dialpad.setEnabled(false);
-        keyboard = new CustomKeyboardOther(getActivity(), R.id.keyboardview, R.xml.numberic_key_only, call);
+        keyboard = new CustomKeyboardOther(this, R.id.keyboardview, R.xml.numberic_key_only, call);
         keyboard.registerEditText(edCalling.getId(), call);
+
         new SearchRate().execute();
         sdf = new SimpleDateFormat("d MMM , hh:mm aaa");
 
@@ -452,6 +435,7 @@ public class CallingScreenFragment extends Fragment {
             public boolean onTouch(View v, MotionEvent event) {
                 Log.e("clicked hangup", "clicked hangup");
                 finishCall();
+                CallingScreenActivity.this.finish();
                 return false;
             }
         });
@@ -459,6 +443,7 @@ public class CallingScreenFragment extends Fragment {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 finishCall();
+                CallingScreenActivity.this.finish();
                 return false;
             }
         });
@@ -515,8 +500,11 @@ public class CallingScreenFragment extends Fragment {
         if (chronometer != null)
             chronometer.stop();
         hangupCall();
+
+
         new AddCallInRecentCallList().execute(null, null, null);
-        getActivity().onBackPressed();
+
+
     }
 
 
@@ -578,10 +566,12 @@ public class CallingScreenFragment extends Fragment {
             case UtteruSipCore.CALL_STATE_CLOSED:
 
                 finishCall();
+                this.finish();
                 break;
             case UtteruSipCore.CALL_STATE_FAILED:
                 call_status.setText("Call Failed..." + "(" + message + ")");
                 finishCall();
+                this.finish();
                 break;
         }
 
@@ -667,7 +657,7 @@ public class CallingScreenFragment extends Fragment {
                             row.setPrice(jochild.getString(VariableClass.ResponseVariables.RATE) + " " + jochild.getString(VariableClass.ResponseVariables.AMOUNTTYPE));
                             String price = jochild.getString(VariableClass.ResponseVariables.RATE) + " " + jochild.getString(VariableClass.ResponseVariables.AMOUNTTYPE) + "/min";
 
-                            calldata.setPrice(price);
+                            calldata.setCall_price(price);
 
                             row.setIsSection(false);
                         }
@@ -687,22 +677,30 @@ public class CallingScreenFragment extends Fragment {
 
     }
 
-    public void onBackPress(Boolean fromNotification) {
 
-        getActivity().getSupportFragmentManager().popBackStack();
-
-
+    @Override
+    protected void onStop() {
+        if (callReceiver != null)
+            ctx.unregisterReceiver(callReceiver);
+        super.onStop();
     }
 
-
-    public void onDestroyFrag() {
+    public void onDestroy() {
         Log.e("on destroy ", "on destroy ");
         audiomanager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
         UtteruSipCore.isCallInProgress = false;
         UtteruSipCore.isCallDisconnected = false;
         UtteruSipCore.isCallConnected = false;
-        finishCall();
         utteruSipCore.cancelNotification(ctx);
-        super.onDestroy();
+        finishCall();
+    super.onDestroy();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+       onPause();
+        startActivity(new Intent(ctx,DialerActivity.class));
+        overridePendingTransition(R.anim.animation3,R.anim.animation4);
     }
 }

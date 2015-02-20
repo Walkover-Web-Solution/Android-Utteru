@@ -2,13 +2,10 @@ package com.Utteru.utteru_sip;
 
 import android.util.Log;
 
-import java.util.Date;
-
 /**
  * Created by vikas on 03/02/15.
  */
 public class CallData {
-
 
 
     String callee_name;
@@ -16,55 +13,37 @@ public class CallData {
 
     String callee_number;
     String call_price;
-
     long date;
-
-    public void setTime_elapsed(long init_time) {
-        this.time_elapsed = init_time;
-    }
-
     long time_elapsed;
     Boolean callType;
 
-    public CallData(String name,String number,String price,long time_elapsed,Boolean type ,long date)
-    {
-        Log.e("created ","call data ");
 
-        this.callee_name =name;
-        this.callee_number = number;
-        this.call_price=price;
-        this.time_elapsed = time_elapsed;
+    public static CallData data;
 
-        this. callType =type;
-        this.date=date;
+
+    private CallData() {
 
     }
 
-    public String getCallee_number() {
-        return callee_number;
+
+
+    public static CallData getCallDateInstance() {
+        if (data == null) {
+            data = new CallData();
+            Log.e("creating new instance ","creating new instance ");
+        }
+
+        return data;
     }
 
-    public String getCallee_name() {
-        return callee_name;
-    }
-
-    public String getCall_price() {
-        return call_price;
-    }
 
     public long getTime_elapsed() {
         return time_elapsed;
     }
 
-    public Boolean getCallType() {
-        return callType;
+    public void setTime_elapsed(long time_elapsed) {
+        this.time_elapsed = time_elapsed;
     }
-
-    public void setPrice (String price )
-    {
-        call_price = price;
-    }
-
 
     public long getDate() {
         return date;
@@ -72,6 +51,38 @@ public class CallData {
 
     public void setDate(long date) {
         this.date = date;
+    }
+
+    public String getCall_price() {
+        return call_price;
+    }
+
+    public void setCall_price(String call_price) {
+        this.call_price = call_price;
+    }
+
+    public String getCallee_number() {
+        return callee_number;
+    }
+
+    public void setCallee_number(String callee_number) {
+        this.callee_number = callee_number;
+    }
+
+    public String getCallee_name() {
+        return callee_name;
+    }
+
+    public void setCallee_name(String callee_name) {
+        this.callee_name = callee_name;
+    }
+
+    public Boolean getCallType() {
+        return callType;
+    }
+
+    public void setCallType(Boolean callType) {
+        this.callType = callType;
     }
 
 
