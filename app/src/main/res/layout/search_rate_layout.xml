@@ -70,7 +70,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/new_btn_size"
                 android:layout_marginTop="@dimen/new_margin"
-                android:background="@drawable/ed_inner_background"
+                android:background="@drawable/twc_edittext_boder"
                 android:cursorVisible="true"
                 android:drawableLeft="@drawable/search_thin"
                 android:drawablePadding="@dimen/padding_left_em"
@@ -78,9 +78,10 @@
                 android:hint="@string/search_hint"
                 android:inputType="text"
                 android:maxLines="1"
+                android:textColor="@color/light_black"
+                android:textColorHint="@color/light_black"
                 android:paddingLeft="@dimen/padding"
                 android:paddingRight="@dimen/padding"
-                android:textColor="@color/new_black"
                 android:textCursorDrawable="@null" />
 
             <FrameLayout
