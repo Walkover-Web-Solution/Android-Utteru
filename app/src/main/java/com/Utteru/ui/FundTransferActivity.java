@@ -422,9 +422,7 @@ public class FundTransferActivity extends Activity {
         keyboard.registerEditText(amount_ed.getId(), null);
         ctx = getApplicationContext();
         send_fund_button = (Button) findViewById(R.id.ft_transfer_send_button);
-        amount_ed.setInputType(InputType.TYPE_NULL);
-        user_pin_ed.setInputType(InputType.TYPE_NULL);
-        username_ed.setInputType(InputType.TYPE_NULL);
+
         user_receive_detail_text = (FontTextView) findViewById(R.id.ft_user_receive_text);
 
         user_pin_ed = (EditText) findViewById(R.id.ft_enter_user_password);
@@ -435,6 +433,9 @@ public class FundTransferActivity extends Activity {
         enter__password_layout = (LinearLayout) findViewById(R.id.ft_enter_password_layout);
         transfer_details_layout = (RelativeLayout) findViewById(R.id.ft_transfer_details_layout);
 
+        amount_ed.setInputType(InputType.TYPE_NULL);
+        user_pin_ed.setInputType(InputType.TYPE_NULL);
+        username_ed.setInputType(InputType.TYPE_NULL);
     }
 
     void resetView() {
