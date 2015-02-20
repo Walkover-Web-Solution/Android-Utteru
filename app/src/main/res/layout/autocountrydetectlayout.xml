@@ -64,6 +64,7 @@
         android:id="@+id/auto_detect_country_message"
         android:textColor="@color/new_black"
         android:layout_marginTop="@dimen/new_margin"
+        android:textSize="18dp"
         android:layout_height="wrap_content" />
     <com.Utteru.commonUtilities.FontTextView
         android:layout_width="fill_parent"
@@ -112,7 +113,7 @@
         <com.Utteru.commonUtilities.FontTextView
 
             android:layout_width="fill_parent"
-
+android:textSize="18dp"
             android:text="We see that there are no access numbers available in "
             android:id="@+id/country_not_found_message"
             android:gravity="center_vertical"
