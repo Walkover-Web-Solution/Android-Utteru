@@ -72,7 +72,7 @@
                 android:layout_marginTop="@dimen/new_margin"
                 android:background="@drawable/twc_edittext_boder"
                 android:cursorVisible="true"
-                android:drawableLeft="@drawable/search_thin"
+                android:drawableLeft="@drawable/search_thin_black"
                 android:drawablePadding="@dimen/padding_left_em"
                 android:gravity="left|center_vertical"
                 android:hint="@string/search_hint"

@@ -313,7 +313,7 @@ public class EarnCreditsActivity extends Activity {
     void init() {
         parent_layout = (FrameLayout) findViewById(R.id.earn_credit_parent);
         total_earn_txt = (FontTextView) findViewById(R.id.total_earn_txt);
-      //  dialpad_layout = (LinearLayout) findViewById(R.id.dialpad_layout);
+        //  dialpad_layout = (LinearLayout) findViewById(R.id.dialpad_layout);
         promo_tittle = (LinearLayout) findViewById(R.id.promo_tittle);
         invite_now_button = (Button) findViewById(R.id.invite_now_button);
         edit_code_btn = (Button) findViewById(R.id.edit_unique_code_button);
