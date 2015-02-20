@@ -25,7 +25,7 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/auto_detect_country_back"
         android:gravity="center_vertical"
-        android:text="@string/change_pin"
+        android:text="@string/last_update"
         android:textColor="@android:color/white"
         android:textSize="@dimen/abc_text_size_large_material" />
 

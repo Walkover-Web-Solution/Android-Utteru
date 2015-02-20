@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -197,6 +198,8 @@ public class ChangePinFrag extends Fragment {
         ctx = getActivity().getBaseContext();
         cp_new_pin_code = (EditText) change_pin.findViewById(R.id.cp_new_pin_code);
         cp_confirm_pin_code = (EditText) change_pin.findViewById(R.id.cp_confirm_pin_code);
+        cp_new_pin_code.setInputType(InputType.TYPE_NULL);
+        cp_confirm_pin_code.setInputType(InputType.TYPE_NULL);
         dialpad_layout = (LinearLayout) change_pin.findViewById(R.id.dialpad_layout);
         keyboard = new CustomKeyboardOther(getActivity(), R.id.keyboardview, R.xml.numberic_key_only, change_pin);
         keyboard.registerEditText(cp_new_pin_code.getId(), change_pin);

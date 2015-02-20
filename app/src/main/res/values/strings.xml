@@ -155,7 +155,8 @@ You can use options like access numbers, two-way calling and web calling. Sign u
     <string name="two_way_call">Two way calling</string>
     <string name="recent_calls">Recent Calls</string>
     <string name="change_password">Change Password</string>
-    <string name="change_pin">Reset PIN</string>
+    <string name="change_pin">Reset Pin</string>
+    <string name="last_update">Last updated on</string>
     <string name="my_num">My Numbers</string>
     <string name="my_emails">My Emails</string>
     <string name="my_profile">My Profile</string>
@@ -176,7 +177,7 @@ You can use options like access numbers, two-way calling and web calling. Sign u
     <string name="earn_credit">Refer and Earn </string>
     <string name="invite_now">Invite Now</string>
     <string name="refferal_code_hint">Your Referral Code</string>
-    <string name="last_updated">Last Update</string>
+    <string name="last_updated">Last Update On</string>
     <string name="recharge_text">Recharge</string>
     <string name="number_validation">"Enter your number with '+' or '00' and CountryCode"</string>
     <string name="number_not_valid">Please enter a valid number</string>

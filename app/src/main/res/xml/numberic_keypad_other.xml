@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
     android:horizontalGap="0px"
-    android:keyHeight="54dip"
+    android:keyHeight="48dp"
     android:keyWidth="33%p"
     android:verticalGap="0px">
 
@@ -66,8 +66,7 @@
     <Row>
         <Key
             android:codes="-2"
-            android:keyWidth="100%p"
-            android:keyIcon="@drawable/abc_key"
-             />
+            android:keyLabel="ABC"
+            android:keyWidth="100%p" />
     </Row>
 </Keyboard>
