@@ -32,11 +32,8 @@ import com.portsip.OnPortSIPEvent;
 import com.portsip.PortSipErrorcode;
 import com.portsip.PortSipSdk;
 import com.portsip.Renderer;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import intercom.intercomsdk.Intercom;
 
 
 public class UtteruSipCore extends Application implements OnPortSIPEvent {
@@ -116,7 +113,6 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
     public void onCreate() {
         super.onCreate();
 
-        Intercom.initialize(getApplicationContext());
         sdk = new PortSipSdk();
 
         srvIntent = new Intent(this, PortSipService.class);

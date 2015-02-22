@@ -254,6 +254,7 @@ public class CommonUtility {
             }.execute(null, null, null);
         } else {
             showCustomAlert(c, c.getResources().getString(R.string.internet_error));
+            c.setBalance();
         }
     }
 
