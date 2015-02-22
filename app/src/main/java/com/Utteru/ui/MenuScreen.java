@@ -64,8 +64,8 @@ public class MenuScreen extends BaseActivity {
     Tracker tracker;
     String browserapi;
     CustomGridAdapter adapter;
-    static long lastupdated=0;
-    static int difference=20;
+    public static boolean showbal =false;
+
 
 
     Context ctx = this;
@@ -212,13 +212,15 @@ public class MenuScreen extends BaseActivity {
     }
 
     public void setBalance() {
-        lastupdated =System.currentTimeMillis();
-        if ((new Date().getTime()) % 5 == 0) {
+
+        if (showbal) {
 
 
             userBalance.setText("Buy More");
+            showbal=false;
         } else {
             userBalance.setText(Prefs.getUserBalance(ctx));
+            showbal =true;
         }
 
 //        long temp_time = System.currentTimeMillis();
@@ -463,7 +465,7 @@ public class MenuScreen extends BaseActivity {
         });
 
 
-        setBalance();
+
         super.onResume();
     }
 

@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/border_layout_userbal"
-            android:text="00.00 USD"
+            android:text=" Buy More "
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             android:layout_marginTop="5dp"

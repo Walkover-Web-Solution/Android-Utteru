@@ -35,7 +35,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -183,7 +182,7 @@ public class ContactDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //dialNumber(mobileNumber.toString());
-                CommonUtility.makeCall(getActivity(), mAccessContactDto.getAccess_number());
+                CommonUtility.makeCall(getActivity(), mAccessContactDto.getMobile_number());
                 getActivity().finish();
 
             }
@@ -209,16 +208,18 @@ public class ContactDetailFragment extends Fragment {
         });
 
 
-        call_access_number.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
+        call_access_number.setOnClickListener(new View.OnClickListener() {
 
-                if (mAccessContactDto.getExtension_number() != null && !mAccessContactDto.getAccess_number().equals("100"))
+
+            @Override
+            public void onClick(View v) {
+                Log.e("extension ", "" + mAccessContactDto.getExtension_number());
+                if (mAccessContactDto.getExtension_number() != null && !mAccessContactDto.getAccess_number().equals("100")) {
+                    Log.e("extension ", "" + mAccessContactDto.getExtension_number());
                     CommonUtility.makeCall(getActivity(), access_text.getText().toString() + "," + extension_text.getText());
-                else
+                } else
                     CommonUtility.makeCall(getActivity(), access_text.getText().toString());
                 getActivity().finish();
-                return false;
             }
         });
 
