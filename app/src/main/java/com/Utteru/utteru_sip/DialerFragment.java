@@ -219,7 +219,7 @@ public class DialerFragment extends Fragment {
                     if (number_text != null && number_text.getText().toString().length() > 0) {
                         Prefs.setLastCallNo(context, number_text.getText().toString());
                         makeCall(mSelectCountry.getText().toString() + number_text.getText().toString());
-                        number_text.setText("");
+//                        number_text.setText(""); // by sneha to retain number
                     } else {
                         if (number_text.getText().toString().equals("")) {
                             number_text.setText(Prefs.getLastCallNo(context).toString());
@@ -397,8 +397,9 @@ public class DialerFragment extends Fragment {
                         Log.e("number from phone", "" + selected_con.getMobile_number());
                         String con_number = selected_con.getMobile_number();
                         Log.e("number after replace", "" + con_number);
-                        if (con_number != null && !con_number.equals("") && con_number.startsWith("+")) {
 
+
+                        if (con_number != null && !con_number.equals("") && con_number.startsWith("+")) {
                             ArrayList<String> pass_number = new ArrayList<>();
                             pass_number = CommonUtility.splitCodeFromNumber(con_number);
                             String only_number = pass_number.get(0);
@@ -406,7 +407,10 @@ public class DialerFragment extends Fragment {
                             Log.e("number", only_number);
                             Log.e("number_code", only_code);
                             String countryName = "";
-                            if (!only_code.equals("") && !only_code.equals("")) {
+
+
+//                            if (!only_code.equals("") && !only_code.equals("")) //by sneha
+                                if (only_code!=null && !only_code.equals("")) {
 
 
                                 if (SearchListDialer.country_list == null && SearchListDialer.country_list.size() == 0) {
@@ -419,6 +423,12 @@ public class DialerFragment extends Fragment {
                                         break;
                                     }
                                 }
+
+                                //by sneha
+                                mSelectCountry.setVisibility(View.VISIBLE);
+                                //by sneha
+
+
                                 mSelectCountry.setText("+" + only_code);
                                 number_text.setText(only_number);
                                 mCountryName.setText(countryName);
@@ -431,12 +441,17 @@ public class DialerFragment extends Fragment {
                             // makeCall(con_number);
 
                         } else {
-                           /* if (con_number.startsWith("0"))
-                                con_number = con_number.replaceFirst("0", "");*/
+
+                            //done by sneha
+                            if(con_number.startsWith("00"))
+                                con_number = con_number.replaceFirst("00", "");
+                           if (con_number.startsWith("0"))
+                                con_number = con_number.replaceFirst("0", "");
 
                             number_text.setText(con_number);
                             mCountryName.setText("Please select country code");
                             mSelectCountry.setVisibility(View.GONE);
+                            mSelectCountry.setText("");//by sneha
                             //CommonUtility.showCustomAlertError(getActivity(), getString(R.string.no_contact_found));
                         }
                     }
@@ -836,5 +851,9 @@ public class DialerFragment extends Fragment {
         }
 
     }
+   void resetView()
+   {
+
+   }
 
 }
