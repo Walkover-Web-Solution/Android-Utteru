@@ -163,32 +163,33 @@ public class
 
 
     }
-
     public void updateNotification(Context context, String title,String subtitle) {
 
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(context);
+      /* Invoking the default notification service */
 
-        mBuilder.setContentTitle(title);
-        mBuilder.setContentText(subtitle);
-        mBuilder.setTicker("Utteru Alert");
-        mBuilder.setSmallIcon(R.drawable.ic_launcher);
-        mBuilder.setAutoCancel(true);
+        Log.e("mesages",""+title+"      "+subtitle);
+
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);
+
+
+        mBuilder.setContentTitle(getString(R.string.app_name));
+        mBuilder.setContentText(title);
+        mBuilder.setSmallIcon(R.drawable.logo);
+        mBuilder.setOngoing(false);
+        mBuilder.setGroupSummary(true);
         Bitmap icon = BitmapFactory.decodeResource(context.getResources(),
-                R.drawable.ic_launcher);
+                R.drawable.logo);
         mBuilder.setLargeIcon(icon);
-        mBuilder.setSmallIcon(R.drawable.ic_launcher);
-        Intent notificationIntent = new Intent(context, MenuScreen.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-        stackBuilder.addNextIntent(notificationIntent);
-        PendingIntent resultPendingIntent =
-                stackBuilder.getPendingIntent(
-                        0,
-                        PendingIntent.FLAG_ONE_SHOT
-                );
-        mBuilder.setContentIntent(resultPendingIntent);
+        mBuilder.setAutoCancel(true);
+        Intent intent = new Intent(context, MenuScreen.class); //create intent for notifcation
+        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        mBuilder.addAction(android.R.drawable.ic_menu_close_clear_cancel, "Dismiss", pIntent);
+        mBuilder.setContentIntent(pIntent);
+        Notification builder =
+                new NotificationCompat.BigTextStyle(mBuilder).bigText(title).build();
         mNotificationManager =
                 NotificationManagerCompat.from(context);
-        mNotificationManager.notify(notificationID, mBuilder.build());
+        mNotificationManager.notify(notificationID, builder);
     }
 }
