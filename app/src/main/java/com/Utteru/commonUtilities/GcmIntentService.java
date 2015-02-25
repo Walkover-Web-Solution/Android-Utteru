@@ -157,6 +157,8 @@ public class
                         PendingIntent.FLAG_ONE_SHOT
                 );
         mBuilder.setContentIntent(resultPendingIntent);
+
+
         mNotificationManager =
                 NotificationManagerCompat.from(context);
         mNotificationManager.notify(notificationID, mBuilder.build());

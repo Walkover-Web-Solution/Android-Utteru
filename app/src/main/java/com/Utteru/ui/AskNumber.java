@@ -53,6 +53,7 @@ public class AskNumber extends AccountAuthenticatorActivity {
     public static final String MESSAGENOTSENT = "6005";
     public static final String MESSAGESENT = "6004";
     public static final String NEWSIGNUPCODE = "8007";
+    private static final String USERTYPE="3";
 
 
     /**
@@ -660,31 +661,36 @@ public class AskNumber extends AccountAuthenticatorActivity {
                 showErrorMessage(true, response);
             } else {
                 //Login
+                if (Prefs.getUserType(ctx).equals(USERTYPE)) {
+                    onAuthenticationResult(true);
 
-                onAuthenticationResult(true);
 
+                    onAuthenticationResult(true);
+                    if (CommonUtility.isNetworkAvailable(AskNumber.this)) {
 
-                onAuthenticationResult(true);
-                if (CommonUtility.isNetworkAvailable(AskNumber.this)) {
+                        new IntialiseData(ctx).initVerifiedData();
+                        new IntialiseData(ctx).initAccessData();
 
-                    new IntialiseData(ctx).initVerifiedData();
-                    new IntialiseData(ctx).initAccessData();
+                        if (Prefs.getGCMID(ctx).equals("") || !Prefs.getGCMIdState(ctx)) {
+                            Log.e("registering at gcm", "registering at gcm");
+                            if (CommonUtility.checkPlayServices(AskNumber.this))
+                                new GcmRegistrationTask(AskNumber.this, 1, Prefs.getUserActualName(ctx)).execute();
 
-                    if (Prefs.getGCMID(ctx).equals("") || !Prefs.getGCMIdState(ctx)) {
-                        Log.e("registering at gcm", "registering at gcm");
-                        if (CommonUtility.checkPlayServices(AskNumber.this))
-                            new GcmRegistrationTask(AskNumber.this, 1, Prefs.getUserActualName(ctx)).execute();
-
+                        }
                     }
+
+                    Intent startmenu = new Intent(ctx, MenuScreen.class);
+
+                    startmenu.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(startmenu);
+                    overridePendingTransition(R.anim.animation1, R.anim.animation2);
+
+                }else {
+                    CommonUtility.clearData(ctx);
+                    CommonUtility.showCustomAlertForContactsError(ctx, "Not providing access for Resellers.Please visit website");
                 }
-
-                Intent startmenu = new Intent(ctx, MenuScreen.class);
-
-                startmenu.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(startmenu);
-                overridePendingTransition(R.anim.animation1, R.anim.animation2);
-
             }
+
             verify_button.setEnabled(true);
             login_btn.setEnabled(true);
             CommonUtility.dialog.dismiss();

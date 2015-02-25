@@ -74,10 +74,12 @@ public class SignInScreen extends AccountAuthenticatorActivity {
     public static final String PARAM_USERNAME = "username";
     public static final String PARAM_AUTHTOKEN_TYPE = "authtokenType";
 
+    private static final String USERTYPE="3";
+
 
     private static final String APP_ID = "764962106885610";
     private static final String TAG = "SignInScreen";
-    static int accessType;
+   static int accessType;
     static String accessToken;
     public boolean checkAccount = false;
     protected boolean mRequestNewAccount = false;
@@ -646,27 +648,37 @@ public class SignInScreen extends AccountAuthenticatorActivity {
             if (iserr) {
                 showErrorMessage(true, response);
             } else {
+                if (Prefs.getUserType(ctx).equals(USERTYPE)) {
                 if (CommonUtility.isNetworkAvailable(SignInScreen.this)) {
 
 
-                    new IntialiseData(ctx).initVerifiedData();
-                    new IntialiseData(ctx).initAccessData();
+
+                        new IntialiseData(ctx).initVerifiedData();
+                        new IntialiseData(ctx).initAccessData();
 
 
-                    if (Prefs.getGCMID(ctx).equals("") || !Prefs.getGCMIdState(ctx)) {
-                        Log.e("registering at gcm", "registering at gcm");
-                        if (CommonUtility.checkPlayServices(SignInScreen.this))
-                            new GcmRegistrationTask(SignInScreen.this, 1, Prefs.getUserActualName(ctx)).execute();
+                        if (Prefs.getGCMID(ctx).equals("") || !Prefs.getGCMIdState(ctx)) {
+                            Log.e("registering at gcm", "registering at gcm");
+                            if (CommonUtility.checkPlayServices(SignInScreen.this))
+                                new GcmRegistrationTask(SignInScreen.this, 1, Prefs.getUserActualName(ctx)).execute();
 
+                        }
+
+
+                        Intent startmenu = new Intent(ctx, MenuScreen.class);
+                        startmenu.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(startmenu);
+                        overridePendingTransition(R.anim.animation1, R.anim.animation2);
                     }
+
+
+
                 }
+                else{
+                    CommonUtility.clearData(ctx);
+                    CommonUtility.showCustomAlertForContactsError(ctx,"Not providing access for Resellers.Please visit website");
 
-
-                Intent startmenu = new Intent(ctx, MenuScreen.class);
-                startmenu.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(startmenu);
-                overridePendingTransition(R.anim.animation1, R.anim.animation2);
-
+                }
             }
 
             login_button.setEnabled(true);
@@ -776,24 +788,32 @@ public class SignInScreen extends AccountAuthenticatorActivity {
 
                     startActivity(getNumber);
                 } else if (isSignIn) {
-                    if (CommonUtility.isNetworkAvailable(SignInScreen.this)) {
 
-                        new IntialiseData(ctx).initVerifiedData();
+                    if (Prefs.getUserType(ctx).equals(USERTYPE)) {
+                        if (CommonUtility.isNetworkAvailable(SignInScreen.this)) {
 
-                        if (Prefs.getGCMID(ctx).equals("") || !Prefs.getGCMIdState(ctx)) {
-                            Log.e("registering at gcm", "registering at gcm");
-                            if (CommonUtility.checkPlayServices(SignInScreen.this))
-                                new GcmRegistrationTask(SignInScreen.this, 1, Prefs.getUserActualName(ctx)).execute();
+                            new IntialiseData(ctx).initVerifiedData();
 
+                            if (Prefs.getGCMID(ctx).equals("") || !Prefs.getGCMIdState(ctx)) {
+                                Log.e("registering at gcm", "registering at gcm");
+                                if (CommonUtility.checkPlayServices(SignInScreen.this))
+                                    new GcmRegistrationTask(SignInScreen.this, 1, Prefs.getUserActualName(ctx)).execute();
+
+                            }
                         }
+
+                        Intent startmenu = new Intent(ctx, MenuScreen.class);
+                        startmenu.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(startmenu);
+                        overridePendingTransition(R.anim.animation1, R.anim.animation2);
+
+
                     }
+                    else{
+                        CommonUtility.clearData(ctx);
+                        CommonUtility.showCustomAlertForContactsError(ctx,"Not providing access for Resellers.Please visit website");
 
-                    Intent startmenu = new Intent(ctx, MenuScreen.class);
-                    startmenu.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(startmenu);
-                    overridePendingTransition(R.anim.animation1, R.anim.animation2);
-
-
+                    }
                 }
 
             }
