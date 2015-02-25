@@ -207,7 +207,8 @@ public class  PhoneBookActivity extends ActionBarActivity {
             String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
             name = name.replaceAll("[^\\w\\s\\-_]", "");
             String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-            phoneNumber = phoneNumber.replaceAll("-", "").replaceAll("\\s+", "");
+            phoneNumber = phoneNumber.replaceAll("-", "");
+            phoneNumber=phoneNumber.replaceAll("\\s+", "");
             String label = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.LABEL));
             String photoUri = null;
             String contact_id = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID));
