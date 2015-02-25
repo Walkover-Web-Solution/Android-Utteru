@@ -68,7 +68,6 @@ public class ContactsListFragment extends ListFragment {
     private ImageLoader mImageLoader; // Handles loading the contact image in a background thread
 
 
-
     // can be reselected again
     private int mPreviouslySelectedSearchItem = 0;
 
@@ -141,6 +140,10 @@ public class ContactsListFragment extends ListFragment {
 
         AccessContactDto cdto = (AccessContactDto) l.getItemAtPosition(position);
         Log.e("number on click", "" + cdto.getMobile_number());
+        String number1 = CommonUtility.validateNumberForUI(cdto.getMobile_number(), mContext);
+        Log.e("number on click2", "" + number1);
+
+        cdto.setMobile_number(number1);
         cdto = UserService.getUserServiceInstance(mContext).getAccessConDataByNumber(cdto.getMobile_number());
 
 
@@ -276,7 +279,7 @@ public class ContactsListFragment extends ListFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-               getActivity().onBackPressed();
+                getActivity().onBackPressed();
                 break;
             case R.id.menu_search:
                 if (!Utils.hasHoneycomb()) {
@@ -345,7 +348,7 @@ public class ContactsListFragment extends ListFragment {
             String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
             name = CommonUtility.validateText(name);
             String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-            phoneNumber =CommonUtility.validateNumberForUI(phoneNumber,mContext);
+            // phoneNumber =CommonUtility.validateNumberForUI(phoneNumber,mContext);
             String label = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.LABEL));
             String photoUri = null;
             String contact_id = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID));
@@ -402,7 +405,6 @@ public class ContactsListFragment extends ListFragment {
             super.onPreExecute();
         }
     }
-
 
 
 }

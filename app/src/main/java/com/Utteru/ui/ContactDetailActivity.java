@@ -71,12 +71,11 @@ public class ContactDetailActivity extends ActionBarActivity {
     public void onBackPressed() {
 
 
-        if(getIntent().getExtras().containsKey(VariableClass.Vari.SOURCECLASS)){
+        if (getIntent().getExtras().containsKey(VariableClass.Vari.SOURCECLASS)) {
 
-           this.finish();
+            this.finish();
 
-        }
-        else {
+        } else {
 
 //            startActivity(new Intent(ContactDetailActivity.this, ContactsListActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             super.onBackPressed();
