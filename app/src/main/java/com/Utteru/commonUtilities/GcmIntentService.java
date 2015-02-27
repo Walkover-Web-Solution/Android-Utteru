@@ -167,7 +167,6 @@ public class
     }
     public void updateNotification(Context context, String title,String subtitle) {
 
-      /* Invoking the default notification service */
 
         Log.e("mesages",""+title+"      "+subtitle);
 

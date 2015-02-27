@@ -93,6 +93,8 @@ public class DBHandler extends SQLiteOpenHelper {
             + T_TID + " TEXT," + T_TYPE + " INTEGER," + T_DATE + " TEXT,"+ T_ADMIN_NAME + " TEXT,"+ T_USER_NAME + " TEXT," + T_AMOUNT + " TEXT," + T_MODE + " TEXT," + T_DESCRIPTION + " TEXT," + T_CURRENT_BALANCE + " TEXT," + T_CURRECNY + " TEXT," + T_ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ");";
 
 
+
+
     public DBHandler(Context context, String name, CursorFactory factory,
                      int version) {
         super(context, DATABASE_NAME, factory, version);
@@ -182,6 +184,7 @@ public class DBHandler extends SQLiteOpenHelper {
         } catch (Exception e) {
 //            e.printStackTrace();
         }
+
     }
 }
 
