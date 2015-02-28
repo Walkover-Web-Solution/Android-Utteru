@@ -15,13 +15,19 @@ public class VariableClass {
         public static final String ERRORCODE = "code";
         public static final String ERRORMESSAGE = "message";
         public static final String CONTENT = "content";
+        public static final String PLAN = "plan";
+        public static final String PLAN_ID = "planId";
 
         public static final String NEWPASSWORD = "newPassword";
+        public static final String CALLER_ID = "caller_id";
+        public static final String DATE_TIME = "callStart";
+        public static final String BALANCE_DEDUCT = "balance_deduct";
         public static final String CURRENCY = "currency";
         public static final String CLIENT_TYPE = "type";
         public static final String CLIENT_STATUS = "status";
         public static final String CLIENT_AMOUNT = "clientAmount";
         public static final String USERIDTYPE = "userIdType";
+        public static final String DURATION_LOGS = "duration";
 
         public static final String BALANCE = "balance";
         public static final String CLIENT_USERNAME = "clientusername";
@@ -38,18 +44,23 @@ public class VariableClass {
         public static final String SOURCE_NUMBER = "source";
         public static final String SOURCE_NUMBER_CALL = "sourceNumber";
         public static final String DESTINATION_NUMBER_CALL = "destNumber";
-        public static final String DESTINATION_NUMBER = "destination";
+        public static final String DESTINATION_NUMBER = "destinationNo";
+        public static final String DESTINATION_NUMBER_FORWARD = "destinationNo";
         public static final String DESTINATION_NUMBER1 = "dest";
         public static final String USER_TYPE = "type";
         public static final String USER_PASSWORD = "password";
         public static final String SERVER_URL = "serverUrl";
         public static final String SIP_SERVER_URL = "sipserverUrl";
         public static final String COUNTRY = "country";
+        public static final String LONG_CODE_NO = "longCodeNo";
+        public static final String EXPIRY_DATE = "expiryDate";
+        public static final String ASSIGN_ID = "assignId";
         public static final String COUNTRYNAME = "CountryName";
         public static final String STATENAME = "StateName";
+        public static final String STATE = "state";
         public static final String ACESSNUMBER = "AccessNumber";
         public static final String accessNumber = "accessNumber";
-
+        public static final String VALUE = "value";
         public static final String PARTICULAR = "verifyBy";
         public static final String RESELLER_ID = "resellerId";
         public static final String COUNTRY_CODE = "countryCode";
@@ -84,6 +95,7 @@ public class VariableClass {
 
         public static final String CURRENCY_NAME = "currencyName";
         public static final String RATE = "rate";
+        public static final String PLAN_RATE = "planRate";
 
         public static final String MESSAGEID1 = "msgid1";
         public static final String MESSAGEID2 = "msgid2";
@@ -145,7 +157,6 @@ public class VariableClass {
         public static final String CALL_TIME = "date";
 
 
-
     }
 
 
@@ -160,13 +171,12 @@ public class VariableClass {
         public static final String COUNTRYNAME = "countryname";
         public static final String COUNTRYISO = "countryIso";
         public static final String COUNTRYCODE = "countryCode";
-        public static  boolean CALL_SHOP_USER = false;
+        public static boolean CALL_SHOP_USER = false;
         public static final String VERIFI_CODE = "veri_code";
         public static final String TEMP_ID = "temp_id";
         public static final String SHOWOTHERNUMBER = "show_other_num";
         public static final String CALL_ELAPSED_TIME = "call_elapsed_time";
         public static final String CALLDATE = "date";
-
         public static final String CALLPRICE = "call_price";
 
         public static final String TOKEN = "token";
@@ -176,9 +186,6 @@ public class VariableClass {
 
         public static final String SELECTEDDATA = "selecteddata";
         public static final String DEDICATED = "100";
-
-
-
 
 
     }

@@ -8,11 +8,7 @@ public class AccessContactDto implements Serializable {
     String contact_id, display_name, mobile_number, access_number, extension_number;
     String contactUri;
     String country, state;
-
-
     String code;
-
-
     String thumbUri;
     Boolean isAccess = false;
 

@@ -134,7 +134,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
         <activity
-            android:name=".ui.CreatePasswordActivity"
+            android:name=".ui.stateVisibleCreatePasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateVisible" />
@@ -144,7 +144,23 @@
 
             android:windowSoftInputMode="stateVisible" />
         <activity
+            android:name="com.Utteru.ui.SelectCountryCallForward"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden"
+            />
+        <activity
+            android:name="com.Utteru.ui.LongCodeLogsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden"
+            />
+        <activity
             android:name=".ui.EarnCreditsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+        <activity
+            android:name="com.Utteru.ui.CallForwardActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
 
@@ -318,13 +334,29 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
         <activity
+            android:name=".ui.SelectPlanCallForward"
+            android:label="SelectPlanCallForward"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+        <activity
+            android:name="com.Utteru.ui.CallForwardtoNumber"
+            android:label="SelectPlanCallForward"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+        <activity
             android:name=".ui.SelectExtensionAI"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
-
         <activity
-            android:name=".ui.SelectStateActivity"
+            android:name="com.Utteru.ui.SelectStateCallForward"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+        <activity
+            android:name="com.Utteru.ui.SelectStateActivity"
             android:label="@string/title_activity_select_state"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"

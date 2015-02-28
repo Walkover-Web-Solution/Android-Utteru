@@ -25,7 +25,7 @@ import com.splunk.mint.Mint;
 import java.util.ArrayList;
 
 
-public class  SelectCountryActivity extends ActionBarActivity {
+public class SelectCountryActivity extends ActionBarActivity {
 
 
     Context ctx;
@@ -33,7 +33,7 @@ public class  SelectCountryActivity extends ActionBarActivity {
     AccessDataAdapter adapter;
     ListView listView;
     AccessContactDto selected_dto;
-    ImageView back_button,gotohome;
+    ImageView back_button, gotohome;
     FontTextView header;
 
 
@@ -45,7 +45,6 @@ public class  SelectCountryActivity extends ActionBarActivity {
         init();
         Mint.initAndStartSession(SelectCountryActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
-
 
 
     }
@@ -70,7 +69,7 @@ public class  SelectCountryActivity extends ActionBarActivity {
                 Intent intent = new Intent(ctx, SelectStateActivity.class);
                 selected_dto.setCountry(countryList.get(position).getCountry());
                 selected_dto.setCode(countryList.get(position).getCountryCode());
-                intent.putExtra(VariableClass.Vari.SELECTEDDATA,selected_dto);
+                intent.putExtra(VariableClass.Vari.SELECTEDDATA, selected_dto);
 
                 startActivity(intent);
 
@@ -112,13 +111,13 @@ public class  SelectCountryActivity extends ActionBarActivity {
 
         ctx = this;
 
-        back_button = (ImageView)findViewById(R.id.contacts_back);
-        gotohome =(ImageView)findViewById(R.id.contacts_home);
-        header = (FontTextView)findViewById(R.id.contact_header);
+        back_button = (ImageView) findViewById(R.id.contacts_back);
+        gotohome = (ImageView) findViewById(R.id.contacts_home);
+        header = (FontTextView) findViewById(R.id.contact_header);
         header.setText("Select Country");
 
 
-        selected_dto=(AccessContactDto)getIntent().getSerializableExtra(VariableClass.Vari.SELECTEDDATA);
+        selected_dto = (AccessContactDto) getIntent().getSerializableExtra(VariableClass.Vari.SELECTEDDATA);
 
         listView = (ListView) findViewById(R.id.contacts_list);
         countryList = new ArrayList<>();

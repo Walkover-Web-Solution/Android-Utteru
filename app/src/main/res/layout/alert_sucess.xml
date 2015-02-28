@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/blue_contacts"
+    android:gravity="center_horizontal|center_vertical"
+
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:orientation="vertical"
+    android:padding="@dimen/grid_padding_all">
+
+    <com.Utteru.commonUtilities.FontTextView
+
+        android:paddingLeft="@dimen/padding"
+        android:paddingRight="@dimen/padding"
+        android:id="@+id/tittle"
+        android:textSize="@dimen/abc_text_size_large_material"
+        android:textColor="@color/white"
+        android:layout_width="fill_parent"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:text="Enjoy !!! calls made on this number will be charged " />
+
+    <include
+        android:layout_marginTop="@dimen/margin_top"
+        layout="@layout/error_message_layout"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_width="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_weight=".5"
+            android:id="@+id/skip_button"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:text="OK "
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:padding="2dp"
+            android:background="@drawable/ed_inner_background"
+            android:textColor="@color/blue_contacts" />
+
+        <Button
+            android:padding="2dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:layout_weight=".5"
+            android:layout_marginRight="10dp"
+            android:id="@+id/done_button"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/ed_inner_background"
+            android:text="Cancel"
+            android:textColor="@color/blue_contacts" />
+    </LinearLayout>
+</LinearLayout>

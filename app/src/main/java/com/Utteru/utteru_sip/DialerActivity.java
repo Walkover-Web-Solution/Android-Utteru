@@ -55,8 +55,6 @@ public class DialerActivity extends ActionBarActivity
     };
 
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,8 +70,7 @@ public class DialerActivity extends ActionBarActivity
         Mint.initAndStartSession(DialerActivity.this, CommonUtility.BUGSENSEID);
 
 
-            launchDialerFrag();
-
+        launchDialerFrag();
 
 
     }
@@ -89,7 +86,7 @@ public class DialerActivity extends ActionBarActivity
     public void onCall(UtteruSipCore app, PortSipSdk sdk, String number, int action, RecentCallsDto dto) {
 
         if (action == 0) {
-            launchCallingActivity(number, null, SystemClock.elapsedRealtime(), false, null,System.currentTimeMillis());
+            launchCallingActivity(number, null, SystemClock.elapsedRealtime(), false, null, System.currentTimeMillis());
         } else {
             launchDetailsFrag(dto);
         }
@@ -100,7 +97,7 @@ public class DialerActivity extends ActionBarActivity
 
 
         if (action == 0) {
-            launchCallingActivity(dto.getNumber(), null, SystemClock.elapsedRealtime(), false, null,System.currentTimeMillis());
+            launchCallingActivity(dto.getNumber(), null, SystemClock.elapsedRealtime(), false, null, System.currentTimeMillis());
         } else {
             launchProfile(dto);
         }
@@ -125,21 +122,19 @@ public class DialerActivity extends ActionBarActivity
             Log.e("dialer fragment", "dialer fragment ");
 
             dialerFragment.onBackPress();
-        }  else {
-                recentDetailFragment = (RecentDetailFragment) getSupportFragmentManager().findFragmentByTag(LOG_DETAILS_FRAGMENT_TAG);
-                if (recentDetailFragment != null && recentDetailFragment.isVisible()) {
-                    Log.e("recent   fragment", "recent fragment ");
-                    recentDetailFragment.onBackPress();
-                } else {
-                    super.onBackPressed();
+        } else {
+            recentDetailFragment = (RecentDetailFragment) getSupportFragmentManager().findFragmentByTag(LOG_DETAILS_FRAGMENT_TAG);
+            if (recentDetailFragment != null && recentDetailFragment.isVisible()) {
+                Log.e("recent   fragment", "recent fragment ");
+                recentDetailFragment.onBackPress();
+            } else {
+                super.onBackPressed();
 
 
-                }
             }
-
         }
 
-
+    }
 
 
     public void launchDialerFrag() {
@@ -152,7 +147,7 @@ public class DialerActivity extends ActionBarActivity
 
     }
 
-    void launchCallingActivity(String number, String name, long time, boolean isongoing, String price,long date) {
+    void launchCallingActivity(String number, String name, long time, boolean isongoing, String price, long date) {
 
         String calleename = name;
         if (calleename == null)
@@ -160,7 +155,7 @@ public class DialerActivity extends ActionBarActivity
 
 
         CallData calldata = CallData.getCallDateInstance();
-        Log.e("setting variable ","setting variable "+name );
+        Log.e("setting variable ", "setting variable " + name);
         calldata.setCallee_number(number);
         calldata.setCallee_name(calleename);
         calldata.setTime_elapsed(time);
@@ -168,7 +163,7 @@ public class DialerActivity extends ActionBarActivity
         calldata.setCall_price(price);
         calldata.setDate(date);
 
-        startActivity(new Intent(this,CallingScreenActivity.class));
+        startActivity(new Intent(this, CallingScreenActivity.class));
         overridePendingTransition(R.anim.animation1, R.anim.animation2);
     }
 
@@ -215,8 +210,6 @@ public class DialerActivity extends ActionBarActivity
 
         super.onStop();
     }
-
-
 
 
 }

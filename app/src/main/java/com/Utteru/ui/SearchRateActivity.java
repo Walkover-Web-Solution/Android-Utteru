@@ -67,7 +67,6 @@ public class SearchRateActivity extends BaseActivity {
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 
-
     }
 
     @Override
@@ -191,16 +190,16 @@ public class SearchRateActivity extends BaseActivity {
                     R.anim.bottom_up);
             Animation bottom_down = AnimationUtils.loadAnimation(this,
                     R.anim.abc_slide_in_top);
-
-            dialpad_layout.setAnimation(bottomUp);
-            dialpad_layout.setVisibility(View.VISIBLE);
-
+            if (dialpad_layout.getVisibility() == View.GONE) {
+                dialpad_layout.setAnimation(bottomUp);
+                dialpad_layout.setVisibility(View.VISIBLE);
+            }
 
             search_rate_listview.setClickable(false);
             search_rate_listview.setFocusable(false);
-
-
         }
+
+
         //hide keyboard
         else {
             Animation bottpmdown = AnimationUtils.loadAnimation(this,
@@ -209,7 +208,8 @@ public class SearchRateActivity extends BaseActivity {
                     R.anim.abc_slide_out_top);
 
             dialpad_layout.setAnimation(bottpmdown);
-            dialpad_layout.setVisibility(View.GONE);
+            if (dialpad_layout.getVisibility() == View.VISIBLE)
+                dialpad_layout.setVisibility(View.GONE);
 
 
             search_rate_listview.setClickable(true);
@@ -294,7 +294,7 @@ public class SearchRateActivity extends BaseActivity {
             menu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             menu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(menu);
-           this.finish();
+            this.finish();
             overridePendingTransition(R.anim.animation3, R.anim.animation4);
         }
     }
@@ -340,7 +340,6 @@ public class SearchRateActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-
 
 
             response = Apis.getApisInstance(ctx).getPricing(country);
@@ -424,15 +423,15 @@ public class SearchRateActivity extends BaseActivity {
 
                 country = s;
                 if (!(CommonUtility.isNumeric(country)) && !country.equals("")) {
-                    country=CommonUtility.validateText(country);
+                    country = CommonUtility.validateText(country);
 
-                    if(!country.equals(""))
-                    new SearchRate().execute();
+                    if (!country.equals(""))
+                        new SearchRate().execute();
 
-                } else if (country.startsWith("+") || country.startsWith("00")||country.startsWith("0")) {
+                } else if (country.startsWith("+") || country.startsWith("00") || country.startsWith("0")) {
 
 
-                  country = CommonUtility.validateNumberForApi(country);
+                    country = CommonUtility.validateNumberForApi(country);
 
                     if ((!country.equals("") && country.length() > 0) && CommonUtility.isNumeric(country)) {
 

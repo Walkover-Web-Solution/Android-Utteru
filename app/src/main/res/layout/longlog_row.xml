@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:id="@+id/caller_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:gravity="left"
+        android:text="032115512"
+        android:textColor="@color/new_black"
+        android:textSize="@dimen/cross_button_height" />
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:id="@+id/duartion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/caller_id"
+        android:gravity="left"
+        android:text="Missed"
+        android:textColor="@color/new_black"
+        android:textSize="@dimen/cross_button_height" />
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:id="@+id/date_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/duartion"
+        android:layout_below="@+id/caller_id"
+        android:layout_marginLeft="5dp"
+        android:gravity="left"
+        android:text="27,Feb,23:00"
+        android:textColor="@color/new_black"
+        android:textSize="@dimen/cross_button_height" />
+
+    <com.Utteru.commonUtilities.FontTextView
+        android:id="@+id/bal_deducted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/date_time"
+        android:layout_below="@+id/caller_id"
+        android:gravity="left"
+        android:text="0.0545"
+        android:textColor="@color/new_black"
+        android:textSize="@dimen/cross_button_height" />
+
+
+    <ImageView
+        android:id="@+id/details"
+        android:layout_width="30dp"
+        android:layout_gravity="right"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_height="30dp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/ar_right" />
+
+
+</RelativeLayout>
