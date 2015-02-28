@@ -41,11 +41,13 @@ public class Prefs {
     private static final String USERSIPNAME = "user_sip_name";
     private static final String USERSIPPASSWORD = "user_sip_password";
     private static final String TOTALEARN = "total_earn";
-
-    public static  String SIP_SERVER = "sip.phone91.com";
-    public static  String PERSE_SIP = "45.56.69.233";
-    public static  String SIP_PORT = "27376";
-    public static  String PERSE_PORT = "27376";
+    private static final String PLAN_RATE = "plan_rate";
+    private static final String ASSIGN_ID = "assignId";
+    private static final String PLAN_ID = "planid";
+    public static String SIP_SERVER = "sip.phone91.com";
+    public static String PERSE_SIP = "45.56.69.233";
+    public static String SIP_PORT = "27376";
+    public static String PERSE_PORT = "27376";
 
 
     private static SharedPreferences getPrefs(Context context) {
@@ -54,6 +56,20 @@ public class Prefs {
 
     public static String getUserName(Context context) {
         String value = getPrefs(context).getString(USER_ID, "");
+        value = value.replace("+", "");
+        return value;
+    }
+    public static String getAssignId(Context context) {
+        String value = getPrefs(context).getString(ASSIGN_ID, "");
+        value = value.replace("+", "");
+        return value;
+    }
+    public static void setAssignId(Context context, String value) {
+
+        getPrefs(context).edit().putString(ASSIGN_ID, value).commit();
+    }
+    public static String getPlanRate(Context context) {
+        String value = getPrefs(context).getString(PLAN_RATE, "");
         value = value.replace("+", "");
         return value;
     }
@@ -121,7 +137,6 @@ public class Prefs {
     }
 
 
-
     public static String getUserBalance(Context context) {
         return getPrefs(context).getString(USER_BALANCE, "00.00");
     }
@@ -143,6 +158,10 @@ public class Prefs {
         String[] bal_array = balance.split("\\s+");
         return bal_array[0];
 
+    }
+
+    public static String getPlanId(Context context) {
+        return getPrefs(context).getString(PLAN_ID, "");
     }
 
     public static String getUserTariff(Context context) {
@@ -225,6 +244,14 @@ public class Prefs {
 
     public static void setUserId(Context context, String value) {
         getPrefs(context).edit().putString(USER_ID, value).commit();
+    }
+
+    public static void setPlanRate(Context context, String value) {
+        getPrefs(context).edit().putString(PLAN_RATE, value).commit();
+    }
+
+    public static void setPlanId(Context context, String value) {
+        getPrefs(context).edit().putString(PLAN_ID, value).commit();
     }
 
     public static int getListenVoice(Context context) {

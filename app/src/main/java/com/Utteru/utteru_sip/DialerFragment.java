@@ -410,7 +410,7 @@ public class DialerFragment extends Fragment {
 
 
 //                            if (!only_code.equals("") && !only_code.equals("")) //by sneha
-                                if (only_code!=null && !only_code.equals("")) {
+                            if (only_code != null && !only_code.equals("")) {
 
 
                                 if (SearchListDialer.country_list == null && SearchListDialer.country_list.size() == 0) {
@@ -443,9 +443,9 @@ public class DialerFragment extends Fragment {
                         } else {
 
                             //done by sneha
-                            if(con_number.startsWith("00"))
+                            if (con_number.startsWith("00"))
                                 con_number = con_number.replaceFirst("00", "");
-                           if (con_number.startsWith("0"))
+                            if (con_number.startsWith("0"))
                                 con_number = con_number.replaceFirst("0", "");
 
                             number_text.setText(con_number);
@@ -851,9 +851,9 @@ public class DialerFragment extends Fragment {
         }
 
     }
-   void resetView()
-   {
 
-   }
+    void resetView() {
+
+    }
 
 }

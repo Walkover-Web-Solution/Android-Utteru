@@ -9,6 +9,7 @@
     <string name="ask_number_text">You Need to associate a number with facebook/Google.</string>
     <string name="login_text">Username/password are mandatory.</string>
     <string name="promo_code_text">Do you have any referral code?</string>
+    <string name="balace_deduction">We are going to deduct amount of </string>
     <string name="promo_code_text1">If yes then enter referral code below and get 10% extra on your first recharge! </string>
     <string name="activity_contacts_list">Contacts List</string>
     <string name="activity_contact_detail">Contact Detail</string>
@@ -168,10 +169,12 @@ You can use options like access numbers, two-way calling and web calling. Sign u
     <string name="enter_new_pin">Enter New PIN</string>
     <string name="confirm_new_pin">Confirm PIN</string>
     <string name="reset_password_btn_text">Reset PIN</string>
+    <string name="select_country">Add Number</string>
     <string name="transaction_title">Transactions</string>
     <string name="access_number_info">Access Number Info</string>
-
+    <string name="call_fwd_msg">Own a dedicated number for any country you wish and forward it on your mobile or landline number.</string>
     <string name="stripe_text">Stripe Payment</string>
+    <string name="call_rates_text">As selected state access number will cost you</string>
     <string name="invite_friends">Invite Friends</string>
 
     <string name="earn_credit">Refer and Earn </string>
@@ -230,6 +233,7 @@ You can use options like access numbers, two-way calling and web calling. Sign u
     <string name="gender_text">Gender</string>
     <string name="user_name_text">My Name</string>
     <string name="promo_code_updated">Promo Code Successfully Updated</string>
+    <string name="NumberAdded">Dedicated Number Added Successfully</string>
 
     <string name="earn_now">Earn Now </string>
 
@@ -293,13 +297,13 @@ You can use options like access numbers, two-way calling and web calling. Sign u
     <string name="str_resolution">Resolution</string>
     <string name="str_resolution_default">1</string>
     <string-array name="arr_resolution">
-        <item >QCIF</item>
-        <item >CIF</item>
-        <item >VGA</item>
-        <item >SVGA</item>
-        <item >XVGA</item>
-        <item >720P</item>
-        <item >QVGA</item>
+        <item>QCIF</item>
+        <item>CIF</item>
+        <item>VGA</item>
+        <item>SVGA</item>
+        <item>XVGA</item>
+        <item>720P</item>
+        <item>QVGA</item>
     </string-array>
 
 
@@ -315,10 +319,10 @@ You can use options like access numbers, two-way calling and web calling. Sign u
 
     <string name="str_bitrate">Bitrate</string>
     <string-array name="arr_bitrate">
-        <item >UDP</item>
-        <item >TLS</item>
-        <item >TCP</item>
-        <item >PERS</item>
+        <item>UDP</item>
+        <item>TLS</item>
+        <item>TCP</item>
+        <item>PERS</item>
     </string-array>
 
     <string name="str_tips">..</string>

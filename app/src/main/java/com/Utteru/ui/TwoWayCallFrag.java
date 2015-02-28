@@ -360,16 +360,18 @@ public class TwoWayCallFrag extends Fragment {
 
                     switch (reqCode) {
                         case (REQUEST_SELECT_CONTACT_SOURCE):
-                            source_ed.setText(CommonUtility.validateNumberForUI(con_number,ctx));
+                            //source_ed.setText(CommonUtility.validateNumberForUI(con_number,ctx));
+                            source_ed.setText("+"+con_number);
                             break;
                         case (REQUEST_SELECT_CONTACT_DEST):
-                            dest_ed.setText(CommonUtility.validateNumberForUI(con_number,ctx));
+                           // dest_ed.setText(CommonUtility.validateNumberForUI(con_number,ctx));
+                            dest_ed.setText("+"+con_number);
                             break;
                     }
 
                 } else {
 
-                    CommonUtility.showCustomAlertError(getActivity(), getString(R.string.no_contact_found));
+                   // CommonUtility.showCustomAlertError(getActivity(), getString(R.string.no_contact_found));
                 }
             }
 //            else {

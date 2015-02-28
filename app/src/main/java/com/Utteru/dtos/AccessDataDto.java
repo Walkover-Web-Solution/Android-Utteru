@@ -3,16 +3,40 @@ package com.Utteru.dtos;
 import android.util.Log;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by root on 12/10/14.
  */
-public class AccessDataDto implements Serializable  {
+public class AccessDataDto implements Serializable {
     String accessNumber;
     String country;
+    ArrayList<AccessDataDto> statelist;
     String countryCode;
     String state;
+
+    String accessid;
+
     int _id;
+
+
+    public ArrayList<AccessDataDto> getStatelist() {
+        return statelist;
+    }
+
+    public void setStatelist(ArrayList<AccessDataDto> statelist) {
+        this.statelist = statelist;
+    }
+
+
+    public String getAccessid() {
+        return accessid;
+    }
+
+    public void setAccessid(String accessid) {
+        this.accessid = accessid;
+    }
+
 
     public AccessDataDto() {
 
@@ -70,10 +94,10 @@ public class AccessDataDto implements Serializable  {
     @Override
     public boolean equals(Object o) {
 
-        AccessDataDto dto = (AccessDataDto)o;
+        AccessDataDto dto = (AccessDataDto) o;
 
-        Log.e(""+this.country,""+dto.getCountry());
-       return  this.country.toLowerCase().equals((dto.getCountry().toLowerCase()));
+        Log.e("" + this.country, "" + dto.getCountry());
+        return this.country.toLowerCase().equals((dto.getCountry().toLowerCase()));
 
 
     }

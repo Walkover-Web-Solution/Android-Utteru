@@ -50,7 +50,7 @@ public class Apis {
     }
 
     public static Apis getApisInstance(Context ctx) {
-            apis = new Apis(ctx);
+        apis = new Apis(ctx);
         return apis;
     }
 
@@ -64,7 +64,7 @@ public class Apis {
 
         nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.USER, userId.replace("+", "")));
         nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.PASSWORD, userPassword));
-       nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.RESELLER_ID, resellerId));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.RESELLER_ID, resellerId));
         nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.SYSTEMDETAIL, "1"));
 
 
@@ -122,7 +122,6 @@ public class Apis {
         Log.e("signupwithNumber response", "" + response);
         return response;
     }
-
 
 
     //API FOR FORGOTPASSWORD
@@ -325,13 +324,12 @@ public class Apis {
     }
 
 
-    public String getCallLogsDetails(String sourceNumber,String destinationNumber) {
+    public String getCallLogsDetails(String sourceNumber, String destinationNumber) {
 
-      sourceNumber =CommonUtility.validateNumberForApi(sourceNumber);
+        sourceNumber = CommonUtility.validateNumberForApi(sourceNumber);
 
 
         destinationNumber = CommonUtility.validateNumberForApi(destinationNumber);
-
 
 
         serverName = Prefs.getServerUrl(ct);
@@ -560,6 +558,146 @@ public class Apis {
         }
         response = HitUrl(httpPost);
         Log.e("get pricing", "" + response);
+        return response;
+    }
+
+    //API For Get call forwarding country and State
+    public String getCountrylist() {
+
+        serverName = Prefs.getServerUrl(ct);
+        completeUrl = serverName + "getDDCountryAndState";
+        HttpPost httpPost = new HttpPost(completeUrl);
+        List<NameValuePair> nameValuePair = new ArrayList<>();
+
+
+        Log.e("get country ", "" + nameValuePair);
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return response;
+        }
+        response = HitUrl(httpPost);
+        Log.e("get countrynamefw", "" + response);
+        return response;
+    }
+
+    //API For Getting Paln Details
+    public String getPlan(String country, String state) {
+
+        serverName = Prefs.getServerUrl(ct);
+        completeUrl = serverName + "getDDPlanbyCountryAndState";
+        HttpPost httpPost = new HttpPost(completeUrl);
+        List<NameValuePair> nameValuePair = new ArrayList<>();
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.USER, Prefs.getUserActualName(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.PASSWORD, Prefs.getUserPassword(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.RESELLER_ID, Prefs.getResellerID(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.COUNTRY, country));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.STATE, state));
+        Log.e("get plan ", "" + nameValuePair);
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return response;
+        }
+        response = HitUrl(httpPost);
+        Log.e("get plan", "" + response);
+        return response;
+    }
+
+    //API For assigning number to destination number
+    public String assigndestinationnumber(String value, String type) {
+
+        serverName = Prefs.getServerUrl(ct);
+        completeUrl = serverName + "changeDDDetails";
+        HttpPost httpPost = new HttpPost(completeUrl);
+        List<NameValuePair> nameValuePair = new ArrayList<>();
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.USER, Prefs.getUserActualName(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.PASSWORD, Prefs.getUserPassword(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.RESELLER_ID, Prefs.getResellerID(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.ASSIGN_ID, Prefs.getAssignId(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.VALUE, value));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.TYPE, type));
+        Log.e("get plan ", "" + nameValuePair);
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return response;
+        }
+        response = HitUrl(httpPost);
+        Log.e("get plan", "" + response);
+        return response;
+    }
+
+    //API For Getting CodeList Details
+    public String getLongCodes() {
+
+        serverName = Prefs.getServerUrl(ct);
+        completeUrl = serverName + "getDDLongCodeDetails";
+        HttpPost httpPost = new HttpPost(completeUrl);
+        List<NameValuePair> nameValuePair = new ArrayList<>();
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.USER, Prefs.getUserActualName(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.PASSWORD, Prefs.getUserPassword(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.RESELLER_ID, Prefs.getResellerID(ct)));
+
+        Log.e("get codes ", "" + nameValuePair);
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return response;
+        }
+        response = HitUrl(httpPost);
+        Log.e("get codes", "" + response);
+        return response;
+    }
+
+    //API For Getting logs deatails
+    public String getlonglogs(String long_code_no) {
+
+        serverName = Prefs.getServerUrl(ct);
+        completeUrl = serverName + "getDDCallLog";
+        HttpPost httpPost = new HttpPost(completeUrl);
+        List<NameValuePair> nameValuePair = new ArrayList<>();
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.USER, Prefs.getUserActualName(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.PASSWORD, Prefs.getUserPassword(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.RESELLER_ID, Prefs.getResellerID(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.LONG_CODE_NO, long_code_no));
+        Log.e("get logs details ", "" + nameValuePair);
+        Log.e("get logs details ", "" + completeUrl);
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return response;
+        }
+        response = HitUrl(httpPost);
+        Log.e("get logs details", "" + response);
+        return response;
+    }
+
+    //API For adding dedicated number Paln
+    public String addDedicatedNumber() {
+        serverName = Prefs.getServerUrl(ct);
+        completeUrl = serverName + "addDDDedicatedNo";
+        HttpPost httpPost = new HttpPost(completeUrl);
+        List<NameValuePair> nameValuePair = new ArrayList<>();
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.USER, Prefs.getUserActualName(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.PASSWORD, Prefs.getUserPassword(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.RESELLER_ID, Prefs.getResellerID(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.PLAN_ID, Prefs.getPlanId(ct)));
+
+        Log.e("add number ", "" + nameValuePair);
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return response;
+        }
+        response = HitUrl(httpPost);
+        Log.e("add number", "" + response);
         return response;
     }
 
@@ -865,7 +1003,7 @@ public class Apis {
         name = name.replaceAll("[^\\w\\s\\-_]", "");
         List<NameValuePair> nameValuePair = new ArrayList<>();
         mobileNumber = mobileNumber.replaceAll("[-+.^:,]", "");
-        access=access.replaceAll("[-+.^:,]", "");
+        access = access.replaceAll("[-+.^:,]", "");
 
         nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.RESELLER_ID, Prefs.getResellerID(ct)));
         nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.USERIDTYPE, UserIdType));
@@ -892,12 +1030,12 @@ public class Apis {
 
         serverName = Prefs.getServerUrl(ct);
         completeUrl = serverName + "editContactNumber";
-        Log.e("url",completeUrl);
+        Log.e("url", completeUrl);
         HttpPost httpPost = new HttpPost(completeUrl);
         name = name.replaceAll("[^\\w\\s\\-_]", "");
         mobileNumber = mobileNumber.replaceAll("[-+.^:,]", "");
-        if(access!=null)
-        access=access.replaceAll("[-+.^:,]", "");
+        if (access != null)
+            access = access.replaceAll("[-+.^:,]", "");
 
         List<NameValuePair> nameValuePair = new ArrayList<>();
         nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.USERIDTYPE, UserIdType));
@@ -1167,8 +1305,8 @@ public class Apis {
             final Random random = new Random();
             StringBuilder total = null;
             HttpParams httpParameters = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(httpParameters, 6*1000);
-            HttpConnectionParams.setSoTimeout(httpParameters, 6*1000);
+            HttpConnectionParams.setConnectionTimeout(httpParameters, 6 * 1000);
+            HttpConnectionParams.setSoTimeout(httpParameters, 6 * 1000);
             DefaultHttpClient httpClient;
             InputStream inputstream;
 
@@ -1186,17 +1324,14 @@ public class Apis {
                         total.append(line);
                     }
                     break;
-                }
-                catch (SocketTimeoutException e)
-                {
+                } catch (SocketTimeoutException e) {
                     e.printStackTrace();
-                    CommonUtility.showCustomAlertForContacts(ct.getApplicationContext(),ct.getString(R.string.server_error));
+                    CommonUtility.showCustomAlertForContacts(ct.getApplicationContext(), ct.getString(R.string.server_error));
 
                     return "";
 
 
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
 
                     if (i == MAX_ATTEMPTS) {

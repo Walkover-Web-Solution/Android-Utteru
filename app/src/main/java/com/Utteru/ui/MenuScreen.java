@@ -64,8 +64,7 @@ public class MenuScreen extends BaseActivity {
     Tracker tracker;
     String browserapi;
     CustomGridAdapter adapter;
-    public static boolean showbal =false;
-
+    public static boolean showbal = false;
 
 
     Context ctx = this;
@@ -77,6 +76,7 @@ public class MenuScreen extends BaseActivity {
             "Call rates",
             "Share Talktime",
             "Refer and Earn",
+            "Call Forwarding",
             "Go to web",
             "Help"
 
@@ -86,6 +86,7 @@ public class MenuScreen extends BaseActivity {
             "Two Way Call",
             "Call rates",
             "My Account",
+            "Call Forwarding",
             "Go to web",
             "Chat with us"
 
@@ -102,6 +103,7 @@ public class MenuScreen extends BaseActivity {
             R.drawable.call_rate,
             R.drawable.share_talk,
             R.drawable.earn,
+            R.drawable.phone,
             R.drawable.go_to_web,
             R.drawable.help
 
@@ -112,6 +114,7 @@ public class MenuScreen extends BaseActivity {
             R.drawable.twc,
             R.drawable.call_rate,
             R.drawable.reset_pin,
+            R.drawable.phone,
             R.drawable.go_to_web,
             R.drawable.help
 
@@ -139,7 +142,6 @@ public class MenuScreen extends BaseActivity {
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
 
-
         Account account = new Account(Constants.ACCOUNT_NAME, Constants.ACCOUNT_TYPE);
         ContentResolver resolver = ctx.getContentResolver();
         long groupId = 0;
@@ -164,8 +166,6 @@ public class MenuScreen extends BaseActivity {
             ContentResolver.setMasterSyncAutomatically(false);
             ContentResolver.setSyncAutomatically(account, ContactsContract.AUTHORITY, false);
         }
-
-
 
 
     }
@@ -217,10 +217,10 @@ public class MenuScreen extends BaseActivity {
 
 
             userBalance.setText("Buy More");
-            showbal=false;
+            showbal = false;
         } else {
             userBalance.setText(Prefs.getUserBalance(ctx));
-            showbal =true;
+            showbal = true;
         }
 
 //        long temp_time = System.currentTimeMillis();
@@ -310,7 +310,7 @@ public class MenuScreen extends BaseActivity {
 
                             break;
                         case 3:
-                            //contacts
+//contacts
                             final String Utteru_GROUP_NAME = "Utteru Contacts";
                             final ContentResolver resolver = getApplicationContext().getContentResolver();
                             long groupId = 0;
@@ -376,6 +376,14 @@ public class MenuScreen extends BaseActivity {
                             overridePendingTransition(R.anim.animation1, R.anim.animation2);
                             break;
                         case 9:
+                            //callforwarding
+                            start_screen = new Intent(ctx, CallForwardActivity.class);
+                            ctx.startActivity(start_screen);
+                            overridePendingTransition(R.anim.animation1, R.anim.animation2);
+                            break;
+
+
+                        case 10:
                             //gotoweb
 
                             if (CommonUtility.isNetworkAvailable(ctx)) {
@@ -383,7 +391,7 @@ public class MenuScreen extends BaseActivity {
                             } else
                                 CommonUtility.showCustomAlertError(MenuScreen.this, getString(R.string.internet_error));
                             break;
-                        case 10:
+                        case 11:
                             //contact us
 
                             Helpshift.install(getApplication(), "f791ca5c1cf8602084c8f5efcd4f7a39", "walkover.helpshift.com", "walkover_platform_20150113085919138-fc8f1be901e44d4");
@@ -426,13 +434,19 @@ public class MenuScreen extends BaseActivity {
                             overridePendingTransition(R.anim.animation1, R.anim.animation2);
                             break;
                         case 4:
+                            //callforwarding
+                            start_screen = new Intent(ctx, CallForwardActivity.class);
+                            ctx.startActivity(start_screen);
+                            overridePendingTransition(R.anim.animation1, R.anim.animation2);
+                            break;
+                        case 5:
                             //gotoweb
                             if (CommonUtility.isNetworkAvailable(ctx)) {
                                 new GotoWeb().execute();
                             } else
                                 CommonUtility.showCustomAlertError(MenuScreen.this, getString(R.string.internet_error));
                             break;
-                        case 5:
+                        case 6:
                             //contact us
                             Helpshift.install(getApplication(), "f791ca5c1cf8602084c8f5efcd4f7a39", "walkover.helpshift.com", "walkover_platform_20150113085919138-fc8f1be901e44d4");
 
@@ -465,7 +479,6 @@ public class MenuScreen extends BaseActivity {
         });
 
 
-
         super.onResume();
     }
 
@@ -479,7 +492,7 @@ public class MenuScreen extends BaseActivity {
 
         adapter = new CustomGridAdapter(MenuScreen.this, web, imageId);
 
-        if (Prefs.getUserType(ctx).equals("4") || ! Prefs.getResellerID(ctx).equals("2")) {
+        if (Prefs.getUserType(ctx).equals("4") || !Prefs.getResellerID(ctx).equals("2")) {
             myAccountManager = AccountManager.get(this);
             adapter = new CustomGridAdapter(MenuScreen.this, web1, imageId1);
         }

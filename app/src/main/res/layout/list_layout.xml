@@ -63,7 +63,11 @@
             android:background="@drawable/menu" />
     </RelativeLayout>
 
-
+    <include
+        layout="@layout/error_message_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
     <ListView
         android:id="@+id/contacts_list"
         android:layout_width="match_parent"
@@ -77,5 +81,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal" />
+
 
 </LinearLayout>

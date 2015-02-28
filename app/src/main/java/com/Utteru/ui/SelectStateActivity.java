@@ -40,13 +40,10 @@ public class SelectStateActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.list_layout);
         init();
         Mint.initAndStartSession(SelectStateActivity.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
-
 
 
     }

@@ -248,17 +248,17 @@ public class UserService {
     }
 
     public Boolean isAccessNumberDedicated(String accessNumber) {
-        Boolean state=false;
+        Boolean state = false;
         extraFunction();
         sdb = dbH.getReadableDatabase();
 
 
-        String s  = "SELECT * FROM " + DBHandler.ACCESSCONTACTSTABLE + " WHERE " + DBHandler.AN_ACCESS_NUMBER + " = '" + accessNumber + "' AND "+DBHandler.AN_EXTENSION_NUMBER+"='100'";
+        String s = "SELECT * FROM " + DBHandler.ACCESSCONTACTSTABLE + " WHERE " + DBHandler.AN_ACCESS_NUMBER + " = '" + accessNumber + "' AND " + DBHandler.AN_EXTENSION_NUMBER + "='100'";
 
         Cursor c = sdb.rawQuery(s, null);
         if (c != null) {
             if (c.moveToFirst()) {
-            state= true;
+                state = true;
             }
             c.close();
         }
@@ -266,8 +266,6 @@ public class UserService {
         System.out.println("stoping fetch");
         return state;
     }
-
-
 
 
     public int deleteAllAccessData() {
@@ -421,7 +419,6 @@ public class UserService {
     }
 
 
-
     public ArrayList<AccessContactDto> getAllAccessContactsByAccessNumber(String accessNumber) {
         System.out.println("starting fetch");
         ArrayList<AccessContactDto> recentDtoList = new ArrayList<AccessContactDto>();
@@ -572,7 +569,7 @@ public class UserService {
         values.put(DBHandler.C_TIME, dto.getTime());
 
 
-        long i = sdb.insertWithOnConflict(DBHandler.RECENTCALLS,null,values,SQLiteDatabase.CONFLICT_REPLACE);
+        long i = sdb.insertWithOnConflict(DBHandler.RECENTCALLS, null, values, SQLiteDatabase.CONFLICT_REPLACE);
         Log.d("Insertion in database", "Insertion database " + i);
         return i;
     }
@@ -594,8 +591,6 @@ public class UserService {
         Log.d("Insertion in database", "Insertion database " + i);
         return i;
     }
-
-
 
 
     public ArrayList<ContactsDto> getAllTwoRecentCallByGroup() {
@@ -738,6 +733,7 @@ public class UserService {
         cursor.close();
         return cnt;
     }
+
     public int deleteRecentCalls() {
         extraFunction();
         String countQuery = "DELETE   FROM " + DBHandler.RECENTCALLS;

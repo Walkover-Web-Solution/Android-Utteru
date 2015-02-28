@@ -12,13 +12,16 @@ import com.Utteru.R;
 import com.Utteru.commonUtilities.FontTextView;
 import com.Utteru.commonUtilities.VariableClass;
 import com.Utteru.dtos.AccessDataDto;
+
 import com.Utteru.ui.AccessInfoActivity;
+import com.Utteru.ui.SelectCountryCallForward;
 
 import java.util.ArrayList;
 
 public class AccessDataAdapter extends BaseAdapter {
     Activity ctx;
     ArrayList<AccessDataDto> list;
+
     int dataType;
 
     public AccessDataAdapter(ArrayList<AccessDataDto> paramArrayList, Activity paramContext, int dataType) {
@@ -26,7 +29,6 @@ public class AccessDataAdapter extends BaseAdapter {
         this.ctx = paramContext;
         this.dataType = dataType;
     }
-
 
     public int getCount() {
         return this.list.size();
