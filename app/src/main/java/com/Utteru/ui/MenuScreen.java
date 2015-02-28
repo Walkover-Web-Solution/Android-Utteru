@@ -2,7 +2,6 @@ package com.Utteru.ui;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +9,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
@@ -26,13 +26,14 @@ import com.Utteru.commonUtilities.Constants;
 import com.Utteru.commonUtilities.FontTextView;
 import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.commonUtilities.VariableClass;
+import com.Utteru.p2p.P2PService;
+import com.Utteru.parse.ContactObserver;
 import com.Utteru.userService.UserService;
 import com.Utteru.utteru_sip.DialerActivity;
+import com.Utteru.utteru_sip.SipRegisterService;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.helpshift.Helpshift;
 import com.splunk.mint.Mint;
 
@@ -43,14 +44,8 @@ import org.json.JSONObject;
 import java.util.Date;
 
 
-public class MenuScreen extends BaseActivity {
-    public static final long MILLISECONDS_PER_SECOND = 1000L;
-    public static final long SECONDS_PER_MINUTE = 60L;
-    public static final long SYNC_INTERVAL_IN_MINUTES = 60L;
-    public static final long SYNC_INTERVAL_IN_HOURS = 24L;
+public class MenuScreen extends com.Utteru.ui.BaseActivity {
 
-
-    private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static long back_pressed = 0;
     final String title1 = "NameRequired";
     final String title2 = "WeMissYourName";
@@ -64,7 +59,9 @@ public class MenuScreen extends BaseActivity {
     Tracker tracker;
     String browserapi;
     CustomGridAdapter adapter;
+
     public static boolean showbal = false;
+
 
 
     Context ctx = this;
@@ -88,7 +85,7 @@ public class MenuScreen extends BaseActivity {
             "My Account",
             "Call Forwarding",
             "Go to web",
-            "Chat with us"
+            "Help"
 
 
     };
@@ -119,6 +116,7 @@ public class MenuScreen extends BaseActivity {
             R.drawable.help
 
 
+
     };
     String Utteru_GROUP_NAME = "Utteru Contacts";
 
@@ -140,6 +138,9 @@ public class MenuScreen extends BaseActivity {
         init();
         Mint.initAndStartSession(MenuScreen.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
+
+        ContactObserver observer  = new ContactObserver(new Handler(),this);
+        ContactObserver.registerObserver(this,ContactsContract.CommonDataKinds.Phone.CONTENT_URI,observer);
 
 
         Account account = new Account(Constants.ACCOUNT_NAME, Constants.ACCOUNT_TYPE);
@@ -189,6 +190,15 @@ public class MenuScreen extends BaseActivity {
             AskNumber.isnewSignup = false;
         }
         CommonUtility.getUserBalance(this);
+
+        //starting  p2p service
+        if(!CommonUtility.isMyServiceRunning(P2PService.class, this))
+          getApplicationContext().startService(new Intent(this, P2PService.class));
+        //starting  sip  service
+        if(!CommonUtility.isMyServiceRunning(SipRegisterService.class, this))
+            getApplicationContext().startService(new Intent(this, SipRegisterService.class));
+
+
         super.onStart();
     }
 
@@ -212,42 +222,22 @@ public class MenuScreen extends BaseActivity {
     }
 
     public void setBalance() {
-
-        if (showbal) {
+        if ((new Date().getTime()) % 5 == 0) {
 
 
             userBalance.setText("Buy More");
+<<<<<<< HEAD
             showbal = false;
         } else {
             userBalance.setText(Prefs.getUserBalance(ctx));
             showbal = true;
+=======
+        } else {
+            userBalance.setText(Prefs.getUserBalance(ctx));
+>>>>>>> final with p2p and parse
         }
 
-//        long temp_time = System.currentTimeMillis();
-//        if(difference==20)
-//        {
-//         if(lastupdated-temp_time==20) {
-//
-//             userBalance.setText("Buy More");
-//             lastupdated=temp_time;
-//             difference =5;
-//         }
-//
-//        }
-//        else if(difference==5)
-//        {
-//            if(lastupdated-temp_time==5)
-//            {
-//                userBalance.setText(Prefs.getUserBalance(ctx));
-//                lastupdated=temp_time;
-//                difference=20;
-//            }
-//
-//        }
-//        else if(difference==0) {
-//            userBalance.setText(Prefs.getUserBalance(ctx));
-//            lastupdated=temp_time;
-//        }
+
 
     }
 
@@ -259,8 +249,11 @@ public class MenuScreen extends BaseActivity {
     }
 
 
+
+
     @Override
     protected void onResume() {
+
 
 
         if (UserService.getUserServiceInstance(ctx).getAllCountries().size() == 0) {
@@ -402,6 +395,7 @@ public class MenuScreen extends BaseActivity {
                             overridePendingTransition(R.anim.animation1, R.anim.animation2);
                             break;
 
+
                     }
                 } else
 
@@ -420,9 +414,6 @@ public class MenuScreen extends BaseActivity {
                             break;
 
                         case 0:
-//                       buy now
-                            //  start_screen = new Intent(ctx, BuyNowOptionsActivity.class);
-                            //  ctx.startActivity(start_screen);
                             start_screen = new Intent(ctx, DialerActivity.class);
                             ctx.startActivity(start_screen);
                             overridePendingTransition(R.anim.animation1, R.anim.animation2);
@@ -457,6 +448,7 @@ public class MenuScreen extends BaseActivity {
                             break;
 
 
+
                     }
                 }
 
@@ -479,6 +471,15 @@ public class MenuScreen extends BaseActivity {
         });
 
 
+<<<<<<< HEAD
+=======
+        setBalance();
+
+
+
+
+
+>>>>>>> final with p2p and parse
         super.onResume();
     }
 
@@ -503,20 +504,20 @@ public class MenuScreen extends BaseActivity {
     }
 
 
-    private boolean checkPlayServices(Activity c) {
-
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(c);
-        if (resultCode != ConnectionResult.SUCCESS) {
-            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
-                GooglePlayServicesUtil.getErrorDialog(resultCode, c,
-                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
-            } else {
-                Log.i("Utteru", "This device is not supported.");
-            }
-            return false;
-        }
-        return true;
-    }
+//    private boolean checkPlayServices(Activity c) {
+//
+//        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(c);
+//        if (resultCode != ConnectionResult.SUCCESS) {
+//            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+//                GooglePlayServicesUtil.getErrorDialog(resultCode, c,
+//                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
+//            } else {
+//                Log.i("Utteru", "This device is not supported.");
+//            }
+//            return false;
+//        }
+//        return true;
+//    }
 
 
     class GotoWeb extends AsyncTask<Void, Void, Void> {
@@ -585,6 +586,10 @@ public class MenuScreen extends BaseActivity {
             return null;
         }
     }
+
+
+
+
 
 
 }

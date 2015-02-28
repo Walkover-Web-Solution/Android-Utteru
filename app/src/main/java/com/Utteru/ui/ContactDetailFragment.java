@@ -18,6 +18,7 @@ package com.Utteru.ui;
 
 import android.accounts.Account;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
@@ -26,6 +27,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts.Photo;
 import android.support.v4.BuildConfig;
@@ -49,6 +51,8 @@ import com.Utteru.commonUtilities.VariableClass;
 import com.Utteru.dtos.AccessContactDto;
 import com.Utteru.util.ImageLoader;
 import com.Utteru.util.Utils;
+import com.Utteru.utteru_sip.CallData;
+import com.Utteru.utteru_sip.CallingScreenActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,7 +60,7 @@ import org.json.JSONObject;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class ContactDetailFragment extends Fragment {
+public class  ContactDetailFragment extends Fragment {
 
     public static final String EXTRA_CONTACT_URI = "com.Utteru.ui.EXTRA_CONTACT_URI";
     private static final String TAG = "ContactDetailFragment";
@@ -64,12 +68,22 @@ public class ContactDetailFragment extends Fragment {
     private Uri mContactUri; // Stores the contact Uri for this fragment instance
     private ImageLoader mImageLoader; // Handles loading the contact image in a background thread
     private ImageView mImageView;
+    callUser call_listener;
 
 
 
 
 
     public ContactDetailFragment() {
+    }
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            call_listener = (callUser) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnURLSelectedListener");
+        }
     }
 
     public static ContactDetailFragment newInstance(AccessContactDto accessContactDto) {
@@ -137,6 +151,7 @@ public class ContactDetailFragment extends Fragment {
         final FontTextView name_text = (FontTextView) detailView.findViewById(R.id.contact_detail_title);
         final LinearLayout access_details_layout = (LinearLayout) detailView.findViewById(R.id.access_number_details);
         final ImageView contact_detail_divide = (ImageView)detailView.findViewById(R.id.contact_detail_divider);
+        final ImageView call_free_imgview = (ImageView)detailView.findViewById(R.id.call_free_img);
 
         Button assignAccessNumber = (Button) detailView.findViewById(R.id.assignButton);
 
@@ -182,9 +197,20 @@ public class ContactDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //dialNumber(mobileNumber.toString());
-                CommonUtility.makeCall(getActivity(), mAccessContactDto.getMobile_number());
-                getActivity().finish();
+//                CommonUtility.makeCall(getActivity(), mAccessContactDto.getMobile_number());
+//
+//                getActivity().finish();
+                launchCallingActivity(CommonUtility.validateNumberForApi(mAccessContactDto.getMobile_number()),mAccessContactDto.getDisplay_name(), SystemClock.elapsedRealtime(),false,null,System.currentTimeMillis());
+//                call_listener.onCall(0,mAccessContactDto);
 
+
+
+            }
+        });
+        call_free_imgview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                call_listener.onCall(0,mAccessContactDto);
             }
         });
         gohome.setOnClickListener(new View.OnClickListener() {
@@ -228,9 +254,11 @@ public class ContactDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                String number = CommonUtility.validateNumberForApi(mAccessContactDto.getMobile_number());
 
 
-                if (mAccessContactDto.getMobile_number().length() > 8 && mAccessContactDto.getMobile_number().length() < 18 && mAccessContactDto.getMobile_number().matches("[0-9+]*")) {
+
+                if (number.length() > 8 && number.length() < 18 &&number.matches("[0-9+]*")) {
                     if (CommonUtility.isNetworkAvailable(getActivity().getBaseContext())) {
                         if (mAccessContactDto.getAccess_number() == null) {
                             mAccessContactDto.setDisplay_name(CommonUtility.validateText(mAccessContactDto.getDisplay_name()));
@@ -422,6 +450,30 @@ public class ContactDetailFragment extends Fragment {
             }
 
         }
+    }
+    public interface callUser {
+        public void onCall(int action, AccessContactDto dto);
+    }
+
+
+    void launchCallingActivity(String number, String name, long time, boolean isongoing, String price,long date) {
+
+        String calleename = name;
+        if (calleename == null)
+            calleename = CommonUtility.getContactDisplayNameByNumber(number, getActivity().getBaseContext());
+
+
+        CallData calldata = CallData.getCallDateInstance();
+        Log.e("setting variable ","setting variable "+name );
+        calldata.setCallee_number(number);
+        calldata.setCallee_name(calleename);
+        calldata.setTime_elapsed(time);
+        calldata.setCallType(isongoing);
+        calldata.setCall_price(price);
+        calldata.setDate(date);
+
+        startActivity(new Intent(getActivity(),CallingScreenActivity.class));
+        getActivity().overridePendingTransition(R.anim.animation1, R.anim.animation2);
     }
 
 

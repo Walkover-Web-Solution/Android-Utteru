@@ -126,10 +126,11 @@ public class ContactsListActivity extends ActionBarActivity {
 
     public static class DemoCollectionPagerAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
 
-        protected static final String[] CONTENT = new String[]{"All Contacts", "Access Contacts"};
+        protected static final String[] CONTENT = new String[]{"All Contacts", "Access Contacts","Utteru Users"};
         protected final int[] ICONS = new int[]{
                 R.drawable.all_contact,
-                R.drawable.access_contacts
+                R.drawable.access_contacts,
+                R.drawable.ic_launcher
         };
         private int mCount = CONTENT.length;
 
@@ -147,6 +148,9 @@ public class ContactsListActivity extends ActionBarActivity {
                 case 1:
                     // Access Contacts Fragment
                     return new ContactsAccessFragment();
+                case 2:
+                    // Access Contacts Fragment
+                    return new AvailableUsersFragment();
             }
             return null;
         }

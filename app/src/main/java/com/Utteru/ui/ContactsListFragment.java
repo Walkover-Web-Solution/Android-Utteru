@@ -3,11 +3,9 @@ package com.Utteru.ui;
 import android.accounts.Account;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
-import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -38,7 +36,6 @@ import com.Utteru.commonUtilities.Constants;
 import com.Utteru.commonUtilities.FontTextView;
 import com.Utteru.commonUtilities.VariableClass;
 import com.Utteru.dtos.AccessContactDto;
-import com.Utteru.syncadapter.SyncAdapter;
 import com.Utteru.userService.UserService;
 import com.Utteru.util.ImageLoader;
 import com.Utteru.util.Utils;
@@ -139,11 +136,8 @@ public class ContactsListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
 
         AccessContactDto cdto = (AccessContactDto) l.getItemAtPosition(position);
+        cdto.setMobile_number(CommonUtility.validateNumberForUI(cdto.getMobile_number(),mContext));
         Log.e("number on click", "" + cdto.getMobile_number());
-        String number1 = CommonUtility.validateNumberForUI(cdto.getMobile_number(), mContext);
-        Log.e("number on click2", "" + number1);
-
-        cdto.setMobile_number(number1);
         cdto = UserService.getUserServiceInstance(mContext).getAccessConDataByNumber(cdto.getMobile_number());
 
 
@@ -334,7 +328,7 @@ public class ContactsListFragment extends ListFragment {
     }
 
     public ArrayList<AccessContactDto> readContactsNew() {
-        int currentApiVersion = android.os.Build.VERSION.SDK_INT;
+        int currentApiVersion = Build.VERSION.SDK_INT;
         String SELECTION;
         SELECTION =
                 Contacts.DISPLAY_NAME
@@ -348,7 +342,7 @@ public class ContactsListFragment extends ListFragment {
             String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
             name = CommonUtility.validateText(name);
             String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-            // phoneNumber =CommonUtility.validateNumberForUI(phoneNumber,mContext);
+//            phoneNumber = CommonUtility.validateNumberForUI(phoneNumber, mContext);
             String label = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.LABEL));
             String photoUri = null;
             String contact_id = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID));
@@ -375,10 +369,16 @@ public class ContactsListFragment extends ListFragment {
     {
         @Override
         protected void onPostExecute(Void aVoid) {
-
-            mAdapter = new AccessContactAdapter(allcontacts, getActivity(), mImageLoader);
-            if (getActivity() != null)
-                getListView().setAdapter(mAdapter);
+            if (allcontacts.size() > 0) {
+                textempty.setVisibility(View.GONE);
+                getListView().setVisibility(View.VISIBLE);
+                mAdapter = new AccessContactAdapter(allcontacts, getActivity(), mImageLoader);
+                if (getActivity() != null)
+                    getListView().setAdapter(mAdapter);
+            } else {
+                textempty.setVisibility(View.VISIBLE);
+                getListView().setVisibility(View.GONE);
+            }
             dialog.dismiss();
 
             super.onPostExecute(aVoid);
@@ -389,6 +389,7 @@ public class ContactsListFragment extends ListFragment {
 
 
             allcontacts = readContactsNew();
+
 
             Collections.sort(allcontacts, new Comparator<AccessContactDto>() {
                 @Override

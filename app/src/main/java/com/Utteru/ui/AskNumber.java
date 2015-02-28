@@ -687,7 +687,7 @@ public class AskNumber extends AccountAuthenticatorActivity {
 
                 }else {
                     CommonUtility.clearData(ctx);
-                    CommonUtility.showCustomAlertForContactsError(ctx, "Not providing access for Resellers.Please visit website");
+                    CommonUtility.showCustomAlertForContactsError(ctx, "Not providing access for Resellers.Please visit our website");
                 }
             }
 

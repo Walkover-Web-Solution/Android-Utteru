@@ -28,10 +28,12 @@ import com.Utteru.service.PortSipService;
 import com.Utteru.util.Line;
 import com.Utteru.util.Session;
 import com.Utteru.util.SipContact;
+import com.parse.Parse;
 import com.portsip.OnPortSIPEvent;
 import com.portsip.PortSipErrorcode;
 import com.portsip.PortSipSdk;
 import com.portsip.Renderer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,8 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
     public static Boolean isCallDisconnected = false;
     public static Boolean isCallConnected = false;
     public static Boolean isCallInProgress = false;
+
+
     //  private  BroadcastReceiver registrationReceiver;
     Intent srvIntent = null;
     // IntentFilter filter;
@@ -113,8 +117,11 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
     public void onCreate() {
         super.onCreate();
 
-        sdk = new PortSipSdk();
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, CommonUtility.PARSE_APP_ID, CommonUtility.PARSE_CLIENT_ID);
 
+
+        sdk = new PortSipSdk();
         srvIntent = new Intent(this, PortSipService.class);
         connection = new MyServiceConnection();
 
@@ -137,6 +144,11 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
         audiomanager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);//to silent ring
        /* registrationReceiver = new MyCallReceiver();
          filter = new IntentFilter();*/
+        // Enable Local Datastore.
+
+
+
+
     }
 
 
@@ -1070,7 +1082,7 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
         mBuilder.setSmallIcon(R.drawable.ic_launcher);
         mBuilder.setOngoing(true);
 
-        Bitmap icon = BitmapFactory.decodeResource(context.getResources(),R.drawable.ic_launcher);
+        Bitmap icon = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher);
         mBuilder.setLargeIcon(icon);
         mBuilder.setSmallIcon(R.drawable.ic_launcher);
 

@@ -48,6 +48,7 @@ import com.Utteru.R;
 import com.Utteru.adapters.AccessContactAdapter;
 import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.Constants;
+import com.Utteru.commonUtilities.FontTextView;
 import com.Utteru.commonUtilities.VariableClass;
 import com.Utteru.dtos.AccessContactDto;
 import com.Utteru.syncadapter.SyncAdapter;
@@ -74,6 +75,7 @@ public class ContactsAccessFragment extends ListFragment {
     SwipeRefreshLayout refreshLayout;
     private AccessContactAdapter mAdapter;
     ProgressDialog dialog;
+    FontTextView textempty;
     private ImageLoader mImageLoader; // Handles loading the contact image in a background thread
 
 
@@ -147,6 +149,9 @@ public class ContactsAccessFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the list fragment layout
+        View access_layout =inflater.inflate(R.layout.contact_list_fragment, container, false);
+        textempty = (FontTextView)access_layout .findViewById(android.R.id.empty);
+        textempty.setText("No user found !!");
         mContext = getActivity().getBaseContext();
         dialog = new ProgressDialog(getActivity(), R.style.MyTheme);
         dialog.setMessage(getString(R.string.please_wait));
@@ -154,7 +159,7 @@ public class ContactsAccessFragment extends ListFragment {
 
         dialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         new loadData().execute();
-        return inflater.inflate(R.layout.contact_list_fragment, container, false);
+        return access_layout;
     }
 
     @Override
@@ -389,10 +394,19 @@ public class ContactsAccessFragment extends ListFragment {
         @Override
         protected void onPostExecute(Void aVoid) {
 
-            mAdapter = new AccessContactAdapter(allcontacts, getActivity(), mImageLoader);
-            if (getActivity() != null)
-                getListView().setAdapter(mAdapter);
-            mAdapter.notifyDataSetChanged();
+            if(allcontacts.size()>0) {
+                textempty.setVisibility(View.GONE);
+                getListView().setVisibility(View.VISIBLE);
+                mAdapter = new AccessContactAdapter(allcontacts, getActivity(), mImageLoader);
+                if (getActivity() != null)
+                    getListView().setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
+            }
+            else
+            {
+                textempty.setVisibility(View.VISIBLE);
+                getListView().setVisibility(View.GONE);
+            }
             dialog.dismiss();
             super.onPostExecute(aVoid);
         }
@@ -401,7 +415,9 @@ public class ContactsAccessFragment extends ListFragment {
         protected Void doInBackground(Void... params) {
 
 
+
             allcontacts = UserService.getUserServiceInstance(mContext).getAllAccessContacts();
+
 
             Collections.sort(allcontacts, new Comparator<AccessContactDto>() {
                 @Override

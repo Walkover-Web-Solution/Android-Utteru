@@ -1,0 +1,218 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/calling_icon"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight=".6"
+            android:background="@android:color/transparent">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/caller" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/ed_calling_screen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/keyboard_bg"
+
+        android:visibility="gone" />
+
+    <RelativeLayout
+
+        android:id="@+id/user_info"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/calling_icon"
+        android:layout_weight=".4"
+        android:background="@color/white">
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.Utteru.commonUtilities.FontTextView
+                    android:id="@+id/remoteUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/new_margin"
+                    android:gravity="center_horizontal"
+                    android:text="Sneha"
+                    android:textColor="@color/transparent_black"
+                    android:textSize="@dimen/abc_text_size_display_1_material" />
+
+
+
+
+                <com.Utteru.commonUtilities.FontTextView
+                    android:id="@+id/call_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/remoteUser"
+                    android:layout_margin="@dimen/new_margin"
+                    android:gravity="center_horizontal"
+
+                    android:textColor="@color/light_black" />
+
+
+                <LinearLayout
+                    android:id="@+id/time_price"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/call_status"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.Utteru.commonUtilities.FontTextView
+                        android:id="@+id/callDuration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="@dimen/new_margin"
+                        android:textColor="@color/dark_black"
+                        android:textSize="20dp"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/call_price_divider"
+                        android:layout_width="1dp"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="2dp"
+                        android:background="@color/new_gray"
+                        android:visibility="gone">
+                        /></ImageView>
+
+                    <com.Utteru.commonUtilities.FontTextView
+                        android:id="@+id/call_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="12 USD"
+                        android:textColor="@color/dark_black"
+                        android:textSize="20dp"
+                        android:visibility="gone" />
+
+
+                </LinearLayout>
+            </RelativeLayout>
+        </FrameLayout>
+
+        <LinearLayout
+
+            android:id="@+id/dialpad_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@android:color/transparent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+
+            <android.inputmethodservice.KeyboardView
+                android:id="@+id/keyboardview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/keyboard_bg"
+                android:keyBackground="@drawable/key_background"
+                android:keyTextColor="#666666"
+                android:keyTextSize="25dp"
+
+                android:shadowColor="@android:color/transparent" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/frame">
+
+            <RelativeLayout
+                android:id="@+id/buttons"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/call_action"
+                android:layout_marginTop="@dimen/new_margin">
+
+                <ImageButton
+                    android:id="@+id/microphone"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="70dp"
+                    android:background="@drawable/mute_inactive" />
+
+                <ImageButton
+                    android:id="@+id/open_dialpad"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/dial_pad_off"
+                    android:visibility="visible" />
+
+                <ImageButton
+                    android:id="@+id/switch_speaker"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="70dp"
+                    android:background="@drawable/speaker_inactive"
+
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+
+                android:id="@id/call_action"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:background="@color/dark_red">
+                <ImageButton
+
+                    android:id="@+id/answerButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="@dimen/new_margin"
+
+                    android:background="@drawable/call_btn" />
+
+                <ImageButton
+
+                    android:id="@+id/declineButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="@dimen/new_margin"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/answerButton"
+                    android:background="@drawable/call_end" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

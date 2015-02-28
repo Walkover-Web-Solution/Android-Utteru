@@ -7,6 +7,7 @@ import android.accounts.AccountManagerFuture;
 import android.accounts.AuthenticatorException;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -21,6 +22,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo.State;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
@@ -34,6 +36,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.Utteru.R;
 import com.Utteru.dtos.MultipleVerifiedNumber;
+import com.Utteru.parse.ContactsDto;
 import com.Utteru.ui.Apis;
 import com.Utteru.ui.FundTransferActivity;
 import com.Utteru.ui.MenuScreen;
@@ -64,6 +67,14 @@ public class CommonUtility {
     public final static String BUGSENSEID = "1a1d2717";
     public final static String BUGSENSELIVE = "395e969a";
     public final static String BUGSENSEID_TEST = "1a1d2717";
+
+    public static final String APP_KEY = "21384a7d-f111-400d-8202-ff29b5b6df56";
+    public static final String APP_SECRET = "OFbB7aMIJ0auppPm2I11Uw==";
+    public static final String ENVIRONMENT = "sandbox.sinch.com";
+
+
+    public final static  String PARSE_APP_ID = "nkUvfH1hYs7e3u8dU0N6DMhqyYO47zAe8W3v3y5G";
+    public final static  String PARSE_CLIENT_ID="WaDxKh5iq8nfGsRucBCcfDW4tATuFFYGqoilTbk3";
     public static ArrayList<MultipleVerifiedNumber> c_list;
     public static ProgressDialog dialog;
     public static HashMap<String, String> currency_list;
@@ -164,20 +175,26 @@ public class CommonUtility {
         number = number.replace("//s+", "");//space
         number = number.replaceAll("-", ""); //dash
         number = number.trim();
-        if (!number.startsWith("+") && !number.startsWith("00")) {
-            number = "+" + Prefs.getUserCountryCode(ctx) + number;
-        } else if (number.startsWith("0")) {
-
-            number = number.replaceFirst("0", "");
-            number = "+" + Prefs.getUserCountryCode(ctx) + number;
 
 
+
+
+        if (number.startsWith("+") && number.startsWith("00")) {
+
+            return number;
         }
-        number = number.replace("//s+", "");//space
-        number = number.replaceAll("-", ""); //dash
+        else
+         if (number.startsWith("0")) {
 
+             number = number.replaceFirst("0", "");
+             number = "+" + Prefs.getUserCountryCode(ctx) + number;
+             return number;
+         }
+        else{
+             number = "+" + Prefs.getUserCountryCode(ctx) + number;
+             return number;
+         }
 
-        return number;
     }
 
 
@@ -254,7 +271,6 @@ public class CommonUtility {
             }.execute(null, null, null);
         } else {
             showCustomAlert(c, c.getResources().getString(R.string.internet_error));
-            c.setBalance();
         }
     }
 
@@ -650,6 +666,7 @@ public class CommonUtility {
         paint.setTextAlign(Paint.Align.CENTER);
         Typeface tf = Typeface.createFromAsset(ctx.getAssets(), "fonts/mc_handwriting.ttf");
         paint.setTypeface(tf);
+
         String temp;
 
         text = validateText(text);
@@ -668,6 +685,8 @@ public class CommonUtility {
             temp = "NA";
 
         }
+
+
         int width = getListPreferredItemHeight(ctx);
         //float baseline = width - (width / 4); // ascent() is negative
         int height = getListPreferredItemHeight(ctx);
@@ -748,6 +767,7 @@ public class CommonUtility {
         if (!number.startsWith("+"))
             number = "+" + number;
 
+
         callIntent.setData(Uri.parse("tel:" + number));
         callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         c.startActivity(callIntent);
@@ -760,5 +780,44 @@ public class CommonUtility {
 
     }
 
+    public static boolean isMyServiceRunning(Class<?> serviceClass,Context ctx) {
+        ActivityManager manager = (ActivityManager)ctx. getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public  static ArrayList<ContactsDto> readContactsNew(Context ctx) {
+        int currentApiVersion = Build.VERSION.SDK_INT;
+        String SELECTION;
+        SELECTION =
+                ContactsContract.Contacts.DISPLAY_NAME
+                        + "<>'' AND "
+                        + ContactsContract.CommonDataKinds.Phone.HAS_PHONE_NUMBER + "=1";
+
+        ArrayList<ContactsDto> list = new ArrayList<ContactsDto>();
+        ContactsDto adto;
+        Cursor phones = ctx.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, SELECTION, null, null);
+        while (phones.moveToNext()) {
+
+            String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            phoneNumber = phoneNumber.replaceAll("-", "").replaceAll("\\s+", "");
+            String label = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.LABEL));
+
+            adto = new ContactsDto();
+            adto.setNumber(CommonUtility.validateNumberForUI(phoneNumber,ctx));
+            adto.setStatus(false);
+            adto.setState(false);
+            adto.setUserNumber(Prefs.getUserDefaultNumber(ctx));
+
+                list.add(adto);
+
+        }
+        phones.close();
+        return list;
+    }
 
 }
