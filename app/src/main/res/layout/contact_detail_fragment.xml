@@ -73,15 +73,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/con_profile" />
+            <RelativeLayout android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
             <com.Utteru.commonUtilities.FontTextView
                 android:id="@+id/contact_number"
                 android:layout_width="wrap_content"
+               android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="123456789"
+                android:text="123"
                 android:textColor="@color/blue_dark"
                 android:textSize="@dimen/abc_text_size_medium_material" />
+
+
+                <com.Utteru.ui.RoundedImageView
+                    android:id="@+id/call_free_img"
+                    android:layout_toRightOf="@id/contact_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/call_access"
+                    android:layout_marginLeft="@dimen/new_margin"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
+                </RelativeLayout>
         </LinearLayout>
 
         <ImageView
@@ -176,8 +193,8 @@
                 android:id="@+id/assignButton"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/new_btn_size"
-                android:layout_marginLeft="@dimen/hs__marginLeft"
-                android:layout_marginRight="@dimen/hs__marginLeft"
+                android:layout_marginLeft="@dimen/new_margin"
+                android:layout_marginRight="@dimen/new_margin"
                 android:layout_marginTop="@dimen/new_margin"
                 android:background="@drawable/contact_details_button_shape"
                 android:text="ASSIGN ACCESS NUMBER"
@@ -188,8 +205,8 @@
                 android:id="@+id/unassignButton"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/new_btn_size"
-                android:layout_marginLeft="@dimen/hs__marginLeft"
-                android:layout_marginRight="@dimen/hs__marginLeft"
+                android:layout_marginLeft="@dimen/new_margin"
+                android:layout_marginRight="@dimen/new_margin"
                 android:layout_marginTop="@dimen/new_margin"
                 android:background="@drawable/contact_details_unassign_button_shape"
                 android:text="UNASSIGN ACCESS NUMBER"

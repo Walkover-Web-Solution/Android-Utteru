@@ -20,6 +20,8 @@ import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.Constants;
 import com.Utteru.commonUtilities.GcmRegistrationTask;
 import com.Utteru.commonUtilities.Prefs;
+import com.Utteru.p2p.P2PService;
+import com.Utteru.utteru_sip.SipRegisterService;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -112,7 +114,18 @@ public class SignUpHome extends BaseActivity {
 
             Intent startmenu = new Intent(ctx, activityClass);
             startmenu.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+            //starting p2p service
+           if(!CommonUtility.isMyServiceRunning(P2PService.class, this))
+            getApplicationContext().startService(new Intent(this, P2PService.class));
+
+            //starting sip service
+            if(!CommonUtility.isMyServiceRunning(SipRegisterService.class, this))
+                getApplicationContext().startService(new Intent(this, SipRegisterService.class));
+
+
             startActivity(startmenu);
+
             this.finish();
             overridePendingTransition(R.anim.animation1, R.anim.animation2);
 

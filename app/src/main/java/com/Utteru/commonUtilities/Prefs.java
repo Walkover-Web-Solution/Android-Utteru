@@ -41,6 +41,7 @@ public class Prefs {
     private static final String USERSIPNAME = "user_sip_name";
     private static final String USERSIPPASSWORD = "user_sip_password";
     private static final String TOTALEARN = "total_earn";
+
     private static final String PLAN_RATE = "plan_rate";
     private static final String ASSIGN_ID = "assignId";
     private static final String PLAN_ID = "planid";
@@ -48,6 +49,8 @@ public class Prefs {
     public static String PERSE_SIP = "45.56.69.233";
     public static String SIP_PORT = "27376";
     public static String PERSE_PORT = "27376";
+    private static final String CONSYNC = "con_synch";
+
 
 
     private static SharedPreferences getPrefs(Context context) {
@@ -222,13 +225,6 @@ public class Prefs {
         return getPrefs(context).getString(USER_DISPLAY, "");
     }
 
-    public static String getPositionArray(Context context) {
-        return getPrefs(context).getString(POSITION_ARRAY, "");
-    }
-
-    public static void setPositionArray(Context context, String value) {
-        getPrefs(context).edit().putString(POSITION_ARRAY, value).commit();
-    }
 
     public static String getUserType(Context context) {
         return getPrefs(context).getString(USER_TYPE, "");
@@ -340,6 +336,14 @@ public class Prefs {
 
     public static void setTotalearn(Context context, String value) {
         getPrefs(context).edit().putString(TOTALEARN, value).commit();
+    }
+
+    public static Boolean getConSync(Context context) {
+        return getPrefs(context).getBoolean(CONSYNC, false);
+    }
+
+    public static void setConSync(Context context, Boolean value) {
+        getPrefs(context).edit().putBoolean(CONSYNC, value).commit();
     }
 
     public static void deletePrefs(Context context) {

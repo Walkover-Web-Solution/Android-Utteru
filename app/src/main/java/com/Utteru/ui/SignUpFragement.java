@@ -41,7 +41,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class  SignUpFragement extends Fragment {
+public class SignUpFragement extends Fragment {
     public static final int REQUEST_CODE = 1;
     public static final int RESULT_OK = 1;
     public static final String NOTVALID = "6017";
@@ -434,7 +434,7 @@ public class  SignUpFragement extends Fragment {
                                 jarray = joparent.getJSONArray(VariableClass.ResponseVariables.CONTENT);
                                 MultipleVerifiedNumber mdtos;
                                 CommonUtility.c_list = new ArrayList<MultipleVerifiedNumber>();
-                                String tempnum=CommonUtility.validateNumberForApi(user_number_string);
+                                String tempnum= CommonUtility.validateNumberForApi(user_number_string);
                                 for (int i = 0; i < jarray.length(); i++) {
                                     mdtos = new MultipleVerifiedNumber();
                                     jochild = jarray.getJSONObject(i);

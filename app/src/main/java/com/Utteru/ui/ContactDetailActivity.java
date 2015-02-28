@@ -20,18 +20,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.BuildConfig;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.Utteru.R;
 import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.commonUtilities.VariableClass;
 import com.Utteru.dtos.AccessContactDto;
+import com.Utteru.p2p.CallScreenActivity;
+import com.Utteru.p2p.SinchService;
 import com.Utteru.util.Utils;
+import com.sinch.android.rtc.calling.Call;
 import com.splunk.mint.Mint;
 
 
-public class ContactDetailActivity extends ActionBarActivity {
+public class ContactDetailActivity extends com.Utteru.p2p.BaseActivity implements  ContactDetailFragment.callUser {
     // Defines a tag for identifying the single fragment that this activity holds
     private static final String TAG = "ContactDetailActivity";
 
@@ -40,6 +44,8 @@ public class ContactDetailActivity extends ActionBarActivity {
         if (CommonUtility.dialog != null) {
             CommonUtility.dialog.dismiss();
         }
+
+        stopButtonClicked();
         super.onDestroy();
     }
 
@@ -71,16 +77,56 @@ public class ContactDetailActivity extends ActionBarActivity {
     public void onBackPressed() {
 
 
-        if (getIntent().getExtras().containsKey(VariableClass.Vari.SOURCECLASS)) {
+        if(getIntent().getExtras().containsKey(VariableClass.Vari.SOURCECLASS)){
 
-            this.finish();
+           this.finish();
 
-        } else {
+        }
+        else {
 
-//            startActivity(new Intent(ContactDetailActivity.this, ContactsListActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             super.onBackPressed();
             this.finish();
             overridePendingTransition(R.anim.animation3, R.anim.animation4);
         }
     }
+    public void stopButtonClicked() {
+        if (getSinchServiceInterface() != null) {
+            getSinchServiceInterface().stopClient();
+        }
+        finish();
+    }
+
+    public void callButtonClicked(String number ) {
+        String userName = number.replace("+","");
+        userName = userName.replace("\\s+","");
+        userName = userName.replace(" ","");
+
+       Log.e("calling number ",""+number);
+        if (userName.isEmpty()) {
+            Toast.makeText(this, "Please enter a user to call", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        Call call = getSinchServiceInterface().callUser(userName);
+        if(call!=null) {
+            String callId = call.getCallId();
+
+            Intent callScreen = new Intent(this, CallScreenActivity.class);
+            callScreen.putExtra(SinchService.CALL_ID, callId);
+            startActivity(callScreen);
+        }
+        else{
+            CommonUtility.showCustomAlertForContactsError(this, "Not able to initiate call");
+        }
+    }
+
+    @Override
+    public void onCall(int action, AccessContactDto dto) {
+
+        if(action==0)
+        {
+            callButtonClicked(dto.getMobile_number());
+        }
+    }
+
 }
