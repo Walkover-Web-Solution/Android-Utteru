@@ -201,8 +201,8 @@ public class TwoWayCallFrag extends Fragment {
                                 if (source_string.length() > 8 && source_string.length() < 18) {
                                     if (destination_string.length() > 8 && destination_string.length() < 18) {
 
-                                   source_string  =CommonUtility.validateNumberForApi(source_string);
-                                    destination_string =CommonUtility.validateNumberForApi(destination_string);
+                                        source_string = CommonUtility.validateNumberForApi(source_string);
+                                        destination_string = CommonUtility.validateNumberForApi(destination_string);
 
                                         new TwoWayCall().execute(null, null, null);
                                     } else
@@ -361,17 +361,20 @@ public class TwoWayCallFrag extends Fragment {
                     switch (reqCode) {
                         case (REQUEST_SELECT_CONTACT_SOURCE):
                             //source_ed.setText(CommonUtility.validateNumberForUI(con_number,ctx));
-                            source_ed.setText("+"+con_number);
+                            source_ed.setText("+" + con_number);
                             break;
                         case (REQUEST_SELECT_CONTACT_DEST):
-                           // dest_ed.setText(CommonUtility.validateNumberForUI(con_number,ctx));
-                            dest_ed.setText("+"+con_number);
+                            // dest_ed.setText(CommonUtility.validateNumberForUI(con_number,ctx));
+                            if (con_number.startsWith("+"))
+                                dest_ed.setText(con_number);
+                            else
+                                dest_ed.setText("+" + con_number);
                             break;
                     }
 
                 } else {
 
-                   // CommonUtility.showCustomAlertError(getActivity(), getString(R.string.no_contact_found));
+                    // CommonUtility.showCustomAlertError(getActivity(), getString(R.string.no_contact_found));
                 }
             }
 //            else {
@@ -519,8 +522,8 @@ public class TwoWayCallFrag extends Fragment {
                 }
 
                 try {
-                   Double temp_rate = (Double.parseDouble(source_rate) + Double.parseDouble(destination_rate));
-                    rate =""+ CommonUtility.round(temp_rate,2);
+                    Double temp_rate = (Double.parseDouble(source_rate) + Double.parseDouble(destination_rate));
+                    rate = "" + CommonUtility.round(temp_rate, 2);
                     call_price_rate.setText(source_rate + "+" + destination_rate + "=" + rate);
                 } catch (Exception e) {
                     call_price_view.setVisibility(View.GONE);
@@ -537,7 +540,7 @@ public class TwoWayCallFrag extends Fragment {
                 }
                 try {
                     Double temp_rate = (Double.parseDouble(source_rate) + Double.parseDouble(destination_rate));
-                    rate =""+ CommonUtility.round(temp_rate,2);
+                    rate = "" + CommonUtility.round(temp_rate, 2);
                     call_price_rate.setText(source_rate + "+" + destination_rate + "=" + rate);
                     call_price_currecny.setText(currency + "/min");
                 } catch (Exception e) {
@@ -936,7 +939,7 @@ public class TwoWayCallFrag extends Fragment {
 
             public void onFinish() {
                 //hit pricing api
-               destination_string = CommonUtility.validateNumberForApi(destination_string);
+                destination_string = CommonUtility.validateNumberForApi(destination_string);
                 if (!destination_string.equals("")) {
                     number = REQUEST_SELECT_CONTACT_DEST;
                     new GetPricing().execute(null, null, null);
@@ -967,7 +970,7 @@ public class TwoWayCallFrag extends Fragment {
             public void onFinish() {
 
                 //hit pricing api
-               source_string=CommonUtility.validateNumberForApi(source_string);
+                source_string = CommonUtility.validateNumberForApi(source_string);
                 if (!source_string.equals("")) {
                     number = REQUEST_SELECT_CONTACT_SOURCE;
                     new GetPricing().execute(null, null, null);
