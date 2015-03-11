@@ -224,17 +224,17 @@ public class SignUpHome extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        Fragment page = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
-        if (mPager.getCurrentItem() == 2 && page != null) {
-           this.finish();
-           this.overridePendingTransition(R.anim.animation3, R.anim.animation4);
-
-            Log.e("backfrag", "backfrag");
-        } else {
+//        Fragment page = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+//        if (mPager.getCurrentItem() == 2 && page != null) {
+//           this.finish();
+//           this.overridePendingTransition(R.anim.animation3, R.anim.animation4);
+//
+//            Log.e("backfrag", "backfrag");
+//        } else {
             this.finish();
             this.overridePendingTransition(R.anim.animation3, R.anim.animation4);
-
-        }
+//
+//}
     }
 
     @Override

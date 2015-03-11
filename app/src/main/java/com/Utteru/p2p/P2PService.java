@@ -41,7 +41,8 @@ public class P2PService extends P2PBaseService implements SinchService.StartFail
     }
     @Override
     public void onStartFailed(SinchError error) {
-        Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show();
+
+        Toast.makeText(this, "could not establish utteru call", Toast.LENGTH_LONG).show();
         Log.e("service start fail   ","service start fail ");
 
     }
