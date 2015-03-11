@@ -141,7 +141,7 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
                 handleUncaughtException(thread, e);
             }
         });
-        audiomanager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);//to silent ring
+       // audiomanager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);//to silent ring
        /* registrationReceiver = new MyCallReceiver();
          filter = new IntentFilter();*/
         // Enable Local Datastore.
@@ -339,7 +339,7 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
 
 
         sendCallStates("Trying to connect..", CALL_STATE_CHANGE, CALL_STATE_TRYING);
-        audiomanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+       // audiomanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 
     }
 
@@ -466,7 +466,7 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
         }
 
         tempSession.reset();
-        audiomanager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+       // audiomanager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 
 
     }
@@ -524,7 +524,7 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
         tempSession.setDescriptionString(": Call closed.");
         Log.e("call state", "Call closed.");
         sendCallStates("Call Closed", CALL_STATE_CHANGE, CALL_STATE_CLOSED);
-        audiomanager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+    //    audiomanager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 
 
     }

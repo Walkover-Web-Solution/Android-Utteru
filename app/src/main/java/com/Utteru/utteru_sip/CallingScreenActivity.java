@@ -68,7 +68,8 @@ public class CallingScreenActivity extends Activity {
     public static CallData calldata;
     EditText edCalling;
     Context ctx = this;
-
+    String ringermode;
+    int currentVolume;
 
     AudioManager audiomanager = null;
     private PowerManager powerManager;
@@ -86,7 +87,7 @@ public class CallingScreenActivity extends Activity {
                 int code = intent.getExtras().getInt("code");
                 String message = intent.getExtras().getString("message");
 
-                 onCallStateChange(message,code);
+                onCallStateChange(message, code);
 
             }
         }
@@ -102,12 +103,29 @@ public class CallingScreenActivity extends Activity {
         mSipSdk.clearAudioCodec();
         mSipSdk.addAudioCodec(PortSipEnumDefine.ENUM_AUDIOCODEC_G729);
         mSipSdk.enableAEC(true);
-
+        currentVolume = audiomanager.getStreamVolume(AudioManager.STREAM_MUSIC);
         //what is the  use
         isCallActive(ctx);
         lines = utteruSipCore.getLines();
-        audiomanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-        if(audiomanager.isMusicActive()){
+        switch (audiomanager.getRingerMode()) {
+            case AudioManager.RINGER_MODE_SILENT:
+                Log.i("oncreate", "Silent mode");
+                ringermode = "Silent";
+                break;
+            case AudioManager.RINGER_MODE_VIBRATE:
+                Log.i("oncreate", "Vibrate mode");
+                ringermode = "Vibrate";
+                audiomanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                break;
+            case AudioManager.RINGER_MODE_NORMAL:
+                Log.i("oncreate", "Normal mode");
+                ringermode = "Normal";
+                audiomanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                break;
+        }
+
+
+        if (audiomanager.isMusicActive()) {
 
             Intent i = new Intent("com.android.music.musicservicecommand");
             i.putExtra("command", "pause");
@@ -121,10 +139,10 @@ public class CallingScreenActivity extends Activity {
         } catch (Throwable ignored) {
 
 
-         }
+        }
 
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        wakeLock = powerManager.newWakeLock(field,getLocalClassName());
+        wakeLock = powerManager.newWakeLock(field, getLocalClassName());
         init();
 
 
@@ -148,7 +166,12 @@ public class CallingScreenActivity extends Activity {
         mIntentFilter_call = new IntentFilter();
         mIntentFilter_call.addAction(UtteruSipCore.CALL_STATE_CHANGE);
         ctx.registerReceiver(callReceiver, mIntentFilter_call);
+        if (audiomanager.isMusicActive()) {
 
+            Intent i = new Intent("com.android.music.musicservicecommand");
+            i.putExtra("command", "pause");
+            sendBroadcast(i);
+        }
 
         if (UtteruSipCore.isCallConnected) {
             Log.e("setting chronometer ", "setting chronometer ");
@@ -198,15 +221,15 @@ public class CallingScreenActivity extends Activity {
     public void onPause() {
 
         if (wakeLock.isHeld()) {
-           wakeLock.release();
+            wakeLock.release();
         }
-        Log.e("is call disconnected ",""+UtteruSipCore.isCallDisconnected);
+        // setPreviousRingerMode();
+        Log.e("is call disconnected ", "" + UtteruSipCore.isCallDisconnected);
         if (!UtteruSipCore.isCallDisconnected)
             utteruSipCore.updateNotification(ctx);
 
         super.onPause();
     }
-
 
 
     void hangupCall() {
@@ -403,21 +426,21 @@ public class CallingScreenActivity extends Activity {
 
     void init() {
 
-        ctx=this;
+        ctx = this;
         calldata = CallData.getCallDateInstance();
-        price = (TextView)findViewById(R.id.call_price);
+        price = (TextView) findViewById(R.id.call_price);
         pricedivider = (ImageView) findViewById(R.id.call_price_divider);
         chronometer = (Chronometer) findViewById(R.id.time);
         callee_name_txt = (TextView) findViewById(R.id.calle_name);
-        callee_number_txt = (TextView)findViewById(R.id.callee_number);
+        callee_number_txt = (TextView) findViewById(R.id.callee_number);
         call_status = (TextView) findViewById(R.id.call_status);
         speaker = (ImageButton) findViewById(R.id.switch_speaker);
         hangup = (RelativeLayout) findViewById(R.id.call_end);
         open_dialpad = (ImageButton) findViewById(R.id.open_dialpad);
         mute_button = (ImageButton) findViewById(R.id.microphone);
-        dialpad_layout = (LinearLayout)findViewById(R.id.dialpad_layout);
+        dialpad_layout = (LinearLayout) findViewById(R.id.dialpad_layout);
         edCalling = (EditText) findViewById(R.id.ed_calling_screen);
-        end_call_button = (ImageButton)findViewById(R.id.endcall_btn);
+        end_call_button = (ImageButton) findViewById(R.id.endcall_btn);
         open_dialpad.setEnabled(false);
         keyboard = new CustomKeyboardOther(this, R.id.keyboardview, R.xml.dtmf_key_only, call);
         keyboard.registerEditText(edCalling.getId(), call);
@@ -454,23 +477,7 @@ public class CallingScreenActivity extends Activity {
                 return false;
             }
         });
-       /* speaker.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
 
-                if (speaker_state) {
-                    speaker_state = false;
-                    startSpeaker(speaker_state);
-                    speaker.setBackgroundResource(R.drawable.speaker_inactive);
-                } else {
-                    speaker_state = true;
-                    startSpeaker(speaker_state);
-                    speaker.setBackgroundResource(R.drawable.speaker_active);
-
-                }
-                return false;
-            }
-        });*/
         speaker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -481,9 +488,11 @@ public class CallingScreenActivity extends Activity {
                 } else {
                     speaker_state = true;
                     startSpeaker(speaker_state);
+                    audiomanager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
                     speaker.setBackgroundResource(R.drawable.speaker_active);
 
                 }
+
             }
         });
         open_dialpad.setOnClickListener(new View.OnClickListener() {
@@ -521,7 +530,7 @@ public class CallingScreenActivity extends Activity {
         Log.e("call finish", " call finish with proper end call");
         if (chronometer != null)
             chronometer.stop();
-          hangupCall();
+        hangupCall();
         new AddCallInRecentCallList().execute(null, null, null);
         Intent i = new Intent("com.android.music.musicservicecommand");
         i.putExtra("command", "play");
@@ -599,8 +608,6 @@ public class CallingScreenActivity extends Activity {
         }
 
     }
-
-
 
 
     class SearchRate extends AsyncTask<Void, Void, Void> {
@@ -700,31 +707,44 @@ public class CallingScreenActivity extends Activity {
 
     }
 
+    void setPreviousRingerMode() {
+        if (ringermode.equals("Silent")) {
+            audiomanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+            Log.i("backtoprev", "Silent mode");
+        } else if (ringermode.equals("Vibrate")) {
+            audiomanager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+            Log.i("backtoprev", "Vibrate mode");
+        } else {
+            audiomanager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+            Log.i("backtoprev", "Normal mode");
+        }
+
+    }
 
     @Override
     protected void onStop() {
         if (callReceiver != null)
             ctx.unregisterReceiver(callReceiver);
+        // setPreviousRingerMode();
         super.onStop();
     }
 
     public void onDestroy() {
         Log.e("on destroy ", "on destroy ");
-        audiomanager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+        setPreviousRingerMode();
         UtteruSipCore.isCallInProgress = false;
         UtteruSipCore.isCallDisconnected = false;
         UtteruSipCore.isCallConnected = false;
         utteruSipCore.cancelNotification(ctx);
         finishCall();
-
-    super.onDestroy();
+        super.onDestroy();
 
     }
 
     @Override
     public void onBackPressed() {
-       onPause();
-        startActivity(new Intent(ctx,DialerActivity.class));
-        overridePendingTransition(R.anim.animation3,R.anim.animation4);
+        onPause();
+        startActivity(new Intent(ctx, DialerActivity.class));
+        overridePendingTransition(R.anim.animation3, R.anim.animation4);
     }
 }

@@ -121,7 +121,7 @@ public class Prefs {
     }
 
     public static void setUserSipPassword(Context context, String value) {
-        // perform validation etc..
+        // perform validation etc..https://voice.utteru.com/api/
         getPrefs(context).edit().putString(USERSIPPASSWORD, value).commit();
     }
 
