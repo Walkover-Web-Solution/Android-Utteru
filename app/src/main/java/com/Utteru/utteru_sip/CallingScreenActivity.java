@@ -109,20 +109,21 @@ public class CallingScreenActivity extends Activity {
         lines = utteruSipCore.getLines();
         switch (audiomanager.getRingerMode()) {
             case AudioManager.RINGER_MODE_SILENT:
-                Log.i("oncreate", "Silent mode");
                 ringermode = "Silent";
+                Log.i("oncreate", "Silent mode");
                 break;
             case AudioManager.RINGER_MODE_VIBRATE:
-                Log.i("oncreate", "Vibrate mode");
                 ringermode = "Vibrate";
+                Log.i("oncreate", "Vibrate mode");
                 audiomanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
                 break;
             case AudioManager.RINGER_MODE_NORMAL:
-                Log.i("oncreate", "Normal mode");
                 ringermode = "Normal";
+                Log.i("oncreate", "Normal mode");
                 audiomanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
                 break;
         }
+
 
 
         if (audiomanager.isMusicActive()) {
@@ -708,13 +709,14 @@ public class CallingScreenActivity extends Activity {
     }
 
     void setPreviousRingerMode() {
-        if (ringermode.equals("Silent")) {
+        if (ringermode.equalsIgnoreCase("Silent")) {
             audiomanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
             Log.i("backtoprev", "Silent mode");
-        } else if (ringermode.equals("Vibrate")) {
+        } else if (ringermode.equalsIgnoreCase("Vibrate")) {
             audiomanager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
             Log.i("backtoprev", "Vibrate mode");
-        } else {
+        } else
+            if(ringermode.equalsIgnoreCase("Normal")){
             audiomanager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
             Log.i("backtoprev", "Normal mode");
         }
