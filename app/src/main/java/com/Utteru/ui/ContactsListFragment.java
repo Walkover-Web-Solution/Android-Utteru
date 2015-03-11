@@ -136,7 +136,8 @@ public class ContactsListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
 
         AccessContactDto cdto = (AccessContactDto) l.getItemAtPosition(position);
-        cdto.setMobile_number(CommonUtility.validateNumberForUI(cdto.getMobile_number(),mContext));
+        //if (!cdto.getMobile_number().startsWith("+"))
+       // cdto.setMobile_number(CommonUtility.validateNumberForUI(cdto.getMobile_number(), mContext));
         Log.e("number on click", "" + cdto.getMobile_number());
         cdto = UserService.getUserServiceInstance(mContext).getAccessConDataByNumber(cdto.getMobile_number());
 

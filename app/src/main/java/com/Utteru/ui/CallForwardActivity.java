@@ -15,7 +15,7 @@ public class CallForwardActivity extends FragmentActivity {
 
 
     static ViewPager mPager;
-    public static String[] CONTENT = new String[]{"Rent a Number", "Free"};
+    public static String[] CONTENT = new String[]{"Rent a Number"};
 
 
     Context ctx;
@@ -73,8 +73,8 @@ public class CallForwardActivity extends FragmentActivity {
 
                 case 0:
                     return CallForwardFrag.newInstance(0, "Dedicated");
-                case 1:
-                    return CallForwardFrag.newInstance(1, "free");
+              /*  case 1:
+                    return CallForwardFrag.newInstance(1, "free");*/
                 default:
                     return null;
             }
@@ -88,7 +88,7 @@ public class CallForwardActivity extends FragmentActivity {
 
         @Override
         public int getCount() {
-            return 2;
+            return 1;
         }
     }
     // Returns the page title for the top indicator

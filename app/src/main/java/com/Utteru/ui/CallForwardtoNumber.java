@@ -45,15 +45,7 @@ public class CallForwardtoNumber extends Activity {
     ImageView gotomenu;
     ProgressDialog dialog;
 
- /*   @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        manage_numbers = inflater.inflate(R.layout.callforwardtonumber, container, false);
-        init();
-        new getAllNumbers().execute();
 
-        return manage_numbers;
-    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

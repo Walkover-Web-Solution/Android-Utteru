@@ -118,7 +118,7 @@ public class   AutoCountryDetect extends Activity {
                 Intent chooseCountry = new Intent(AutoCountryDetect.this,AllCountryActivity.class);
                 chooseCountry.putExtra(VariableClass.Vari.SOURCECLASS,"");
                 startActivity(chooseCountry);
-                AutoCountryDetect.this.finish();
+              //  AutoCountryDetect.this.finish();
 
             }
         });

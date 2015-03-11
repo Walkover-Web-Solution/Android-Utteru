@@ -182,12 +182,12 @@ public class AllCountryActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        Intent menu =new Intent(this,MenuScreen.class);
+        /*Intent menu =new Intent(this,MenuScreen.class);
         menu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         menu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(menu);
-        this.finish();
-       // super.onBackPressed();
+        this.finish();*/
+        super.onBackPressed();
         overridePendingTransition(R.anim.animation3, R.anim.animation4);
     }
 

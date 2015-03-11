@@ -64,7 +64,7 @@ import java.util.Random;
 public class CommonUtility {
 
     public final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-    public final static String BUGSENSEID = "1a1d2717";
+    public final static String BUGSENSEID = "395e969a";
     public final static String BUGSENSELIVE = "395e969a";
     public final static String BUGSENSEID_TEST = "1a1d2717";
 
@@ -152,6 +152,7 @@ public class CommonUtility {
         number = number.replaceAll("[-+.^:,]", "");//specific special character
         number = number.replaceAll("-", ""); //dash
         number = number.replace("+", "");
+        number = number.replaceAll("\\s+", "");
 
 
         return number;
@@ -162,7 +163,7 @@ public class CommonUtility {
     public static String validateText(String text) {
 
         text = text.replaceAll("[^\\w\\s\\-_]", "");//all special
-
+        text = text.replaceAll("\\s+", "");
         text = text.replace("+", "");
         text = text.replaceAll("-", ""); //dash
         text = text.trim();
@@ -808,6 +809,7 @@ public class CommonUtility {
             String label = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.LABEL));
 
             adto = new ContactsDto();
+
             adto.setNumber(CommonUtility.validateNumberForUI(phoneNumber,ctx));
             adto.setStatus(false);
             adto.setState(false);

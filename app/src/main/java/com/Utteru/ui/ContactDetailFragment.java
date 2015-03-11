@@ -60,7 +60,7 @@ import org.json.JSONObject;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class  ContactDetailFragment extends Fragment {
+public class ContactDetailFragment extends Fragment {
 
     public static final String EXTRA_CONTACT_URI = "com.Utteru.ui.EXTRA_CONTACT_URI";
     private static final String TAG = "ContactDetailFragment";
@@ -71,11 +71,9 @@ public class  ContactDetailFragment extends Fragment {
     callUser call_listener;
 
 
-
-
-
     public ContactDetailFragment() {
     }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -150,8 +148,8 @@ public class  ContactDetailFragment extends Fragment {
         final ImageView gohome = (ImageView) detailView.findViewById(R.id.contact_detail_home);
         final FontTextView name_text = (FontTextView) detailView.findViewById(R.id.contact_detail_title);
         final LinearLayout access_details_layout = (LinearLayout) detailView.findViewById(R.id.access_number_details);
-        final ImageView contact_detail_divide = (ImageView)detailView.findViewById(R.id.contact_detail_divider);
-        final ImageView call_free_imgview = (ImageView)detailView.findViewById(R.id.call_free_img);
+        final ImageView contact_detail_divide = (ImageView) detailView.findViewById(R.id.contact_detail_divider);
+        final ImageView call_free_imgview = (ImageView) detailView.findViewById(R.id.call_free_img);
 
         Button assignAccessNumber = (Button) detailView.findViewById(R.id.assignButton);
 
@@ -164,9 +162,9 @@ public class  ContactDetailFragment extends Fragment {
         if (mAccessContactDto.getMobile_number() != null) {
 
 
-                contact_data.setText(mAccessContactDto.getMobile_number());
+            contact_data.setText(mAccessContactDto.getMobile_number());
 
-                contact_data.setText(mAccessContactDto.getMobile_number());
+            contact_data.setText(mAccessContactDto.getMobile_number());
 
             if (mAccessContactDto.getAccess_number() != null) {
 
@@ -184,12 +182,11 @@ public class  ContactDetailFragment extends Fragment {
                 unassignAccessNumber.setVisibility(View.VISIBLE);
 
 
-
             } else {
                 access_details_layout.setVisibility(View.GONE);
                 contact_detail_divide.setVisibility(View.GONE);
 
-               assignAccessNumber.setText("ASSIGN ACCESS NUMBER");
+                assignAccessNumber.setText("ASSIGN ACCESS NUMBER");
                 unassignAccessNumber.setVisibility(View.GONE);
             }
         }
@@ -200,9 +197,8 @@ public class  ContactDetailFragment extends Fragment {
 //                CommonUtility.makeCall(getActivity(), mAccessContactDto.getMobile_number());
 //
 //                getActivity().finish();
-                launchCallingActivity(CommonUtility.validateNumberForApi(mAccessContactDto.getMobile_number()),mAccessContactDto.getDisplay_name(), SystemClock.elapsedRealtime(),false,null,System.currentTimeMillis());
+                launchCallingActivity(CommonUtility.validateNumberForApi(mAccessContactDto.getMobile_number()), mAccessContactDto.getDisplay_name(), SystemClock.elapsedRealtime(), false, null, System.currentTimeMillis());
 //                call_listener.onCall(0,mAccessContactDto);
-
 
 
             }
@@ -210,7 +206,7 @@ public class  ContactDetailFragment extends Fragment {
         call_free_imgview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                call_listener.onCall(0,mAccessContactDto);
+                call_listener.onCall(0, mAccessContactDto);
             }
         });
         gohome.setOnClickListener(new View.OnClickListener() {
@@ -220,12 +216,12 @@ public class  ContactDetailFragment extends Fragment {
             }
         });
 
-          name_text.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  getActivity().onBackPressed();
-              }
-          });
+        name_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
         contactdetailback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -257,8 +253,10 @@ public class  ContactDetailFragment extends Fragment {
                 String number = CommonUtility.validateNumberForApi(mAccessContactDto.getMobile_number());
 
 
+                number = CommonUtility.validateText(number);
+                Log.e("number", "" + number);
 
-                if (number.length() > 8 && number.length() < 18 &&number.matches("[0-9+]*")) {
+                if (number.length() > 8 && number.length() < 18 && number.matches("[0-9+]*")) {
                     if (CommonUtility.isNetworkAvailable(getActivity().getBaseContext())) {
                         if (mAccessContactDto.getAccess_number() == null) {
                             mAccessContactDto.setDisplay_name(CommonUtility.validateText(mAccessContactDto.getDisplay_name()));
@@ -451,12 +449,13 @@ public class  ContactDetailFragment extends Fragment {
 
         }
     }
+
     public interface callUser {
         public void onCall(int action, AccessContactDto dto);
     }
 
 
-    void launchCallingActivity(String number, String name, long time, boolean isongoing, String price,long date) {
+    void launchCallingActivity(String number, String name, long time, boolean isongoing, String price, long date) {
 
         String calleename = name;
         if (calleename == null)
@@ -464,7 +463,7 @@ public class  ContactDetailFragment extends Fragment {
 
 
         CallData calldata = CallData.getCallDateInstance();
-        Log.e("setting variable ","setting variable "+name );
+        Log.e("setting variable ", "setting variable " + name);
         calldata.setCallee_number(number);
         calldata.setCallee_name(calleename);
         calldata.setTime_elapsed(time);
@@ -472,7 +471,7 @@ public class  ContactDetailFragment extends Fragment {
         calldata.setCall_price(price);
         calldata.setDate(date);
 
-        startActivity(new Intent(getActivity(),CallingScreenActivity.class));
+        startActivity(new Intent(getActivity(), CallingScreenActivity.class));
         getActivity().overridePendingTransition(R.anim.animation1, R.anim.animation2);
     }
 

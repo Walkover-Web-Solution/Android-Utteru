@@ -22,7 +22,6 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String C_DESTNUMBER = "number";
     public static final String C_DURATION = "duration";
     public static final String C_SOURCE_NUM = "source_number";
-
     public static final String C_TIME = "time";
     String CREATE_RECENT = " CREATE TABLE" + " " + RECENTCALLS + "("
             + C_DESTNAME + " TEXT," + C_DURATION + " TEXT," + C_TIME + " TEXT," + C_DESTNUMBER + " TEXT,"+ C_SOURCE_NUM+ " TEXT," + C_ID+ " INTEGER  PRIMARY KEY AUTOINCREMENT " + ", UNIQUE ( "+C_DESTNUMBER+" ));";
@@ -128,7 +127,6 @@ public class DBHandler extends SQLiteOpenHelper {
             if (newVersion > oldVersion) {
                 db.execSQL("ALTER TABLE " + ACCESSCONTACTSTABLE + " ADD COLUMN " + AN_COUNTRY + " TEXT ");
                 db.execSQL("ALTER TABLE " + ACCESSCONTACTSTABLE + " ADD COLUMN " + AN_STATE + " TEXT ");
-
 
             }
         } catch (Exception e) {

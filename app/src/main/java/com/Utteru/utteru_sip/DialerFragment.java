@@ -441,13 +441,12 @@ public class DialerFragment extends Fragment {
                             // makeCall(con_number);
 
                         } else {
-
                             //done by sneha
                             if (con_number.startsWith("00"))
                                 con_number = con_number.replaceFirst("00", "");
                             if (con_number.startsWith("0"))
                                 con_number = con_number.replaceFirst("0", "");
-
+                            con_number.replaceAll("\\s+","");
                             number_text.setText(con_number);
                             mCountryName.setText("Please select country code");
                             mSelectCountry.setVisibility(View.GONE);
