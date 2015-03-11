@@ -187,29 +187,29 @@ ADDED from AndroidManifest.xml:58:5
 	android:name
 		ADDED from AndroidManifest.xml:58:22
 uses-feature#android.hardware.camera.autofocus
-ADDED from AndroidManifest.xml:60:5
+ADDED from AndroidManifest.xml:61:5
 	android:required
+		ADDED from AndroidManifest.xml:63:9
+	android:name
 		ADDED from AndroidManifest.xml:62:9
-	android:name
-		ADDED from AndroidManifest.xml:61:9
 uses-feature#android.hardware.telephony
-ADDED from AndroidManifest.xml:63:5
+ADDED from AndroidManifest.xml:64:5
 	android:required
+		ADDED from AndroidManifest.xml:66:9
+	android:name
 		ADDED from AndroidManifest.xml:65:9
-	android:name
-		ADDED from AndroidManifest.xml:64:9
 permission#com.example.gcm.permission.C2D_MESSAGE
-ADDED from AndroidManifest.xml:67:5
+ADDED from AndroidManifest.xml:68:5
 	android:protectionLevel
+		ADDED from AndroidManifest.xml:70:9
+	android:name
 		ADDED from AndroidManifest.xml:69:9
-	android:name
-		ADDED from AndroidManifest.xml:68:9
 uses-permission#com.example.gcm.permission.C2D_MESSAGE
-ADDED from AndroidManifest.xml:70:5
+ADDED from AndroidManifest.xml:71:5
 	android:name
-		ADDED from AndroidManifest.xml:70:22
+		ADDED from AndroidManifest.xml:71:22
 application
-ADDED from AndroidManifest.xml:72:5
+ADDED from AndroidManifest.xml:73:5
 MERGED from com.android.support:appcompat-v7:21.0.2:16:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
 MERGED from com.google.android.gms:play-services:6.5.87:20:5
@@ -220,157 +220,153 @@ MERGED from com.helpshift:android-en-aar:3.7.1:15:5
 MERGED from com.facebook.android:facebook:3.23.0:24:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:77:9
-	android:label
-		ADDED from AndroidManifest.xml:76:9
-	android:allowBackup
-		ADDED from AndroidManifest.xml:74:9
-	android:icon
-		ADDED from AndroidManifest.xml:75:9
-	android:theme
 		ADDED from AndroidManifest.xml:78:9
+	android:label
+		ADDED from AndroidManifest.xml:77:9
+	android:allowBackup
+		ADDED from AndroidManifest.xml:75:9
+	android:icon
+		ADDED from AndroidManifest.xml:76:9
+	android:theme
+		ADDED from AndroidManifest.xml:79:9
 	android:name
-		ADDED from AndroidManifest.xml:73:9
+		ADDED from AndroidManifest.xml:74:9
 meta-data#com.google.android.gms.version
-ADDED from AndroidManifest.xml:79:9
+ADDED from AndroidManifest.xml:80:9
 MERGED from com.google.android.gms:play-services:6.5.87:21:9
 	android:name
-		ADDED from AndroidManifest.xml:80:13
-	android:value
 		ADDED from AndroidManifest.xml:81:13
+	android:value
+		ADDED from AndroidManifest.xml:82:13
 receiver#com.Utteru.notifier.IncomingSms
-ADDED from AndroidManifest.xml:83:9
+ADDED from AndroidManifest.xml:84:9
 	android:name
-		ADDED from AndroidManifest.xml:83:19
+		ADDED from AndroidManifest.xml:84:19
 intent-filter#android.provider.Telephony.SMS_RECEIVED
-ADDED from AndroidManifest.xml:84:13
+ADDED from AndroidManifest.xml:85:13
 action#android.provider.Telephony.SMS_RECEIVED
-ADDED from AndroidManifest.xml:85:17
+ADDED from AndroidManifest.xml:86:17
 	android:name
-		ADDED from AndroidManifest.xml:85:25
+		ADDED from AndroidManifest.xml:86:25
 activity#com.Utteru.ui.SignUpHome
-ADDED from AndroidManifest.xml:90:9
+ADDED from AndroidManifest.xml:91:9
 	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:95:13
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:94:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:93:13
 	android:name
-		ADDED from AndroidManifest.xml:91:13
-	android:launchMode
 		ADDED from AndroidManifest.xml:92:13
+	android:launchMode
+		ADDED from AndroidManifest.xml:93:13
 activity#com.Utteru.ui.BuyNowOptionsActivity
-ADDED from AndroidManifest.xml:95:9
+ADDED from AndroidManifest.xml:96:9
 	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:100:13
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:99:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:98:13
 	android:name
-		ADDED from AndroidManifest.xml:96:13
-	android:launchMode
 		ADDED from AndroidManifest.xml:97:13
-activity#com.Utteru.ui.SplashScreen
-ADDED from AndroidManifest.xml:101:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:108:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:107:13
-	android:label
-		ADDED from AndroidManifest.xml:103:13
-	android:name
-		ADDED from AndroidManifest.xml:102:13
 	android:launchMode
-		ADDED from AndroidManifest.xml:105:13
+		ADDED from AndroidManifest.xml:98:13
+activity#com.Utteru.ui.SplashScreen
+ADDED from AndroidManifest.xml:102:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:109:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:108:13
+	android:label
+		ADDED from AndroidManifest.xml:104:13
+	android:name
+		ADDED from AndroidManifest.xml:103:13
+	android:launchMode
+		ADDED from AndroidManifest.xml:106:13
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:109:13
+ADDED from AndroidManifest.xml:110:13
 action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:110:17
+ADDED from AndroidManifest.xml:111:17
 	android:name
-		ADDED from AndroidManifest.xml:110:25
+		ADDED from AndroidManifest.xml:111:25
 category#android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:112:17
+ADDED from AndroidManifest.xml:113:17
 	android:name
-		ADDED from AndroidManifest.xml:112:27
+		ADDED from AndroidManifest.xml:113:27
 activity#com.Utteru.ui.ForgotPasswordActivity
-ADDED from AndroidManifest.xml:115:9
+ADDED from AndroidManifest.xml:116:9
 	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:119:13
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:118:13
-	android:screenOrientation
+	android:name
 		ADDED from AndroidManifest.xml:117:13
-	android:name
-		ADDED from AndroidManifest.xml:116:13
 activity#com.Utteru.ui.VerificationCodeActivity
-ADDED from AndroidManifest.xml:119:9
+ADDED from AndroidManifest.xml:120:9
 	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:124:13
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:123:13
-	android:screenOrientation
+	android:configChanges
 		ADDED from AndroidManifest.xml:122:13
-	android:configChanges
+	android:name
 		ADDED from AndroidManifest.xml:121:13
-	android:name
-		ADDED from AndroidManifest.xml:120:13
 activity#com.Utteru.ui.CplogsActivity
-ADDED from AndroidManifest.xml:124:9
+ADDED from AndroidManifest.xml:125:9
 	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:130:13
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:129:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:128:13
 	android:configChanges
+		ADDED from AndroidManifest.xml:127:13
+	android:name
 		ADDED from AndroidManifest.xml:126:13
-	android:name
-		ADDED from AndroidManifest.xml:125:13
 activity#com.Utteru.ui.AccessInfoActivity
-ADDED from AndroidManifest.xml:130:9
+ADDED from AndroidManifest.xml:131:9
 	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:136:13
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:135:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:134:13
 	android:configChanges
+		ADDED from AndroidManifest.xml:133:13
+	android:name
 		ADDED from AndroidManifest.xml:132:13
-	android:name
-		ADDED from AndroidManifest.xml:131:13
 activity#com.Utteru.ui.CreatePasswordActivity
-ADDED from AndroidManifest.xml:136:9
+ADDED from AndroidManifest.xml:137:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:140:13
+		ADDED from AndroidManifest.xml:141:13
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:138:13
-	android:theme
 		ADDED from AndroidManifest.xml:139:13
+	android:theme
+		ADDED from AndroidManifest.xml:140:13
 	android:name
-		ADDED from AndroidManifest.xml:137:13
+		ADDED from AndroidManifest.xml:138:13
 activity#com.Utteru.ui.SearchListActivity
-ADDED from AndroidManifest.xml:141:9
+ADDED from AndroidManifest.xml:142:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:145:13
+		ADDED from AndroidManifest.xml:146:13
 	android:screenOrientation
+		ADDED from AndroidManifest.xml:144:13
+	android:name
 		ADDED from AndroidManifest.xml:143:13
-	android:name
-		ADDED from AndroidManifest.xml:142:13
-activity#com.Utteru.ui.EarnCreditsActivity
-ADDED from AndroidManifest.xml:146:9
+activity#com.Utteru.ui.SelectCountryCallForward
+ADDED from AndroidManifest.xml:147:9
 	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:151:13
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:149:13
-	android:screenOrientation
+	android:theme
+		ADDED from AndroidManifest.xml:150:13
+	android:name
 		ADDED from AndroidManifest.xml:148:13
-	android:name
-		ADDED from AndroidManifest.xml:147:13
-activity#com.Utteru.ui.HelloActivity
-ADDED from AndroidManifest.xml:151:9
+activity#com.Utteru.ui.LongCodeLogsActivity
+ADDED from AndroidManifest.xml:153:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:154:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:153:13
-	android:name
-		ADDED from AndroidManifest.xml:152:13
-activity#com.Utteru.ui.AskNumber
-ADDED from AndroidManifest.xml:155:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:158:13
-	android:screenOrientation
 		ADDED from AndroidManifest.xml:157:13
-	android:name
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:155:13
+	android:theme
 		ADDED from AndroidManifest.xml:156:13
-activity#com.Utteru.ui.SelectNumber
+	android:name
+		ADDED from AndroidManifest.xml:154:13
+activity#com.Utteru.ui.EarnCreditsActivity
 ADDED from AndroidManifest.xml:159:9
 	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:162:13
@@ -378,91 +374,95 @@ ADDED from AndroidManifest.xml:159:9
 		ADDED from AndroidManifest.xml:161:13
 	android:name
 		ADDED from AndroidManifest.xml:160:13
-activity#com.Utteru.ui.FundTransferActivity
+activity#com.Utteru.ui.CallForwardActivity
 ADDED from AndroidManifest.xml:163:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:167:13
+		ADDED from AndroidManifest.xml:166:13
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:165:13
 	android:name
 		ADDED from AndroidManifest.xml:164:13
-activity#com.Utteru.ui.TransactionLogActivity
+activity#com.Utteru.ui.HelloActivity
 ADDED from AndroidManifest.xml:168:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:173:13
+		ADDED from AndroidManifest.xml:171:13
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:170:13
-	android:theme
-		ADDED from AndroidManifest.xml:171:13
 	android:name
 		ADDED from AndroidManifest.xml:169:13
-activity#com.Utteru.ui.MenuScreen
-ADDED from AndroidManifest.xml:174:9
+activity#com.Utteru.ui.AskNumber
+ADDED from AndroidManifest.xml:172:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:178:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:177:13
-	android:configChanges
-		ADDED from AndroidManifest.xml:176:13
-	android:name
 		ADDED from AndroidManifest.xml:175:13
-activity#com.Utteru.ui.RechargeViaPin
-ADDED from AndroidManifest.xml:179:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:183:13
 	android:screenOrientation
+		ADDED from AndroidManifest.xml:174:13
+	android:name
+		ADDED from AndroidManifest.xml:173:13
+activity#com.Utteru.ui.SelectNumber
+ADDED from AndroidManifest.xml:176:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:179:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:178:13
+	android:name
+		ADDED from AndroidManifest.xml:177:13
+activity#com.Utteru.ui.FundTransferActivity
+ADDED from AndroidManifest.xml:180:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:184:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:182:13
+	android:name
 		ADDED from AndroidManifest.xml:181:13
-	android:name
-		ADDED from AndroidManifest.xml:180:13
-activity#com.Utteru.ui.TwoWayHome
-ADDED from AndroidManifest.xml:184:9
+activity#com.Utteru.ui.TransactionLogActivity
+ADDED from AndroidManifest.xml:185:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:188:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:186:13
-	android:name
-		ADDED from AndroidManifest.xml:185:13
-activity#com.Utteru.ui.BuyNowActivity
-ADDED from AndroidManifest.xml:189:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:193:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:191:13
-	android:theme
-		ADDED from AndroidManifest.xml:192:13
-	android:name
 		ADDED from AndroidManifest.xml:190:13
-activity#com.Utteru.ui.AssignAccessAI
-ADDED from AndroidManifest.xml:194:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:198:13
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:196:13
+		ADDED from AndroidManifest.xml:187:13
 	android:theme
-		ADDED from AndroidManifest.xml:197:13
+		ADDED from AndroidManifest.xml:188:13
 	android:name
-		ADDED from AndroidManifest.xml:195:13
-activity#com.Utteru.utteru_sip.DialerActivity
-ADDED from AndroidManifest.xml:199:9
+		ADDED from AndroidManifest.xml:186:13
+activity#com.Utteru.ui.MenuScreen
+ADDED from AndroidManifest.xml:191:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:205:13
+		ADDED from AndroidManifest.xml:196:13
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:201:13
+		ADDED from AndroidManifest.xml:194:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:193:13
 	android:theme
+		ADDED from AndroidManifest.xml:195:13
+	android:name
+		ADDED from AndroidManifest.xml:192:13
+activity#com.Utteru.ui.RechargeViaPin
+ADDED from AndroidManifest.xml:197:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:201:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:199:13
+	android:name
+		ADDED from AndroidManifest.xml:198:13
+activity#com.Utteru.ui.TwoWayHome
+ADDED from AndroidManifest.xml:202:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:206:13
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:204:13
 	android:name
-		ADDED from AndroidManifest.xml:200:13
-	android:launchMode
-		ADDED from AndroidManifest.xml:202:13
-activity#com.Utteru.ui.ChangePasswordHome
-ADDED from AndroidManifest.xml:206:9
+		ADDED from AndroidManifest.xml:203:13
+activity#com.Utteru.ui.BuyNowActivity
+ADDED from AndroidManifest.xml:207:9
 	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:211:13
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:208:13
+		ADDED from AndroidManifest.xml:209:13
+	android:theme
+		ADDED from AndroidManifest.xml:210:13
 	android:name
-		ADDED from AndroidManifest.xml:207:13
-activity#com.Utteru.ui.TwoWayCallDetailedActivity
+		ADDED from AndroidManifest.xml:208:13
+activity#com.Utteru.ui.AssignAccessAI
 ADDED from AndroidManifest.xml:212:9
 	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:216:13
@@ -472,195 +472,191 @@ ADDED from AndroidManifest.xml:212:9
 		ADDED from AndroidManifest.xml:215:13
 	android:name
 		ADDED from AndroidManifest.xml:213:13
-activity#com.Utteru.ui.SearchRateActivity
+activity#com.Utteru.utteru_sip.DialerActivity
 ADDED from AndroidManifest.xml:217:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:221:13
+		ADDED from AndroidManifest.xml:223:13
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:219:13
+	android:theme
+		ADDED from AndroidManifest.xml:222:13
 	android:name
 		ADDED from AndroidManifest.xml:218:13
-activity#com.Utteru.ui.SettingsActivity
-ADDED from AndroidManifest.xml:222:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:226:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:224:13
-	android:name
-		ADDED from AndroidManifest.xml:223:13
-activity#com.Utteru.ui.ManageNumbersHome
-ADDED from AndroidManifest.xml:227:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:232:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:229:13
-	android:theme
-		ADDED from AndroidManifest.xml:231:13
-	android:name
-		ADDED from AndroidManifest.xml:228:13
-activity#com.Utteru.ui.EditNumberEmails
-ADDED from AndroidManifest.xml:233:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:238:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:235:13
-	android:name
-		ADDED from AndroidManifest.xml:234:13
-activity#com.Utteru.utteru_sip.CallingScreenActivity
-ADDED from AndroidManifest.xml:239:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:245:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:241:13
-	android:name
-		ADDED from AndroidManifest.xml:240:13
 	android:launchMode
-		ADDED from AndroidManifest.xml:243:13
-activity#com.Utteru.ui.RefferActivity
-ADDED from AndroidManifest.xml:247:9
+		ADDED from AndroidManifest.xml:220:13
+activity#com.Utteru.ui.ChangePasswordHome
+ADDED from AndroidManifest.xml:224:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:252:13
+		ADDED from AndroidManifest.xml:229:13
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:249:13
+		ADDED from AndroidManifest.xml:226:13
+	android:name
+		ADDED from AndroidManifest.xml:225:13
+activity#com.Utteru.ui.TwoWayCallDetailedActivity
+ADDED from AndroidManifest.xml:230:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:234:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:232:13
 	android:theme
+		ADDED from AndroidManifest.xml:233:13
+	android:name
+		ADDED from AndroidManifest.xml:231:13
+activity#com.Utteru.ui.SearchRateActivity
+ADDED from AndroidManifest.xml:235:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:239:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:237:13
+	android:name
+		ADDED from AndroidManifest.xml:236:13
+activity#com.Utteru.ui.SettingsActivity
+ADDED from AndroidManifest.xml:240:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:244:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:242:13
+	android:name
+		ADDED from AndroidManifest.xml:241:13
+activity#com.Utteru.ui.ManageNumbersHome
+ADDED from AndroidManifest.xml:245:9
+	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:250:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:247:13
+	android:theme
+		ADDED from AndroidManifest.xml:249:13
 	android:name
-		ADDED from AndroidManifest.xml:248:13
-service#com.Utteru.authenticator.AuthenticationService
-ADDED from AndroidManifest.xml:254:9
-	android:exported
+		ADDED from AndroidManifest.xml:246:13
+activity#com.Utteru.ui.EditNumberEmails
+ADDED from AndroidManifest.xml:251:9
+	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:256:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:253:13
 	android:name
-		ADDED from AndroidManifest.xml:255:13
-intent-filter#android.accounts.AccountAuthenticator
-ADDED from AndroidManifest.xml:257:13
-action#android.accounts.AccountAuthenticator
-ADDED from AndroidManifest.xml:258:17
+		ADDED from AndroidManifest.xml:252:13
+activity#com.Utteru.utteru_sip.CallingScreenActivity
+ADDED from AndroidManifest.xml:257:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:263:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:259:13
 	android:name
-		ADDED from AndroidManifest.xml:258:25
-meta-data#android.accounts.AccountAuthenticator
-ADDED from AndroidManifest.xml:261:13
-	android:resource
-		ADDED from AndroidManifest.xml:263:17
-	android:name
-		ADDED from AndroidManifest.xml:262:17
-service#com.Utteru.commonUtilities.GPSTracker
+		ADDED from AndroidManifest.xml:258:13
+	android:launchMode
+		ADDED from AndroidManifest.xml:261:13
+activity#com.Utteru.ui.RefferActivity
 ADDED from AndroidManifest.xml:265:9
-	android:name
-		ADDED from AndroidManifest.xml:265:18
-service#com.Utteru.syncadapter.SyncService
-ADDED from AndroidManifest.xml:266:9
-	android:exported
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:270:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:267:13
+	android:theme
 		ADDED from AndroidManifest.xml:268:13
 	android:name
-		ADDED from AndroidManifest.xml:267:13
-intent-filter#android.content.SyncAdapter
-ADDED from AndroidManifest.xml:269:13
-action#android.content.SyncAdapter
-ADDED from AndroidManifest.xml:270:17
+		ADDED from AndroidManifest.xml:266:13
+service#com.Utteru.authenticator.AuthenticationService
+ADDED from AndroidManifest.xml:272:9
+	android:exported
+		ADDED from AndroidManifest.xml:274:13
 	android:name
-		ADDED from AndroidManifest.xml:270:25
-meta-data#android.content.SyncAdapter
-ADDED from AndroidManifest.xml:273:13
+		ADDED from AndroidManifest.xml:273:13
+intent-filter#android.accounts.AccountAuthenticator
+ADDED from AndroidManifest.xml:275:13
+action#android.accounts.AccountAuthenticator
+ADDED from AndroidManifest.xml:276:17
+	android:name
+		ADDED from AndroidManifest.xml:276:25
+meta-data#android.accounts.AccountAuthenticator
+ADDED from AndroidManifest.xml:279:13
 	android:resource
-		ADDED from AndroidManifest.xml:275:17
+		ADDED from AndroidManifest.xml:281:17
 	android:name
-		ADDED from AndroidManifest.xml:274:17
-meta-data#android.provider.CONTACTS_STRUCTURE
-ADDED from AndroidManifest.xml:276:13
-	android:resource
-		ADDED from AndroidManifest.xml:278:17
-	android:name
-		ADDED from AndroidManifest.xml:277:17
-activity#com.Utteru.ui.SignInScreen
+		ADDED from AndroidManifest.xml:280:17
+service#com.Utteru.commonUtilities.GPSTracker
 ADDED from AndroidManifest.xml:283:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:288:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:285:13
-	android:theme
+	android:name
+		ADDED from AndroidManifest.xml:283:18
+service#com.Utteru.syncadapter.SyncService
+ADDED from AndroidManifest.xml:284:9
+	android:exported
 		ADDED from AndroidManifest.xml:286:13
 	android:name
-		ADDED from AndroidManifest.xml:284:13
-activity#com.Utteru.ui.ContactsListActivity
-ADDED from AndroidManifest.xml:289:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:295:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:293:13
-	android:label
-		ADDED from AndroidManifest.xml:291:13
-	android:theme
-		ADDED from AndroidManifest.xml:294:13
-	android:parentActivityName
-		ADDED from AndroidManifest.xml:292:13
+		ADDED from AndroidManifest.xml:285:13
+intent-filter#android.content.SyncAdapter
+ADDED from AndroidManifest.xml:287:13
+action#android.content.SyncAdapter
+ADDED from AndroidManifest.xml:288:17
 	android:name
-		ADDED from AndroidManifest.xml:290:13
-intent-filter#android.intent.action.SEARCH
-ADDED from AndroidManifest.xml:296:13
-action#android.intent.action.SEARCH
-ADDED from AndroidManifest.xml:297:17
-	android:name
-		ADDED from AndroidManifest.xml:297:25
-meta-data#android.app.searchable
-ADDED from AndroidManifest.xml:300:13
+		ADDED from AndroidManifest.xml:288:25
+meta-data#android.content.SyncAdapter
+ADDED from AndroidManifest.xml:291:13
 	android:resource
-		ADDED from AndroidManifest.xml:302:17
+		ADDED from AndroidManifest.xml:293:17
 	android:name
-		ADDED from AndroidManifest.xml:301:17
-activity#com.Utteru.ui.ContactDetailActivity
-ADDED from AndroidManifest.xml:304:9
+		ADDED from AndroidManifest.xml:292:17
+meta-data#android.provider.CONTACTS_STRUCTURE
+ADDED from AndroidManifest.xml:294:13
+	android:resource
+		ADDED from AndroidManifest.xml:296:17
+	android:name
+		ADDED from AndroidManifest.xml:295:17
+activity#com.Utteru.ui.SignInScreen
+ADDED from AndroidManifest.xml:301:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:309:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:307:13
-	android:label
 		ADDED from AndroidManifest.xml:306:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:303:13
 	android:theme
+		ADDED from AndroidManifest.xml:304:13
+	android:name
+		ADDED from AndroidManifest.xml:302:13
+activity#com.Utteru.ui.ContactsListActivity
+ADDED from AndroidManifest.xml:307:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:313:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:311:13
+	android:label
+		ADDED from AndroidManifest.xml:309:13
+	android:theme
+		ADDED from AndroidManifest.xml:312:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:310:13
+	android:name
 		ADDED from AndroidManifest.xml:308:13
+intent-filter#android.intent.action.SEARCH
+ADDED from AndroidManifest.xml:314:13
+action#android.intent.action.SEARCH
+ADDED from AndroidManifest.xml:315:17
 	android:name
-		ADDED from AndroidManifest.xml:305:13
-meta-data#android.support.PARENT_ACTIVITY
-ADDED from AndroidManifest.xml:310:13
+		ADDED from AndroidManifest.xml:315:25
+meta-data#android.app.searchable
+ADDED from AndroidManifest.xml:318:13
+	android:resource
+		ADDED from AndroidManifest.xml:320:17
 	android:name
-		ADDED from AndroidManifest.xml:311:17
-	android:value
-		ADDED from AndroidManifest.xml:312:17
-activity#com.Utteru.ui.SelectCountryActivity
-ADDED from AndroidManifest.xml:314:9
+		ADDED from AndroidManifest.xml:319:17
+activity#com.Utteru.ui.ContactDetailActivity
+ADDED from AndroidManifest.xml:322:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:319:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:317:13
-	android:label
-		ADDED from AndroidManifest.xml:316:13
-	android:theme
-		ADDED from AndroidManifest.xml:318:13
-	android:name
-		ADDED from AndroidManifest.xml:315:13
-activity#com.Utteru.ui.SelectExtensionAI
-ADDED from AndroidManifest.xml:320:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:324:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:322:13
-	android:theme
-		ADDED from AndroidManifest.xml:323:13
-	android:name
-		ADDED from AndroidManifest.xml:321:13
-activity#com.Utteru.ui.SelectStateActivity
-ADDED from AndroidManifest.xml:326:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:331:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:329:13
-	android:label
-		ADDED from AndroidManifest.xml:328:13
-	android:theme
-		ADDED from AndroidManifest.xml:330:13
-	android:name
 		ADDED from AndroidManifest.xml:327:13
-activity#com.Utteru.ui.SelectAccessActivity
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:325:13
+	android:label
+		ADDED from AndroidManifest.xml:324:13
+	android:theme
+		ADDED from AndroidManifest.xml:326:13
+	android:name
+		ADDED from AndroidManifest.xml:323:13
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from AndroidManifest.xml:328:13
+	android:name
+		ADDED from AndroidManifest.xml:329:17
+	android:value
+		ADDED from AndroidManifest.xml:330:17
+activity#com.Utteru.ui.SelectCountryActivity
 ADDED from AndroidManifest.xml:332:9
 	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:337:13
@@ -672,7 +668,7 @@ ADDED from AndroidManifest.xml:332:9
 		ADDED from AndroidManifest.xml:336:13
 	android:name
 		ADDED from AndroidManifest.xml:333:13
-activity#com.Utteru.ui.SelectTypeActivity
+activity#com.Utteru.ui.SelectPlanCallForward
 ADDED from AndroidManifest.xml:338:9
 	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:343:13
@@ -684,208 +680,350 @@ ADDED from AndroidManifest.xml:338:9
 		ADDED from AndroidManifest.xml:342:13
 	android:name
 		ADDED from AndroidManifest.xml:339:13
-activity#com.Utteru.ui.AllCountryActivity
+activity#com.Utteru.ui.CallForwardtoNumber
 ADDED from AndroidManifest.xml:344:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:350:13
+		ADDED from AndroidManifest.xml:349:13
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:348:13
+		ADDED from AndroidManifest.xml:347:13
 	android:label
 		ADDED from AndroidManifest.xml:346:13
 	android:theme
-		ADDED from AndroidManifest.xml:349:13
+		ADDED from AndroidManifest.xml:348:13
 	android:name
 		ADDED from AndroidManifest.xml:345:13
-activity#com.Utteru.ui.AllStateActivity
-ADDED from AndroidManifest.xml:351:9
+activity#com.Utteru.ui.SelectExtensionAI
+ADDED from AndroidManifest.xml:350:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:356:13
-	android:screenOrientation
 		ADDED from AndroidManifest.xml:354:13
-	android:label
-		ADDED from AndroidManifest.xml:353:13
-	android:theme
-		ADDED from AndroidManifest.xml:355:13
-	android:name
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:352:13
-activity#com.Utteru.ui.AllAccessActivity
-ADDED from AndroidManifest.xml:357:9
+	android:theme
+		ADDED from AndroidManifest.xml:353:13
+	android:name
+		ADDED from AndroidManifest.xml:351:13
+activity#com.Utteru.ui.SelectStateCallForward
+ADDED from AndroidManifest.xml:355:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:362:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:360:13
-	android:label
 		ADDED from AndroidManifest.xml:359:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:357:13
 	android:theme
-		ADDED from AndroidManifest.xml:361:13
-	android:name
 		ADDED from AndroidManifest.xml:358:13
-activity#com.Utteru.ui.AccessAddActivity
-ADDED from AndroidManifest.xml:363:9
+	android:name
+		ADDED from AndroidManifest.xml:356:13
+activity#com.Utteru.ui.SelectStateActivity
+ADDED from AndroidManifest.xml:360:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:368:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:366:13
-	android:label
 		ADDED from AndroidManifest.xml:365:13
-	android:theme
-		ADDED from AndroidManifest.xml:367:13
-	android:name
-		ADDED from AndroidManifest.xml:364:13
-activity#com.Utteru.ui.AccessEditActivity
-ADDED from AndroidManifest.xml:369:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:374:13
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:372:13
+		ADDED from AndroidManifest.xml:363:13
 	android:label
+		ADDED from AndroidManifest.xml:362:13
+	android:theme
+		ADDED from AndroidManifest.xml:364:13
+	android:name
+		ADDED from AndroidManifest.xml:361:13
+activity#com.Utteru.ui.SelectAccessActivity
+ADDED from AndroidManifest.xml:366:9
+	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:371:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:369:13
+	android:label
+		ADDED from AndroidManifest.xml:368:13
 	android:theme
-		ADDED from AndroidManifest.xml:373:13
-	android:name
 		ADDED from AndroidManifest.xml:370:13
-activity#com.Utteru.ui.BuyByStripe
-ADDED from AndroidManifest.xml:375:9
+	android:name
+		ADDED from AndroidManifest.xml:367:13
+activity#com.Utteru.ui.SelectTypeActivity
+ADDED from AndroidManifest.xml:372:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:380:13
-	android:screenOrientation
 		ADDED from AndroidManifest.xml:377:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:375:13
+	android:label
+		ADDED from AndroidManifest.xml:374:13
 	android:theme
-		ADDED from AndroidManifest.xml:379:13
-	android:name
 		ADDED from AndroidManifest.xml:376:13
-activity#com.Utteru.ui.PhoneBookActivity
-ADDED from AndroidManifest.xml:381:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:386:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:383:13
-	android:theme
-		ADDED from AndroidManifest.xml:385:13
 	android:name
+		ADDED from AndroidManifest.xml:373:13
+activity#com.Utteru.ui.AllCountryActivity
+ADDED from AndroidManifest.xml:378:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:384:13
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:382:13
-activity#com.Utteru.ui.AutoCountryDetect
-ADDED from AndroidManifest.xml:395:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:400:13
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:397:13
+	android:label
+		ADDED from AndroidManifest.xml:380:13
 	android:theme
-		ADDED from AndroidManifest.xml:399:13
+		ADDED from AndroidManifest.xml:383:13
 	android:name
+		ADDED from AndroidManifest.xml:379:13
+activity#com.Utteru.p2p.LoginActivity
+ADDED from AndroidManifest.xml:385:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:391:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:389:13
+	android:label
+		ADDED from AndroidManifest.xml:387:13
+	android:theme
+		ADDED from AndroidManifest.xml:390:13
+	android:name
+		ADDED from AndroidManifest.xml:386:13
+activity#com.Utteru.p2p.CallScreenActivity
+ADDED from AndroidManifest.xml:392:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:398:13
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:396:13
-receiver#com.Utteru.commonUtilities.GcmBroadcastReceiver
-ADDED from AndroidManifest.xml:402:9
-	android:permission
+	android:label
+		ADDED from AndroidManifest.xml:394:13
+	android:theme
+		ADDED from AndroidManifest.xml:397:13
+	android:name
+		ADDED from AndroidManifest.xml:393:13
+activity#com.Utteru.p2p.IncomingCallScreenActivity
+ADDED from AndroidManifest.xml:399:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:405:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:403:13
+	android:label
+		ADDED from AndroidManifest.xml:401:13
+	android:theme
 		ADDED from AndroidManifest.xml:404:13
 	android:name
-		ADDED from AndroidManifest.xml:403:13
-intent-filter#com.Utteru.ui+com.google.android.c2dm.intent.RECEIVE
-ADDED from AndroidManifest.xml:405:13
-action#com.google.android.c2dm.intent.RECEIVE
-ADDED from AndroidManifest.xml:406:17
+		ADDED from AndroidManifest.xml:400:13
+activity#com.Utteru.p2p.PlaceCallActivity
+ADDED from AndroidManifest.xml:406:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:412:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:410:13
+	android:label
+		ADDED from AndroidManifest.xml:408:13
+	android:theme
+		ADDED from AndroidManifest.xml:411:13
 	android:name
-		ADDED from AndroidManifest.xml:406:25
-category#com.Utteru.ui
-ADDED from AndroidManifest.xml:407:17
-	android:name
-		ADDED from AndroidManifest.xml:407:27
-service#com.Utteru.commonUtilities.GcmIntentService
-ADDED from AndroidManifest.xml:410:9
-	android:name
-		ADDED from AndroidManifest.xml:410:18
-service#com.paypal.android.sdk.payments.PayPalService
-ADDED from AndroidManifest.xml:413:9
-	android:exported
-		ADDED from AndroidManifest.xml:415:13
-	android:name
-		ADDED from AndroidManifest.xml:414:13
-activity#com.Utteru.ui.SearchListDialer
-ADDED from AndroidManifest.xml:417:9
+		ADDED from AndroidManifest.xml:407:13
+activity#com.Utteru.ui.AllStateActivity
+ADDED from AndroidManifest.xml:414:9
 	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:419:13
-	android:name
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:417:13
+	android:label
+		ADDED from AndroidManifest.xml:416:13
+	android:theme
 		ADDED from AndroidManifest.xml:418:13
-activity#com.paypal.android.sdk.payments.PaymentActivity
+	android:name
+		ADDED from AndroidManifest.xml:415:13
+activity#com.Utteru.ui.AllAccessActivity
 ADDED from AndroidManifest.xml:420:9
 	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:425:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:423:13
+	android:label
 		ADDED from AndroidManifest.xml:422:13
+	android:theme
+		ADDED from AndroidManifest.xml:424:13
 	android:name
 		ADDED from AndroidManifest.xml:421:13
-activity#com.paypal.android.sdk.payments.LoginActivity
-ADDED from AndroidManifest.xml:423:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:425:13
-	android:name
-		ADDED from AndroidManifest.xml:424:13
-activity#com.paypal.android.sdk.payments.PaymentMethodActivity
+activity#com.Utteru.ui.AccessAddActivity
 ADDED from AndroidManifest.xml:426:9
 	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:431:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:429:13
+	android:label
 		ADDED from AndroidManifest.xml:428:13
+	android:theme
+		ADDED from AndroidManifest.xml:430:13
 	android:name
 		ADDED from AndroidManifest.xml:427:13
-activity#com.paypal.android.sdk.payments.PaymentConfirmActivity
-ADDED from AndroidManifest.xml:429:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:431:13
-	android:name
-		ADDED from AndroidManifest.xml:430:13
-activity#com.paypal.android.sdk.payments.PayPalFuturePaymentActivity
+activity#com.Utteru.ui.AccessEditActivity
 ADDED from AndroidManifest.xml:432:9
 	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:437:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:435:13
+	android:label
 		ADDED from AndroidManifest.xml:434:13
+	android:theme
+		ADDED from AndroidManifest.xml:436:13
 	android:name
 		ADDED from AndroidManifest.xml:433:13
-activity#com.paypal.android.sdk.payments.FuturePaymentConsentActivity
-ADDED from AndroidManifest.xml:435:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:437:13
-	android:name
-		ADDED from AndroidManifest.xml:436:13
-activity#com.paypal.android.sdk.payments.FuturePaymentInfoActivity
+activity#com.Utteru.ui.BuyByStripe
 ADDED from AndroidManifest.xml:438:9
 	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:443:13
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:440:13
+	android:theme
+		ADDED from AndroidManifest.xml:442:13
 	android:name
 		ADDED from AndroidManifest.xml:439:13
-activity#com.paypal.android.sdk.payments.PayPalProfileSharingActivity
-ADDED from AndroidManifest.xml:441:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:443:13
-	android:name
-		ADDED from AndroidManifest.xml:442:13
-activity#com.paypal.android.sdk.payments.ProfileSharingConsentActivity
+activity#com.Utteru.ui.PhoneBookActivity
 ADDED from AndroidManifest.xml:444:9
 	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:449:13
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:446:13
+	android:theme
+		ADDED from AndroidManifest.xml:448:13
 	android:name
 		ADDED from AndroidManifest.xml:445:13
-activity#io.card.payment.CardIOActivity
-ADDED from AndroidManifest.xml:448:9
+activity#com.Utteru.ui.AutoCountryDetect
+ADDED from AndroidManifest.xml:458:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:451:13
-	android:configChanges
-		ADDED from AndroidManifest.xml:450:13
-	android:name
-		ADDED from AndroidManifest.xml:449:13
-activity#io.card.payment.DataEntryActivity
-ADDED from AndroidManifest.xml:452:9
-	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:454:13
-	android:name
-		ADDED from AndroidManifest.xml:453:13
-service#service.PortSipService
-ADDED from AndroidManifest.xml:456:9
-	android:name
-		ADDED from AndroidManifest.xml:456:18
-activity#com.facebook.LoginActivity
-ADDED from AndroidManifest.xml:457:9
-	android:label
-		ADDED from AndroidManifest.xml:459:13
-	android:theme
+		ADDED from AndroidManifest.xml:463:13
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:460:13
+	android:theme
+		ADDED from AndroidManifest.xml:462:13
 	android:name
-		ADDED from AndroidManifest.xml:458:13
+		ADDED from AndroidManifest.xml:459:13
+receiver#com.Utteru.commonUtilities.GcmBroadcastReceiver
+ADDED from AndroidManifest.xml:465:9
+	android:permission
+		ADDED from AndroidManifest.xml:467:13
+	android:name
+		ADDED from AndroidManifest.xml:466:13
+intent-filter#com.Utteru.ui+com.google.android.c2dm.intent.RECEIVE
+ADDED from AndroidManifest.xml:468:13
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from AndroidManifest.xml:469:17
+	android:name
+		ADDED from AndroidManifest.xml:469:25
+category#com.Utteru.ui
+ADDED from AndroidManifest.xml:470:17
+	android:name
+		ADDED from AndroidManifest.xml:470:27
+service#com.Utteru.commonUtilities.GcmIntentService
+ADDED from AndroidManifest.xml:473:9
+	android:name
+		ADDED from AndroidManifest.xml:473:18
+service#com.paypal.android.sdk.payments.PayPalService
+ADDED from AndroidManifest.xml:476:9
+	android:exported
+		ADDED from AndroidManifest.xml:478:13
+	android:name
+		ADDED from AndroidManifest.xml:477:13
+activity#com.Utteru.ui.SearchListDialer
+ADDED from AndroidManifest.xml:480:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:482:13
+	android:name
+		ADDED from AndroidManifest.xml:481:13
+activity#com.paypal.android.sdk.payments.PaymentActivity
+ADDED from AndroidManifest.xml:483:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:485:13
+	android:name
+		ADDED from AndroidManifest.xml:484:13
+activity#com.paypal.android.sdk.payments.LoginActivity
+ADDED from AndroidManifest.xml:486:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:488:13
+	android:name
+		ADDED from AndroidManifest.xml:487:13
+activity#com.paypal.android.sdk.payments.PaymentMethodActivity
+ADDED from AndroidManifest.xml:489:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:491:13
+	android:name
+		ADDED from AndroidManifest.xml:490:13
+activity#com.paypal.android.sdk.payments.PaymentConfirmActivity
+ADDED from AndroidManifest.xml:492:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:494:13
+	android:name
+		ADDED from AndroidManifest.xml:493:13
+activity#com.paypal.android.sdk.payments.PayPalFuturePaymentActivity
+ADDED from AndroidManifest.xml:495:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:497:13
+	android:name
+		ADDED from AndroidManifest.xml:496:13
+activity#com.paypal.android.sdk.payments.FuturePaymentConsentActivity
+ADDED from AndroidManifest.xml:498:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:500:13
+	android:name
+		ADDED from AndroidManifest.xml:499:13
+activity#com.paypal.android.sdk.payments.FuturePaymentInfoActivity
+ADDED from AndroidManifest.xml:501:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:503:13
+	android:name
+		ADDED from AndroidManifest.xml:502:13
+activity#com.paypal.android.sdk.payments.PayPalProfileSharingActivity
+ADDED from AndroidManifest.xml:504:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:506:13
+	android:name
+		ADDED from AndroidManifest.xml:505:13
+activity#com.paypal.android.sdk.payments.ProfileSharingConsentActivity
+ADDED from AndroidManifest.xml:507:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:509:13
+	android:name
+		ADDED from AndroidManifest.xml:508:13
+activity#io.card.payment.CardIOActivity
+ADDED from AndroidManifest.xml:511:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:514:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:513:13
+	android:name
+		ADDED from AndroidManifest.xml:512:13
+activity#io.card.payment.DataEntryActivity
+ADDED from AndroidManifest.xml:515:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:517:13
+	android:name
+		ADDED from AndroidManifest.xml:516:13
+service#service.PortSipService
+ADDED from AndroidManifest.xml:519:9
+	android:name
+		ADDED from AndroidManifest.xml:519:18
+service#com.Utteru.p2p.SinchService
+ADDED from AndroidManifest.xml:522:9
+	android:name
+		ADDED from AndroidManifest.xml:522:18
+service#com.Utteru.p2p.P2PService
+ADDED from AndroidManifest.xml:523:9
+	android:name
+		ADDED from AndroidManifest.xml:523:18
+service#com.Utteru.utteru_sip.SipRegisterService
+ADDED from AndroidManifest.xml:524:9
+	android:name
+		ADDED from AndroidManifest.xml:524:18
+activity#com.facebook.LoginActivity
+ADDED from AndroidManifest.xml:527:9
+	android:label
+		ADDED from AndroidManifest.xml:529:13
+	android:theme
+		ADDED from AndroidManifest.xml:530:13
+	android:name
+		ADDED from AndroidManifest.xml:528:13
+receiver#com.Utteru.p2p.InternetReceiver
+ADDED from AndroidManifest.xml:532:9
+	android:name
+		ADDED from AndroidManifest.xml:532:19
+intent-filter#android.net.conn.CONNECTIVITY_CHANGE+android.net.wifi.WIFI_STATE_CHANGED
+ADDED from AndroidManifest.xml:533:13
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from AndroidManifest.xml:534:17
+	android:name
+		ADDED from AndroidManifest.xml:534:25
+action#android.net.wifi.WIFI_STATE_CHANGED
+ADDED from AndroidManifest.xml:535:17
+	android:name
+		ADDED from AndroidManifest.xml:535:25
 activity#com.helpshift.HSConversation
 ADDED from com.helpshift:android-en-aar:3.7.1:16:9
 	android:label

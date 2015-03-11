@@ -54,8 +54,9 @@ public class LongRecentLogsAdapter extends BaseAdapter {
         LongCodesDto ldto;
         ldto = list.get(paramInt);
         viewholder.callerid.setText(ldto.getCallerid());
-        if (ldto.getDuration().equals("null")) {
+        if (ldto.getDuration().equals("null")||ldto.getBal_deduct().equals("null")) {
             viewholder.duartion.setText("Missed");
+            viewholder.bal_deduct.setText("0.00");
         } else {
             viewholder.duartion.setText(ldto.getDuration());
         }

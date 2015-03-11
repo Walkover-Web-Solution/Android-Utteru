@@ -12,8 +12,8 @@
         android:layout_alignParentLeft="true"
         android:gravity="left"
         android:text="Number"
-        android:textColor="@color/new_black"
-        android:textSize="@dimen/cross_button_height" />
+        android:textColor="#605d5d"
+        android:textSize="15sp" />
 
     <com.Utteru.commonUtilities.FontTextView
         android:id="@+id/expiry"
@@ -23,8 +23,8 @@
         android:layout_alignParentRight="true"
         android:gravity="right"
         android:text="Expiry"
-        android:textColor="@color/new_black"
-        android:textSize="@dimen/cross_button_height" />
+        android:textColor="#605d5d"
+        android:textSize="15sp" />
 
 
 </RelativeLayout>

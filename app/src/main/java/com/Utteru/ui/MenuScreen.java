@@ -63,7 +63,6 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
     public static boolean showbal = false;
 
 
-
     Context ctx = this;
     String[] web = {"Call",
             "Access Number",
@@ -83,10 +82,6 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
             "Two Way Call",
             "Call rates",
             "My Account",
-            "Call Forwarding",
-            "Go to web",
-            "Help"
-
 
     };
 
@@ -100,7 +95,7 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
             R.drawable.call_rate,
             R.drawable.share_talk,
             R.drawable.earn,
-            R.drawable.phone,
+            R.drawable.call_forward,
             R.drawable.go_to_web,
             R.drawable.help
 
@@ -111,10 +106,9 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
             R.drawable.twc,
             R.drawable.call_rate,
             R.drawable.reset_pin,
-            R.drawable.phone,
+            R.drawable.call_forward,
             R.drawable.go_to_web,
             R.drawable.help
-
 
 
     };
@@ -139,8 +133,8 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
         Mint.initAndStartSession(MenuScreen.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
-        ContactObserver observer  = new ContactObserver(new Handler(),this);
-        ContactObserver.registerObserver(this,ContactsContract.CommonDataKinds.Phone.CONTENT_URI,observer);
+        ContactObserver observer = new ContactObserver(new Handler(), this);
+        ContactObserver.registerObserver(this, ContactsContract.CommonDataKinds.Phone.CONTENT_URI, observer);
 
 
         Account account = new Account(Constants.ACCOUNT_NAME, Constants.ACCOUNT_TYPE);
@@ -192,10 +186,10 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
         CommonUtility.getUserBalance(this);
 
         //starting  p2p service
-        if(!CommonUtility.isMyServiceRunning(P2PService.class, this))
-          getApplicationContext().startService(new Intent(this, P2PService.class));
+        if (!CommonUtility.isMyServiceRunning(P2PService.class, this))
+            getApplicationContext().startService(new Intent(this, P2PService.class));
         //starting  sip  service
-        if(!CommonUtility.isMyServiceRunning(SipRegisterService.class, this))
+        if (!CommonUtility.isMyServiceRunning(SipRegisterService.class, this))
             getApplicationContext().startService(new Intent(this, SipRegisterService.class));
 
 
@@ -226,17 +220,14 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
 
 
             userBalance.setText("Buy More");
-<<<<<<< HEAD
+
             showbal = false;
         } else {
             userBalance.setText(Prefs.getUserBalance(ctx));
             showbal = true;
-=======
-        } else {
-            userBalance.setText(Prefs.getUserBalance(ctx));
->>>>>>> final with p2p and parse
-        }
 
+
+        }
 
 
     }
@@ -249,11 +240,8 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
     }
 
 
-
-
     @Override
     protected void onResume() {
-
 
 
         if (UserService.getUserServiceInstance(ctx).getAllCountries().size() == 0) {
@@ -424,7 +412,7 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
                             ctx.startActivity(start_screen);
                             overridePendingTransition(R.anim.animation1, R.anim.animation2);
                             break;
-                        case 4:
+                    /*    case 4:
                             //callforwarding
                             start_screen = new Intent(ctx, CallForwardActivity.class);
                             ctx.startActivity(start_screen);
@@ -445,8 +433,7 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
 
                             Helpshift.showFAQs(MenuScreen.this);
                             overridePendingTransition(R.anim.animation1, R.anim.animation2);
-                            break;
-
+                            break;*/
 
 
                     }
@@ -470,16 +457,9 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
             }
         });
 
-
-<<<<<<< HEAD
-=======
         setBalance();
 
 
-
-
-
->>>>>>> final with p2p and parse
         super.onResume();
     }
 
@@ -586,10 +566,6 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
             return null;
         }
     }
-
-
-
-
 
 
 }

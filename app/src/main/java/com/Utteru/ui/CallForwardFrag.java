@@ -42,7 +42,7 @@ import java.util.Iterator;
 public class CallForwardFrag extends Fragment {
     FontTextView tvMsg;
     Button mSelectCountry;
-    //View manage_numbers;
+
     LongCodesAdapter adapter;
     LongCodesDto selectedto;
     Context ctx;
@@ -51,9 +51,7 @@ public class CallForwardFrag extends Fragment {
     ListView longcode_listview;
     ProgressDialog dialog;
     ArrayList<LongCodesDto> datalist;
-    // Store instance variables
-    private String title;
-    private int page;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -147,10 +145,12 @@ public class CallForwardFrag extends Fragment {
                     adapter = new LongCodesAdapter(datalist, ctx);
                     longcode_listview.setAdapter(adapter);
                     adapter.notifyDataSetInvalidated();
+                    headerlistview.setVisibility(View.VISIBLE);
                     longcode_listview.invalidateViews();
 
                 } else {
                     longcode_listview.setVisibility(View.GONE);
+                    headerlistview.setVisibility(View.GONE);
                 }
 
 

@@ -76,18 +76,25 @@
         android:layout_marginLeft="15dp"
         android:textColor="@color/blue_contacts"
         android:textSize="18dp" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_below="@id/success_msg_other"
+        android:layout_height="wrap_content"
+        android:src="@drawable/horizontal_seperator"
+        android:id="@+id/sep"
+        />
 
     <com.Utteru.commonUtilities.FontTextView
         android:id="@+id/hint_msg"
         android:layout_width="wrap_content"
-        android:layout_below="@+id/success_msg_other"
+        android:layout_below="@+id/sep"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Now Select a number on which you wish to forward calls."
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="15dp"
         android:textColor="@color/light_black"
-        android:textSize="18dp" />
+        android:textSize="14sp" />
 
 
     <ListView

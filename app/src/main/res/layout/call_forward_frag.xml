@@ -22,8 +22,8 @@
             android:layout_gravity="center|top"
             android:text="@string/call_fwd_msg"
             android:textAlignment="center"
-            android:textColor="@color/light_grey"
-            android:textSize="@dimen/abc_text_size_medium_material"
+            android:textColor="#605d5d"
+            android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -32,28 +32,30 @@
         android:id="@+id/lsthead"
         android:layout_below="@+id/msg"
         android:padding="5dp"
-        android:gravity="center_horizontal"
-        android:layout_height="wrap_content">
+        android:visibility="gone"
+        android:background="@color/red_reset_pin"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
 
         <com.Utteru.commonUtilities.FontTextView
             android:id="@+id/numberhead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_alignParentLeft="true"
+
             android:text="Rented Numbers"
-            android:textColor="@color/red_reset_pin"
+            android:textColor="@color/white"
             android:textSize="@dimen/abc_text_size_body_1_material"
             android:textStyle="bold" />
 
         <com.Utteru.commonUtilities.FontTextView
             android:id="@+id/expiryhead"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="70dp"
+            android:layout_alignParentRight="true"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/numberhead"
+            android:layout_marginRight="20dp"
             android:text="Expires on"
-            android:textColor="@color/red_reset_pin"
+            android:textColor="@color/white"
             android:textSize="@dimen/abc_text_size_body_1_material"
             android:textStyle="bold" />
     </RelativeLayout>

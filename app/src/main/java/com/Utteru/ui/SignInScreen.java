@@ -74,12 +74,12 @@ public class SignInScreen extends AccountAuthenticatorActivity {
     public static final String PARAM_USERNAME = "username";
     public static final String PARAM_AUTHTOKEN_TYPE = "authtokenType";
 
-    private static final String USERTYPE="3";
+    private static final String USERTYPE = "3";
 
 
     private static final String APP_ID = "764962106885610";
     private static final String TAG = "SignInScreen";
-   static int accessType;
+    static int accessType;
     static String accessToken;
     public boolean checkAccount = false;
     protected boolean mRequestNewAccount = false;
@@ -265,7 +265,7 @@ public class SignInScreen extends AccountAuthenticatorActivity {
 
             @Override
             public void onThinking() {
-                Log.w(TAG, String.format("You didn't accept %s permissions","thinking"));
+                Log.w(TAG, String.format("You didn't accept %s permissions", "thinking"));
             }
 
             @Override
@@ -280,7 +280,6 @@ public class SignInScreen extends AccountAuthenticatorActivity {
             public void onFail(String reason) {
 
                 Log.e("reason", reason);
-
 
 
             }
@@ -649,8 +648,7 @@ public class SignInScreen extends AccountAuthenticatorActivity {
                 showErrorMessage(true, response);
             } else {
                 if (Prefs.getUserType(ctx).equals(USERTYPE)) {
-                if (CommonUtility.isNetworkAvailable(SignInScreen.this)) {
-
+                    if (CommonUtility.isNetworkAvailable(SignInScreen.this)) {
 
 
                         new IntialiseData(ctx).initVerifiedData();
@@ -672,11 +670,9 @@ public class SignInScreen extends AccountAuthenticatorActivity {
                     }
 
 
-
-                }
-                else{
+                } else {
                     CommonUtility.clearData(ctx);
-                    CommonUtility.showCustomAlertForContactsError(ctx,"Not providing access for Resellers.Please visit our website");
+                    CommonUtility.showCustomAlertForContactsError(ctx, "Not providing access for Resellers.Please visit our website");
 
                 }
             }
@@ -808,10 +804,9 @@ public class SignInScreen extends AccountAuthenticatorActivity {
                         overridePendingTransition(R.anim.animation1, R.anim.animation2);
 
 
-                    }
-                    else{
+                    } else {
                         CommonUtility.clearData(ctx);
-                        CommonUtility.showCustomAlertForContactsError(ctx,"Not providing access for Resellers.Please visit our website");
+                        CommonUtility.showCustomAlertForContactsError(ctx, "Not providing access for Resellers.Please visit our website");
 
                     }
                 }
@@ -952,7 +947,8 @@ public class SignInScreen extends AccountAuthenticatorActivity {
             return null;
         }
     }
-    void generateHash(){
+
+    void generateHash() {
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
                     "com.facebook.samples.hellofacebook",

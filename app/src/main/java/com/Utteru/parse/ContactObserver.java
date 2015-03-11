@@ -20,13 +20,13 @@ import java.util.List;
 
 public class ContactObserver extends ContentObserver {
 
-Context mContext;
+    Context mContext;
 
-    public  ContactObserver(Handler handler,Context context)
-    {
+    public ContactObserver(Handler handler, Context context) {
         super(handler);
-        mContext=context;
+        mContext = context;
     }
+
     @Override
     public void onChange(boolean selfChange) {
         super.onChange(selfChange);
@@ -36,13 +36,12 @@ Context mContext;
     @Override
     public void onChange(boolean selfChange, Uri uri) {
         super.onChange(selfChange, uri);
-        Log.e("change in contacts","change in contacts");
+        Log.e("change in contacts", "change in contacts");
         onChange(selfChange);
 
-   }
+    }
 
-    public void syncContactsAll(final ArrayList<ContactsDto> contactlist)
-    {
+    public void syncContactsAll(final ArrayList<ContactsDto> contactlist) {
 
         try {
             final List<ContactsDto> local_con_list = contactlist;
@@ -58,11 +57,15 @@ Context mContext;
                     for (ParseObject obj : parseObjects) {
                         contactsDto = new ContactsDto();
                         contactsDto.setStatus(obj.getBoolean(ParseDb.CB_STATUS));
-                        contactsDto.setNumber(obj.getString(ParseDb.CB_CONTACTNUMBER));
+                        String number = obj.getString(ParseDb.CB_CONTACTNUMBER);
+                        number = number.replace("91", "");
+                        Log.e("number", "" + number);
+                        contactsDto.setNumber(number);
                         contactsDto.setState(obj.getBoolean(ParseDb.CB_STATE));
                         contactsDto.setUserNumber(obj.getString(ParseDb.CB_USERNUMBER));
                         contactsDto.setObjectId(obj.getObjectId());
-                        Log.e("get object Id",""+contactsDto.getObjectId());
+                        Log.e("get object Id", "" + contactsDto.getObjectId());
+                        Log.e("get number Id", "" + contactsDto.getNumber());
                         server_list.add(contactsDto);
                     }
 
@@ -70,15 +73,19 @@ Context mContext;
                     List<ContactsDto> differList = con_operation.intersection(local_con_list, server_list);
                     local_con_list.removeAll(differList);
                     server_list.removeAll(differList);
-                    Log.e("removed common ","removed common ");
+                    Log.e("removed common ", "removed common ");
                     if (server_list.size() > 0) {
-                        Log.e("deleting  numbers ","deleting numbers ");
+                        Log.e("deleting  numbers ", "deleting numbers ");
                         List<ParseObject> objectList = new ArrayList<ParseObject>();
                         ParseObject obj;
                         for (ContactsDto cdto : server_list) {
-                            obj =  ParseObject.createWithoutData("HangOut", cdto.getObjectId());;
+                            obj = ParseObject.createWithoutData("HangOut", cdto.getObjectId());
+                            ;
+
                             obj.put(ParseDb.CB_STATUS, false);
-                            obj.put(ParseDb.CB_CONTACTNUMBER, cdto.getNumber());
+
+                            if (cdto.getNumber().length() > 7)
+                                obj.put(ParseDb.CB_CONTACTNUMBER, cdto.getNumber());
                             obj.put(ParseDb.CB_USERNUMBER, Prefs.getUserDefaultNumber(mContext));
                             obj.put(ParseDb.CB_STATE, false);
                             objectList.add(obj);
@@ -100,7 +107,10 @@ Context mContext;
                                     for (ContactsDto cdto : local_con_list) {
                                         obj = new ParseObject(ParseDb.CB_CLASS_NAME);
                                         obj.put(ParseDb.CB_STATUS, false);
-                                        obj.put(ParseDb.CB_CONTACTNUMBER, cdto.getNumber());
+                                        String number = cdto.getNumber();
+                                        if (number.contains("91"))
+                                            number = number.replace("91", "");
+                                        obj.put(ParseDb.CB_CONTACTNUMBER, number);
                                         obj.put(ParseDb.CB_USERNUMBER, Prefs.getUserDefaultNumber(mContext));
                                         obj.put(ParseDb.CB_STATE, false);
                                         objectList.add(obj);
@@ -120,23 +130,20 @@ Context mContext;
                     }
                 }
             });
-        }
-        catch (Exception e)
-        {
-          e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    public static void  registerObserver (Context context,Uri uri ,ContactObserver observer)
-    {
+    public static void registerObserver(Context context, Uri uri, ContactObserver observer) {
         context.getContentResolver().
                 registerContentObserver(
                         uri,
                         true,
                         observer);
     }
-    public static  void unregister (Context context,ContactObserver observer)
-    {
+
+    public static void unregister(Context context, ContactObserver observer) {
         context.getContentResolver().unregisterContentObserver(observer);
 
 

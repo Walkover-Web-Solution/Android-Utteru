@@ -50,7 +50,7 @@ public class DialogSuccess extends Dialog implements View.OnClickListener {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.alert_sucess);
-
+        new GetPricing().execute();
         cancel = (Button) findViewById(R.id.done_button);
         proceed = (Button) findViewById(R.id.skip_button);
         tvdeductmsg = (FontTextView) findViewById(R.id.tittle);
@@ -65,7 +65,7 @@ public class DialogSuccess extends Dialog implements View.OnClickListener {
         error_layout.setOnClickListener(this);
         close_em.setOnClickListener(this);
        // tvdeductmsg.setText(tittletext + " " + Prefs.getPlanRate(c));
-        new GetPricing().execute();
+
 
     }
 

@@ -12,8 +12,9 @@
         android:layout_alignParentLeft="true"
         android:gravity="left"
         android:text="032115512"
+        android:textStyle="bold"
         android:textColor="@color/new_black"
-        android:textSize="@dimen/cross_button_height" />
+        android:textSize="@dimen/email_header_text_size" />
 
     <com.Utteru.commonUtilities.FontTextView
         android:id="@+id/duartion"
@@ -23,8 +24,8 @@
         android:layout_below="@+id/caller_id"
         android:gravity="left"
         android:text="Missed"
-        android:textColor="@color/new_black"
-        android:textSize="@dimen/cross_button_height" />
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/edit_text_size" />
 
     <com.Utteru.commonUtilities.FontTextView
         android:id="@+id/date_time"
@@ -35,8 +36,8 @@
         android:layout_marginLeft="5dp"
         android:gravity="left"
         android:text="27,Feb,23:00"
-        android:textColor="@color/new_black"
-        android:textSize="@dimen/cross_button_height" />
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/edit_text_size" />
 
     <com.Utteru.commonUtilities.FontTextView
         android:id="@+id/bal_deducted"
@@ -47,8 +48,8 @@
         android:layout_below="@+id/caller_id"
         android:gravity="left"
         android:text="0.0545"
-        android:textColor="@color/new_black"
-        android:textSize="@dimen/cross_button_height" />
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/edit_text_size" />
 
 
     <ImageView
@@ -58,6 +59,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_height="30dp"
+        android:visibility="gone"
         android:layout_marginRight="5dp"
         android:src="@drawable/ar_right" />
 

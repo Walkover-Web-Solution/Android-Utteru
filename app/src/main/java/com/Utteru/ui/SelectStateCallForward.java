@@ -85,6 +85,12 @@ public class SelectStateCallForward extends ActionBarActivity {
                 onBackPressed();
             }
         });
+        gotohome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SelectStateCallForward.this, MenuScreen.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+        });
         titile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,7 +126,7 @@ public class SelectStateCallForward extends ActionBarActivity {
         subtitle = (FontTextView) findViewById(R.id.contacts_subtitle);
         subtitle.setVisibility(View.VISIBLE);
         subtitle.setText(selectedDto.getCountry());
-        titile.setText("Select Access Number");
+        titile.setText("Select State");
         listView = (ListView) findViewById(R.id.contacts_list);
         stateList = new ArrayList<>();
 

@@ -381,6 +381,7 @@ public class CallingScreenActivity extends Activity {
                 dialpad_layout.setAnimation(bottomUp);
                 dialpad_layout.setVisibility(View.VISIBLE);
                 edCalling.setVisibility(View.VISIBLE);
+                edCalling.requestFocus();
                 open_dialpad.setBackgroundResource(R.drawable.dial_pad_on);
 //                clearFocus();
             }
@@ -418,7 +419,7 @@ public class CallingScreenActivity extends Activity {
         edCalling = (EditText) findViewById(R.id.ed_calling_screen);
         end_call_button = (ImageButton)findViewById(R.id.endcall_btn);
         open_dialpad.setEnabled(false);
-        keyboard = new CustomKeyboardOther(this, R.id.keyboardview, R.xml.numberic_key_only, call);
+        keyboard = new CustomKeyboardOther(this, R.id.keyboardview, R.xml.dtmf_key_only, call);
         keyboard.registerEditText(edCalling.getId(), call);
 
         new SearchRate().execute();
@@ -453,7 +454,7 @@ public class CallingScreenActivity extends Activity {
                 return false;
             }
         });
-        speaker.setOnTouchListener(new View.OnTouchListener() {
+       /* speaker.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
@@ -468,6 +469,21 @@ public class CallingScreenActivity extends Activity {
 
                 }
                 return false;
+            }
+        });*/
+        speaker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (speaker_state) {
+                    speaker_state = false;
+                    startSpeaker(speaker_state);
+                    speaker.setBackgroundResource(R.drawable.speaker_inactive);
+                } else {
+                    speaker_state = true;
+                    startSpeaker(speaker_state);
+                    speaker.setBackgroundResource(R.drawable.speaker_active);
+
+                }
             }
         });
         open_dialpad.setOnClickListener(new View.OnClickListener() {

@@ -44,13 +44,10 @@ android {
         compile project(':facebook')
         compile 'com.parse.bolts:bolts-android:1.+'
         compile fileTree(dir: 'libs', include: 'Parse-*.jar')
-
-    }
-    dependencies {
         compile files('libs/sinch-android-rtc-3.4.3.jar')
 
-
     }
+
 
 
 }
