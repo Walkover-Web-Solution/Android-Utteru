@@ -180,7 +180,7 @@ public class CommonUtility {
 
 
 
-        if (number.startsWith("+") && number.startsWith("00")) {
+        if (number.startsWith("+") || number.startsWith("00")) {
 
             return number;
         }
