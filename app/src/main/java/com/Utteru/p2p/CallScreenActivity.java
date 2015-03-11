@@ -139,10 +139,10 @@ public class CallScreenActivity extends BaseActivity {
         @Override
         public void onCallEnded(Call call) {
             CallEndCause cause = call.getDetails().getEndCause();
-            Log.d(TAG, "Call ended. Reason: " + cause.toString());
+            Log.d(TAG, "Call ended");
             mAudioPlayer.stopProgressTone();
             setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
-            String endMsg = "Call ended: " + call.getDetails().toString();
+            String endMsg = "Call ended";
             Toast.makeText(CallScreenActivity.this, endMsg, Toast.LENGTH_LONG).show();
             endCall();
         }

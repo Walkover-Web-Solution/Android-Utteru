@@ -45,7 +45,7 @@ public class ContactDetailActivity extends com.Utteru.p2p.BaseActivity implement
             CommonUtility.dialog.dismiss();
         }
 
-        stopButtonClicked();
+//        stopButtonClicked();
         super.onDestroy();
     }
 
