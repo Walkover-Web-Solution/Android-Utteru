@@ -92,7 +92,7 @@ public class SignUpHome extends BaseActivity {
 //                for (Account account : accounts) {
 //                    Log.e("got uid&pw","got uid&pw");
 //                    if (emailPattern.matcher(account.name).matches()) {
-//                        String possibleEmail = account.name;
+//                        String possibleEmaaaail = account.name;
 //                        Intercom.setApiKey("android_sdk-d602fce9df901dbe4e9ddb066b70166020b18203", "d602fce9df901dbe4e9ddb066b70166020b18203");
 //                        Intercom.beginSessionWithEmail(null, new Intercom.IntercomEventListener() {
 //                            @Override
@@ -226,12 +226,14 @@ public class SignUpHome extends BaseActivity {
     public void onBackPressed() {
         Fragment page = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
         if (mPager.getCurrentItem() == 2 && page != null) {
-            ((SignUpFragement) page).onBackPress();
+           this.finish();
+           this.overridePendingTransition(R.anim.animation3, R.anim.animation4);
+
             Log.e("backfrag", "backfrag");
         } else {
             this.finish();
             this.overridePendingTransition(R.anim.animation3, R.anim.animation4);
-            super.onBackPressed();
+
         }
     }
 
