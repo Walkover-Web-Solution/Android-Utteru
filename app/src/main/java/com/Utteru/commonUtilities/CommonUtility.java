@@ -150,8 +150,9 @@ public class CommonUtility {
 
         number = number.replace("//s+", "");//space
         number = number.replaceAll("[-+.^:,]", "");//specific special character
-        number = number.replaceAll("-", ""); //dash
         number = number.replace("+", "");
+        number = number.replaceAll("-", ""); //dash
+
         number = number.replaceAll("\\s+", "");
 
 
@@ -805,7 +806,10 @@ public class CommonUtility {
         while (phones.moveToNext()) {
 
             String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
             phoneNumber = phoneNumber.replaceAll("-", "").replaceAll("\\s+", "");
+            phoneNumber = phoneNumber.replaceAll("[-+.^:,]", "");//specific special character
+            phoneNumber = phoneNumber.replace("+", "");
             String label = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.LABEL));
 
             adto = new ContactsDto();
