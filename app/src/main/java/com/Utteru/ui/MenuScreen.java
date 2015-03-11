@@ -133,8 +133,8 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
         Mint.initAndStartSession(MenuScreen.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
-        ContactObserver observer = new ContactObserver(new Handler(), this);
-        ContactObserver.registerObserver(this, ContactsContract.CommonDataKinds.Phone.CONTENT_URI, observer);
+//        ContactObserver observer = new ContactObserver(new Handler(), this);
+//        ContactObserver.registerObserver(this, ContactsContract.CommonDataKinds.Phone.CONTENT_URI, observer);
 
 
         Account account = new Account(Constants.ACCOUNT_NAME, Constants.ACCOUNT_TYPE);
