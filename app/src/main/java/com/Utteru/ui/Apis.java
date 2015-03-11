@@ -1326,7 +1326,8 @@ public class Apis {
                     break;
                 } catch (SocketTimeoutException e) {
                     e.printStackTrace();
-                    CommonUtility.showCustomAlertForContacts(ct.getApplicationContext(), ct.getString(R.string.server_error));
+
+//                    CommonUtility.showCustomAlertForContacts(ct.getApplicationContext(), ct.getString(R.string.server_error));
 
                     return "";
 
