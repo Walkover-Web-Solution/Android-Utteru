@@ -51,7 +51,6 @@ public class SelectCountryCallForward extends ActionBarActivity {
 
         setContentView(R.layout.list_layout);
         init();
-
         Mint.initAndStartSession(SelectCountryCallForward.this, CommonUtility.BUGSENSEID);
         Mint.setUserIdentifier(Prefs.getUserDefaultNumber(ctx));
 
