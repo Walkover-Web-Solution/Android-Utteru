@@ -17,6 +17,7 @@ import android.support.v7.app.ActionBarActivity;
 import com.Utteru.R;
 import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.Prefs;
+import com.Utteru.parse.ParseDb;
 import com.Utteru.syncadapter.SyncAdapter;
 import com.splunk.mint.Mint;
 import com.viewpagerindicator.IconPagerAdapter;
@@ -92,6 +93,7 @@ public class ContactsListActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
 
+        ParseDb.getParseInstance(this).updateOnlineStatus(true);
         super.onResume();
     }
 
@@ -114,6 +116,7 @@ public class ContactsListActivity extends ActionBarActivity {
 
             e.printStackTrace();
         }
+        ParseDb.getParseInstance(this).updateOnlineStatus(false);
         super.onDestroy();
     }
 
@@ -179,12 +182,7 @@ public class ContactsListActivity extends ActionBarActivity {
     }
     @Override
     public void onStop() {
-        try {
-            if (contacts_updated != null)
-                unregisterReceiver(contacts_updated);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         super.onStop();
     }
 

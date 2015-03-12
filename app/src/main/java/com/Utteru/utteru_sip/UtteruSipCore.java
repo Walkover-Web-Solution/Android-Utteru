@@ -152,6 +152,8 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
     }
 
 
+
+
     @Override
     public void onTerminate() {
         super.onTerminate();

@@ -1,6 +1,15 @@
 package com.Utteru.parse;
 
 import android.content.Context;
+import android.util.Log;
+
+import com.Utteru.commonUtilities.Prefs;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 /**
  * Created by vikas on 26/02/15.
@@ -41,7 +50,30 @@ public class ParseDb {
         }
 
 
+public void updateOnlineStatus(final Boolean state)
+{
 
+    ParseQuery<ParseObject> query = ParseQuery.getQuery(US_CLASS_NAME);
+    query.whereEqualTo(US_CONTACTNUMBER, Prefs.getUserDefaultNumber(ctx));
+    query.findInBackground(new FindCallback<ParseObject>() {
+        @Override
+        public void done(List<ParseObject> nameList, ParseException e)
+        {
+            if (e == null)
+            {
+                for (ParseObject users : nameList)
+                {
+                    users.put(US_STATE, state);
+                    users.saveInBackground();
+                }
+            }
+            else
+            {
+                Log.d("Post retrieval", "Error: " + e.getMessage());
+            }
+        }
+    });
+}
 
 
 
