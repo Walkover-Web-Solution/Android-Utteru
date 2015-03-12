@@ -807,19 +807,22 @@ public class CommonUtility {
 
             String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
-            phoneNumber = phoneNumber.replaceAll("-", "").replaceAll("\\s+", "");
-            phoneNumber = phoneNumber.replaceAll("[-+.^:,]", "");//specific special character
-            phoneNumber = phoneNumber.replace("+", "");
+
             String label = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.LABEL));
 
             adto = new ContactsDto();
 
-            adto.setNumber(CommonUtility.validateNumberForUI(phoneNumber,ctx));
+            adto.setNumber(phoneNumber);
             adto.setStatus(false);
             adto.setState(false);
             adto.setUserNumber(Prefs.getUserDefaultNumber(ctx));
 
+            if (label != null) {
+                if (!label.equals("Utteru Number") && !label.equals("Dedicated Access Number") & !label.contains("Access Number Extension:"))
+                    list.add(adto);
+            } else {
                 list.add(adto);
+            }
 
         }
         phones.close();

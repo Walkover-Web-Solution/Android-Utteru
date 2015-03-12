@@ -64,7 +64,8 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
 
 
     Context ctx = this;
-    String[] web = {"Call",
+    String[] web = {
+            "Call",
             "Access Number",
             "Two Way Call",
             "Contacts",
