@@ -218,7 +218,17 @@ public class DialerFragment extends Fragment {
                 } else {
                     if (number_text != null && number_text.getText().toString().length() > 0) {
                         Prefs.setLastCallNo(context, number_text.getText().toString());
-                        makeCall(mSelectCountry.getText().toString() + number_text.getText().toString());
+                        String numbertext_value = number_text.getText().toString();
+
+                        if (numbertext_value.startsWith("0") || numbertext_value.startsWith("+")) {
+
+                            numbertext_value = numbertext_value.replaceFirst("0", "");
+                            numbertext_value = numbertext_value.replace("+", "");
+                            numbertext_value =  numbertext_value.replaceFirst("00", "");
+                        }
+
+
+                        makeCall(mSelectCountry.getText().toString() + numbertext_value);
 //                        number_text.setText(""); // by sneha to retain number
                     } else {
                         if (number_text.getText().toString().equals("")) {
@@ -446,7 +456,7 @@ public class DialerFragment extends Fragment {
                                 con_number = con_number.replaceFirst("00", "");
                             if (con_number.startsWith("0"))
                                 con_number = con_number.replaceFirst("0", "");
-                            con_number.replaceAll("\\s+","");
+                            con_number.replaceAll("\\s+", "");
                             number_text.setText(con_number);
                             mCountryName.setText("Please select country code");
                             mSelectCountry.setVisibility(View.GONE);

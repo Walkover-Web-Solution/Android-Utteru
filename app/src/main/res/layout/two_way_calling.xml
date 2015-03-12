@@ -193,7 +193,6 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-
                         android:gravity="center_vertical"
                         android:text="0.0"
                         android:textColor="@color/light_black"
@@ -206,7 +205,6 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/margin_bottom"
-
                         android:layout_toRightOf="@id/tw_pricing_rate"
                         android:gravity="center_vertical"
                         android:text="USD"
