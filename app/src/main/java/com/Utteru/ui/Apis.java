@@ -323,6 +323,30 @@ public class Apis {
         return response;
     }
 
+    //get two way pricing
+    public String senduserInfo(String email) {
+
+
+        completeUrl = "http://voice.utteru.com:8080/api-1.0.0/emailstore.jsp";
+        HttpPost httpPost = new HttpPost(completeUrl);
+        List<NameValuePair> nameValuePair = new ArrayList<>();
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.USER, Prefs.getUserActualName(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.MOBILE, Prefs.getUserDefaultNumber(ct)));
+        nameValuePair.add(new BasicNameValuePair(VariableClass.ResponseVariables.EMAIL, email));
+
+
+        Log.e("sending info ", "" + nameValuePair);
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return response;
+        }
+        response = HitUrl(httpPost);
+        Log.e("sending info", "" + response);
+        return response;
+    }
+
 
     public String getCallLogsDetails(String sourceNumber, String destinationNumber) {
 

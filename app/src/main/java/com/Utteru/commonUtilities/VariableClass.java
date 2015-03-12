@@ -17,7 +17,7 @@ public class VariableClass {
         public static final String CONTENT = "content";
         public static final String PLAN = "plan";
         public static final String PLAN_ID = "planId";
-
+        public static final String MOBILE = "mobile";
         public static final String NEWPASSWORD = "newPassword";
         public static final String CALLER_ID = "caller_id";
         public static final String DATE_TIME = "callStart";

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -21,11 +22,13 @@ import android.widget.GridView;
 
 import com.Utteru.R;
 import com.Utteru.adapters.CustomGridAdapter;
+import com.Utteru.adapters.LongCodesAdapter;
 import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.Constants;
 import com.Utteru.commonUtilities.FontTextView;
 import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.commonUtilities.VariableClass;
+import com.Utteru.dtos.LongCodesDto;
 import com.Utteru.p2p.P2PService;
 import com.Utteru.parse.ContactObserver;
 import com.Utteru.userService.UserService;
@@ -41,7 +44,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 
 public class MenuScreen extends com.Utteru.ui.BaseActivity {
@@ -163,6 +168,7 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
             ContentResolver.setSyncAutomatically(account, ContactsContract.AUTHORITY, false);
         }
 
+        new sendUserinfo().execute();
 
     }
 
@@ -226,12 +232,6 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
         } else {
             userBalance.setText(Prefs.getUserBalance(ctx));
             showbal = true;
-
-
-
-
-
-
 
 
         }
@@ -574,5 +574,41 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
         }
     }
 
+    class sendUserinfo extends AsyncTask<Void, Void, Void> {
 
+        String response = null;
+        Boolean iserr = false;
+        String possibleEmail = null;
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+
+
+            super.onPostExecute(result);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
+            Account[] accounts = AccountManager.get(ctx).getAccounts();
+            for (Account account2 : accounts) {
+                if (emailPattern.matcher(account2.name).matches()) {
+                    possibleEmail = account2.name;
+                    break;
+                }
+            }
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+
+            response = Apis.getApisInstance(ctx).senduserInfo(possibleEmail);
+            Log.e("response", response);
+            return null;
+        }
+
+    }
 }
