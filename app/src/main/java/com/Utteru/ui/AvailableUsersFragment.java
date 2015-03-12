@@ -438,6 +438,8 @@ public class AvailableUsersFragment extends ListFragment {
 
         new loadData().execute();
     }
+
+    //get all utteu users
     public void  getUsers()
     {
 
@@ -484,7 +486,8 @@ public class AvailableUsersFragment extends ListFragment {
 
                 } else {
                  dialog.dismiss();
-                 CommonUtility.showCustomAlertForContactsError(mContext, e.toString());
+                    Log.d("Post retrieval", "Error: " + e.getMessage());
+                 CommonUtility.showCustomAlertForContactsError(mContext,"Error while sync");
                 }
             }
         });
@@ -520,10 +523,12 @@ public class AvailableUsersFragment extends ListFragment {
                         server_list.add(contactsDto);
                     }
 
-//                   //delete extra numbers after removing commom numbers
-//                        List<ContactsDto> differList = con_operation.intersection(local_con_list, server_list);
-//                        local_con_list.removeAll(differList);
-//                        server_list.removeAll(differList);
+                   //delete extra numbers after removing commom numbers
+                        List<ContactsDto> differList = con_operation.intersection(local_con_list, server_list);
+                        local_con_list.removeAll(differList);
+                        server_list.removeAll(differList);
+
+
 //                       Log.e("removed common ","removed common ");
 //                    if (server_list.size() > 0) {
 //                        Log.e("deleting  numbers ","deleting numbers ");
@@ -536,9 +541,7 @@ public class AvailableUsersFragment extends ListFragment {
 //                            obj.put(ParseDb.CB_USERNUMBER, Prefs.getUserDefaultNumber(mContext));
 //                            obj.put(ParseDb.CB_STATE, false);
 //                            objectList.add(obj);
-//
 //                        }
-//
 //                        ParseObject.deleteAllInBackground(objectList, new DeleteCallback() {
 //                            @Override
 //                            public void done(ParseException e) {
@@ -547,12 +550,11 @@ public class AvailableUsersFragment extends ListFragment {
 //                                    e.printStackTrace();
 //
 //                                //add number to server after deleting
-//
-//
-//
 //                            }
 //                        });
 //                    }
+
+
                     Log.e("adding number ", "adding  numbers ");
                     if (local_con_list.size() > 0) {
                         ParseObject obj;
@@ -578,6 +580,7 @@ public class AvailableUsersFragment extends ListFragment {
 
                                 } else
                                     e.printStackTrace();
+                                CommonUtility.showCustomAlertForContactsError(mContext,"Error while sync");
 
                                 new loadData().execute();
 
