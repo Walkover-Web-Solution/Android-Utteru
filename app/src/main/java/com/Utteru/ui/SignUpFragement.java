@@ -121,7 +121,9 @@ public class SignUpFragement extends Fragment {
                 if (CommonUtility.isNetworkAvailable(getActivity().getBaseContext())) {
                     user_number_string = user_number_ed.getText().toString().trim().replace("+", "");
                     if (!user_number_string.equals("")) {
+                        user_number_string = CommonUtility.validateNumberForApi(user_number_string);
                         new SignUpClass().execute(null, null, null);
+
 
                     } else
                         showErrorMessage(true, getResources().getString(R.string.fill_all));
@@ -307,7 +309,7 @@ public class SignUpFragement extends Fragment {
 
         @Override
         protected Void doInBackground(Void... params) {
-            response = Apis.getApisInstance(getActivity()).signupWithNumber(CommonUtility.validateNumberForApi(user_number_string), country_code_string, Prefs.getResellerID(getActivity()), "", carrierType);
+            response = Apis.getApisInstance(getActivity()).signupWithNumber(user_number_string, country_code_string, Prefs.getResellerID(getActivity()), "", carrierType);
             if (!response.equalsIgnoreCase("")) {
                 JSONObject joparent, jochild;
 
@@ -404,7 +406,7 @@ public class SignUpFragement extends Fragment {
 
         @Override
         protected Void doInBackground(Void... params) {
-            response = Apis.getApisInstance(getActivity()).forgotPassword(CommonUtility.validateNumberForApi(user_number_string), new String[]{Prefs.getUserCountryCode(getActivity())}, "2", "2");
+            response = Apis.getApisInstance(getActivity()).forgotPassword(user_number_string, new String[]{Prefs.getUserCountryCode(getActivity())}, "2", "2");
             if (!response.equalsIgnoreCase("")) {
                 JSONObject joparent, jochild;
 
@@ -434,7 +436,7 @@ public class SignUpFragement extends Fragment {
                                 jarray = joparent.getJSONArray(VariableClass.ResponseVariables.CONTENT);
                                 MultipleVerifiedNumber mdtos;
                                 CommonUtility.c_list = new ArrayList<MultipleVerifiedNumber>();
-                                String tempnum= CommonUtility.validateNumberForApi(user_number_string);
+                                String tempnum= user_number_string;
                                 for (int i = 0; i < jarray.length(); i++) {
                                     mdtos = new MultipleVerifiedNumber();
                                     jochild = jarray.getJSONObject(i);

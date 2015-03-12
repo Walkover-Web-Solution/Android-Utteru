@@ -135,8 +135,10 @@ public class AskNumber extends AccountAuthenticatorActivity {
                 showErrorMessage(false, "");
                 if (CommonUtility.isNetworkAvailable(ctx)) {
                     user_number_string = user_number_ed.getText().toString();
-                    if (user_number_string != null && !user_number_string.equals(""))
+                    if (user_number_string != null && !user_number_string.equals("")) {
+                        user_number_string = CommonUtility.validateNumberForApi(user_number_string);
                         new ValidateForgotPassword().execute(null, null, null);
+                    }
                     else {
                         //go to forgot password
                         Intent startforgotpass = new Intent(ctx, ForgotPasswordActivity.class);
@@ -213,6 +215,7 @@ public class AskNumber extends AccountAuthenticatorActivity {
                     user_number_string = user_number_ed.getText().toString().trim().replace("+", "");
                     if (!user_number_string.equals("")) {
 
+                        user_number_string =CommonUtility.validateNumberForApi(user_number_string);
                         new SignUpClass().execute(null, null, null);
 
                     }

@@ -234,8 +234,10 @@ public class SignInScreen extends AccountAuthenticatorActivity {
                 showErrorMessage(false, "");
                 if (CommonUtility.isNetworkAvailable(ctx)) {
                     username = username_ed.getText().toString();
-                    if (username != null && !username.equals(""))
+                    if (username != null && !username.equals("")) {
+                        username = CommonUtility.validateNumberForApi(username);
                         new ValidateForgotPassword().execute(null, null, null);
+                    }
                     else {
                         //go to forgot password
                         Intent startforgotpass = new Intent(ctx, ForgotPasswordActivity.class);
@@ -371,6 +373,7 @@ public class SignInScreen extends AccountAuthenticatorActivity {
                     } else if (password.equals("")) {
                         showErrorMessage(true, getResources().getString(R.string.login_text));
                     } else {
+                        username = CommonUtility.validateNumberForApi(username);
                         new Login().execute(null, null, null);
                     }
                 } else {
