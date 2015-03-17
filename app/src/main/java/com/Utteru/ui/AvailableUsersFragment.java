@@ -68,6 +68,8 @@ import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -470,6 +472,13 @@ public class AvailableUsersFragment extends ListFragment {
                     if(allcontacts.size()>0) {
                         textempty.setVisibility(View.GONE);
                         getListView().setVisibility(View.VISIBLE);
+                        Collections.sort(allcontacts, new Comparator<ContactsDto>() {
+                            @Override
+                            public int compare(ContactsDto lhs, ContactsDto rhs) {
+
+                                return lhs.getName().compareToIgnoreCase(rhs.getName());
+                            }
+                        });
                         mAdapter = new AvailableContactAdapter(allcontacts, getActivity());
                         if (getActivity() != null)
                             getListView().setAdapter(mAdapter);
@@ -578,9 +587,10 @@ public class AvailableUsersFragment extends ListFragment {
                                 if (e == null) {
 
 
-                                } else
+                                } else {
                                     e.printStackTrace();
-                                CommonUtility.showCustomAlertForContactsError(mContext,"Error while sync");
+                                    CommonUtility.showCustomAlertForContactsError(mContext, "Error while sync");
+                                }
 
                                 new loadData().execute();
 

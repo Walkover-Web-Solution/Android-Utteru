@@ -93,21 +93,37 @@ public class
                             break;
                         case 3:
 
+                            Log.e("changing ip","changing ip"+Prefs.getPerse_ip(this) );
+                            Log.e("changing ip","changing ip"+Prefs.getUdp_ip(this) );
+                            Log.e("changing ip","changing port"+Prefs.getPerse_port(this) );
+                            Log.e("changing ip","changing port"+Prefs.getUdp_port(this) );
                             jobj = jobj.getJSONObject("content");
                             JSONArray jarry;
 
                             if (jobj.has("perse")) {
                                 jarry = jobj.getJSONArray("perse");
-                                Prefs.PERSE_SIP = jarry.getString(0);
-                                Prefs.PERSE_PORT = jarry.getString(1);
+                                String ip = jarry.getString(0);
+                               String port = jarry.getString(1);
+
+                                Prefs.setPerse_ip(this,ip);
+                                Prefs.setPerse_port(this,port);
 
                             }
                             if (jobj.has("udp")) {
                                 jarry = jobj.getJSONArray("udp");
-                                Prefs.SIP_SERVER = jarry.getString(0);
-                                Prefs.SIP_PORT = jarry.getString(1);
+                               String ip = jarry.getString(0);
+                              String port = jarry.getString(1);
+
+                                Prefs.setUdp_ip(this,ip);
+                                Prefs.setUdp_port(this,port);
 
                             }
+
+                            Log.e("changing ip","changing ip"+Prefs.getPerse_ip(this) );
+                            Log.e("changing ip","changing ip"+Prefs.getUdp_ip(this) );
+
+                            Log.e("changing ip","changed port"+Prefs.getPerse_port(this) );
+                            Log.e("changing ip","changed port"+Prefs.getUdp_port(this) );
 
 
                             break;
