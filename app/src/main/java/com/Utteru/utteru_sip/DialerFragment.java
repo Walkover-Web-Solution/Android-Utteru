@@ -612,14 +612,14 @@ public class DialerFragment extends Fragment {
             userInfo.setTranType(PortSipEnumDefine.ENUM_TRANSPORT_PERS);
             SettingConfig.setTransType(context, PortSipEnumDefine.ENUM_TRANSPORT_PERS);
             SettingConfig.setSrtpType(context, PortSipEnumDefine.ENUM_SRTPPOLICY_NONE, mSipSdk);
-            userInfo.setSipServer(Prefs.PERSE_SIP);
-            userInfo.setSipPort(Integer.parseInt(Prefs.PERSE_PORT));
+            userInfo.setSipServer(Prefs.getPerse_ip(context));
+            userInfo.setSipPort(Integer.parseInt(Prefs.getPerse_port(context)));
         } else {
             userInfo.setTranType(PortSipEnumDefine.ENUM_TRANSPORT_UDP);
             SettingConfig.setTransType(context, PortSipEnumDefine.ENUM_TRANSPORT_UDP);
             SettingConfig.setSrtpType(context, PortSipEnumDefine.ENUM_SRTPPOLICY_NONE, mSipSdk);
-            userInfo.setSipServer(Prefs.SIP_SERVER);
-            userInfo.setSipPort(Integer.parseInt(Prefs.SIP_PORT));
+            userInfo.setSipServer(Prefs.getUdp_ip(context));
+            userInfo.setSipPort(Integer.parseInt(Prefs.getUdp_port(context)));
         }
 
         SettingConfig.setUserInfo(context, userInfo);
