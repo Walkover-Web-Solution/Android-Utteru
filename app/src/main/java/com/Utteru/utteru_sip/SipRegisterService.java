@@ -41,6 +41,7 @@ public class SipRegisterService extends Service
 
         utteruSipCore = ((UtteruSipCore) context.getApplicationContext());
         mSipSdk = utteruSipCore.getPortSIPSDK();
+        if(!utteruSipCore.isOnline())
         online();
 
         super.onCreate();
