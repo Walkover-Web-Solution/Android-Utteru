@@ -57,6 +57,7 @@ public class GetNameInForeground extends AbstractGetNameTask {
         try {
 
             String token = GoogleAuthUtil.getToken(mActivity, mEmail, mScope);
+
             Log.e("gmail token ", "" + token);
             mActivity.setToken(token);
             return token;
