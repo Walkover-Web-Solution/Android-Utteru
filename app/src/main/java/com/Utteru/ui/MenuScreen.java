@@ -223,7 +223,7 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
     }
 
     public void setBalance() {
-        if ((new Date().getTime()) % 5 == 0) {
+        if (showbal) {
 
 
             userBalance.setText("Buy More");
