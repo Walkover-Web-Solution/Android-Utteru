@@ -16,26 +16,20 @@
 
 package com.Utteru.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.BuildConfig;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.Utteru.R;
 import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.commonUtilities.VariableClass;
 import com.Utteru.dtos.AccessContactDto;
-import com.Utteru.p2p.CallScreenActivity;
-import com.Utteru.p2p.SinchService;
 import com.Utteru.util.Utils;
-import com.sinch.android.rtc.calling.Call;
 import com.splunk.mint.Mint;
 
 
-public class ContactDetailActivity extends com.Utteru.p2p.BaseActivity implements  ContactDetailFragment.callUser {
+public class ContactDetailActivity extends BaseActivity {
     // Defines a tag for identifying the single fragment that this activity holds
     private static final String TAG = "ContactDetailActivity";
 
@@ -77,26 +71,25 @@ public class ContactDetailActivity extends com.Utteru.p2p.BaseActivity implement
     public void onBackPressed() {
 
 
-        if(getIntent().getExtras().containsKey(VariableClass.Vari.SOURCECLASS)){
+        if (getIntent().getExtras().containsKey(VariableClass.Vari.SOURCECLASS)) {
 
-           this.finish();
+            this.finish();
 
-        }
-        else {
+        } else {
 
             super.onBackPressed();
             this.finish();
             overridePendingTransition(R.anim.animation3, R.anim.animation4);
         }
     }
-    public void stopButtonClicked() {
+/*    public void stopButtonClicked() {
         if (getSinchServiceInterface() != null) {
             getSinchServiceInterface().stopClient();
         }
         finish();
-    }
+    }*/
 
-    public void callButtonClicked(String number ) {
+ /*   public void callButtonClicked(String number ) {
         String userName = number.replace("+","");
         userName = userName.replace("\\s+","");
         userName = userName.replace(" ","");
@@ -118,8 +111,9 @@ public class ContactDetailActivity extends com.Utteru.p2p.BaseActivity implement
         else{
             CommonUtility.showCustomAlertForContactsError(this, "Not able to initiate call");
         }
-    }
+    }*/
 
+/*
     @Override
     public void onCall(int action, AccessContactDto dto) {
 
@@ -128,5 +122,6 @@ public class ContactDetailActivity extends com.Utteru.p2p.BaseActivity implement
             callButtonClicked(dto.getMobile_number());
         }
     }
+*/
 
 }

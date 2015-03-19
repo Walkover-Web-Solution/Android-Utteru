@@ -17,7 +17,6 @@ import android.support.v7.app.ActionBarActivity;
 import com.Utteru.R;
 import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.Prefs;
-import com.Utteru.parse.ParseDb;
 import com.Utteru.syncadapter.SyncAdapter;
 import com.splunk.mint.Mint;
 import com.viewpagerindicator.IconPagerAdapter;
@@ -93,7 +92,6 @@ public class ContactsListActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
 
-        ParseDb.getParseInstance(this).updateOnlineStatus(true);
         super.onResume();
     }
 
@@ -116,7 +114,6 @@ public class ContactsListActivity extends ActionBarActivity {
 
             e.printStackTrace();
         }
-        ParseDb.getParseInstance(this).updateOnlineStatus(false);
         super.onDestroy();
     }
 
@@ -129,7 +126,7 @@ public class ContactsListActivity extends ActionBarActivity {
 
     public static class DemoCollectionPagerAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
 
-        protected static final String[] CONTENT = new String[]{"All Contacts", "Access Contacts","Utteru Users"};
+        protected static final String[] CONTENT = new String[]{"All Contacts", "Access Contacts"};
         protected final int[] ICONS = new int[]{
                 R.drawable.all_contact,
                 R.drawable.access_contacts,
@@ -151,9 +148,7 @@ public class ContactsListActivity extends ActionBarActivity {
                 case 1:
                     // Access Contacts Fragment
                     return new ContactsAccessFragment();
-                case 2:
-                    // Access Contacts Fragment
-                    return new AvailableUsersFragment();
+
             }
             return null;
         }
