@@ -150,6 +150,7 @@ public class ContactDetailFragment extends Fragment {
         final LinearLayout access_details_layout = (LinearLayout) detailView.findViewById(R.id.access_number_details);
         final ImageView contact_detail_divide = (ImageView) detailView.findViewById(R.id.contact_detail_divider);
         final ImageView call_free_imgview = (ImageView) detailView.findViewById(R.id.call_free_img);
+        call_free_imgview.setVisibility(View.GONE);
 
         Button assignAccessNumber = (Button) detailView.findViewById(R.id.assignButton);
 

@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.util.Patterns;
@@ -22,15 +21,11 @@ import android.widget.GridView;
 
 import com.Utteru.R;
 import com.Utteru.adapters.CustomGridAdapter;
-import com.Utteru.adapters.LongCodesAdapter;
 import com.Utteru.commonUtilities.CommonUtility;
 import com.Utteru.commonUtilities.Constants;
 import com.Utteru.commonUtilities.FontTextView;
 import com.Utteru.commonUtilities.Prefs;
 import com.Utteru.commonUtilities.VariableClass;
-import com.Utteru.dtos.LongCodesDto;
-import com.Utteru.p2p.P2PService;
-import com.Utteru.parse.ContactObserver;
 import com.Utteru.userService.UserService;
 import com.Utteru.utteru_sip.DialerActivity;
 import com.Utteru.utteru_sip.SipRegisterService;
@@ -44,7 +39,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Pattern;
 
@@ -192,9 +186,7 @@ public class MenuScreen extends com.Utteru.ui.BaseActivity {
         }
         CommonUtility.getUserBalance(this);
 
-        //starting  p2p service
-        if (!CommonUtility.isMyServiceRunning(P2PService.class, this))
-            getApplicationContext().startService(new Intent(this, P2PService.class));
+
         //starting  sip  service
         if (!CommonUtility.isMyServiceRunning(SipRegisterService.class, this))
             getApplicationContext().startService(new Intent(this, SipRegisterService.class));
