@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 
 import com.Utteru.R;
 import com.Utteru.commonUtilities.CommonUtility;
@@ -51,15 +52,15 @@ public class AccessContactAdapter extends BaseAdapter {
             ViewHolder holder = new ViewHolder();
             holder.text1 = (FontTextView) paramView.findViewById(android.R.id.text1);
             holder.text2 = (FontTextView) paramView.findViewById(android.R.id.text2);
-            holder.icon = (RoundedQuickContactBadge) paramView.findViewById(android.R.id.icon);
+            holder.icon = (ImageView) paramView.findViewById(android.R.id.icon);
             paramView.setTag(holder);
         }
 
         ViewHolder viewholder = (ViewHolder) paramView.getTag();
         viewholder.text1.setText(list.get(paramInt).getDisplay_name());
+        Log.e("name_value", list.get(paramInt).getDisplay_name());
 
-        String number =list.get(paramInt).getMobile_number();
-
+        String number = list.get(paramInt).getMobile_number();
 
 
         viewholder.text2.setText(number);
@@ -72,8 +73,8 @@ public class AccessContactAdapter extends BaseAdapter {
                 Log.e("getname", "" + list.get(paramInt).getDisplay_name());
                 viewholder.icon.setImageBitmap(CommonUtility.drawImage(list.get(paramInt).getDisplay_name(), ctx));
             }
-            if (list.get(paramInt).getContactUri() != null)
-                viewholder.icon.assignContactUri(Uri.parse(list.get(paramInt).getContactUri()));
+   /*         if (list.get(paramInt).getContactUri() != null)
+                viewholder.icon.assignContactUri(Uri.parse(list.get(paramInt).getContactUri()));*/
         } else {
             viewholder.icon.setVisibility(View.GONE);
         }
@@ -82,6 +83,6 @@ public class AccessContactAdapter extends BaseAdapter {
 
     private class ViewHolder {
         FontTextView text1, text2;
-        RoundedQuickContactBadge icon;
+        ImageView icon;
     }
 }

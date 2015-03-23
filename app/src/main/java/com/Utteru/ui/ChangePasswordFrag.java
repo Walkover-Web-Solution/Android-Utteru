@@ -170,7 +170,6 @@ public class ChangePasswordFrag extends Fragment {
 
     public class ChangePasswordTask extends AsyncTask<Void, Void, Void> {
         String response = "";
-        String userId;
         Boolean iserror = false;
 
         @Override

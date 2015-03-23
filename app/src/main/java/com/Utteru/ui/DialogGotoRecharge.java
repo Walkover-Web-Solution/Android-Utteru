@@ -32,7 +32,7 @@ public class DialogGotoRecharge extends Dialog implements View.OnClickListener {
     public DialogGotoRecharge(Activity a) {
         super(a);
         this.c = a;
-        mActivity=a;
+        mActivity = a;
     }
 
     @Override
@@ -71,9 +71,10 @@ public class DialogGotoRecharge extends Dialog implements View.OnClickListener {
         switch (v.getId()) {
 
             case R.id.skip_button:
-                Intent rechrge = new Intent(mActivity, BuyNowActivity.class);
+                Intent rechrge = new Intent(mActivity, BuyNowOptionsActivity.class);
 
                 mActivity.startActivity(rechrge);
+                dismiss();
 
                 break;
             case R.id.done_button:

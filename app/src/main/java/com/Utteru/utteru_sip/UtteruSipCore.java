@@ -28,7 +28,6 @@ import com.Utteru.service.PortSipService;
 import com.Utteru.util.Line;
 import com.Utteru.util.Session;
 import com.Utteru.util.SipContact;
-import com.parse.Parse;
 import com.portsip.OnPortSIPEvent;
 import com.portsip.PortSipErrorcode;
 import com.portsip.PortSipSdk;
@@ -117,8 +116,7 @@ public class UtteruSipCore extends Application implements OnPortSIPEvent {
     public void onCreate() {
         super.onCreate();
 
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this, CommonUtility.PARSE_APP_ID, CommonUtility.PARSE_CLIENT_ID);
+
 
 
         sdk = new PortSipSdk();

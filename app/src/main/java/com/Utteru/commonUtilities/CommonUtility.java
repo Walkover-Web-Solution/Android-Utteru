@@ -11,11 +11,14 @@ import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
@@ -36,7 +39,6 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.Utteru.R;
 import com.Utteru.dtos.MultipleVerifiedNumber;
-import com.Utteru.parse.ContactsDto;
 import com.Utteru.ui.Apis;
 import com.Utteru.ui.FundTransferActivity;
 import com.Utteru.ui.MenuScreen;
@@ -68,13 +70,7 @@ public class CommonUtility {
     public final static String BUGSENSELIVE = "395e969a";
     public final static String BUGSENSEID_TEST = "1a1d2717";
 
-    public static final String APP_KEY = "21384a7d-f111-400d-8202-ff29b5b6df56";
-    public static final String APP_SECRET = "OFbB7aMIJ0auppPm2I11Uw==";
-    public static final String ENVIRONMENT = "sandbox.sinch.com";
 
-
-    public final static  String PARSE_APP_ID = "nkUvfH1hYs7e3u8dU0N6DMhqyYO47zAe8W3v3y5G";
-    public final static  String PARSE_CLIENT_ID="WaDxKh5iq8nfGsRucBCcfDW4tATuFFYGqoilTbk3";
     public static ArrayList<MultipleVerifiedNumber> c_list;
     public static ProgressDialog dialog;
     public static HashMap<String, String> currency_list;
@@ -164,7 +160,7 @@ public class CommonUtility {
     public static String validateText(String text) {
 
         text = text.replaceAll("[^\\w\\s\\-_]", "");//all special
-        text = text.replaceAll("\\s+", "");
+        //text = text.replaceAll("\\s+", "");
         text = text.replace("+", "");
         text = text.replaceAll("-", ""); //dash
         text = text.trim();
@@ -179,23 +175,18 @@ public class CommonUtility {
         number = number.trim();
 
 
-
-
         if (number.startsWith("+") || number.startsWith("00")) {
 
             return number;
-        }
-        else
-         if (number.startsWith("0")) {
+        } else if (number.startsWith("0")) {
 
-             number = number.replaceFirst("0", "");
-             number = "+" + Prefs.getUserCountryCode(ctx) + number;
-             return number;
-         }
-        else{
-             number = "+" + Prefs.getUserCountryCode(ctx) + number;
-             return number;
-         }
+            number = number.replaceFirst("0", "");
+            number = "+" + Prefs.getUserCountryCode(ctx) + number;
+            return number;
+        } else {
+            number = "+" + Prefs.getUserCountryCode(ctx) + number;
+            return number;
+        }
 
     }
 
@@ -276,10 +267,6 @@ public class CommonUtility {
         }
     }
 
-    public static void hideKeyboard(View view, Context context) {
-        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
 
     public static void getUserBalanceFund(final Context ctx) {
 
@@ -427,6 +414,7 @@ public class CommonUtility {
         dialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         dialog.show();
     }
+
 
     public static String getContactDisplayNameByNumber(String number, Context ctx) {
         String name = "";
@@ -700,7 +688,7 @@ public class CommonUtility {
         int xPos = (canvas.getWidth() / 2);
         int yPos = (int) ((canvas.getHeight() / 2) - ((paint.descent() + paint.ascent()) / 2));
         canvas.drawText(temp, xPos, yPos, paint);
-        return image;
+        return getCroppedBitmap(image);
 
     }
 
@@ -776,14 +764,31 @@ public class CommonUtility {
 
     }
 
+    public static Bitmap getCroppedBitmap(Bitmap bitmap) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+                bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
 
-    public static void printMe(String tag, String message) {
-        Log.e(tag, message);
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
 
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        // canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+        canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
+                bitmap.getWidth() / 2, paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+        //Bitmap _bmp = Bitmap.createScaledBitmap(output, 60, 60, false);
+        //return _bmp;
+        return output;
     }
 
-    public static boolean isMyServiceRunning(Class<?> serviceClass,Context ctx) {
-        ActivityManager manager = (ActivityManager)ctx. getSystemService(Context.ACTIVITY_SERVICE);
+
+    public static boolean isMyServiceRunning(Class<?> serviceClass, Context ctx) {
+        ActivityManager manager = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
             if (serviceClass.getName().equals(service.service.getClassName())) {
                 return true;
@@ -792,41 +797,5 @@ public class CommonUtility {
         return false;
     }
 
-    public  static ArrayList<ContactsDto> readContactsNew(Context ctx) {
-        int currentApiVersion = Build.VERSION.SDK_INT;
-        String SELECTION;
-        SELECTION =
-                ContactsContract.Contacts.DISPLAY_NAME
-                        + "<>'' AND "
-                        + ContactsContract.CommonDataKinds.Phone.HAS_PHONE_NUMBER + "=1";
-
-        ArrayList<ContactsDto> list = new ArrayList<ContactsDto>();
-        ContactsDto adto;
-        Cursor phones = ctx.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, SELECTION, null, null);
-        while (phones.moveToNext()) {
-
-            String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-
-
-            String label = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.LABEL));
-
-            adto = new ContactsDto();
-
-            adto.setNumber(phoneNumber);
-            adto.setStatus(false);
-            adto.setState(false);
-            adto.setUserNumber(Prefs.getUserDefaultNumber(ctx));
-
-            if (label != null) {
-                if (!label.equals("Utteru Number") && !label.equals("Dedicated Access Number") & !label.contains("Access Number Extension:"))
-                    list.add(adto);
-            } else {
-                list.add(adto);
-            }
-
-        }
-        phones.close();
-        return list;
-    }
 
 }

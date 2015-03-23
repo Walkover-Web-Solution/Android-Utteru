@@ -82,6 +82,7 @@ public class TwoWayCallFrag extends Fragment {
     LinearLayout dialpad_layout;
 
 
+
     String TWO_WAY_CALL_STATE_ANSWER = "ANSWER";
     String TWO_WAY_CALL_STATE_ANSWERED = "ANSWERED";
 
@@ -360,11 +361,11 @@ public class TwoWayCallFrag extends Fragment {
 
                     switch (reqCode) {
                         case (REQUEST_SELECT_CONTACT_SOURCE):
-                            source_ed.setText(CommonUtility.validateNumberForUI(con_number,ctx));
+                            source_ed.setText(CommonUtility.validateNumberForUI(con_number, ctx));
 //                            source_ed.setText("+" + con_number);
                             break;
                         case (REQUEST_SELECT_CONTACT_DEST):
-                            dest_ed.setText(CommonUtility.validateNumberForUI(con_number,ctx));
+                            dest_ed.setText(CommonUtility.validateNumberForUI(con_number, ctx));
 //                            if (con_number.startsWith("+"))
 //                                dest_ed.setText(con_number);
 //                            else
@@ -896,6 +897,7 @@ public class TwoWayCallFrag extends Fragment {
         protected void onPreExecute() {
             endcall_btn.setEnabled(true);
             CommonUtility.show_PDialog(getActivity(), getString(R.string.please_wait));
+
             super.onPreExecute();
         }
 
@@ -990,6 +992,7 @@ public class TwoWayCallFrag extends Fragment {
             Log.e("hiding  keyboard", "hiding keyboard");
 
         } else {
+
             Intent menu = new Intent(getActivity(), MenuScreen.class);
             menu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             menu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

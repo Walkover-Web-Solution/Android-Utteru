@@ -33,16 +33,17 @@ public class SipRegisterService extends Service
     PortSipSdk mSipSdk;
     String statuString;
     UtteruSipCore utteruSipCore;
-    Context context =this;
+    Context context = this;
     String LogPath = null;
     String licenseKey = "1Xh01QTg3OTEyNUZEOTQwOTM4QzlFRDg3NDNFOTQyQjIzNkBGRTc2NzcwNDBCNzcwRDdGOUNCQzhGMzM4MjdDOTY1OUA3QjlFMzQxQkYzMUY0RTM3QTUyNjgzM0IzRjFENjQ4RkBGMjg4MDU0OTBFMDAxRDIyNTVDNkMwQTFFNDk0RTZFMg";
+
     @Override
     public void onCreate() {
 
         utteruSipCore = ((UtteruSipCore) context.getApplicationContext());
         mSipSdk = utteruSipCore.getPortSIPSDK();
-        if(!utteruSipCore.isOnline())
-        online();
+        if (!utteruSipCore.isOnline())
+            online();
 
         super.onCreate();
     }
@@ -53,6 +54,7 @@ public class SipRegisterService extends Service
 
         return null;
     }
+
     void updateStatus() {
 
         if (utteruSipCore.isOnline()) {
@@ -66,6 +68,7 @@ public class SipRegisterService extends Service
             }
         }
     }
+
     private UserInfo saveUserInfo() {
         UserInfo userInfo = new UserInfo();
         userInfo.setUserName(Prefs.getUserSipName(context));
@@ -83,10 +86,13 @@ public class SipRegisterService extends Service
             userInfo.setSipServer(Prefs.getUdp_ip(context));
             userInfo.setSipPort(Integer.parseInt(Prefs.getUdp_port(context)));
         }
+        //userInfo.setStunPort(Integer.parseInt(Prefs.getstun_port(context)));
+        //userInfo.setStunServer(Prefs.getstun_ip(context));
 
         SettingConfig.setUserInfo(context, userInfo);
         return userInfo;
     }
+
     private int online() {
         int result = setUserInfo();
 
@@ -106,6 +112,7 @@ public class SipRegisterService extends Service
         return result;
 
     }
+
     int setUserInfo() {
         Environment.getExternalStorageDirectory();
         LogPath = Environment.getExternalStorageDirectory().getAbsolutePath() + '/';

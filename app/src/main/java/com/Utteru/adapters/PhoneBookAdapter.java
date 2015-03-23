@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 
 import com.Utteru.R;
 import com.Utteru.commonUtilities.CommonUtility;
@@ -49,7 +50,7 @@ public class PhoneBookAdapter extends BaseAdapter {
             ViewHolder holder = new ViewHolder();
             holder.text1 = (FontTextView) paramView.findViewById(android.R.id.text1);
             holder.text2 = (FontTextView) paramView.findViewById(android.R.id.text2);
-            holder.icon = (RoundedQuickContactBadge) paramView.findViewById(android.R.id.icon);
+            holder.icon = (ImageView) paramView.findViewById(android.R.id.icon);
 //            holder.image = (ImageView)paramView.findViewById(R.id.user_image);
             // Stores the resourceHolder instance in itemLayout. This makes resourceHolder
             // available to bindView and other methods that receive a handle to the item view.
@@ -69,8 +70,8 @@ public class PhoneBookAdapter extends BaseAdapter {
                 Log.e("getname", "" + list.get(paramInt).getDisplay_name());
                 viewholder.icon.setImageBitmap(CommonUtility.drawImage(list.get(paramInt).getDisplay_name(), ctx));
             }
-            if (list.get(paramInt).getContactUri() != null)
-                viewholder.icon.assignContactUri(Uri.parse(list.get(paramInt).getContactUri()));
+            /*if (list.get(paramInt).getContactUri() != null)
+                viewholder.icon.assignContactUri(Uri.parse(list.get(paramInt).getContactUri()));*/
         } else {
             viewholder.icon.setBackgroundColor(ctx.getResources().getColor(android.R.color.transparent));
             Log.e("getname", "" + list.get(paramInt).getDisplay_name());
@@ -83,7 +84,7 @@ public class PhoneBookAdapter extends BaseAdapter {
     private class ViewHolder {
         FontTextView text1;
         FontTextView text2;
-        RoundedQuickContactBadge icon;
+        ImageView icon;
 //        ImageView image;
     }
 }
