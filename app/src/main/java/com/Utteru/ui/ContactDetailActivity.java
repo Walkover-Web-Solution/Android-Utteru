@@ -82,46 +82,5 @@ public class ContactDetailActivity extends BaseActivity {
             overridePendingTransition(R.anim.animation3, R.anim.animation4);
         }
     }
-/*    public void stopButtonClicked() {
-        if (getSinchServiceInterface() != null) {
-            getSinchServiceInterface().stopClient();
-        }
-        finish();
-    }*/
-
- /*   public void callButtonClicked(String number ) {
-        String userName = number.replace("+","");
-        userName = userName.replace("\\s+","");
-        userName = userName.replace(" ","");
-
-       Log.e("calling number ",""+number);
-        if (userName.isEmpty()) {
-            Toast.makeText(this, "Please enter a user to call", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        Call call = getSinchServiceInterface().callUser(userName);
-        if(call!=null) {
-            String callId = call.getCallId();
-
-            Intent callScreen = new Intent(this, CallScreenActivity.class);
-            callScreen.putExtra(SinchService.CALL_ID, callId);
-            startActivity(callScreen);
-        }
-        else{
-            CommonUtility.showCustomAlertForContactsError(this, "Not able to initiate call");
-        }
-    }*/
-
-/*
-    @Override
-    public void onCall(int action, AccessContactDto dto) {
-
-        if(action==0)
-        {
-            callButtonClicked(dto.getMobile_number());
-        }
-    }
-*/
 
 }

@@ -42,10 +42,6 @@ android {
         compile 'com.helpshift:android-en-aar:3.7.1'
         compile files('libs/portsipvoipsdk.jar')
         compile project(':facebook')
-        compile 'com.parse.bolts:bolts-android:1.+'
-        compile fileTree(dir: 'libs', include: 'Parse-*.jar')
-        compile files('libs/sinch-android-rtc-3.4.3.jar')
-
     }
 
 

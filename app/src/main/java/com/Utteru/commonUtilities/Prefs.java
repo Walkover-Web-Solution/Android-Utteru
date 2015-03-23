@@ -53,7 +53,6 @@ public class Prefs {
     private static String PERSE_PORT = "perse_port";
 
 
-
     private static SharedPreferences getPrefs(Context context) {
         return context.getSharedPreferences("mypref", Context.MODE_MULTI_PROCESS | Context.MODE_WORLD_READABLE);
     }
@@ -63,15 +62,18 @@ public class Prefs {
         value = value.replace("+", "");
         return value;
     }
+
     public static String getAssignId(Context context) {
         String value = getPrefs(context).getString(ASSIGN_ID, "");
         value = value.replace("+", "");
         return value;
     }
+
     public static void setAssignId(Context context, String value) {
 
         getPrefs(context).edit().putString(ASSIGN_ID, value).commit();
     }
+
     public static String getPlanRate(Context context) {
         String value = getPrefs(context).getString(PLAN_RATE, "");
         value = value.replace("+", "");
@@ -352,12 +354,19 @@ public class Prefs {
     }
 
 
+    //    --------------------
+    public static String getstun_ip(Context context) {
+        return getPrefs(context).getString(SIP_SERVER, "webcall.phone91.com");
+    }
 
-//    --------------------
+    public static String getstun_port(Context context) {
+        return getPrefs(context).getString(SIP_PORT, "3478");
+    }
 
     public static String getUdp_ip(Context context) {
         return getPrefs(context).getString(SIP_SERVER, "sip.phone91.com");
     }
+
     public static void setUdp_ip(Context context, String value) {
         // perform validation etc..
         getPrefs(context).edit().putString(SIP_SERVER, value).commit();
@@ -367,14 +376,16 @@ public class Prefs {
     public static String getUdp_port(Context context) {
         return getPrefs(context).getString(SIP_PORT, "27376");
     }
-    public static void setUdp_port(Context context,String value) {
-         getPrefs(context).getString(SIP_PORT, value);
+
+    public static void setUdp_port(Context context, String value) {
+        getPrefs(context).getString(SIP_PORT, value);
     }
 
 
     public static String getPerse_ip(Context context) {
         return getPrefs(context).getString(PERSE_SIP, "45.56.69.233");
     }
+
     public static void setPerse_ip(Context context, String value) {
         // perform validation etc..
         getPrefs(context).edit().putString(PERSE_SIP, value).commit();
@@ -384,7 +395,8 @@ public class Prefs {
     public static String getPerse_port(Context context) {
         return getPrefs(context).getString(PERSE_PORT, "27376");
     }
-    public static void setPerse_port(Context context,String value) {
+
+    public static void setPerse_port(Context context, String value) {
         getPrefs(context).edit().putString(PERSE_PORT, value).commit();
     }
 }

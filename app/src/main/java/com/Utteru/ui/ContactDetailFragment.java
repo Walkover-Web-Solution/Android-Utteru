@@ -68,21 +68,11 @@ public class ContactDetailFragment extends Fragment {
     private Uri mContactUri; // Stores the contact Uri for this fragment instance
     private ImageLoader mImageLoader; // Handles loading the contact image in a background thread
     private ImageView mImageView;
-    callUser call_listener;
 
 
     public ContactDetailFragment() {
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            call_listener = (callUser) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement OnURLSelectedListener");
-        }
-    }
 
     public static ContactDetailFragment newInstance(AccessContactDto accessContactDto) {
         final ContactDetailFragment fragment = new ContactDetailFragment();
@@ -204,12 +194,7 @@ public class ContactDetailFragment extends Fragment {
 
             }
         });
-        call_free_imgview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                call_listener.onCall(0, mAccessContactDto);
-            }
-        });
+
         gohome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -451,9 +436,7 @@ public class ContactDetailFragment extends Fragment {
         }
     }
 
-    public interface callUser {
-        public void onCall(int action, AccessContactDto dto);
-    }
+
 
 
     void launchCallingActivity(String number, String name, long time, boolean isongoing, String price, long date) {

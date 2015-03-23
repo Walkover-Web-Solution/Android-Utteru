@@ -93,20 +93,6 @@ public class ContactsAccessFragment extends ListFragment {
     // OS versions as search results are shown in-line via Action Bar search from honeycomb onward
     private boolean mIsSearchResultView = false;
 
-    BroadcastReceiver contacts_updated = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            //show unregister layout
-            if (intent.getAction().equals(SyncAdapter.CONTACTS_UPDATED)) {
-
-             new loadData().execute();
-
-            }
-
-        }
-    };
 
     /**
      * Fragments require an empty constructor.
@@ -435,9 +421,5 @@ public class ContactsAccessFragment extends ListFragment {
             super.onPreExecute();
         }
     }
-    public void onUpdate()
-    {
 
-        new loadData().execute();
-    }
 }
